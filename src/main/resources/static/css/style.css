@@ -1,0 +1,22 @@
+body {
+    height: 100vh;    
+}
+
+.cabecalho {
+    background: #062A40 ;             /* cor de fundo cabeçalho */
+    height: 20%;                        /* altura cabeçalho */
+    width: 100%;
+    position: relative;                 /* posição */
+    display: flex;                      /* tranforma em Flex Container */
+    justify-content: space-between;     /* item distribuido com espaço no meio */
+    align-items: center;
+    padding: 100px;
+}
+
+.logotipo {
+    width: 300px;
+    height: 100px;
+}
+
+
+
