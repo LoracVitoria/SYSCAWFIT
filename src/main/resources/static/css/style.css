@@ -1,5 +1,5 @@
 body {
-    height: 100vh;    
+    height: 100vh;
 }
 
 .cabecalho {
@@ -16,6 +16,13 @@ body {
 .logotipo {
     width: 300px;
     height: 100px;
+}
+
+.tela-body{
+    display: inline-flex;
+    position: relative;
+    left: 25%;
+    top: 50px;
 }
 
 
