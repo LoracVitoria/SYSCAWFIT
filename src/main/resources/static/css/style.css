@@ -10,20 +10,6 @@ html,body {
     background: #062A40;
 }
 
-.coluna-imagem {
-    display: flex;
-    justify-content: flex-end;
-    height: 15vh;
-}
-
-.coluna-texto {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    height: 15vh;
-}
-
-
 .linha-centro {
     height: 80vh;
 }
@@ -39,55 +25,27 @@ html,body {
 ========================================================================
 */
 
-.cabecalho {
-    background: #062A40 ;
-    display: flex;                      /* tranforma em Flex Container */
-    justify-content: space-between;     /* item distribuido com espaço no meio */
-    align-items: center;
-    padding: 2%;
-    grid-area: cabecalho;
-}
-
 .logotipo {
     height: 15vh;
 }
 
 .usuario__imagem {
-    height: 11vh;                 
-    width: 11vh;                   
+    height: 11vh;                  /* definir espaço onde as imagens serão exibidas  */
+    width: 11vh;                   /* definir espaço onde as imagens serão exibidas */
     background-size: cover;         /* para que as imagens não se repitam */
     background-position: center;    /* para que as imagens ocupem todo o background */
     background-repeat: no-repeat;   /* para que as imagens seham centralizadas na caixa */
     border-radius: 100%;            /* bordas arredondadas */
     margin-top: 1rem;
     margin-left: 3rem;
+    background-image: url("../../img/imagem-usuario.jpg");
 }
 
 .usuario__nome {
-    color: #ECF229;             
-    font-weight: bold; 
-    margin-top: 1.3rem;
-    margin-left: 0.5rem;
-} 
-
-@media screen and (min-width:0){
-    .coluna-imagem {
-        /* background: green; */
-    }
-    .usuario__nome {
-        font-size: 11px;
-    }
+    color: #ECF229;
+    font-weight: bold;
+    margin-top: 2.5rem;
 }
-
-@media screen and (min-width:768px){
-    .coluna-imagem {
-        /* background: gray; */
-    }
-    .usuario__nome {
-        font-size:16px;
-    }
-}
-
 
 /*
 ========================================================================
@@ -99,6 +57,7 @@ html,body {
     height: 70vh;
 }
 
+
 /*
 ========================================================================
         RODAPÉ
@@ -108,7 +67,6 @@ html,body {
 .rodape {
     background: #062A40;
     text-align: center;
-    grid-area: rodape;
 }
 
 .rodape p {
