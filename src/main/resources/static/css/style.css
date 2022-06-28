@@ -53,14 +53,15 @@ html,body {
 }
 
 .usuario__imagem {
-    height: 11vh;
-    width: 11vh;
+    height: 11vh;                 
+    width: 11vh;                   
     background-size: cover;         /* para que as imagens não se repitam */
     background-position: center;    /* para que as imagens ocupem todo o background */
     background-repeat: no-repeat;   /* para que as imagens seham centralizadas na caixa */
     border-radius: 100%;            /* bordas arredondadas */
     margin-top: 1rem;
     margin-left: 3rem;
+    background-image: url("../../img/imagem-usuario.jpg");
 }
 
 .usuario__nome {
@@ -68,7 +69,7 @@ html,body {
     font-weight: bold; 
     margin-top: 1.3rem;
     margin-left: 0.5rem;
-}
+} 
 
 @media screen and (min-width:0){
     .coluna-imagem {
@@ -152,4 +153,3 @@ html,body {
       0% {opacity: 0%;}
       100% {opacity: 100%;}
   }
- 	
