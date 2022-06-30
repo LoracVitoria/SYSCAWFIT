@@ -1,0 +1,14 @@
+.form__button-novo {
+    width: 200px;
+    padding-right: 1rem;
+    background: #91B021;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    color: white;
+}
+
+.form__button-novo:hover {
+    background: #062A40;
+    color: #ECF229;
+}

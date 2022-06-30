@@ -1,0 +1,15 @@
+.form__button-pesquisar {
+    width: 200px;
+    height: 40px;
+    padding-right: 1rem;
+    background: #BFBFBF;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #062A40 ;
+    border: none;
+}
+
+.form__button-pesquisar:hover {
+    background: #062A40;
+    color: #ECF229;
+}

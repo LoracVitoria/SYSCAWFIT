@@ -1,6 +1,6 @@
 .app {
-    display: grid;  
-    grid-template-areas: 
+    display: grid;
+    grid-template-areas:
     "cabecalho cabecalho"
     "menu      conteudo"
     "rodape    rodape";
@@ -16,7 +16,7 @@
 */
 
 .cabecalho {
-    background: #062A40 ;             
+    background: #062A40 ;
     display: flex;                      /* tranforma em Flex Container */
     justify-content: space-between;     /* item distribuido com espaço no meio */
     align-items: center;
