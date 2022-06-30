@@ -1,5 +1,5 @@
 .nav-link {
-       color: #062A40;    /* cor de texto do link */
+    color: #062A40;    /* cor de texto do link */
     font-weight: bold;            /* texto em negrito */
     text-transform: uppercase;    /* texto em maiúsculo */
     justify-content: center;
@@ -10,4 +10,3 @@
     color: #ECF229;     
     background-color: #062A40;
 }
-

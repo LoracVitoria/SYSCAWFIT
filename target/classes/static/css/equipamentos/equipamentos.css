@@ -26,7 +26,7 @@
 
 .cadastrar h1{
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
 }
 
 .cadastrar input{
@@ -49,8 +49,8 @@
      float: left;
  }
 
- .cadastrar div{
-     border: 1px solid red;
+ .imgEquipamento{
+     border: 1px solid black;
      float: right;
      width: 50%;
      height: 50%;
@@ -69,5 +69,9 @@
     font-weight: 700;
     text-align: center;
  }
+ 
+ .consultar h1{
+	margin-bottom: 50px;
+}
 
 

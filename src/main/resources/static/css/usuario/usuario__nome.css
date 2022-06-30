@@ -1,5 +1,5 @@
 .usuario__nome {
-    color: #ECF229;             /* cor de texto */
-    font-weight: bold;            /* negrito */
-    /* border: 1px solid red; */
+    color: #ECF229;             
+    font-weight: bold; 
+    line-height: 5rem;         
 } 

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="head:: head" />
+    <body class="app">
+       <!-- CABEÇALHO-->
+        <header th:replace="cabecalho:: cabecalho"/>
+
+       <!-- MENU-->
+        <nav th:replace="menu:: menu"/>
+
+        <section>
+                <div class="consultar">
+                    <h1>CONSULTAR EQUIPAMENTOS</h1>
+	                <table class="table table-striped table-bordered table-hover">
+		     			 <thead>
+		      				  <tr>
+		        			 	<th>Id</th>
+		         			 	<th>Nome</th>
+		         			 	<th>Descricao</th>
+		         				<th>Imagem</th>
+		         				<th>Ações</th>
+		       				  </tr>
+		                 </thead>
+		                  <tbody>
+		    
+		       				 <tr th:each="equipamentos: ${equipamentosList}">
+						          <td th:text="${equipamentos.id}"/>
+						          <td th:text="${equipamentos.nome}"/>
+						          <td th:text="${equipamentos.descricao}"/>
+						          <!--td th:img="${equipamentos.imagem}"/-->
+						          <td><img th:src="@{/img/imagem-logo.PNG}"/></td>
+						          
+						          <td>
+							          <a th:href="@{/equipamentos/delete/{id}(id=${equipamentos.id})}">
+							            <i class="btn btn-dark" title="delete">Delete</i>
+							          </a>
+							            
+							          <a th:href="@{/equipamentos/update/{id}(id=${equipamentos.id})}">
+							            <i class="btn btn-light" title="update">Update</i>
+							          </a>
+						          </td>
+					        </tr>
+					      </tbody>
+               		</table>
+                 </div>
+        </section>
+        
+          <!-- RODAPÉ-->
+        <footer class="rodape">
+            <p>Todos os direitos reservados - 2022.</p>
+        </footer>
+
+        <!-- JavaScript Bundle with Popper -->
+<!--script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" 
+integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"><---!script-->
+   		<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+    </body>
+</html>

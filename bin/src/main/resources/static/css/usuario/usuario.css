@@ -1,0 +1,12 @@
+.usuario {
+    width: 120px;
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid red; */
+    text-align: center;
+    margin-top: 15px;
+    
+}
+
+
+

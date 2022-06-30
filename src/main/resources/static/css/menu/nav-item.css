@@ -1,5 +1,4 @@
 .nav-item {
-    width: 20rem ;               /* largura do item */
-    text-align: center;        /* centralizar texto */
-    margin: 5px;
+    text-align: center;        
+    padding-bottom: 1rem;        /* espaço entre os itens da lista */
 }
