@@ -12,37 +12,150 @@
         <!--CONTEÚDO DA PÁGINA-->
         <main class="conteudo">
 
-            <article class="consulta-aluno">
+            <h2 class="titulo-principal">Cadastrar</h2>
 
-                <form class="form">
-                    <div class="mb-3 box">
-                        <label for="exampleInputEmail1" class="form-label form__label">Aluno</label>
-                        <input type="email" id="exampleInputEmail1" aria-describedby="emailHelp" class="form-control form__input" placeholder="Digite o CPF">
+            <article class="cadastro">
 
-                        <a href="#" class="form__link-button">
-                            <button type="submit" class="btn form__button-pesquisar">Pesquisar</button>
-                        </a>
+                <form class="row g-3 form">
+                    <section class="form__dados-pessoais">
+                        <div class="col-md-4">
+                            <label for="validationServer01" class="form-label">CPF</label>
+                            <input type="text" class="form-control is-valid" id="validationServer01" required>
+                            <div class="valid-feedback">
+                              Looks good!
+                            </div>
+                          </div>
+      
+                          <div class="col-md-4">
+                              <label for="validationServer01" class="form-label">Nome completo</label>
+                              <input type="text" class="form-control is-valid" id="validationServer01" required>
+                              <div class="valid-feedback">
+                                Looks good!
+                              </div>
+                            </div>
+      
+                          <div class="col-md-4">
+                            <label for="validationServer02" class="form-label">Data de Nascimento</label>
+                            <input type="date" class="form-control is-valid" id="validationServer02" required>
+                            <div class="valid-feedback">
+                              Looks good!
+                            </div>
+                          </div>
+      
+                          <div class="col-md-4">
+                              <label for="validationServer01" class="form-label">Telefone</label>
+                              <input type="text" class="form-control is-valid" id="validationServer01" required>
+                              <div class="valid-feedback">
+                                Looks good!
+                              </div>
+                          </div>
+      
+                          <div class="col-md-4">
+                            <label for="validationServerUsername" class="form-label">E-mail</label>
+                            <div class="input-group has-validation">
+                              <span class="input-group-text" id="inputGroupPrepend3">@</span>
+                              <input type="text" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
+                              <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                                Please choose a username.
+                              </div>
+                            </div>
+                          </div>
 
-                        <a href="#" class="form__link-button">
-                            <button type="submit" class="btn form__button-novo">Novo Aluno</button>
-                        </a>
-                    </div>
+                          <div class="input-group">
+                            <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                            <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Anexar</button>
+                          </div>
+
+                    </section>
+                   
+                    <section class="endereco">
+
+                        <h5 class="titulo-endereco">Endereço</h5>
+
+                        <div class="col-md-6">
+                            <label for="validationServer03" class="form-label">CEP</label>
+                            <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" required>
+                            <div id="validationServer03Feedback" class="invalid-feedback">
+                                Please provide a valid CEP.
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="validationServer03" class="form-label">Rua</label>
+                            <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="validationServer03" class="form-label">Nº</label>
+                            <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="validationServer03" class="form-label">Bairro</label>
+                            <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" required>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="validationServer03" class="form-label">Cidade</label>
+                            <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" required>
+                            <div id="validationServer03Feedback" class="invalid-feedback">
+                                Please provide a valid city.
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="validationServer04" class="form-label">UF</label>
+                            <select class="form-select is-invalid" id="validationServer04" aria-describedby="validationServer04Feedback" required>
+                                <option selected disabled value="">Choose...</option>
+                                <option>...</option>
+                            </select>
+                            <div id="validationServer04Feedback" class="invalid-feedback">
+                                Please select a valid state.
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="validationServer04" class="form-label">País</label>
+                            <select class="form-select is-invalid" id="validationServer04" aria-describedby="validationServer04Feedback" required>
+                                <option selected disabled value="">Choose...</option>
+                                <option>...</option>
+                            </select>
+                            <div id="validationServer04Feedback" class="invalid-feedback">
+                                Please select a valid state.
+                            </div>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="validationServer04" class="form-label">Tipo de Plano</label>
+                            <select class="form-select is-invalid" id="validationServer04" aria-describedby="validationServer04Feedback" required>
+                                <option selected disabled value="">Choose...</option>
+                                <option>...</option>
+                            </select>
+                            <div id="validationServer04Feedback" class="invalid-feedback">
+                                Please select a valid state.
+                            </div>
+                        </div>
+                        
+                        <div class="col-12">
+                            <button class="btn btn-primary" type="submit">Cadastrar</button>
+                        </div><br>
+
+                        <div class="col-12">
+                            <button class="btn btn-primary" type="submit">Cancelar</button>
+                        </div>
+                    </section>
                   </form>
             </article>
-            
 
-            <i class="bi bi-search"></i>
-
-            
         </main>
 
         <!-- RODAPÉ-->
-        <footer class="rodape">
+        <!-- <footer class="rodape">
             <p>Todos os direitos reservados - 2022.</p>
-        </footer>
+        </footer> -->
 
         <!-- JavaScript Bundle with Popper -->
         <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script> -->
-        <script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+         <script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
     </body>
 </html>

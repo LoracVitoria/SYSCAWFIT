@@ -10,19 +10,19 @@ import com.syscawfit.syscawfit.model.Aluno;
 @RequestMapping("/aluno")
 public class AlunoController {
 
-	//Página aluno
-	@GetMapping
-	public String page () {
-
-		return "aluno.html";
-	}
-
-	//NOVO ALUNO
-	@RequestMapping("/new")
-	public String newForm(Model model) {
+	//CONSULTAR ALUNO
+	@RequestMapping("/list")
+	public String buscar(Model model) {
 		Aluno aluno = new Aluno();
 		model.addAttribute("aluno", aluno );
+		return "/aluno/list.html";
+	}
 
+	// NOVO ALUNO
+	@RequestMapping("/new")
+	public String cadastrar(Model model){
+		Aluno aluno = new Aluno();
+		model.addAttribute("aluno", aluno);
 		return "/aluno/aluno.html";
 	}
 

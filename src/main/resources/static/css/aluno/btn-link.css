@@ -1,0 +1,9 @@
+.btn-link {
+    text-decoration: none;
+    width: 200px;
+    padding-right: 1rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #062A40 ;
+    border: none;
+}

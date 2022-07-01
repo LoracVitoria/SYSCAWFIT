@@ -1,9 +1,6 @@
 .consulta-aluno {
-
-    border: 2px solid red;
+    display: flex;
+    justify-content: center;
+    /* border: 2px solid red; */
     margin: 1rem;
-    /* width: 40vh; */
-
-
-
 }
