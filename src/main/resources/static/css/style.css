@@ -53,8 +53,8 @@ html,body {
 }
 
 .usuario__imagem {
-    height: 11vh;                 
-    width: 11vh;                   
+    height: 11vh;
+    width: 11vh;
     background-size: cover;         /* para que as imagens não se repitam */
     background-position: center;    /* para que as imagens ocupem todo o background */
     background-repeat: no-repeat;   /* para que as imagens seham centralizadas na caixa */
@@ -65,11 +65,11 @@ html,body {
 }
 
 .usuario__nome {
-    color: #ECF229;             
-    font-weight: bold; 
+    color: #ECF229;
+    font-weight: bold;
     margin-top: 1.3rem;
     margin-left: 0.5rem;
-} 
+}
 
 @media screen and (min-width:0){
     .coluna-imagem {
