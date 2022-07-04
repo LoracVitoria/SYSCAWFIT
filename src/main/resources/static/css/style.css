@@ -7,10 +7,7 @@
     "rodape    rodape";
     grid-template-columns: 20% 80%;
     grid-template-rows: 20vh 74vh auto;
-}
 
-body {
-    height: 100vh;
 }
 
 /*
@@ -44,23 +41,7 @@ body {
     grid-area: rodape;
 }
 
-.tela-body{
-    display: inline-flex;
-    position: relative;
-    left: 25%;
-    top: 50px;
-}
-
-.tela-body{
-    display: inline-flex;
-    position: relative;
-    left: 25%;
-    top: 50px;
-}
-
 .rodape p {
     padding-top: 0.5rem;
     color: white;
 }
-
-
