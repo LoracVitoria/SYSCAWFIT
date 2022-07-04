@@ -10,20 +10,6 @@ html,body {
     background: #062A40;
 }
 
-.coluna-imagem {
-    display: flex;
-    justify-content: flex-end;
-    height: 15vh;
-}
-
-.coluna-texto {
-    display: flex;
-    justify-content: flex-start;
-    align-items: center;
-    height: 15vh;
-}
-
-
 .linha-centro {
     height: 80vh;
 }
@@ -44,41 +30,22 @@ html,body {
 }
 
 .usuario__imagem {
-    height: 11vh;                 
-    width: 11vh;                   
+    height: 11vh;                  /* definir espaço onde as imagens serão exibidas  */
+    width: 11vh;                   /* definir espaço onde as imagens serão exibidas */
     background-size: cover;         /* para que as imagens não se repitam */
     background-position: center;    /* para que as imagens ocupem todo o background */
     background-repeat: no-repeat;   /* para que as imagens seham centralizadas na caixa */
     border-radius: 100%;            /* bordas arredondadas */
     margin-top: 1rem;
     margin-left: 3rem;
+    background-image: url("../../img/imagem-usuario.jpg");
 }
 
 .usuario__nome {
     color: #ECF229;             
     font-weight: bold; 
-    margin-top: 1.3rem;
-    margin-left: 0.5rem;
+    margin-top: 2.5rem;
 } 
-
-@media screen and (min-width:0){
-    .coluna-imagem {
-        /* background: green; */
-    }
-    .usuario__nome {
-        font-size: 11px;
-    }
-}
-
-@media screen and (min-width:768px){
-    .coluna-imagem {
-        /* background: gray; */
-    }
-    .usuario__nome {
-        font-size:16px;
-    }
-}
-
 
 /*
 ========================================================================
@@ -89,6 +56,7 @@ html,body {
 .conteudo {
     height: 70vh;
 }
+
 
 /*
 ========================================================================
@@ -105,43 +73,3 @@ html,body {
     padding-top: 0.5rem;
     color: white;
 }
-
-/*
-========================================================================
-        IMAGEM CENTRO INDEX
-========================================================================
-*/
-
-.imagemIndexCentro{
-	margin-top: 180px;
-	justify-content: center;
-	align-items: center;
-	align-self: center;
-	display: flex;
-	animation-name: opacidade;
-    animation-duration: 4s;
-}
-
-.imagemIndexCentro img{
-	border-radius: 20px;
-}
-
-.textoImagem{
-	text-align: center;
-	animation-name: texto;
-    animation-duration: 1.5s;
-    animation-iteration-count: infinite;
-}
-
-@keyframes texto {
-    0%   {color: white;}
-    100% {color: #062A40; }
-}
-
- @keyframes opacidade{
-      0% {opacity: 0%;}
-      100% {opacity: 100%;}
-  }
- 	
-
-
