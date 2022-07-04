@@ -1,29 +1,47 @@
-body {
-    height: 100vh;
+.app {
+    min-height: 100vh;
+    display: grid;
+    grid-template-areas:
+    "cabecalho cabecalho"
+    "menu      conteudo"
+    "rodape    rodape";
+    grid-template-columns: 20% 80%;
+    grid-template-rows: 20vh 74vh auto;
+
 }
 
+/*
+========================================================================
+        CABEÇALHO
+========================================================================
+*/
+
 .cabecalho {
-    background: #062A40 ;             /* cor de fundo cabeçalho */
-    height: 20%;                        /* altura cabeçalho */
-    width: 100%;
-    position: relative;                 /* posição */
+    background: #062A40 ;
     display: flex;                      /* tranforma em Flex Container */
     justify-content: space-between;     /* item distribuido com espaço no meio */
     align-items: center;
-    padding: 100px;
+    padding: 2%;
+    grid-area: cabecalho;
 }
 
 .logotipo {
-    width: 300px;
-    height: 100px;
+    height: 12vh;
 }
 
-.tela-body{
-    display: inline-flex;
-    position: relative;
-    left: 25%;
-    top: 50px;
+/*
+========================================================================
+        RODAPÉ
+========================================================================
+*/
+
+.rodape {
+    background: #062A40;
+    text-align: center;
+    grid-area: rodape;
 }
 
-
-
+.rodape p {
+    padding-top: 0.5rem;
+    color: white;
+}
