@@ -1,0 +1,6 @@
+.header-cadastro {
+    border: 1px solid red;
+    margin: 1rem;
+    display: flex;
+    justify-content: space-between;
+}
