@@ -12,22 +12,22 @@
         <!--CONTEÚDO DA PÁGINA-->
         <main class="conteudo">
 
-            <header class="header-cadastro row">
+            <header class="aluno-cadastro__header row">
 
-                <h2 class="header-cadastro__titulo col">Cadastrar</h2>
+                <h2 class="cadastro-header__titulo col">Cadastrar</h2>
 
-                <div class="header-cadastro__buttons col">
-                    <div class="button-cadastro">
-                        <button type="button" class="btn btn-primary btn-lg">Cadastrar</button>
+                <div class="container-buttons col">
+                    <div class="box-button p-2">
+                        <button type="button" class="btn btn-primary btn-sm button-cadastro">Cadastrar</button>
                     </div>
                    
-                    <div class="button-cancelar">
-                        <button type="button" class="btn btn-secondary btn-lg">Cancelar</button>
+                    <div class="box-button p-2">
+                        <button type="button" class="btn btn-primary btn-sm button-cancelar">Cancelar</button>
                     </div>
                 </div>
             </header>
 
-            <form class="row g-3 cadastro p-3">
+            <form class="row-md-1 g-3 aluno-cadastro__form p-3">
 
                 <section class="container__dados-pessoais row">
                     
@@ -70,16 +70,30 @@
                             </div>
                         </div>
 
-                        <!--EMAIL-->
-                        <div class="col-md-12">
-                            <label for="validationServerUsername" class="form-label">E-mail</label>
-                            <div class="input-group has-validation">
-                                <span class="input-group-text" id="inputGroupPrepend3">@</span>
-                                <input type="text" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
-                                <div id="validationServerUsernameFeedback" class="invalid-feedback">
-                                Please choose a username.
+                        <div class="row">
+                            <!--EMAIL-->
+                            <div class="col-md-5">
+                                <label for="validationServerUsername" class="form-label">E-mail</label>
+                                <div class="input-group has-validation">
+                                    <span class="input-group-text" id="inputGroupPrepend3">@</span>
+                                    <input type="text" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
+                                    <div id="validationServerUsernameFeedback" class="invalid-feedback">
+                                    Please choose a username.
+                                    </div>
+                            </div>
+
+                            <!--TIPO DE PLANO-->
+                            <div class="col-md-3">
+                                <label for="validationServer04" class="form-label">Tipo de Plano</label>
+                                <select class="form-select is-invalid" id="validationServer04" aria-describedby="validationServer04Feedback" required>
+                                    <option selected disabled value="">Choose...</option>
+                                    <option>...</option>
+                                </select>
+                                <div id="validationServer04Feedback" class="invalid-feedback">
+                                    Please select a valid state.
                                 </div>
-                        </div>
+                            </div>
+                        </div>  
 
                         <!--ANEXAR IMAGEM-->
                         <div class="input-group">
@@ -89,14 +103,16 @@
                     </div>
 
                     </div>
-                    <div class="col p-3" style="background-color:blueviolet">
-                        <img th:src="@{/img/imagem-aluno.jpg}" alt="imagem-aluno" class="foto-aluno">
-                    </div>
+                    <div class="col p-3 imagem" style="background-color:rgb(178, 172, 184)">
+                        <div class="container-imagem">
+                            <img th:src="@{/img/imagem-aluno.jpg}" alt="imagem-aluno" class="cadastro-form__foto">
+                        </div>
+                        </div>
                 </section>
 
                 <!--ENDEREÇO-->
                 <section class="container__endereco">
-                    <h5 class="titulo-endereco">Endereço</h5>
+                    <h5 class="form-endereco__titulo">Endereço</h5>
 
                     <div class="row">
                         <div class="col-md-4">
@@ -160,18 +176,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <div class="col-md-3">
-                        <label for="validationServer04" class="form-label">Tipo de Plano</label>
-                        <select class="form-select is-invalid" id="validationServer04" aria-describedby="validationServer04Feedback" required>
-                            <option selected disabled value="">Choose...</option>
-                            <option>...</option>
-                        </select>
-                        <div id="validationServer04Feedback" class="invalid-feedback">
-                            Please select a valid state.
-                        </div>
-                    </div>
-                   
                 </section>
             </form>
         </main>

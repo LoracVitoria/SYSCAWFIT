@@ -6,7 +6,7 @@
     "menu      conteudo"
     "rodape    rodape";
     grid-template-columns: 20% 80%;
-    grid-template-rows: 20vh 74vh auto;
+    grid-template-rows: 15vh 79vh auto;
 
 }
 

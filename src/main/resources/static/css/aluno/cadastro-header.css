@@ -1,0 +1,32 @@
+.aluno-cadastro__header {
+    /* border: 1px solid red; */
+    margin: 1rem;
+    display: flex;
+    height: 12%;
+}
+
+.cadastro-header__titulo {
+    margin-left: 4rem;
+    padding-right: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.container-buttons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+
+.btn {
+    padding-left: 2rem;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+}
+
+
+.button-cadastro {
+    background: #91B021;
+    
+}
