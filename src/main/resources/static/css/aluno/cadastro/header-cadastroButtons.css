@@ -1,4 +1,9 @@
 .header-cadastro__buttons {
-    background-color: aqua;
     display: flex;
+    justify-content: center;
+    margin: 1rem;
+}
+
+.button-cadastro {
+    padding-right: 1rem;
 }
