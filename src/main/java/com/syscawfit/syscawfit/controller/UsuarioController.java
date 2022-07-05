@@ -24,7 +24,7 @@ public class UsuarioController {
         public String cadastrar(Model model){
             Usuario usuario = new Usuario();
             model.addAttribute("usuario", usuario );
-            return "/usuario/usuario.html";
+            return "/usuario/manter-usuario.html";
         }
 
 
