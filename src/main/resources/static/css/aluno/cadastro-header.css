@@ -1,6 +1,6 @@
 .aluno-cadastro__header {
     /* border: 1px solid red; */
-    margin: 1rem;
+    /* margin: 1rem; */
     display: flex;
     height: 12%;
 }
@@ -17,16 +17,24 @@
     justify-content: flex-end;
 }
 
+.box-b {
+    padding-right: 0.5rem;
+}
 
-.btn {
-    padding-left: 2rem;
+
+.button-cadastro {
+    background: #91B021;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+}
+
+.button-cancelar {
+    background: #BFBFBF;
+    color:#062A40 ;
     text-transform: uppercase;
     font-weight: bold;
     border: none;
 }
 
 
-.button-cadastro {
-    background: #91B021;
-    
-}

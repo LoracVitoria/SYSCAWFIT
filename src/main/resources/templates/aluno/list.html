@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-<div th:replace="head:: head" />
+    
+<div th:replace="head:: head"/>
 
     <body class="app">
         <!-- CABEÇALHO-->
@@ -11,62 +12,73 @@
 
         <!--CONTEÚDO DA PÁGINA-->
         <main class="conteudo">
-
-            <article class="aluno-consulta__header">
-
-                <form class="form">
-                    <div class="mb-3 box">
-                        <label for="exampleInputEmail1" class="form-label form__label">Aluno</label>
-                        <input type="email" id="exampleInputEmail1" aria-describedby="emailHelp" class="form-control form__input" placeholder="Digite o CPF">
-
-                        <a class="link-button" th:href="@{/aluno/list}">
-                            <button type="button" class="btn btn-sm btn-link button-pesquisar">Pesquisar</button>
-                        </a>
-
-                        <a class="link-button" th:href="@{/aluno/new}">
-                            <button type="button" class="btn btn-sm btn-link button-novo">Novo aluno</button>
-                        </a>
-                    </div>
-                  </form>
-            </article>
             
+            <article class="aluno-consulta">
 
-            <!--LISTA DE ALUNO-->
-            <article class="aluno-consulta__lista">
+                <section class="aluno-consulta__header row">
+                    <div class="container-input col-7">
+                        <label for="exampleInputEmail1" class="form-label form__label">Aluno</label>
+                        <input type="email" id="exampleInputEmail1" aria-describedby="emailHelp" class="form-control w-75 h-100 form__input" placeholder="Digite o CPF">
+                    </div>
+                    
+                    <div class="container-buttons col">
+                        <div class="box-button">
+                            <a class="link-button" th:href="@{/aluno/list}">
+                                <button type="button" class="btn btn-link h-100 button-pesquisar">
+                                    <i class="bi bi-search p-2"></i>Pesquisar
+                                </button>
+                            </a>
+                        </div>
+                        <div class="box-button">
+                            <a class="link-button" th:href="@{/aluno/new}">
+                                <button type="button" class="btn btn-link h-100 button-novo">
+                                    <i class="bi bi-plus-square p-2"></i>Novo aluno
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </section>
 
-                <h3>Alunos cadastrados</h3>
-                <table class="table table-light table-striped table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th>Cód.</th>
-                            <th>Nome</th>
-                            <th>CPF</th>
-                            <th>Data de Ingresso</th>
-                            <th>Situação</th>
-                            <th>Treino</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <!-- usando o thymeleaf para iterar na lista de alunos -->
-                    <!-- <tr th:each="filme: ${filmeList}">
-                        <td th:text="${filme.id}"/>
-                        <td th:text="${filme.title}"/>
-                        <td th:text="${filme.release}"/>
-                        <td th:text="${filme.category}"/>
-                        <td th:text="${filme.score}"/> -->
-    
-                        <!-- opção de excluir aluno -->
-                        <!-- <td><a th:href="@{/filmes/delete/{id}(id=${filme.id})}">
-                            <i class="bi bi-dash-circle" title="delete"></i>
-                        </a></td> -->
-    
-                        <!-- opção de editar aluno -->
-                        <!-- <td><a th:href="@{/filmes/editar/{id}(id=${filme.id})}">
-                            <i class="bi bi-pencil" title="editar"></i>
-                        </a></td>
-                    </tr> -->
-                    </tbody>
-                </table>
+                <!--LISTA DE ALUNO-->
+                <section class="aluno-consulta__lista">
+
+                    <div class="container-consulta__lista">
+
+                        <h3>Alunos cadastrados</h3>
+                        <table class="table table-light table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Cód.</th>
+                                    <th>Nome</th>
+                                    <th>CPF</th>
+                                    <th>Data de Ingresso</th>
+                                    <th>Situação</th>
+                                    <th>Treino</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <!-- usando o thymeleaf para iterar na lista de alunos -->
+                            <!-- <tr th:each="filme: ${filmeList}">
+                                <td th:text="${filme.id}"/>
+                                <td th:text="${filme.title}"/>
+                                <td th:text="${filme.release}"/>
+                                <td th:text="${filme.category}"/>
+                                <td th:text="${filme.score}"/> -->
+            
+                                <!-- opção de excluir aluno -->
+                                <!-- <td><a th:href="@{/filmes/delete/{id}(id=${filme.id})}">
+                                    <i class="bi bi-dash-circle" title="delete"></i>
+                                </a></td> -->
+            
+                                <!-- opção de editar aluno -->
+                                <!-- <td><a th:href="@{/filmes/editar/{id}(id=${filme.id})}">
+                                    <i class="bi bi-pencil" title="editar"></i>
+                                </a></td>
+                            </tr> -->
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
             </article>
             
 

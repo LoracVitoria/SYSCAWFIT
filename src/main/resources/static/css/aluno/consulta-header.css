@@ -1,39 +1,42 @@
 .aluno-consulta__header {
-    display: flex;
-    justify-content: center;
-    margin: 1rem;
+    padding: 2rem;
 }
 
-.box {
+.container-input {
     display: flex;
-    margin: 1rem;
+    align-items: center;
+    justify-content: flex-end;
 }
+
 
 .form__label {
     text-transform: uppercase;
     font-weight: bold;
     color: #062A40 ;
     padding-right: 1rem;
-    margin-top: 10px;
+    margin-top: 0.5rem;
 }
 
-.form__input {
-    width: 40%;
- }
 
-.link-button {
-    padding-left: 1rem;
+/* BUTTONS */
+
+.container-buttons {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.box-button {
+    padding-right: 0.5rem;
 }
 
 .btn-link {
     text-decoration: none;
-    width: 200px;
-    padding-right: 1rem;
     text-transform: uppercase;
     font-weight: bold;
     color: #062A40 ;
     border: none;
 }
+
 
 
 .button-pesquisar {
@@ -55,6 +58,12 @@
     background: #062A40;
     color: #ECF229;
 }
+
+
+
+
+
+
 
 
 
