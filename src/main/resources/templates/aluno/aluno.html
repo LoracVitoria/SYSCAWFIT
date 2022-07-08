@@ -19,7 +19,7 @@
                     <i class="bi bi-person-plus"></i>
                     Cadastrar</h1>
 
-                <div class="container-buttons col m-4">
+                <div class="container-buttons col mt-4">
                     <div class="box-b">
                         <button type="button" class="btn btn-primary button-cadastro">
                             <i class="bi bi-cloud-upload p-2"></i>Cadastrar
@@ -34,154 +34,203 @@
                 </div>
             </header>
 
-            <form class="row-md-1 g-3 aluno-cadastro__form p-3">
+            <form class="row aluno-cadastro__form p-3">
 
                 <section class="container__dados-pessoais row">
-                    
-                    <div class="col-md-8 p-3">
 
-                        <div class="row">
-                            <!--TIPO DE PLANO-->
-                            <div class="col-md-4 pb-3">
-                                <label for="validationServer04" class="form-label">Tipo de Plano</label>
-                                <select class="form-select is-invalid" id="validationServer04" aria-describedby="validationServer04Feedback" required>
-                                    <option selected disabled value="">Mensal</option>
-                                    <option selected disabled value="">Trimestral</option>
-                                    <option selected disabled value="">Semestral</option>
-                                    <option selected disabled value="">Anual</option>
-                                </select>
-                                <!-- <div id="validationServer04Feedback" class="invalid-feedback">
-                                    Please select a valid state.
-                                </div> -->
+                    <div class="col-8 coluna-dados">
+                        <div class="row mb-3">
+                            <div class="col">
+                                <!--CPF-->
+                                <div class="row g-3 align-items-center">
+                                    <div class="col-auto">
+                                        <label for="inputPassword6" class="col-form-label">CPF</label>
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" id="inputPassword6" class="form-control">
+                                    </div>
+                                </div>
                             </div>
-
-                            <!--CPF-->
-                            <div class="col-md-7 pb-3">
-                                <label for="validationServer01" class="form-label">CPF</label>
-                                <input type="text" class="form-control is-valid " id="validationServer01" required>
-                                <!-- <div class="valid-feedback">
-                                    Looks good!
-                                </div> -->
+                            
+                            <!--TIPO DE PLANO-->
+                            <div class="col">
+                                <div class="row g-3 align-items-center">
+                                    <div class="col-auto">
+                                        <label for="inputPassword6" class="col-form-label">Tipo de plano</label>
+                                    </div>
+                                    <div class="col">
+                                        <select class="form-select" id="validationServer04" aria-describedby="validationServer04Feedback" required>
+                                            <option selected disabled value="">Mensal</option>
+                                            <option selected disabled value="">Trimestral</option>
+                                            <option selected disabled value="">Semestral</option>
+                                            <option selected disabled value="">Anual</option>
+                                        </select>
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
                         <!--NOME COMPLETO-->
-                        <div class="col-md-12 pb-3">
-                            <label for="validationServer01" class="form-label">Nome completo</label>
-                            <input type="text" class="form-control is-valid" id="validationServer01" required>
-                            <!-- <div class="valid-feedback">
-                            Looks good!
-                            </div> -->
+                        <div class="row g-3 align-items-center">
+                            <div class="col-auto">
+                                <label for="inputPassword6" class="col-form-label">Nome completo</label>
+                            </div>
+                            <div class="col">
+                                <input type="text" id="inputPassword6" class="form-control">
+                            </div>
                         </div>
 
                         <div class="row">
                             <!--DATA NASCIMENTO-->
-                            <div class="col-md-6 pb-3">
-                                <label for="validationServer02" class="form-label">Data de Nascimento</label>
-                                <input type="date" class="form-control is-valid" id="validationServer02" required>
-                                <!-- <div class="valid-feedback">
-                                    Looks good!
-                                </div> -->
+                            <div class="col">
+                                <div class="row g-3 align-items-center mt-2">
+                                    <div class="col-auto">
+                                        <label for="inputPassword6" class="col-form-label">Data de Nascimento</label>
+                                    </div>
+                                    <div class="col">
+                                        <input type="date" id="inputPassword6" class="form-control">
+                                    </div>
+                                </div>
                             </div>
 
                             <!--TELEFONE-->
-                            <div class="col-md-6 pb-3">
-                                <label for="validationServer01" class="form-label">Telefone</label>
-                                <input type="text" class="form-control is-valid" id="validationServer01" required>
-                                <!-- <div class="valid-feedback">
-                                Looks good!
-                                </div> -->
+                            <div class="col">
+                                <div class="row g-3 align-items-center mt-2">
+                                    <div class="col-auto">
+                                        <label for="inputPassword6" class="col-form-label">Telefone</label>
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" id="inputPassword6" class="form-control">
+                                    </div>
+                                </div>
                             </div>
                         </div>
 
-                        <!--EMAIL-->
-                        <div class="col-md-12 pb-3">
-                            <label for="validationServerUsername" class="form-label">E-mail</label>
-                            <div class="input-group has-validation">
-                                <span class="input-group-text" id="inputGroupPrepend3">@</span>
-                                <input type="text" class="form-control is-invalid" id="validationServerUsername" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required>
-                                <!-- <div id="validationServerUsernameFeedback" class="invalid-feedback">
-                                Please choose a username.</div>-->
+                        <!--E-MAIL-->
+                        <div class="row g-3 align-items-center mt-2">
+                            <div class="col-auto">
+                                <label for="inputPassword6" class="col-form-label">E-mail</label>
+                            </div>
+                            <div class="col">
+                                <input type="email" id="inputPassword6" class="form-control">
                             </div>
                         </div>
-
-                        <!--ANEXAR IMAGEM-->
-                        <div class="input-group">
-                            <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="">
-                            <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Anexar</button>
-                        </div>
-                    </div>
                     
-                    <div class="col p-3 imagem" style="background-color:rgb(178, 172, 184)">
-                        <div class="container-imagem">
-                            <img th:src="@{/img/imagem-aluno.jpg}" alt="imagem-aluno" class="cadastro-form__foto">
+                        <!--ANEXAR IMAGEM-->
+                        <div class="row g-3 align-items-center mt-2">
+                            <div class="col-auto">
+                                <label for="inputPassword6" class="col-form-label">Foto</label>
+                            </div>
+                            <div class="col">
+                                <div class="input-group">
+                                    <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="">
+                                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Anexar</button>
+                                </div>
+                            </div>
                         </div>
                     </div>
+
+                    <div class="col-1 coluna-imagem">
+                        <div class="col p-3 imagem">
+                            <div class="container-imagem">
+                                <img th:src="@{/img/imagem-aluno.jpg}" alt="imagem-aluno" class="cadastro-form__foto">
+                            </div>
+                        </div>
                 </section>
 
                 <!--ENDEREÇO-->
-                <section class="container__endereco">
+                <section class="container__endereco row">
                     <h5 class="form-endereco__titulo pb-3">Endereço</h5>
 
                     <div class="row">
-                        <div class="col-md-4 pb-3">
-                            <label for="validationServer03" class="form-label">CEP</label>
-                            <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" required>
-                            <!-- <div id="validationServer03Feedback" class="invalid-feedback">
-                                Please provide a valid CEP.
-                            </div> -->
+                        <!--CEP-->
+                        <div class="col">
+                            <div class="row g-3 align-items-center">
+                                <div class="col-auto">
+                                    <label for="inputPassword6" class="col-form-label">CEP</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" id="inputPassword6" class="form-control">
+                                </div>
+                            </div>
                         </div>
 
-                        <div class="col-md-8">
-                            <label for="validationServer03" class="form-label">Rua</label>
-                            <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" required>
-                        </div>
-                    </div>
-
-                    <div class="row">
-
-                        <div class="col-md-2 pb-3">
-                            <label for="validationServer03" class="form-label">Nº</label>
-                            <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" required>
-                        </div>
-
-                        <div class="col-md-5">
-                            <label for="validationServer03" class="form-label">Bairro</label>
-                            <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" required>
-                        </div>
-
-                        <div class="col-md-5">
-                            <label for="validationServer04" class="form-label">Cidade</label>
-                            <select class="form-select is-invalid" id="validationServer04" aria-describedby="validationServer04Feedback" required>
-                                <option selected disabled value="">Choose...</option>
-                                <option>...</option>
-                            </select>
-                            <div id="validationServer04Feedback" class="invalid-feedback">
-                                Please select a valid state.
+                        <!--RUA-->
+                        <div class="col">
+                            <div class="row g-3 align-items-center">
+                                <div class="col-auto">
+                                    <label for="inputPassword6" class="col-form-label">Rua</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" id="inputPassword6" class="form-control">
+                                </div>
                             </div>
                         </div>
                     </div>
 
                     <div class="row">
-                        <div class="col-md-3">
-                            <label for="validationServer04" class="form-label">UF</label>
-                            <select class="form-select is-invalid" id="validationServer04" aria-describedby="validationServer04Feedback" required>
-                                <option selected disabled value="">Choose...</option>
-                                <option>...</option>
-                            </select>
-                            <div id="validationServer04Feedback" class="invalid-feedback">
-                                Please select a valid state.
+                        <div class="col">
+                            <div class="row g-3 align-items-center mt-2">
+                                <div class="col-auto">
+                                    <label for="inputPassword6" class="col-form-label">Nº</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" id="inputPassword6" class="form-control">
+                                </div>
                             </div>
                         </div>
 
-                        <div class="col-md-3">
-                            <label for="validationServer04" class="form-label">País</label>
-                            <select class="form-select is-invalid" id="validationServer04" aria-describedby="validationServer04Feedback" required>
-                                <option selected disabled value="">Choose...</option>
-                                <option>...</option>
-                            </select>
-                            <div id="validationServer04Feedback" class="invalid-feedback">
-                                Please select a valid state.
+                        <div class="col">
+                            <div class="row g-3 align-items-center mt-2">
+                                <div class="col-auto">
+                                    <label for="inputPassword6" class="col-form-label">Bairro</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" id="inputPassword6" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="row g-3 align-items-center mt-2">
+                                <div class="col-auto">
+                                    <label for="inputPassword6" class="col-form-label">Cidade</label>
+                                </div>
+                                <div class="col">
+                                    <select class="form-select" id="validationServer04" aria-describedby="validationServer04Feedback" required>
+                                        <option selected disabled value="">Choose...</option>
+                                        <option>...</option>
+                                    </select>
+                                </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="row g-3 align-items-center mt-2">
+                                <div class="col-auto">
+                                    <label for="inputPassword6" class="col-form-label">UF</label>
+                                </div>
+                                <div class="col">
+                                    <select class="form-select" id="validationServer04" aria-describedby="validationServer04Feedback" required>
+                                        <option selected disabled value="">Choose...</option>
+                                        <option>...</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="row g-3 align-items-center mt-2">
+                                <div class="col-auto">
+                                    <label for="inputPassword6" class="col-form-label">País</label>
+                                </div>
+                                <div class="col">
+                                    <select class="form-select" id="validationServer04" aria-describedby="validationServer04Feedback" required>
+                                        <option selected disabled value="">Choose...</option>
+                                        <option>...</option>
+                                    </select>
+                                </div>
                             </div>
                         </div>
                     </div>
