@@ -1,9 +1,15 @@
-<header class="cabecalho" th:fragment="cabecalho">
-    <img th:src="@{/img/imagem-logo.PNG}" alt="logo" class="logotipo">
-
-    <!-- ÁREA DE LOGIN -USUÁRIO-->
-    <div class="usuario">
-        <div class="usuario__imagem"></div>
-        <p class="usuario__nome">Usuário</p>
+<header class=" row linha-cabecalho" th:fragment="cabecalho">
+    <div class="col-9">
+        <img th:src="@{/img/imagem-logo.PNG}" alt="logo" class=" img-fluid logotipo">
+    </div>
+    <div class="col-3">
+        <div class="row usuario-login">
+            <div class="col">
+                <div class="usuario__imagem"></div>
+            </div>
+            <div class="col">
+                <p class="usuario__nome">Usuário</p>
+            </div>
+        </div>
     </div>
 </header>

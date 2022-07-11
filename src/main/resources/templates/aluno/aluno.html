@@ -3,244 +3,249 @@
 
 <div th:replace="head:: head" />
 
-    <body class="app">
+    <body>
         <!-- CABEÇALHO-->
         <header th:replace="cabecalho:: cabecalho"/>
 
-        <!-- MENU-->
-        <nav th:replace="menu:: menu"/>
+        <div class="row linha-centro">
+            <!-- MENU-->
+            <nav class="col-3 border container-menu">
+                <nav th:replace="menu:: menu"/>    
+            </nav>
 
-        <!--CONTEÚDO DA PÁGINA-->
-        <main class="conteudo">
+            <!--CONTEÚDO DA PÁGINA-->
+            <main class="col-9 border conteudo">
+                <header class="aluno-cadastro__header row">
 
-            <header class="aluno-cadastro__header row">
+                    <h1 class="cadastro-header__titulo col m-4">
+                        <i class="bi bi-person-plus"></i>
+                        Cadastrar</h1>
 
-                <h1 class="cadastro-header__titulo col m-4">
-                    <i class="bi bi-person-plus"></i>
-                    Cadastrar</h1>
-
-                <div class="container-buttons col mt-4">
-                    <div class="box-b">
-                        <button type="button" class="btn btn-primary button-cadastro">
-                            <i class="bi bi-cloud-upload p-2"></i>Cadastrar
-                        </button>
+                    <div class="container-buttons col mt-4">
+                        <div class="box-b">
+                            <button type="button" class="btn btn-primary button-cadastro">
+                                <i class="bi bi-cloud-upload p-2"></i>Cadastrar
+                            </button>
+                        </div>
+                    
+                        <div class="box-b">
+                            <button type="button" class="btn btn-primary  button-cancelar">
+                                <i class="bi bi-x-lg text-danger p-2"></i>Cancelar
+                            </button>
+                        </div>
                     </div>
-                   
-                    <div class="box-b">
-                        <button type="button" class="btn btn-primary  button-cancelar">
-                            <i class="bi bi-x-lg text-danger p-2"></i>Cancelar
-                        </button>
-                    </div>
-                </div>
-            </header>
+                </header>
 
-            <form class="row aluno-cadastro__form p-3">
+                <form class="row aluno-cadastro__form p-3">
 
-                <section class="container__dados-pessoais row">
+                    <section class="container__dados-pessoais row">
 
-                    <div class="col-8 coluna-dados">
-                        <div class="row mb-3">
+                        <div class="col-8 coluna-dados">
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <!--CPF-->
+                                    <div class="row g-3 align-items-center">
+                                        <div class="col-auto">
+                                            <label for="inputPassword6" class="col-form-label">CPF</label>
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" id="inputPassword6" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!--TIPO DE PLANO-->
+                                <div class="col">
+                                    <div class="row g-3 align-items-center">
+                                        <div class="col-auto">
+                                            <label for="inputPassword6" class="col-form-label">Tipo de plano</label>
+                                        </div>
+                                        <div class="col">
+                                            <select class="form-select" id="validationServer04" aria-describedby="validationServer04Feedback" required>
+                                                <option selected disabled value="">Mensal</option>
+                                                <option selected disabled value="">Trimestral</option>
+                                                <option selected disabled value="">Semestral</option>
+                                                <option selected disabled value="">Anual</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--NOME COMPLETO-->
+                            <div class="row g-3 align-items-center">
+                                <div class="col-auto">
+                                    <label for="inputPassword6" class="col-form-label">Nome completo</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" id="inputPassword6" class="form-control">
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <!--DATA NASCIMENTO-->
+                                <div class="col">
+                                    <div class="row g-3 align-items-center mt-2">
+                                        <div class="col-auto">
+                                            <label for="inputPassword6" class="col-form-label">Data de Nascimento</label>
+                                        </div>
+                                        <div class="col">
+                                            <input type="date" id="inputPassword6" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!--TELEFONE-->
+                                <div class="col">
+                                    <div class="row g-3 align-items-center mt-2">
+                                        <div class="col-auto">
+                                            <label for="inputPassword6" class="col-form-label">Telefone</label>
+                                        </div>
+                                        <div class="col">
+                                            <input type="text" id="inputPassword6" class="form-control">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--E-MAIL-->
+                            <div class="row g-3 align-items-center mt-2">
+                                <div class="col-auto">
+                                    <label for="inputPassword6" class="col-form-label">E-mail</label>
+                                </div>
+                                <div class="col">
+                                    <input type="email" id="inputPassword6" class="form-control">
+                                </div>
+                            </div>
+                        
+                            <!--ANEXAR IMAGEM-->
+                            <div class="row g-3 align-items-center mt-2">
+                                <div class="col-auto">
+                                    <label for="inputPassword6" class="col-form-label">Foto</label>
+                                </div>
+                                <div class="col">
+                                    <div class="input-group">
+                                        <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="">
+                                        <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Anexar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-1 coluna-imagem">
+                            <div class="col p-3 imagem">
+                                <div class="container-imagem">
+                                    <img th:src="@{/img/imagem-aluno.jpg}" alt="imagem-aluno" class="cadastro-form__foto">
+                                </div>
+                            </div>
+                    </section>
+
+                    <!--ENDEREÇO-->
+                    <section class="container__endereco row">
+                        <h5 class="form-endereco__titulo pb-3">Endereço</h5>
+
+                        <div class="row">
+                            <!--CEP-->
                             <div class="col">
-                                <!--CPF-->
                                 <div class="row g-3 align-items-center">
                                     <div class="col-auto">
-                                        <label for="inputPassword6" class="col-form-label">CPF</label>
+                                        <label for="inputPassword6" class="col-form-label">CEP</label>
                                     </div>
                                     <div class="col">
                                         <input type="text" id="inputPassword6" class="form-control">
                                     </div>
                                 </div>
                             </div>
-                            
-                            <!--TIPO DE PLANO-->
+
+                            <!--RUA-->
                             <div class="col">
                                 <div class="row g-3 align-items-center">
                                     <div class="col-auto">
-                                        <label for="inputPassword6" class="col-form-label">Tipo de plano</label>
+                                        <label for="inputPassword6" class="col-form-label">Rua</label>
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" id="inputPassword6" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="row g-3 align-items-center mt-2">
+                                    <div class="col-auto">
+                                        <label for="inputPassword6" class="col-form-label">Nº</label>
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" id="inputPassword6" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="row g-3 align-items-center mt-2">
+                                    <div class="col-auto">
+                                        <label for="inputPassword6" class="col-form-label">Bairro</label>
+                                    </div>
+                                    <div class="col">
+                                        <input type="text" id="inputPassword6" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="row g-3 align-items-center mt-2">
+                                    <div class="col-auto">
+                                        <label for="inputPassword6" class="col-form-label">Cidade</label>
                                     </div>
                                     <div class="col">
                                         <select class="form-select" id="validationServer04" aria-describedby="validationServer04Feedback" required>
-                                            <option selected disabled value="">Mensal</option>
-                                            <option selected disabled value="">Trimestral</option>
-                                            <option selected disabled value="">Semestral</option>
-                                            <option selected disabled value="">Anual</option>
+                                            <option selected disabled value="">Choose...</option>
+                                            <option>...</option>
+                                        </select>
+                                    </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col">
+                                <div class="row g-3 align-items-center mt-2">
+                                    <div class="col-auto">
+                                        <label for="inputPassword6" class="col-form-label">UF</label>
+                                    </div>
+                                    <div class="col">
+                                        <select class="form-select" id="validationServer04" aria-describedby="validationServer04Feedback" required>
+                                            <option selected disabled value="">Choose...</option>
+                                            <option>...</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="row g-3 align-items-center mt-2">
+                                    <div class="col-auto">
+                                        <label for="inputPassword6" class="col-form-label">País</label>
+                                    </div>
+                                    <div class="col">
+                                        <select class="form-select" id="validationServer04" aria-describedby="validationServer04Feedback" required>
+                                            <option selected disabled value="">Choose...</option>
+                                            <option>...</option>
                                         </select>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        <!--NOME COMPLETO-->
-                        <div class="row g-3 align-items-center">
-                            <div class="col-auto">
-                                <label for="inputPassword6" class="col-form-label">Nome completo</label>
-                            </div>
-                            <div class="col">
-                                <input type="text" id="inputPassword6" class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <!--DATA NASCIMENTO-->
-                            <div class="col">
-                                <div class="row g-3 align-items-center mt-2">
-                                    <div class="col-auto">
-                                        <label for="inputPassword6" class="col-form-label">Data de Nascimento</label>
-                                    </div>
-                                    <div class="col">
-                                        <input type="date" id="inputPassword6" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!--TELEFONE-->
-                            <div class="col">
-                                <div class="row g-3 align-items-center mt-2">
-                                    <div class="col-auto">
-                                        <label for="inputPassword6" class="col-form-label">Telefone</label>
-                                    </div>
-                                    <div class="col">
-                                        <input type="text" id="inputPassword6" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--E-MAIL-->
-                        <div class="row g-3 align-items-center mt-2">
-                            <div class="col-auto">
-                                <label for="inputPassword6" class="col-form-label">E-mail</label>
-                            </div>
-                            <div class="col">
-                                <input type="email" id="inputPassword6" class="form-control">
-                            </div>
-                        </div>
-                    
-                        <!--ANEXAR IMAGEM-->
-                        <div class="row g-3 align-items-center mt-2">
-                            <div class="col-auto">
-                                <label for="inputPassword6" class="col-form-label">Foto</label>
-                            </div>
-                            <div class="col">
-                                <div class="input-group">
-                                    <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="">
-                                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Anexar</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-1 coluna-imagem">
-                        <div class="col p-3 imagem">
-                            <div class="container-imagem">
-                                <img th:src="@{/img/imagem-aluno.jpg}" alt="imagem-aluno" class="cadastro-form__foto">
-                            </div>
-                        </div>
-                </section>
-
-                <!--ENDEREÇO-->
-                <section class="container__endereco row">
-                    <h5 class="form-endereco__titulo pb-3">Endereço</h5>
-
-                    <div class="row">
-                        <!--CEP-->
-                        <div class="col">
-                            <div class="row g-3 align-items-center">
-                                <div class="col-auto">
-                                    <label for="inputPassword6" class="col-form-label">CEP</label>
-                                </div>
-                                <div class="col">
-                                    <input type="text" id="inputPassword6" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-
-                        <!--RUA-->
-                        <div class="col">
-                            <div class="row g-3 align-items-center">
-                                <div class="col-auto">
-                                    <label for="inputPassword6" class="col-form-label">Rua</label>
-                                </div>
-                                <div class="col">
-                                    <input type="text" id="inputPassword6" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col">
-                            <div class="row g-3 align-items-center mt-2">
-                                <div class="col-auto">
-                                    <label for="inputPassword6" class="col-form-label">Nº</label>
-                                </div>
-                                <div class="col">
-                                    <input type="text" id="inputPassword6" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col">
-                            <div class="row g-3 align-items-center mt-2">
-                                <div class="col-auto">
-                                    <label for="inputPassword6" class="col-form-label">Bairro</label>
-                                </div>
-                                <div class="col">
-                                    <input type="text" id="inputPassword6" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col">
-                            <div class="row g-3 align-items-center mt-2">
-                                <div class="col-auto">
-                                    <label for="inputPassword6" class="col-form-label">Cidade</label>
-                                </div>
-                                <div class="col">
-                                    <select class="form-select" id="validationServer04" aria-describedby="validationServer04Feedback" required>
-                                        <option selected disabled value="">Choose...</option>
-                                        <option>...</option>
-                                    </select>
-                                </div>
-                        </div>
-                    </div>
-
-                    <div class="row">
-                        <div class="col">
-                            <div class="row g-3 align-items-center mt-2">
-                                <div class="col-auto">
-                                    <label for="inputPassword6" class="col-form-label">UF</label>
-                                </div>
-                                <div class="col">
-                                    <select class="form-select" id="validationServer04" aria-describedby="validationServer04Feedback" required>
-                                        <option selected disabled value="">Choose...</option>
-                                        <option>...</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col">
-                            <div class="row g-3 align-items-center mt-2">
-                                <div class="col-auto">
-                                    <label for="inputPassword6" class="col-form-label">País</label>
-                                </div>
-                                <div class="col">
-                                    <select class="form-select" id="validationServer04" aria-describedby="validationServer04Feedback" required>
-                                        <option selected disabled value="">Choose...</option>
-                                        <option>...</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </form>
-        </main>
+                    </section>
+                </form>
+            </main>
+        </div>
 
         <!-- RODAPÉ-->
-        <footer class="rodape">
-            <p>Todos os direitos reservados - 2022.</p>
+        <footer class="row linha-rodape">
+            <div class="col rodape">
+                <p>Todos os direitos reservados - 2022.</p>
+            </div>
         </footer>
 
         <!-- JavaScript Bundle with Popper -->

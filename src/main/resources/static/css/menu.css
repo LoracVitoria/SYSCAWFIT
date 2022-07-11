@@ -1,0 +1,27 @@
+.container-menu {
+    background: #BFBFBF;
+}
+
+.lista {
+    width: 100%;
+}   
+
+.nav-item {
+    text-align: center;
+    padding-bottom: 1rem;        
+}
+
+.nav-link {
+    color: #062A40;    
+    font-weight: bold;            
+    text-transform: uppercase;    
+    justify-content: center;
+    
+}
+
+.nav-link:hover{
+    color: #ECF229;     
+    background-color: #062A40;
+}
+
+

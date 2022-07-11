@@ -1,44 +1,57 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <div th:replace="head:: head" />
-    <body class="app">
+    <body>
         <!-- CABEÇALHO-->
         <header th:replace="cabecalho:: cabecalho"/>
-        
-         <!-- MENU-->
-        <nav th:replace="menu:: menu"/>
-            
-        <section>
-                <div class="cadastrar">
-                    <h1>CADASTRAR EQUIPAMENTOS</h1>
-                    <form th:object="${equipamentos}"action="/equipamentos/save" method="POST">
-                    <input type="hidden" th:field="${equipamentos.id}"/>
-                        <label for="nome">NOME:</label>
-                        <br/>
-                        <input type="text" th:field="*{nome}" th:errorclass="inputError" autocomplete="off"/>
-                        <br/>
-                        <label for="descricao">DESCRIÇÃO:</label>
-                        <br/>
-                        <textarea type="text" th:field="*{descricao}" th:errorclass="inputError" autocomplete="off"/>
+
+        <div class="row linha-centro">
+            <!-- MENU-->
+            <nav class="col-3 border container-menu">
+                <nav th:replace="menu:: menu"/>    
+            </nav>
+
+            <!--CONTEÚDO DA PÁGINA-->
+            <main class="col-9 border">
+                <section>
+                    <div class="cadastrar">
+                        <h1>CADASTRAR EQUIPAMENTOS</h1>
+
+                        <div class="container-fluid border overflow-auto conteudo mx-2">
+
+                            <form th:object="${equipamentos}"action="/equipamentos/save" method="POST">
+                            <input type="hidden" th:field="${equipamentos.id}"/>
+                                <label for="nome">NOME:</label>
+                                <br/>
+                                <input type="text" th:field="*{nome}" th:errorclass="inputError" autocomplete="off"/>
+                                <br/>
+                                <label for="descricao">DESCRIÇÃO:</label>
+                                <br/>
+                                <textarea type="text" th:field="*{descricao}" th:errorclass="inputError" autocomplete="off"/>
+                                
+                                <br/>
                         
-                        <br/>
-		          
-		         		<div class="mb-3 mt-3">
-							<p th:switch="${equipamentos.id>0}">
-							<button type="submit" th:case="${true}" class="btn btn-danger" th:text="Atualizar"></button>
-							<button type="submit" th:case="*" class="btn btn-primary" th:text="Adicionar"></button>
-							</p>
-				  		</div>
-                    </form>
-                    <!--div class="imgEquipamento">
-                        <img src="" alt="">
-                    </!div-->
-                 </div>
-        </section>
+                                <div class="mb-3 mt-3">
+                                    <p th:switch="${equipamentos.id>0}">
+                                    <button type="submit" th:case="${true}" class="btn btn-danger" th:text="Atualizar"></button>
+                                    <button type="submit" th:case="*" class="btn btn-primary" th:text="Adicionar"></button>
+                                    </p>
+                                </div>
+                            </form>
+                            <!--div class="imgEquipamento">
+                                <img src="" alt="">
+                            </!div-->
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
         
-         <!-- RODAPÉ-->
-        <footer class="rodape">
-            <p>Todos os direitos reservados - 2022.</p>
+        <!-- RODAPÉ-->
+        <footer class="row linha-rodape">
+            <div class="col rodape">
+                <p>Todos os direitos reservados - 2022.</p>
+            </div>
         </footer>
 
         <!-- JavaScript Bundle with Popper -->
