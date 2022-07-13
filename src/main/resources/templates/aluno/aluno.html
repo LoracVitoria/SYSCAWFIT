@@ -14,33 +14,36 @@
             </nav>
 
             <!--CONTEÚDO DA PÁGINA-->
-            <main class="col-9 border conteudo">
-                <header class="aluno-cadastro__header row">
+            <main class="col-9 border">
 
-                    <h1 class="cadastro-header__titulo col m-4">
-                        <i class="bi bi-person-plus"></i>
-                        Cadastrar</h1>
+                <article class="row linha-header__cadastro">
+                    <div class="col coluna-left__titulo">
+                        <h1 class="header-titulo m-3">
+                            <i class="bi bi-person-plus"></i>
+                            Cadastrar
+                        </h1>
+                    </div>
 
-                    <div class="container-buttons col mt-4">
-                        <div class="box-b">
+                    <div class="col-auto coluna-right__buttons">
+                        <div class="col mt-4 mx-2">
                             <button type="button" class="btn btn-primary button-cadastro">
                                 <i class="bi bi-cloud-upload p-2"></i>Cadastrar
                             </button>
                         </div>
-                    
-                        <div class="box-b">
+
+                        <div class="col-auto mt-4">
                             <button type="button" class="btn btn-primary  button-cancelar">
                                 <i class="bi bi-x-lg text-danger p-2"></i>Cancelar
                             </button>
                         </div>
                     </div>
-                </header>
+                </article>
 
-                <form class="row aluno-cadastro__form p-3">
+                <!--Formulário-->
+                <article class="row border overflow-auto conteudo aluno-cadastro__form">
 
-                    <section class="container__dados-pessoais row">
-
-                        <div class="col-8 coluna-dados">
+                    <section class="row border linha-dados__pessoais">
+                        <div class="col-9 border coluna-dados">
                             <div class="row mb-3">
                                 <div class="col">
                                     <!--CPF-->
@@ -132,17 +135,16 @@
                             </div>
                         </div>
 
-                        <div class="col-1 coluna-imagem">
-                            <div class="col p-3 imagem">
-                                <div class="container-imagem">
-                                    <img th:src="@{/img/imagem-aluno.jpg}" alt="imagem-aluno" class="cadastro-form__foto">
-                                </div>
+                        <div class="col-3 border coluna-imagem">
+                            <div class="container-imagem">
+                                <img th:src="@{/img/imagem-aluno.jpg}" alt="imagem-aluno" class="imagem">
                             </div>
+                        </div>
                     </section>
 
                     <!--ENDEREÇO-->
-                    <section class="container__endereco row">
-                        <h5 class="form-endereco__titulo pb-3">Endereço</h5>
+                    <section class="row border linha-dados__endereco">
+                        <h5 class="form-endereco__titulo">Endereço</h5>
 
                         <div class="row">
                             <!--CEP-->
@@ -237,7 +239,7 @@
                             </div>
                         </div>
                     </section>
-                </form>
+                </article>
             </main>
         </div>
 

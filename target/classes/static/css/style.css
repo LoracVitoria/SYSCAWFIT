@@ -11,6 +11,14 @@ html,body {
     margin: 0 !important;
 }
 
+.container-fluid {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+
+/* -------------------------------*/
+
 .linha-cabecalho {
     height: 15vh;
     background: #062A40;

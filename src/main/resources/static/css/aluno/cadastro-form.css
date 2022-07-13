@@ -5,8 +5,7 @@
     margin-top: 3rem;
     overflow-y: scroll;
     scrollbar-gutter: stable;
-    /* scrollbar-width: thin; */
-    height: 80%;
+    /* height: 80%; */
 }
 
 .aluno-cadastro__form::-webkit-scrollbar {
@@ -25,27 +24,14 @@
   background-color: #062A40;
 }
 
+/* Imagem */
 
-.imagem {
+.coluna-imagem {
     display: flex;
     justify-content: center;
 }
 
-
-.container-imagem {
-    width: 50%;
-    height: 30%;
-    background-color: #062A40;
-}
-
-
-.cadastro-form__foto {
-    height: 20vh;                  
-    width: 25vh;                  
-    background-image: url("../../img/imagem-aluno.jpg");
-}
-
-.form-endereco__titulo {
-    font-weight: bold;
-    margin-top: 3rem;
+.imagem {
+  width: 15vw;
+  height: 20vh;
 }

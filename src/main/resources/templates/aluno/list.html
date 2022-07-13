@@ -14,39 +14,40 @@
            </nav>
 
            <!--CONTEÚDO DA PÁGINA-->
-           <main class="col-9 border conteudo">
-                <article class="aluno-consulta">
 
-                    <section class="aluno-consulta__header row">
-                        <div class="container-input col-7">
-                            <label for="exampleInputEmail1" class="form-label form__label">Aluno</label>
-                            <input type="email" id="exampleInputEmail1" aria-describedby="emailHelp" class="form-control w-75 h-100 form__input" placeholder="Digite o CPF">
+           <main class="col-9 border" >
+
+                <article class="row  linha-header">
+                    <div class="col col-left__input p-3">
+                        <label for="exampleInputEmail1" class="form-label form__label">Aluno</label>
+                        <input type="email" id="exampleInputEmail1" aria-describedby="emailHelp" class="form-control w-75 h-75 form__input" placeholder="Digite o CPF">
+                    </div>
+
+                    <div class="col-auto col-right__buttons p-3">
+                        <div class="col mx-2">
+                            <a class="link-button" th:href="@{/aluno/list}">
+                                <button type="button" class="btn btn-link button-pesquisar">
+                                    <i class="bi bi-search p-2"></i>Pesquisar
+                                </button>
+                            </a>
                         </div>
-                        
-                        <div class="container-buttons col">
-                            <div class="box-button">
-                                <a class="link-button" th:href="@{/aluno/list}">
-                                    <button type="button" class="btn btn-link h-100 button-pesquisar">
-                                        <i class="bi bi-search p-2"></i>Pesquisar
-                                    </button>
-                                </a>
-                            </div>
-                            <div class="box-button">
-                                <a class="link-button" th:href="@{/aluno/new}">
-                                    <button type="button" class="btn btn-link h-100 button-novo">
-                                        <i class="bi bi-plus-square p-2"></i>Novo aluno
-                                    </button>
-                                </a>
-                            </div>
+
+                        <div class="col-auto">
+                            <a class="link-button" th:href="@{/aluno/new}">
+                                <button type="button" class="btn btn-link button-novo">
+                                    <i class="bi bi-plus-square p-2"></i>Novo aluno
+                                </button>
+                            </a>
                         </div>
-                    </section>
+                    </div>
+                </article>
 
-                    <!--LISTA DE ALUNO-->
-                    <section class="aluno-consulta__lista">
 
-                        <div class="container-consulta__lista">
+                <!--LISTA DE ALUNOS-->
+                <article class="container-fluid overflow-auto conteudo p-3">
 
-                            <h3>Alunos cadastrados</h3>
+                    <section class="row aluno-consulta__lista">
+                        <div class="col p-3">
                             <table class="table table-light table-striped table-bordered table-hover">
                                 <thead>
                                     <tr>
@@ -58,7 +59,7 @@
                                         <th>Treino</th>
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <!-- <tbody> -->
                                 <!-- usando o thymeleaf para iterar na lista de alunos -->
                                 <!-- <tr th:each="filme: ${filmeList}">
                                     <td th:text="${filme.id}"/>
@@ -77,12 +78,11 @@
                                         <i class="bi bi-pencil" title="editar"></i>
                                     </a></td>
                                 </tr> -->
-                                </tbody>
+                                <!-- </tbody> -->
                             </table>
                         </div>
                     </section>
                 </article>
-            
            </main>
        </div>
 
