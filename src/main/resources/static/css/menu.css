@@ -1,5 +1,10 @@
-.container-menu {
+.container-menu{
     background: #BFBFBF;
+}
+
+.container-menu, .row {
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
 .lista {

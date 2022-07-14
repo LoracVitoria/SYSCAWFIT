@@ -58,6 +58,20 @@
 }
 
 
+/* Tabela de Alunos */
+
+
+.aluno-consulta__lista {
+    background: #f8f9fa;
+    margin: 2rem;
+    text-align: center;
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.table {
+    color:#062A40;
+}
 
 
 

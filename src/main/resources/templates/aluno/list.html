@@ -17,7 +17,8 @@
 
            <main class="col-9 border" >
 
-                <article class="row  linha-header">
+                <!--Header-->
+                <article class="row linha-header">
                     <div class="col col-left__input p-3">
                         <label for="exampleInputEmail1" class="form-label form__label">Aluno</label>
                         <input type="email" id="exampleInputEmail1" aria-describedby="emailHelp" class="form-control w-75 h-75 form__input" placeholder="Digite o CPF">
@@ -43,7 +44,8 @@
                 </article>
 
 
-                <!--LISTA DE ALUNOS-->
+                <!--Tabela de alunos-->
+
                 <article class="container-fluid overflow-auto conteudo p-3">
 
                     <section class="row aluno-consulta__lista">
@@ -59,7 +61,7 @@
                                         <th>Treino</th>
                                     </tr>
                                 </thead>
-                                <!-- <tbody> -->
+                                <!-- <tbody>
                                 <!-- usando o thymeleaf para iterar na lista de alunos -->
                                 <!-- <tr th:each="filme: ${filmeList}">
                                     <td th:text="${filme.id}"/>
