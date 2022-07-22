@@ -1,13 +1,14 @@
-.aluno-consulta__header {
-    padding: 2rem;
-}
-
-.container-input {
+.col-left__input {
     display: flex;
     align-items: center;
     justify-content: flex-end;
 }
 
+.col-right__buttons {
+    display: flex;
+}
+
+/* Coluna esquerda */
 
 .form__label {
     text-transform: uppercase;
@@ -17,8 +18,7 @@
     margin-top: 0.5rem;
 }
 
-
-/* BUTTONS */
+/* Coluna direita */
 
 .container-buttons {
     display: flex;
@@ -36,8 +36,6 @@
     color: #062A40 ;
     border: none;
 }
-
-
 
 .button-pesquisar {
     background: #BFBFBF;
@@ -60,6 +58,20 @@
 }
 
 
+/* Tabela de Alunos */
+
+
+.aluno-consulta__lista {
+    background: #f8f9fa;
+    margin: 2rem;
+    text-align: center;
+    border-radius: 0.5rem;
+    padding: 1rem;
+}
+
+.table {
+    color:#062A40;
+}
 
 
 

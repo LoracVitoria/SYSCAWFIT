@@ -3,7 +3,7 @@ package com.syscawfit.syscawfit.dao;
 import com.syscawfit.syscawfit.model.Aluno;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface AlunoDao extends JpaRepository<Aluno,Long> {
+public interface AlunoRepository extends JpaRepository<Aluno,Long> {
 
-    //findAll, findById, get, save, delete, update
+    //findAll, findById, save, delete, update
 }
