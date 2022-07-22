@@ -1,7 +1,6 @@
 package com.syscawfit.syscawfit.model;
 
 
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -24,14 +23,13 @@ public class TipoExercicio {
 	private String nome;
 	
 	@ManyToOne
-	@JoinColumn(name = "id_equipamento")
+	@JoinColumn(name = "equipamento_id") /*verificar modelo relacional DB*/
 	private Equipamentos equipamento;
 	
 	
 	public TipoExercicio() {
 	}
 	
-
 	public TipoExercicio(String nome, Equipamentos equipamento) {
 		this.nome = nome;
 		this.equipamento = equipamento;
@@ -60,15 +58,6 @@ public class TipoExercicio {
 	public void setEquipamento(Equipamentos equipamento) {
 		this.equipamento = equipamento;
 	}
-
-
-	@Override
-	public String toString() {
-		return "TipoExercicio [id=" + id + ", nome=" + nome + ", equipamento=" + equipamento + ", getId()=" + getId()
-				+ ", getNome()=" + getNome() + ", getEquipamento()=" + getEquipamento() + "]";
-	}
-	
-	
 	
 	
 }
