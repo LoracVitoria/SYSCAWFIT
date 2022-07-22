@@ -3,7 +3,7 @@
 const cep = document.querySelector("#cep");
 
 const mostraDados = function (result){
-    if (result.cep !== "" && result.logradouro !== "" && result.bairro !== "" 
+    if (result.logradouro !== "" && result.bairro !== "" 
     && result.localidade !== ""  && result.uf !== "") {
         result.pais = "Brasil";
     }
@@ -15,7 +15,9 @@ const mostraDados = function (result){
  }
 
 cep.addEventListener("blur", (e) =>{
-    let search = cep.value.replace("-", "");
+    let search = cep.value.replace(/\.|-/g,"");
+
+    console.log(search)
 
     const options = {
         method: 'GET',
@@ -30,6 +32,6 @@ cep.addEventListener("blur", (e) =>{
         .then(dado => mostraDados(dado))
     })
     //se der erro
-    .catch(e => console.log('Deu erro:' + e,message))
-
+    .catch(e => 
+        alert('CEP não encontrado, por favor digite seus dados.'));
 });
