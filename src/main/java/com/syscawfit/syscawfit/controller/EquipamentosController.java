@@ -1,5 +1,9 @@
 package com.syscawfit.syscawfit.controller;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -11,6 +15,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.syscawfit.syscawfit.dao.EquipamentosRepository;
 import com.syscawfit.syscawfit.model.Equipamentos;
@@ -23,7 +29,7 @@ public class EquipamentosController {
 	@Autowired
 	private EquipamentosRepository daoEquipamentos;
 	
-	
+	private static String caminhoImagens = "C:\\Users\\willi\\Pictures\\img";
 
 	//NOVO EQUIPAMENTO
 			@RequestMapping("/new")
@@ -37,11 +43,25 @@ public class EquipamentosController {
 			
 			/* SAVE EQUIPAMENTOS */
 			@PostMapping("/save")
-			public String save(@Valid Equipamentos equipamento, BindingResult result, Model model) {
+			public String save(@Valid Equipamentos equipamento, BindingResult result, Model model, @RequestParam("file") MultipartFile arquivo) {
 				if (result.hasErrors()) {
 					return "redirect:/equipamentos/cadastrarEquipamentos.html";
 				}
+				
 				daoEquipamentos.save(equipamento);
+				
+				try {
+					if(!arquivo.isEmpty()) {
+						byte[] bytes = arquivo.getBytes();
+						Path caminho = Paths.get(caminhoImagens+String.valueOf(equipamento.getId())+arquivo.getOriginalFilename());
+						Files.write(caminho, bytes);
+						equipamento.setNomeImagem(String.valueOf(equipamento.getId())+arquivo.getOriginalFilename());
+					}
+				}catch(IOException e) {
+					e.printStackTrace();
+				}
+				
+				
 				return "redirect:/equipamentos/list";
 			}
 			
