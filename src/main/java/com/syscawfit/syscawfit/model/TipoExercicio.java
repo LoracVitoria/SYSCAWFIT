@@ -1,15 +1,19 @@
 package com.syscawfit.syscawfit.model;
 
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Equipamentos {
+public class TipoExercicio {
 	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
@@ -18,18 +22,17 @@ public class Equipamentos {
 	@Size(min = 3, max = 50, message = "Campo deve conter entre {min} e {max} carácteres")
 	private String nome;
 	
-	@NotBlank(message = "campo obrigatório")
-	@Size(min = 3, max = 400, message = "Campo deve conter entre {min} e {max} carácteres")
-	private String descricao;
+	@ManyToOne
+	@JoinColumn(name = "equipamento_id") /*verificar modelo relacional DB*/
+	private Equipamentos equipamento;
 	
-	private String nomeImagem;
 	
-
-	public Equipamentos() {}
+	public TipoExercicio() {
+	}
 	
-	public Equipamentos(String nome, String descricao) {
+	public TipoExercicio(String nome, Equipamentos equipamento) {
 		this.nome = nome;
-		this.descricao = descricao;
+		this.equipamento = equipamento;
 	}
 
 	public Long getId() {
@@ -48,21 +51,13 @@ public class Equipamentos {
 		this.nome = nome;
 	}
 
-	public String getDescricao() {
-		return descricao;
+	public Equipamentos getEquipamento() {
+		return equipamento;
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+	public void setEquipamento(Equipamentos equipamento) {
+		this.equipamento = equipamento;
 	}
 	
-	public String getNomeImagem() {
-		return nomeImagem;
-	}
-
-	public void setNomeImagem(String nomeImagem) {
-		this.nomeImagem = nomeImagem;
-	}
 	
-
 }

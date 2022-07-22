@@ -1,6 +1,18 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
-<div th:replace="head:: head" />
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYSCAWFIT</title>
+    <link rel="stylesheet" th:href="@{/css/normalize.css}">
+    <link rel="stylesheet" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+    <link rel="stylesheet" th:href="@{/css/equipamentos/equipamentos.css}">
+</head>
     <body>
 		 <!-- CABEÇALHO-->
 		 <header th:replace="cabecalho:: cabecalho"/>
@@ -34,9 +46,7 @@
 										<td th:text="${equipamentos.id}"/>
 										<td th:text="${equipamentos.nome}"/>
 										<td th:text="${equipamentos.descricao}"/>
-										<!--td th:img="${equipamentos.imagem}"/-->
-										<td><img th:src="@{/img/imagem-logo.PNG}"/></td>
-										
+										<td th:text="${equipamentos.nomeImagem}"/>
 										<td>
 											<a th:href="@{/equipamentos/delete/{id}(id=${equipamentos.id})}">
 												<i class="btn btn-dark" title="delete">Delete</i>

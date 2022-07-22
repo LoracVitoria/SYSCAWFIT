@@ -27,6 +27,7 @@
     text-transform: uppercase;
     font-weight: bold;
     border: none;
+    margin-right: 20px;
 }
 
 .button-cancelar {

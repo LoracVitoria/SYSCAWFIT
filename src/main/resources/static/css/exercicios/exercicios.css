@@ -1,0 +1,15 @@
+/*CADASTRAR EQUIPAMENTOS HEADER*/
+
+.exercicios-cadastro__header {
+    /* border: 1px solid red; */
+    /* margin: 1rem; */
+    display: flex;
+    height: 12%;
+}
+
+.exercicios_cadastro-header__titulo {
+    margin-left: 4rem;
+    padding-right: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
