@@ -17,7 +17,7 @@ import com.syscawfit.syscawfit.dao.TipoExercicioRepository;
 import com.syscawfit.syscawfit.model.TipoExercicio;
 
 @Controller
-@RequestMapping("/tipo_exercicio")
+@RequestMapping("/tipoexercicio")
 public class TipoExercicioController {
 
 	
@@ -36,33 +36,33 @@ public class TipoExercicioController {
 	
 	/* SALVAR TIPO_EXERCICIO */
 	@PostMapping("/save")
-	public String salvar(@Valid TipoExercicio tipoExercicio, BindingResult result, Model model) {
+	public String save(@Valid TipoExercicio tipoExercicio, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			return "redirect:/exercicios/cadastrarTipoExercicio.html";
 		}
 		
 		daoExercicio.save(tipoExercicio);
 		
-		return "redirect:/tipo_exercicio/list";
+		return "redirect:/tipoexercicio/list";
 	}
 	
 	/* UPDATE TIPO_EXERCICIO */
 	@PostMapping("/update")
-	public String atualizar(TipoExercicio tipoExercicio, Model model) {
+	public String update(TipoExercicio tipoExercicio, Model model) {
 		daoExercicio.save(tipoExercicio); 	
-		return "redirect://tipo_exercicio/list";
+		return "redirect:/tipoexercicio/list";
 	}
 	
 	/* DELETE TIPO_EXERCICIO */
 	@RequestMapping("/delete/{id}")
-	public String execluir(Model model, @PathVariable Long id) {
+	public String delete(Model model, @PathVariable Long id) {
 		daoExercicio.deleteById(id); 	
-		return "redirect://tipo_exercicio/list";
+		return "redirect:/tipoexercicio/list";
 	}
 	
 	/*LISTA TODOS EQUIPAMENTOS*/
 	@RequestMapping("/list")
-	public String listarTodos(Model model) {
+	public String list(Model model) {
 		List<TipoExercicio> tipoExercicioLista = daoExercicio.findAll();
 		model.addAttribute("tipoExercicioLista", tipoExercicioLista);
 		

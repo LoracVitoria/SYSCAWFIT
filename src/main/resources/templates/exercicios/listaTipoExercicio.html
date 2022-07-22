@@ -11,61 +11,80 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
         <link rel="stylesheet" th:href="@{/css/style.css}">
         <link rel="stylesheet" th:href="@{/css/menu.css}">
-        <link rel="stylesheet" th:href="@{/css/exercicis/exercicios.css}">
+        <link rel="stylesheet" th:href="@{/css/exercicios/exercicios.css}">
 	</head>
     <body>
 		 <!-- CABEÇALHO-->
 		 <header th:replace="cabecalho:: cabecalho"/>
 
-		 <div class="row linha-centro">
-			 <!-- MENU-->
-			 <nav class="col-3 border container-menu">
-				 <nav th:replace="menu:: menu"/>    
-			 </nav>
- 
-			 <!--CONTEÚDO DA PÁGINA-->
-			 <main class="col-9 border">
-				<!--section>
-					<div class="consultar">
-						<h1>CONSULTAR EQUIPAMENTOS</h1>
-
-						<div class="container-fluid overflow-auto conteudo mx-2">
+			 <div class="row linha-centro">
+				 <!-- MENU-->
+           		 <nav class="col-3 border container-menu">
+                	<nav th:replace="menu:: menu"/>    
+           		 </nav>
+           		 
+           		<main class="col-9 border">
+            
+            		<article class="row linha-header">
+          				<header class="exercicios-cadastro__header linha-header  row">
+										
+							<div class="col col-left__input p-3">
+			                    <h1 class=" col m-4">
+			                        <i class="bi bi-person-plus"></i>
+			                        Cadastrar Tipos de Exercícios
+			                    </h1>
+							</div>
+										
+							<div class="col-auto col-right__buttons p-3">
+		                        <div class="col-auto">
+		                            <a class="link-button" th:href="@{/tipoexercicio/new}">
+		                                <button type="button" class="btn btn-link button-novo">
+		                                    <i class="bi bi-plus-square p-2"></i>Novo
+		                                </button>
+		                            </a>
+		                        </div>
+	                   		</div>
+	                    
+               			</header>
+               		</article>
+               		
+               		<div class="container-fluid overflow-auto conteudo mx-2">
 							<table class="table table-striped table-bordered table-hover">
 								<thead>
 										<tr>
-										<th>Id</th>
-										<th>Nome</th>
-										<th>Descricao</th>
-										<th>Imagem</th>
-										<th>Ações</th>
+											<th>Id</th>
+											<th>Nome</th>
+											<th>Equipamento</th>
 										</tr>
 								</thead>
 								<tbody>
 					
-										<tr th:each="equipamentos: ${equipamentosList}">
-										<td th:text="${equipamentos.id}"/>
-										<td th:text="${equipamentos.nome}"/>
-										<td th:text="${equipamentos.descricao}"/>
-										<td th:text="${equipamentos.nomeImagem}"/>
+										<tr th:each="tipoexercicio: ${tipoExercicioLista}">
+										<td th:text="${tipoexercicio.id}"/>
+										<td th:text="${tipoexercicio.nome}"/>
+										<td th:text="${tipoexercicio.equipamento}"/>
 										<td>
-											<a th:href="@{/equipamentos/delete/{id}(id=${equipamentos.id})}">
-												<i class="btn btn-dark" title="delete">Delete</i>
+											<a th:href="@{/tipoexercicio/delete/{id}(id=${tipoexercicio.id})}">
+												<i class="btn btn-dark" title="delete">Deletar</i>
 											</a>
 												
-											<a th:href="@{/equipamentos/update/{id}(id=${equipamentos.id})}">
-												<i class="btn btn-light" title="update">Update</i>
+											<a th:href="@{/tipoexercicio/update/{id}(id=${tipoexercicio.id})}">
+												<i class="btn btn-light" title="update">Editar</i>
 											</a>
 										</td>
 									</tr>
 								</tbody>
 							</table>
-						</div>
-					 </div>
-				</!--section-->
-			 </main>
-		 </div>
+               			</div>
+           			</main>
+           		 
+			 </div> <!--fim linha centro-->
 
-		<!-- RODAPÉ-->
+
+
+
+
+		<!--RODAPÉ-->
 		<footer class="row linha-rodape">
 			<div class="col rodape">
 				<p>Todos os direitos reservados - 2022.</p>
@@ -73,8 +92,8 @@
 		</footer>
 
         <!-- JavaScript Bundle with Popper -->
-<!--script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" 
-integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"><---!script-->
+		<!--script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" 
+		integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"><---!script-->
    		<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
     </body>
 </html>
