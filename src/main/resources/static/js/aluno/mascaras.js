@@ -1,5 +1,5 @@
 
-// Máscara para CPF
+// Máscara par CPF
 $("#cpf").keypress(function() {
     $(this).mask('000.000.000-00');
 });
@@ -8,13 +8,6 @@ $("#cpf").keypress(function() {
 $("#telefone").keypress(function() {
     $(this).mask('(00) 00000-0000')
 });
-
-// Máscara para CPF
-$("#cpfBusca").keypress(function() {
-    $(this).mask('000.000.000-00');
-});
-
-
 
 
 
