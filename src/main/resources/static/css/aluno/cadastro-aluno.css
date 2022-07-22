@@ -41,8 +41,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  aspect-ratio: 16/9;
-  width: 200px;
+  /* aspect-ratio: 16/10; */
+  width: 20vh;
+  height: 20vh ;
   background: #ccc;
   color: #aaa;
   border: 2px dashed #aaa;
