@@ -25,7 +25,7 @@ public class TipoExercicioController {
 	private TipoExercicioRepository daoExercicio;
 	
 	/* NOVO TIPO_EXERCICIO */
-	@RequestMapping("/novo")
+	@RequestMapping("/new")
 	public String novoTipoExercicio(Model model) {
 		TipoExercicio tipoExercicio = new TipoExercicio();
 		model.addAttribute("tipoExercicio", tipoExercicio );
@@ -35,7 +35,7 @@ public class TipoExercicioController {
 	}
 	
 	/* SALVAR TIPO_EXERCICIO */
-	@PostMapping("/salvar")
+	@PostMapping("/save")
 	public String salvar(@Valid TipoExercicio tipoExercicio, BindingResult result, Model model) {
 		if (result.hasErrors()) {
 			return "redirect:/exercicios/cadastrarTipoExercicio.html";
@@ -43,25 +43,25 @@ public class TipoExercicioController {
 		
 		daoExercicio.save(tipoExercicio);
 		
-		return "redirect:/tipo_exercicio/listar";
+		return "redirect:/tipo_exercicio/list";
 	}
 	
 	/* UPDATE TIPO_EXERCICIO */
-	@PostMapping("/atualizar")
+	@PostMapping("/update")
 	public String atualizar(TipoExercicio tipoExercicio, Model model) {
 		daoExercicio.save(tipoExercicio); 	
-		return "redirect://tipo_exercicio/listar";
+		return "redirect://tipo_exercicio/list";
 	}
 	
 	/* DELETE TIPO_EXERCICIO */
-	@RequestMapping("/excluir/{id}")
+	@RequestMapping("/delete/{id}")
 	public String execluir(Model model, @PathVariable Long id) {
 		daoExercicio.deleteById(id); 	
-		return "redirect://tipo_exercicio/listar";
+		return "redirect://tipo_exercicio/list";
 	}
 	
 	/*LISTA TODOS EQUIPAMENTOS*/
-	@RequestMapping("/listar")
+	@RequestMapping("/list")
 	public String listarTodos(Model model) {
 		List<TipoExercicio> tipoExercicioLista = daoExercicio.findAll();
 		model.addAttribute("tipoExercicioLista", tipoExercicioLista);

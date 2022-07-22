@@ -46,13 +46,14 @@
 		                    <label for="descricao">DESCRIÇÃO:</label>
 		                    <br/>
 		                    <textarea type="text" th:field="*{descricao}" th:errorclass="inputError" autocomplete="off"/>
+		                     <br/>
+		                    <label for="file">IMAGEM:</label>
+		                    <br/>
+		                    <input type="file" name="file" />  
 	                   </div>    
 	                    <br/>
-	                    	
-	                    <div class="imgEquipamento">
-                            <input type="file" name="file" />                             
-                        </div>
-	                   
+         
+	                   <!--botões-->
 	                    <div class="cadastrar_buttons">
 	                    	<div>
 		                    	<p th:switch="${equipamentos.id>0}">
