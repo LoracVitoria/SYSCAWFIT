@@ -24,52 +24,59 @@
             </nav>
 
             <!--CONTEÚDO DA PÁGINA-->
-            <main class="col-9">
+            <main class="col-9 border">
             
-          		<header class="exercicios-cadastro__header row">
-
-                    <h1 class="exercicios_cadastro-header__titulo col m-4">
-                        <i class="bi bi-person-plus"></i>
-                        Cadastrar Tipos de Exercícios</h1>
-
-                </header>
-                
-                <!--section>
-                  <form class="cadastrar" enctype="multipart/form-data" th:object="${equipamentos}" action="/equipamentos/save" method="POST">
-                
-	                    <input type="hidden" th:field="${TipoExercicios.id}"/>
-	                   <div class="cadastrar_dados">
-		                    <label for="nome">NOME:</label>
-		                    <br/>
-		                    <input type="text" th:field="*{nome}" th:errorclass="inputError" autocomplete="off"/>
-		                    <br/>
-		                    <label for="descricao">DESCRIÇÃO:</label>
-		                    <br/>
-		                    <textarea type="text" th:field="*{descricao}" th:errorclass="inputError" autocomplete="off"/>
-	                   </div>    
-	                    <br/>
-	                    	
-	                    <div class="imgEquipamento">
-                            <input type="file" name="file" />                             
+            	<article class="row linha-header">
+          				<header class="exercicios-cadastro__header linha-header  row">
+										
+							<div class="col col-left__input p-3">
+			                    <h1 class=" col m-4">
+			                        <i class="bi bi-person-plus"></i>
+			                        Cadastrar Tipos de Exercícios
+			                    </h1>
+							</div>
+										
+               		 	</header>
+               	</article>
+               	
+               	   <!--Formulário-->
+                 
+                <form class="row overflow-auto conteudo mx-2" enctype="multipart/form-data" th:object="${tipoExercicio}" action="/tipoexercicio/save" method="POST">
+                	<input type="hidden" th:field="${tipoExercicio.id}"/>
+                	
+                		<div class="row">
+                            <div class="col m-2 mt-3 ">
+                                <label for="nome" class="col-form-label">Nome:</label>
+                                <input type="text" th:field="*{nome}" th:errorclass="inputError"  autocomplete="off" class="form-control" required>
+                            </div>
                         </div>
-	                   
-	                    <div class="cadastrar_buttons">
+                        
+                      <div class="row form-floating">
+						  <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+						    <option selected th:each="equipamentos: ${equipamentosList}"
+						    	th:text="${equipamentos.nome}"/>
+						  </select>
+						  <label for="floatingSelect">Equipamentos</label>
+					 </div>
+					 
+					  <!--botões-->
+	                    <div class="tipoexercicios_cadastrar_buttons">
 	                    	<div>
 		                    	<p th:switch="${equipamentos.id>0}">
-		                        <button type="submit" th:case="${true}" class="btn btn-primary btn-cadastro" th:text="Atualizar"></button>
-		                        <button type="submit" th:case="*" class="btn btn-primary btn-cadastro" th:text="Cadastrar"></button>
+		                        <button type="submit" th:case="${true}" class="btn btn-primary tipoexercicios_btn-cadastro" th:text="Atualizar"></button>
+		                        <button type="submit" th:case="*" class="btn btn-primary tipoexercicios_btn-cadastro" th:text="Cadastrar"></button>
 		                     	</p>
 	                    	</div>                   
 	       
 	                 		 <div>
-	                            <button type="button" class="btn btn-primary btn-cancelar">
+	                            <button type="button" class="btn btn-primary tipoexercicios_btn-cancelar">
 	                                <i class="bi bi-x-lg text-danger p-2"></i>Cancelar                                  
 	                            </button>
 	                       </div>
-	                   </div> 
+	                   </div> <!--fim cadastrar_buttons-->
                   </form>                 
-                </section--> 
-            </main>
+
+           	 </main>
         </div> <!--fim div row linha_centro-->
         
         

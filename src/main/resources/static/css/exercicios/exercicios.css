@@ -1,15 +1,24 @@
 /*CADASTRAR EQUIPAMENTOS HEADER*/
 
-.exercicios-cadastro__header {
-    /* border: 1px solid red; */
-    /* margin: 1rem; */
-    display: flex;
-    height: 12%;
+/*botoes*/
+.tipoexercicios_cadastrar_buttons{
+	display: flex;
+	margin-top: 20px;
 }
 
-.exercicios_cadastro-header__titulo {
-    margin-left: 4rem;
-    padding-right: 1rem;
-    font-weight: bold;
+.tipoexercicios_btn-cadastro {
+    background: #91B021;
     text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    margin-right: 20px;
+    padding: 6px;
+}
+
+.tipoexercicios_btn-cancelar {
+    background: #BFBFBF;
+    color:#062A40 ;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
 }
