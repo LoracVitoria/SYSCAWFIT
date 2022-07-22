@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>SYSCAWFIT</title>
+        <title>SYSCAWFIT - Cadastrar Equipamentos</title>
         <link rel="stylesheet" th:href="@{/css/normalize.css}">
         <link rel="stylesheet" th:href="@{/css/reset.css}">
         <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
@@ -40,9 +40,9 @@
                                 <label for="descricao">DESCRIÇÃO:</label>
                                 <br/>
                                 <textarea type="text" th:field="*{descricao}" th:errorclass="inputError" autocomplete="off"/>
-                                
+
                                 <br/>
-                        
+
                                 <div class="mb-3 mt-3">
                                     <p th:switch="${equipamentos.id>0}">
                                     <button type="submit" th:case="${true}" class="btn btn-danger" th:text="Atualizar"></button>
@@ -57,7 +57,8 @@
                     </div>
                 </section>
             </main>
-        </div>
+        </div> <!--fim div row linha_centro-->
+
         
         <!-- RODAPÉ-->
         <footer class="row linha-rodape">
