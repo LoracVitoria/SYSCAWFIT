@@ -14,8 +14,14 @@
             <a class="nav-link" href="#">Treino</a>
         </li>
 
-        <li class="nav-item">
-            <a class="nav-link" href="#">Exercícios</a>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+            aria-expanded="false" href="#">Exercícios</a>
+            <ul class="dropdown-menu">
+            	<li><a class="dropdown-item" th:href="@{/tipo_exercicio/new}">Cadastrar</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" th:href="@{/tipo_exercicio/list}">Consultar</a></li>
+            </ul>
         </li>
 
         <li class="nav-item">
