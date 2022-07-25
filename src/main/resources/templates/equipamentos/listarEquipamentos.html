@@ -12,6 +12,7 @@
         <link rel="stylesheet" th:href="@{/css/style.css}">
         <link rel="stylesheet" th:href="@{/css/menu.css}">
         <link rel="stylesheet" th:href="@{/css/equipamentos/equipamentos.css}">
+        <link rel="stylesheet" th:href="@{/css/aluno/consulta-aluno.css}">
 	</head>
     <body>
 		 <!-- CABEÇALHO-->
@@ -25,14 +26,33 @@
  
 			 <!--CONTEÚDO DA PÁGINA-->
 			 <main class="col-9 border">
-				<section>
-					<div class="consultar">
-						<h1>CONSULTAR EQUIPAMENTOS</h1>
+					<article class="row linha-header">
+          			
+										
+							<div class="col col-left__input p-3">
+			                    <h1 class=" col m-4">
+			                        <i class="bi bi-person-plus"></i>
+			                       Lista de Equipamentos
+			                    </h1>
+							</div>
+										
+							<div class="col-auto col-right__buttons p-5">
+		                        <div class="col-auto">
+		                            <a class="link-button" th:href="@{/equipamentos/new}">
+		                                <button type="button" class="btn btn-link button-novo">
+		                                    <i class="bi bi-plus-square p-2"></i>Novo
+		                                </button>
+		                            </a>
+		                        </div>
+	                   		</div>
+	                    
+               			
+               		</article>
 
 						<div class="container-fluid overflow-auto conteudo mx-2">
 							<table class="table table-striped table-bordered table-hover">
 								<thead>
-										<tr>
+										<tr align="center">
 										<th>Id</th>
 										<th>Nome</th>
 										<th>Descricao</th>
@@ -42,26 +62,25 @@
 								</thead>
 								<tbody>
 					
-										<tr th:each="equipamentos: ${equipamentosList}">
-										<td th:text="${equipamentos.id}"/>
-										<td th:text="${equipamentos.nome}"/>
-										<td th:text="${equipamentos.descricao}"/>
-										<td th:text="${equipamentos.nomeImagem}"/>
-										<td>
-											<a th:href="@{/equipamentos/delete/{id}(id=${equipamentos.id})}">
-												<i class="btn btn-dark" title="delete">Delete</i>
-											</a>
-												
-											<a th:href="@{/equipamentos/update/{id}(id=${equipamentos.id})}">
-												<i class="btn btn-light" title="update">Update</i>
-											</a>
-										</td>
-									</tr>
+										<tr align="center" th:each="equipamentos: ${equipamentosList}">
+											<td th:text="${equipamentos.id}"/>
+											<td th:text="${equipamentos.nome}"/>
+											<td th:text="${equipamentos.descricao}"/>
+											<td th:text="${equipamentos.nomeImagem}"/>
+											<td>
+												<a th:href="@{/equipamentos/delete/{id}(id=${equipamentos.id})}">
+													<i class="btn btn-dark" title="delete">Delete</i>
+												</a>
+													
+												<a th:href="@{/equipamentos/update/{id}(id=${equipamentos.id})}">
+													<i class="btn btn-light" title="update">Update</i>
+												</a>
+											</td>
+										</tr>
 								</tbody>
 							</table>
 						</div>
 					 </div>
-				</section>
 			 </main>
 		 </div>
 

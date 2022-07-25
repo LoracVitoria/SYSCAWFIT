@@ -43,23 +43,23 @@ public class EquipamentosController {
 			
 			/* SAVE EQUIPAMENTOS */
 			@PostMapping("/save")
-			public String save(@Valid Equipamentos equipamento, BindingResult result, Model model, @RequestParam("file") MultipartFile arquivo) {
+			public String save(@Valid Equipamentos equipamento, BindingResult result, Model model) {
 				if (result.hasErrors()) {
 					return "redirect:/equipamentos/cadastrarEquipamentos.html";
 				}
 				
 				daoEquipamentos.save(equipamento);
-				
-				try {
-					if(!arquivo.isEmpty()) {
-						byte[] bytes = arquivo.getBytes();
-						Path caminho = Paths.get(caminhoImagens+String.valueOf(equipamento.getId())+arquivo.getOriginalFilename());
-						Files.write(caminho, bytes);
-						equipamento.setNomeImagem(String.valueOf(equipamento.getId())+arquivo.getOriginalFilename());
-					}
-				}catch(IOException e) {
-					e.printStackTrace();
-				}
+//				
+//				try {
+//					if(!arquivo.isEmpty()) {
+//						byte[] bytes = arquivo.getBytes();
+//						Path caminho = Paths.get(caminhoImagens+String.valueOf(equipamento.getId())+arquivo.getOriginalFilename());
+//						Files.write(caminho, bytes);
+//						equipamento.setNomeImagem(String.valueOf(equipamento.getId())+arquivo.getOriginalFilename());
+//					}
+//				}catch(IOException e) {
+//					e.printStackTrace();
+//				}
 				
 				
 				return "redirect:/equipamentos/list";
@@ -85,7 +85,7 @@ public class EquipamentosController {
 					List<Equipamentos> equipamentosList = daoEquipamentos.findAll();
 					model.addAttribute("equipamentosList", equipamentosList);
 					
-					return "/equipamentos/consultarEquipamentos.html";
+					return "/equipamentos/listarEquipamentos.html";
 				}
 				
 }

@@ -94,7 +94,7 @@
      border-radius: 10px;
  }
 
- /* pagina consultar equipamentos */
+ /* LISTAR EQUIPAMENTOS */
 
 
  .consultar{
@@ -110,4 +110,29 @@
 	margin-bottom: 50px;
 }
 
+/* BUTTONS HEADER */
 
+.col-right__buttons {
+    display: flex;
+}
+
+/* Coluna esquerda */
+
+.equipamentos-btn-link {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #062A40 ;
+    border: none;
+}
+
+.equipamentos-btn-novo {
+    background: #91B021;
+    color: white;
+    padding: 50px;
+}
+
+.equipamentos-btn-novo:hover {
+    background: #062A40;
+    color: #ECF229;
+}
