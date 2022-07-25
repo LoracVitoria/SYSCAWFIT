@@ -29,7 +29,7 @@ public class TipoExercicioController {
 
 	/* NOVO TIPO_EXERCICIO */
 	@RequestMapping("/new")
-	public String novoTipoExercicio(Model model) {
+	public String form(Model model) {
 		TipoExercicio tipoExercicio = new TipoExercicio();
 		List<Equipamentos> equipamentosList = daoEquipamento.findAll();
 		model.addAttribute("tipoExercicio", tipoExercicio);
@@ -55,6 +55,15 @@ public class TipoExercicioController {
 	public String update(TipoExercicio tipoExercicio, Model model) {
 		daoExercicio.save(tipoExercicio);
 		return "redirect:/tipoexercicio/list";
+	}
+
+	// ENVIAR DADOS DA BUSCA POR ID PARA A PAGINA cadastrarTipoExercicio.html
+	@RequestMapping("/update/{id}")
+	public String getUpdate(Model model, @PathVariable Long id) {
+
+		model.addAttribute("tipoExercicio", daoExercicio.getById(id));
+
+		return "redirect:/exercicios/cadastrarTipoExercicio.html";
 	}
 
 	/* DELETE TIPO_EXERCICIO */
