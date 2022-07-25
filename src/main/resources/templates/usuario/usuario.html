@@ -3,13 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IElist=edge">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SYSCAWFIT</title>l
-    <link rel="stylesheet" th:href="@{/csslist/normalize.css}">
+    <title>SYSCAWFIT</title>
+    <link rel="stylesheet" th:href="@{/css/normalize.css}">
     <link rel="stylesheet" th:href="@{/css/reset.css}">
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-    <link rel="slisttylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/menu.css}">
     <link rel="stylesheet" th:href="@{/css/usuario/cadastro-usuario.css}">
@@ -22,12 +22,13 @@
 <body>
 <!-- CABEÇALHO-->
 <header th:replace="cabecalho:: cabecalho"/>
-<!-- MENU-->list
+<!-- MENU-->
 <div class="row linha-centro">
     <!-- MENU-->
     <nav class="col-3 border container-menu">
         <nav th:replace="menu:: menu"/>
     </nav>
+
 <!--CONTEÚDO DA PÁGINA-->
     <main class="col-9 border">
         <div class="col mb-5">
@@ -39,22 +40,7 @@
 
         <!--FORMULÁRIO-->
 
-        <form th:object="${usuario}" action="/usuario/save" method="post">
-            <div class="mb-3">
-              <label class="form-label">ID</label>
-              <input type="number" class="form-control" th:field="${usuario.id}" aria-describedby="emailHelp">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Nome</label>
-              <input type="text" class="form-control" th:field="${usuario.nome}" id="nome">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
-
-
-
-
-        <!-- <form class="row overflow-auto conteudo mx-2 formulario-usuario" action="">
+        <form class="row overflow-auto conteudo mx-2 formulario-usuario" action="">
 
             <div class="col-md-4">
                 <label for="validationCustom01" class="form-label">Nome:  </label>
@@ -70,7 +56,6 @@
                     Looks good!
                 </div>
             </div>
-            <br/>
             <div class="col-md-4">
                 <label for="validationCustomUsername" class="form-label">E-mail: </label>
                 <div class="input-group has-validation">
@@ -88,8 +73,24 @@
                     Por favor, insira um telefone!
                 </div>
             </div>
-            <br>
-            <br>
+            <div class="col segunda-coluna border">
+                <label class="picture form-control" for="picture__input" tabindex="0">
+                    <input type="file" accept="image/*" id="picture__input">
+                    <span>
+                                <img class="picture__image"  alt="">Selecione uma imagem!
+
+                            </span>
+                </label>
+            </div>
+            <div class="col segunda-coluna border">
+                <label class="picture form-control" for="picture__input" tabindex="0">
+                    <input type="file" accept="image/*" id="picture__input">
+                    <span>
+                                <img class="picture__image"  alt="">Selecione uma imagem!
+
+                            </span>
+                </label>
+            </div>
             <div class="col-md-3">
                 <label for="validationCustom04" class="form-label">Tipo de Usuário: </label>
                 <select class="form-select" id="validationCustom04" required>
@@ -104,32 +105,23 @@
                     Por favor, selecione um valor válido!
                 </div>
             </div>
-
             <div class="col-md-3">
-                <p></p>
                 <label for="validationCustom05" class="form-label">Situação: </label>
                 <label class="switch">
                     <input type="checkbox">
-                    <span class="slider round"></spa/etc/apt/sources.listn>
+                    <span class="slider round"></span>
                 </label>
-            <br/>
-                </div>
-                <div class="col segunda-coluna bord/etc/apt/sources.lister">
-                    <label class="picture form-control" for="picture__input" tabindex="0">
-                        <input type="file" accept="image/*" id="picture__input">
-                        <span>
-                                <img class="picture__image"  alt="">Selecione uma imagem!
-
-                            </span>
-                    </label>
                 </div>
             <div class="col-12">
-                <button class="btn btn-primary" type="submit">Salvar</button>
+
             </div>
-            <br/>
+            <div class="col-12">
+                <button class="btn btn-primary" type="submit">Submit form</button>
+            </div>
+
 
             <!--ENDEREÇO-->
-            <!-- <section class="container__endereco">
+            <section class="container__endereco">
                 <h5 class="titulo-endereco">Endereço</h5>
 
                 <div class="row">
@@ -150,7 +142,7 @@
                 <div class="row">
 
                     <div class="col-md-2">
-                        <label for="validationServer03" class="form-label">Nº</label>/etc/apt/sources.list
+                        <label for="validationServer03" class="form-label">Nº</label>
                         <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" required>
                     </div>
 
@@ -195,7 +187,7 @@
                     </div>
                 </div>
             </section>
-        </form> -->
+        </form>
     </main>
 </div>
 
