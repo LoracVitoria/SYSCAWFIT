@@ -56,22 +56,23 @@
 										<tr align="center">
 											<th>Id</th>
 											<th>Nome</th>
-											<th>Equipamento</thclass="alinhar_th">
+											<th>Equipamento</th>
 											<th>Ações</th>
 										</tr>
 								</thead>
 								<tbody>
 					
-										<tr align="center" th:each="tipoexercicio: ${tipoExercicioLista}">
-											<td th:text="${tipoexercicio.id}"/>
-											<td th:text="${tipoexercicio.nome}"/>
-											<td/>
+										<tr align="center" th:each="tipoExercicio: ${tipoExercicioLista}">
+											<td th:text="${tipoExercicio.id}"/>
+											<td th:text="${tipoExercicio.nome}"/>
+											<td th:text="${tipoExercicio.equipamento}"/>
 											<td>
-												<a th:href="@{/tipoexercicio/delete/{id}(id=${tipoexercicio.id})}">
-													<i class="btn btn-dark" title="delete">Deletar</i>
+											<!--verificar equipamento.nome pq não funciona-->
+												<a th:href="@{/tipoexercicio/delete/{id}(id=${tipoExercicio.id})}">
+													<i class="btn btn-dark" title="delete">Excluir</i>
 												</a>
 													
-												<a th:href="@{/tipoexercicio/update/{id}(id=${tipoexercicio.id})}">
+												<a th:href="@{/tipoexercicio/update/{id}(id=${tipoExercicio.id})}">
 													<i class="btn btn-light" title="update">Editar</i>
 												</a>
 											</td>

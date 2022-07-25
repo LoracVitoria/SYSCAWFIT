@@ -25,7 +25,7 @@ public class TipoExercicio {
 	
 	@ManyToOne
 	@JoinColumn(name = "id_equipamento")
-	private Equipamentos equipamentos;
+	private Equipamentos equipamento;
 	
 	
 	public TipoExercicio() {
@@ -34,7 +34,7 @@ public class TipoExercicio {
 
 	public TipoExercicio(String nome, Equipamentos equipamento) {
 		this.nome = nome;
-		this.equipamentos = equipamento;
+		this.equipamento = equipamento;
 	}
 
 	public Long getId() {
@@ -54,11 +54,11 @@ public class TipoExercicio {
 	}
 
 	public Equipamentos getEquipamento() {
-		return equipamentos;
+		return equipamento;
 	}
 
 	public void setEquipamento(Equipamentos equipamento) {
-		this.equipamentos = equipamento;
+		this.equipamento = equipamento;
 	}
 	
 	
