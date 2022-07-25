@@ -1,15 +1,7 @@
 package com.syscawfit.syscawfit.model;
 
-import lombok.*;
-
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
 @Entity
 public class Endereco {
 
@@ -21,12 +13,8 @@ public class Endereco {
     private Long numero;
     private String bairro;
     private String cidade;
-    private String UF;
+    private String uf;
     private String pais;
-
-    @NotNull
-    @ManyToOne(cascade = CascadeType.REMOVE)
-    private Aluno aluno;
 
 
     public Long getId() {
