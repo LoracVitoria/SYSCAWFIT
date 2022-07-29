@@ -81,4 +81,7 @@ public class TipoExercicioController {
 
 		return "/exercicios/listaTipoExercicio.html";
 	}
+
+	
+	
 }
