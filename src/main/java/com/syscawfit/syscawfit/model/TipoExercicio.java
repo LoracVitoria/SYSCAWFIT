@@ -60,6 +60,15 @@ public class TipoExercicio {
 	public void setEquipamento(Equipamentos equipamento) {
 		this.equipamento = equipamento;
 	}
+
+
+	@Override
+	public String toString() {
+		return "TipoExercicio [id=" + id + ", nome=" + nome + ", equipamento=" + equipamento + ", getId()=" + getId()
+				+ ", getNome()=" + getNome() + ", getEquipamento()=" + getEquipamento() + "]";
+	}
+	
+	
 	
 	
 }
