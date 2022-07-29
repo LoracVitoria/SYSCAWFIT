@@ -69,8 +69,6 @@ public class TreinoController {
 			return "redirect:/treino/list";
 		}
 
-		
-
 
 
 }
