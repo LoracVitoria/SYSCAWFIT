@@ -25,7 +25,7 @@ public class AlunoController {
 	@Autowired
 	private EnderecoRepository enderecoDao;
 
-	// Retorna Página de Consulta, com lista de Todos os Alunos
+	// Retorna Página de Consulta, com lista de Todos os Alunos ou Aluno por CPF
 	@RequestMapping("/list")
 	public String listarAlunos(Model model, String cpf) {
 		
@@ -36,7 +36,14 @@ public class AlunoController {
 		} else if (cpf == null) {
 			alunos = alunoDao.findAll();
 		} else {
-			alunos = List.of(alunoDao.findByCpf(cpf));
+			Aluno aluno = alunoDao.findByCpf(cpf);
+
+			if (aluno != null) {
+				alunos = List.of(aluno);
+			} else {
+				return "redirect:/aluno/list";
+			}
+
 		}
 		
 		model.addAttribute("alunos", alunos );
@@ -107,6 +114,7 @@ public class AlunoController {
 		aluno.setId(alunoDao.findByCpf(aluno.getCpf()).getId());
 		endereco.setId(enderecoDao.findByAluno(aluno).get(0).getId());
 
+		// Atualizar em endereço o aluno
 		endereco.setAluno(aluno);
 
 		alunoDao.save(aluno);
@@ -114,9 +122,6 @@ public class AlunoController {
 
 		return "redirect:/aluno/list";
 	}
-
-	// Buscar aluno por ID
-
 
 }
 
