@@ -1,4 +1,4 @@
-.container-menu{
+.container-menu {
     background: #BFBFBF;
 }
 
@@ -10,7 +10,7 @@
 .lista {
     width: 100%;
     margin-top: 50px;
-}   
+}
 
 .nav-item {
     text-align: center;
@@ -31,6 +31,16 @@
 }
 
 
+@media screen and (min-width:0){
+    .container-menu {
+        /* background: green; */
+        /* width: 30vw; */
+    }
+}
 
-
-
+@media screen and (min-width:768px){
+    .container-menu {
+        /* background: #BFBFBF; */
+        /* width: 20vw; */
+    }
+}
