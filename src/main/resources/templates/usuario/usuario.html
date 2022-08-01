@@ -3,13 +3,13 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="X-UA-Compatible" content="IElist=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SYSCAWFIT</title>
-    <link rel="stylesheet" th:href="@{/css/normalize.css}">
+    <title>SYSCAWFIT</title>l
+    <link rel="stylesheet" th:href="@{/csslist/normalize.css}">
     <link rel="stylesheet" th:href="@{/css/reset.css}">
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="slisttylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/menu.css}">
     <link rel="stylesheet" th:href="@{/css/usuario/cadastro-usuario.css}">
@@ -22,13 +22,12 @@
 <body>
 <!-- CABEÇALHO-->
 <header th:replace="cabecalho:: cabecalho"/>
-<!-- MENU-->
+<!-- MENU-->list
 <div class="row linha-centro">
     <!-- MENU-->
     <nav class="col-3 border container-menu">
         <nav th:replace="menu:: menu"/>
     </nav>
-
 <!--CONTEÚDO DA PÁGINA-->
     <main class="col-9 border">
         <div class="col mb-5">
@@ -56,6 +55,7 @@
                     Looks good!
                 </div>
             </div>
+            <br/>
             <div class="col-md-4">
                 <label for="validationCustomUsername" class="form-label">E-mail: </label>
                 <div class="input-group has-validation">
@@ -73,24 +73,8 @@
                     Por favor, insira um telefone!
                 </div>
             </div>
-            <div class="col segunda-coluna border">
-                <label class="picture form-control" for="picture__input" tabindex="0">
-                    <input type="file" accept="image/*" id="picture__input">
-                    <span>
-                                <img class="picture__image"  alt="">Selecione uma imagem!
-
-                            </span>
-                </label>
-            </div>
-            <div class="col segunda-coluna border">
-                <label class="picture form-control" for="picture__input" tabindex="0">
-                    <input type="file" accept="image/*" id="picture__input">
-                    <span>
-                                <img class="picture__image"  alt="">Selecione uma imagem!
-
-                            </span>
-                </label>
-            </div>
+            <br/>
+            <br/>
             <div class="col-md-3">
                 <label for="validationCustom04" class="form-label">Tipo de Usuário: </label>
                 <select class="form-select" id="validationCustom04" required>
@@ -105,20 +89,29 @@
                     Por favor, selecione um valor válido!
                 </div>
             </div>
+
             <div class="col-md-3">
+                <p></p>
                 <label for="validationCustom05" class="form-label">Situação: </label>
                 <label class="switch">
                     <input type="checkbox">
-                    <span class="slider round"></span>
+                    <span class="slider round"></spa/etc/apt/sources.listn>
                 </label>
+            <br/>
+                </div>
+                <div class="col segunda-coluna bord/etc/apt/sources.lister">
+                    <label class="picture form-control" for="picture__input" tabindex="0">
+                        <input type="file" accept="image/*" id="picture__input">
+                        <span>
+                                <img class="picture__image"  alt="">Selecione uma imagem!
+
+                            </span>
+                    </label>
                 </div>
             <div class="col-12">
-
+                <button class="btn btn-primary" type="submit">Salvar</button>
             </div>
-            <div class="col-12">
-                <button class="btn btn-primary" type="submit">Submit form</button>
-            </div>
-
+            <br/>
 
             <!--ENDEREÇO-->
             <section class="container__endereco">
@@ -142,7 +135,7 @@
                 <div class="row">
 
                     <div class="col-md-2">
-                        <label for="validationServer03" class="form-label">Nº</label>
+                        <label for="validationServer03" class="form-label">Nº</label>/etc/apt/sources.list
                         <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" required>
                     </div>
 
