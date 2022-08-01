@@ -1,16 +1,15 @@
 package com.syscawfit.syscawfit.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 @Entity
 public class Endereco {
 
@@ -18,11 +17,15 @@ public class Endereco {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String cep;
-    private String rua;
+    private String logradouro;
     private Long numero;
     private String bairro;
     private String cidade;
-    private String UF;
+    private String uf;
     private String pais;
+
+    @NotNull
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    private Aluno aluno;
 
 }

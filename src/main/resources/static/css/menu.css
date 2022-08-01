@@ -1,4 +1,4 @@
-.container-menu{
+.container-menu {
     background: #BFBFBF;
 }
 
@@ -30,3 +30,16 @@
 }
 
 
+@media screen and (min-width:0){
+    .container-menu {
+        /* background: green; */
+        /* width: 30vw; */
+    }
+}
+
+@media screen and (min-width:768px){
+    .container-menu {
+        /* background: #BFBFBF; */
+        /* width: 20vw; */
+    }
+}
