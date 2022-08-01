@@ -13,13 +13,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.syscawfit.syscawfit.dao.TreinoRepository;
-import com.syscawfit.syscawfit.model.Equipamentos;
 import com.syscawfit.syscawfit.model.Treino;
 
-
 @Controller
-@RequestMapping("/treino")
-public class TreinoController {
+@RequestMapping("/exercicio")
+public class ExercicioController {
 	
 	@Autowired
 	private TreinoRepository daoTreino;
@@ -68,9 +66,5 @@ public class TreinoController {
 			daoTreino.deleteById(id);
 			return "redirect:/treino/list";
 		}
-
-		
-
-
 
 }
