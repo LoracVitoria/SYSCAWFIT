@@ -27,5 +27,4 @@ public class UsuarioController {
             return "/usuario/usuario.html";
         }
 
-
     }
