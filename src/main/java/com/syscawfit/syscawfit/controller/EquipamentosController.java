@@ -1,10 +1,7 @@
 package com.syscawfit.syscawfit.controller;
 
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -15,8 +12,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.syscawfit.syscawfit.dao.EquipamentosRepository;
 import com.syscawfit.syscawfit.model.Equipamentos;
@@ -67,6 +62,16 @@ public class EquipamentosController {
 	public String update(Equipamentos equipamento, Model model) {
 		daoEquipamentos.save(equipamento);
 		return "redirect:/equipamentos/list";
+	}
+	
+
+	@RequestMapping("/update/{id}")
+	public String getUpdate(Model model, @PathVariable Long id) {
+		Optional<Equipamentos> equipamento = daoEquipamentos.findById(id);
+				
+		model.addAttribute("equipamentos", equipamento);
+
+		return "redirect:/equipamentos/cadastrarEquipamentos.html";
 	}
 
 	/* DELETE EQUIPAMENTOS */

@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -22,8 +22,8 @@ public class Exercicio {
 	@Size(min = 3, max = 50, message = "Campo deve conter entre {min} e {max} carácteres")
 	private String nome;
 	
-	@OneToMany
-	@JoinColumn(name = "id_equipamento")
+	@ManyToOne
+	@JoinColumn(name = "TipoExercicio_Id")
 	private TipoExercicio tipoExercicio;
 	
 	private Integer qtdeRepeticoes;
@@ -33,12 +33,9 @@ public class Exercicio {
 	private Integer cargaKG;
 	
 	
-
-	
 	public Exercicio() {
 		super();
 	}
-	
 	
 
 	public Exercicio( String nome, TipoExercicio tipoExercicio, Integer qtdeRepeticoes, Integer qtdeSeries, Integer cargaKG) {
