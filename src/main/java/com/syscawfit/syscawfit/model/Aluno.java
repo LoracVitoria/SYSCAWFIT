@@ -39,4 +39,5 @@ public class Aluno {
 
     private LocalDate dataIngresso = LocalDate.now();
 
+
 }

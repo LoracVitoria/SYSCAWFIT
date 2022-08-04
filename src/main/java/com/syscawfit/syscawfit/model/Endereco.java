@@ -1,8 +1,10 @@
 package com.syscawfit.syscawfit.model;
 
 import lombok.*;
+import org.springframework.context.annotation.EnableMBeanExport;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Getter
@@ -24,10 +26,9 @@ public class Endereco {
     private String UF;
     private String pais;
 
-    @NotNull
+    @NotBlank
     @ManyToOne(cascade = CascadeType.REMOVE)
     private Aluno aluno;
-
 
     public Long getId() {
         return id;
@@ -77,12 +78,12 @@ public class Endereco {
         this.cidade = cidade;
     }
 
-    public String getUf() {
-        return uf;
+    public String getUF() {
+        return UF;
     }
 
-    public void setUF(String uf) {
-        this.uf = uf;
+    public void setUF(String UF) {
+        this.UF = UF;
     }
 
     public String getPais() {
