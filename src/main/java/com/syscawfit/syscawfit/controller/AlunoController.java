@@ -82,7 +82,7 @@ public class AlunoController {
 		model.addAttribute("planos", TipoPlano.values());
 		model.addAttribute("generos", Genero.values());
 
-		return "/aluno/aluno.html";
+		return "aluno/aluno.html";
 	}
 
 	// Salvar Aluno
