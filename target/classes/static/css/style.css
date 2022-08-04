@@ -39,6 +39,15 @@ html,body {
 ========================================================================
 */
 
+.cabecalho {
+    background: #062A40 ;
+    display: flex;                      /* tranforma em Flex Container */
+    justify-content: space-between;     /* item distribuido com espaço no meio */
+    align-items: center;
+    padding: 2%;
+    grid-area: cabecalho;
+}
+
 .logotipo {
     height: 15vh;
 }
@@ -99,9 +108,12 @@ html,body {
 .rodape {
     background: #062A40;
     text-align: center;
+    grid-area: rodape;
 }
 
 .rodape p {
     padding-top: 0.5rem;
     color: white;
 }
+
+

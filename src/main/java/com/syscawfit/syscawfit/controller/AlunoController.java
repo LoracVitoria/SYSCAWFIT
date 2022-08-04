@@ -59,7 +59,7 @@ public class AlunoController {
 		model.addAttribute("aluno", aluno);
 		model.addAttribute("planos", TipoPlano.values());
 
-		return "/aluno/aluno.html";
+		return "aluno/aluno.html";
 	}
 
 	// Salvar Aluno
