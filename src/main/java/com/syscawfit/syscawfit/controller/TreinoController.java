@@ -12,65 +12,98 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.syscawfit.syscawfit.dao.ExercicioRepository;
+import com.syscawfit.syscawfit.dao.TipoExercicioRepository;
 import com.syscawfit.syscawfit.dao.TreinoRepository;
-import com.syscawfit.syscawfit.model.Equipamentos;
+import com.syscawfit.syscawfit.model.Exercicio;
+import com.syscawfit.syscawfit.model.TipoExercicio;
 import com.syscawfit.syscawfit.model.Treino;
-
 
 @Controller
 @RequestMapping("/treino")
 public class TreinoController {
-	
+
 	@Autowired
 	private TreinoRepository daoTreino;
 	
+	@Autowired
+	private ExercicioRepository daoExercicio;
+	
+	@Autowired
+	private TipoExercicioRepository daoTipoExercicio;
+
 	// NOVO TREINO
-		@RequestMapping("/new")
-		public String newForm(Model model) {
-			Treino treino = new Treino();
-			model.addAttribute("treino", treino);
+	@RequestMapping("/new")
+	public String newForm(Model model) {
+		Treino treino = new Treino();
+		Exercicio exercicio = new Exercicio();
+		List<TipoExercicio> tipoExercicioLista = daoTipoExercicio.findAll();
+		model.addAttribute("treino", treino);
+		model.addAttribute("exercicio", exercicio);
+		model.addAttribute("tipoExercicioLista", tipoExercicioLista);
+
+		return "/treino/cadastrarTreino.html";
+	}
+
+	/* SAVE TREINO */
+	@PostMapping("/saveTreino")
+	public String save(@Valid Treino treino, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			return "redirect:/treino/cadastrarTreino.html";
+		}
+
+		daoTreino.save(treino);
+
+		return "redirect:/treino/list";
+	}
+
+	// LISTA TODOS OS TREINOS
+	@RequestMapping("/listTreinos")
+	public String list(Model model) {
+		List<Treino> treinoLista = daoTreino.findAll();
+		model.addAttribute("treinoLista", treinoLista);
+
+		return "/treino/listarTreinos.html";
+	}
+
+	/* UPDATE TREINO */
+	@PostMapping("/updateTreino")
+	public String update(Treino treino, Model model) {
+		daoTreino.save(treino);
+		return "redirect:/treino/list";
+	}
+
+	/* DELETE TREINO */
+	@RequestMapping("/delete/{id}")
+	public String delete(Model model, @PathVariable Long id) {
+		daoTreino.deleteById(id);
+		return "redirect:/treino/list";
+	}
+	
+	
+	/****************************************************************************************************************************/
+	
+	/*EXERCICIOS*/
+	
+	/* SALVAR EXERCICIO */
+	@PostMapping("/exercicioSave")
+	public String saveExercicio(@Valid Exercicio exercicio, BindingResult result, Model model) {
+		if (result.hasErrors()) {
+			return "redirect:/treino/cadastrarTreino.html";
+		}
+
+		daoExercicio.save(exercicio);
+
+		return "redirect:/treino/exercicioList";
+	}
+	
+	// LISTAR TODOS OS EXERCICIOS
+		@RequestMapping("/exercicioList")
+		public String listExercicio(Model model) {
+			List<Exercicio> exerciciosLista = daoExercicio.findAll();
+			model.addAttribute("exerciciosLista", exerciciosLista);
 
 			return "/treino/cadastrarTreino.html";
 		}
-		
-		/* SAVE TREINO */
-		@PostMapping("/save")
-		public String save(@Valid Treino treino, BindingResult result, Model model) {
-			if (result.hasErrors()) {
-				return "redirect:/treino/cadastrarTreino.html";
-			}
-
-			daoTreino.save(treino);
-
-
-			return "redirect:/treino/list";
-		}
-		
-		// LISTA TODOS OS TREINOS
-		@RequestMapping("/list")
-		public String list(Model model) {
-			List<Treino> treinoLista = daoTreino.findAll();
-			model.addAttribute("treinoLista", treinoLista);
-
-			return "/treino/listarTreinos.html";
-		}
-		
-		/* UPDATE TREINO */
-		@PostMapping("/update")
-		public String update(Treino treino, Model model) {
-			daoTreino.save(treino);
-			return "redirect:/treino/list";
-		}
-
-		/* DELETE TREINO */
-		@RequestMapping("/delete/{id}")
-		public String delete(Model model, @PathVariable Long id) {
-			daoTreino.deleteById(id);
-			return "redirect:/treino/list";
-		}
-
-		
-
-
 
 }

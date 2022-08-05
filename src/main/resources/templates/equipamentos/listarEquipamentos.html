@@ -12,7 +12,7 @@
         <link rel="stylesheet" th:href="@{/css/style.css}">
         <link rel="stylesheet" th:href="@{/css/menu.css}">
         <link rel="stylesheet" th:href="@{/css/equipamentos/equipamentos.css}">
-        <link rel="stylesheet" th:href="@{/css/aluno/consulta-aluno.css}">
+        <!--link rel="stylesheet" th:href="@{/css/aluno/consulta-aluno.css}"-->
 	</head>
     <body>
 		 <!-- CABEÇALHO-->
@@ -66,14 +66,15 @@
 											<td th:text="${equipamentos.id}"/>
 											<td th:text="${equipamentos.nome}"/>
 											<td th:text="${equipamentos.descricao}"/>
-											<td th:text="${equipamentos.nomeImagem}"/>
+											<!--td th:text="${equipamentos.nomeImagem}"/-->
+											<td><img th:src="@{/equipamentos/mostrarImagem/{imagem}(imagem=${equipamentos.nomeImagem})}" width="50" heigh="30"/></td>
 											<td>
 												<a th:href="@{/equipamentos/delete/{id}(id=${equipamentos.id})}">
-													<i class="btn btn-dark" title="delete">Delete</i>
+													<i class="btn btn-danger">Excluir</i>
 												</a>
 													
 												<a th:href="@{/equipamentos/update/{id}(id=${equipamentos.id})}">
-													<i class="btn btn-light" title="update">Update</i>
+													<i class="btn btn-light">Editar</i>
 												</a>
 											</td>
 										</tr>
