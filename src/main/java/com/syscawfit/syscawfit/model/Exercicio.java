@@ -5,52 +5,46 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
 public class Exercicio {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	
+
 	@NotNull
 	@NotBlank(message = "campo obrigatório")
 	@Size(min = 3, max = 50, message = "Campo deve conter entre {min} e {max} carácteres")
 	private String nome;
-	
-	@OneToMany
-	@JoinColumn(name = "id_equipamento")
-	private TipoExercicio tipoExercicio;
-	
-	private Integer qtdeRepeticoes;
-	
-	private Integer qtdeSeries;
-	
-	private Integer cargaKG;
-	
-	
 
+	private Integer qtdeRepeticoes;
+
+	private Integer qtdeSeries;
+
+	private Integer carga;
 	
+	@ManyToOne
+	@JoinColumn(name = "tipoExercicio_id")
+	private TipoExercicio tipoExercicio;
+
 	public Exercicio() {
 		super();
 	}
-	
-	
 
-	public Exercicio( String nome, TipoExercicio tipoExercicio, Integer qtdeRepeticoes, Integer qtdeSeries, Integer cargaKG) {
+	public Exercicio(String nome, TipoExercicio tipoExercicio, Integer qtdeRepeticoes, Integer qtdeSeries,
+			Integer carga) {
 		super();
 		this.nome = nome;
 		this.tipoExercicio = tipoExercicio;
 		this.qtdeRepeticoes = qtdeRepeticoes;
 		this.qtdeSeries = qtdeSeries;
-		this.cargaKG = cargaKG;
+		this.carga = carga;
 	}
-
-
 
 	public Long getId() {
 		return id;
@@ -92,23 +86,18 @@ public class Exercicio {
 		this.qtdeSeries = qtdeSeries;
 	}
 
-	public Integer getCargaKG() {
-		return cargaKG;
+	public Integer getCarga() {
+		return carga;
 	}
 
-	public void setCargaKG(Integer cargaKG) {
-		this.cargaKG = cargaKG;
+	public void setCarga(Integer carga) {
+		this.carga = carga;
 	}
-
-
-
 
 	@Override
 	public String toString() {
 		return "Exercicio [id=" + id + ", nome=" + nome + ", tipoExercicio=" + tipoExercicio + ", qtdeRepeticoes="
-				+ qtdeRepeticoes + ", qtdeSeries=" + qtdeSeries + ", cargaKG=" + cargaKG + "]";
+				+ qtdeRepeticoes + ", qtdeSeries=" + qtdeSeries + ", carga=" + carga + "]";
 	}
-	
-	
-	
+
 }

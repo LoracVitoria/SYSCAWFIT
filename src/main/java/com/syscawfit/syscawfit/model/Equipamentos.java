@@ -15,7 +15,6 @@ public class Equipamentos {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@NotNull
 	@NotBlank(message = "campo obrigatório")
 	@Size(min = 3, max = 50, message = "Campo deve conter entre {min} e {max} carácteres")
 	private String nome;
@@ -24,6 +23,7 @@ public class Equipamentos {
 	@Size(min = 3, max = 400, message = "Campo deve conter entre {min} e {max} carácteres")
 	private String descricao;
 	
+	@Size(max = 1000)
 	private String nomeImagem;
 	
 
@@ -65,6 +65,13 @@ public class Equipamentos {
 	public void setNomeImagem(String nomeImagem) {
 		this.nomeImagem = nomeImagem;
 	}
+
+	@Override
+	public String toString() {
+		return "Equipamentos [id=" + id + ", nome=" + nome + ", descricao=" + descricao + ", nomeImagem=" + nomeImagem
+				+ "]";
+	}
+	
 	
 
 }
