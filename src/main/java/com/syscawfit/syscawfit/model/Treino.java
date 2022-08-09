@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 //import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -35,16 +36,17 @@ public class Treino {
 //	@ManyToMany
 //	private Usuario responsavelTreino;
 	
-//	private List<Exercicio> listaExercicios;
+	@OneToMany(mappedBy = "treino")
+	private List<Exercicio> listaExercicios;
 	
 	public Treino() {}
 	
-	public Treino(String nome, LocalDate dataInicioTreino, LocalDate datafimTreino) {
+	public Treino(String nome, LocalDate dataInicioTreino, LocalDate datafimTreino, List<Exercicio> listaExercicios) {
 		super();
 		this.nome = nome;
 		this.dataInicioTreino = dataInicioTreino;
 		this.datafimTreino = datafimTreino;
-//		this.listaExercicios = listaExercicios;
+		this.listaExercicios = listaExercicios;
 	}
 
 
@@ -64,13 +66,13 @@ public class Treino {
 		this.datafimTreino = datafimTreino;
 	}
 
-//	public List<Exercicio> getListaExercicios() {
-//		return listaExercicios;
-//	}
-//
-//	public void setListaExercicios(List<Exercicio> listaExercicios) {
-//		this.listaExercicios = listaExercicios;
-//	}
+	public List<Exercicio> getListaExercicios() {
+		return listaExercicios;
+	}
+
+	public void setListaExercicios(List<Exercicio> listaExercicios) {
+		this.listaExercicios = listaExercicios;
+	}
 
 	public Long getId() {
 		return id;
@@ -94,7 +96,7 @@ public class Treino {
 	@Override
 	public String toString() {
 		return "Treino [id=" + id + ", nome=" + nome + ", dataInicioTreino=" + dataInicioTreino + ", datafimTreino="
-				+ datafimTreino + "]";
+				+ datafimTreino + ", listaExercicios=" + listaExercicios + "]";
 	}
 	//inserir lista de exercicios no toString();
 
