@@ -1,0 +1,42 @@
+.card-header {
+    background: #305E7A;
+    color: white;
+}
+
+.card-plano {
+    background: #d4e2eb;
+}
+
+.card-formulario {
+    background: #062A40;
+    color: white;
+}
+
+@media screen and (min-width:0px){
+    .card-formulario {
+        width: 50vw;
+    }
+}
+
+@media screen and (min-width:768px){
+    .card-formulario {
+        width: 25vw;
+    }
+}
+
+.btn-salvar {
+    background: #4281A8;
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.btn-salvar:hover {
+    background: #56A8DB;
+    color: #062A40 ;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+
+
