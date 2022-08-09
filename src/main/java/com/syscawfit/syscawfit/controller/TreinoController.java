@@ -1,5 +1,6 @@
 package com.syscawfit.syscawfit.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -11,6 +12,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.syscawfit.syscawfit.dao.ExercicioRepository;
 import com.syscawfit.syscawfit.dao.TipoExercicioRepository;
@@ -25,12 +27,14 @@ public class TreinoController {
 
 	@Autowired
 	private TreinoRepository daoTreino;
-	
+
 	@Autowired
 	private ExercicioRepository daoExercicio;
-	
+
 	@Autowired
 	private TipoExercicioRepository daoTipoExercicio;
+	
+	private Treino treino;
 
 	// NOVO TREINO
 	@RequestMapping("/new")
@@ -79,12 +83,11 @@ public class TreinoController {
 		daoTreino.deleteById(id);
 		return "redirect:/treino/list";
 	}
-	
-	
+
 	/****************************************************************************************************************************/
-	
-	/*EXERCICIOS*/
-	
+
+	/* EXERCICIOS */
+
 	/* SALVAR EXERCICIO */
 	@PostMapping("/exercicioSave")
 	public String saveExercicio(@Valid Exercicio exercicio, BindingResult result, Model model) {
@@ -93,17 +96,29 @@ public class TreinoController {
 		}
 
 		daoExercicio.save(exercicio);
-
+		List<Exercicio> exerciciosLista = new ArrayList<Exercicio>();
+		exerciciosLista.add(exercicio);
+		Treino treino = new Treino();
+		treino.setListaExercicios(exerciciosLista);
+//		System.out.print(exerciciosLista);
 		return "redirect:/treino/exercicioList";
 	}
-	
-	// LISTAR TODOS OS EXERCICIOS
-		@RequestMapping("/exercicioList")
-		public String listExercicio(Model model) {
-			List<Exercicio> exerciciosLista = daoExercicio.findAll();
-			model.addAttribute("exerciciosLista", exerciciosLista);
 
-			return "/treino/cadastrarTreino.html";
-		}
+//	 LISTAR TODOS OS EXERCICIOS
+	@RequestMapping("/exercicioList")
+	public String listExercicios(Model model) {
+		Treino treino = new Treino();
+		Exercicio exercicio = new Exercicio();
+		List<Exercicio> exerciciosLista = daoExercicio.findAll();
+		List<TipoExercicio> tipoExercicioLista = daoTipoExercicio.findAll();
+		System.out.print(exerciciosLista);
+		model.addAttribute("treino", treino);
+		model.addAttribute("exerciciosLista", exerciciosLista);
+		model.addAttribute("exercicio", exercicio);
+		model.addAttribute("tipoExercicioLista", tipoExercicioLista);
+
+		return "/treino/cadastrarTreino.html";
+	}
+
 
 }

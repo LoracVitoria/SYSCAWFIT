@@ -31,19 +31,24 @@ public class Exercicio {
 	@ManyToOne
 	@JoinColumn(name = "tipoExercicio_id")
 	private TipoExercicio tipoExercicio;
-
+	
+	@ManyToOne
+	@JoinColumn(name = "treino_id")
+	private Treino treino;
+	
 	public Exercicio() {
 		super();
 	}
 
 	public Exercicio(String nome, TipoExercicio tipoExercicio, Integer qtdeRepeticoes, Integer qtdeSeries,
-			Integer carga) {
+			Integer carga, Treino treino) {
 		super();
 		this.nome = nome;
 		this.tipoExercicio = tipoExercicio;
 		this.qtdeRepeticoes = qtdeRepeticoes;
 		this.qtdeSeries = qtdeSeries;
 		this.carga = carga;
+		this.treino = treino;
 	}
 
 	public Long getId() {
@@ -96,8 +101,10 @@ public class Exercicio {
 
 	@Override
 	public String toString() {
-		return "Exercicio [id=" + id + ", nome=" + nome + ", tipoExercicio=" + tipoExercicio + ", qtdeRepeticoes="
-				+ qtdeRepeticoes + ", qtdeSeries=" + qtdeSeries + ", carga=" + carga + "]";
+		return "Exercicio [id=" + id + ", nome=" + nome + ", qtdeRepeticoes=" + qtdeRepeticoes + ", qtdeSeries="
+				+ qtdeSeries + ", carga=" + carga + ", tipoExercicio=" + tipoExercicio + ", treino=" + treino + "]";
 	}
+	
+
 
 }

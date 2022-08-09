@@ -31,7 +31,7 @@
 
 			<div class="col col-left__input p-3">
 				<h1 class="col m-1">
-					<i class="bi bi-person-plus"></i>
+					<i class="bi bi-plus-circle"></i>
 					Cadastrar Treinos
 				</h1>
 			</div>
@@ -76,29 +76,27 @@
 								<div class="row g-3 tipoexercicioSelect">
 									<div class="col-sm-5">
 										<label for="floatingSelect" class="form-label">Tipos de Exercicio: * </label>
-										<select th:field="*{tipoExercicio}" class="form-select scroll" id="floatingSelect"
-											aria-label="Floating label select example" name="tipoExercicio"
-											multiple="multiple">
+										<select th:field="*{tipoExercicio}" class="form-select scroll"
+											id="floatingSelect" aria-label="Floating label select example"
+											name="tipoExercicio" multiple="multiple">
 											<option th:each="tipoExercicio : ${tipoExercicioLista}"
-												th:value="${tipoExercicio.id}" 
-												th:text="'TipoExercicio: ' + ${tipoExercicio.nome} + ' | Equipamento: ' + ${tipoExercicio.equipamento}"
+												th:value="${tipoExercicio.id}"
+												th:text="'TipoExercicio: ' + ${tipoExercicio.nome} + ' | Equipamento: ' + ${tipoExercicio.equipamento.nome}"
 												th:selected="${tipoExercicio.id}">
 											</option>
 										</select>
 									</div>
 									<div class="col-sm-3 botoesCadastroExercicio">
-											<span th:switch="${exercicio.id>0}">
-												<button type="submit" th:case="${true}"
-													class="btn btn-primary button-cadastro"
-													th:text="Atualizar"></button>
-												<button type="submit" th:case="*"
-													class="btn btn-primary button-cadastro"
-													th:text="Cadastrar"></button>
-											</span>
+										<span th:switch="${exercicio.id>0}">
+											<button type="submit" th:case="${true}"
+												class="btn btn-primary button-cadastro" th:text="Atualizar"></button>
+											<button type="submit" th:case="*" class="btn btn-primary button-cadastro"
+												th:text="Cadastrar"></button>
+										</span>
 
-											<button type="reset" class="btn btn-primary button-cancelar">
-												<i class="bi bi-x-lg text-danger p-2"></i>Cancelar
-											</button>
+										<button type="reset" class="btn btn-primary button-cancelar">
+											<i class="bi bi-x-lg text-danger p-2"></i>Cancelar
+										</button>
 									</div>
 								</div>
 
@@ -120,6 +118,19 @@
 									<label for="nome" class="col-form-label">Nome:</label>
 									<input type="text" th:field="*{nome}" th:errorclass="inputError" autocomplete="off"
 										class="form-control" required>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col">
+									<label for="dataInicioTreino" class="col-form-label">Data de Inicio: *</label>
+									<input type="date" th:field="*{dataInicioTreino}" th:errorclass="inputError"
+										autocomplete="off" class="form-control" required>
+								</div>
+								<div class="col">
+									<label for="datafimTreinoo" class="col-form-label">Data de Inicio: *</label>
+									<input type="date" th:field="*{datafimTreino}" th:errorclass="inputError"
+										autocomplete="off" class="form-control" required>
 								</div>
 							</div>
 
