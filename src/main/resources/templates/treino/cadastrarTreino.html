@@ -42,7 +42,7 @@
 					<!--inicio div cadastrar Exercicio-->
 					<div class="cadastrarExercicio col-12">
 
-						<p>cadastrar Exercicio</p>
+						<h3>cadastrar Exercicio</h3>
 						<form class="row overflow-auto mx-2" enctype="multipart/form-data" th:object="${exercicio}"
 							action="/treino/exercicioSave" method="POST">
 							<input type="hidden" th:field="${exercicio.id}" />
@@ -163,9 +163,9 @@
 									</tr>
 								</thead>
 								<tbody>
-
+									
 									<tr align="center" th:each="exercicio: ${exerciciosLista}">
-										<td th:text="${exercicio.id}" />
+										<td th:text="${exercicio.id}"/>
 										<td th:text="${exercicio.nome}" />
 										<td>
 											<a th:href="@{/treino/deleteExercicio/{id}(id=${exercicio.id})}">

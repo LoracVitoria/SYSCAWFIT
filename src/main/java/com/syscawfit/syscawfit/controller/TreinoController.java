@@ -34,7 +34,9 @@ public class TreinoController {
 	@Autowired
 	private TipoExercicioRepository daoTipoExercicio;
 	
-	private Treino treino;
+	private Treino treino = new Treino();
+	
+	private List<Exercicio> exerciciosLista = new ArrayList<Exercicio>();
 
 	// NOVO TREINO
 	@RequestMapping("/new")
@@ -96,28 +98,31 @@ public class TreinoController {
 		}
 
 		daoExercicio.save(exercicio);
-		List<Exercicio> exerciciosLista = new ArrayList<Exercicio>();
+		
 		exerciciosLista.add(exercicio);
-		Treino treino = new Treino();
-		treino.setListaExercicios(exerciciosLista);
-//		System.out.print(exerciciosLista);
+		
 		return "redirect:/treino/exercicioList";
 	}
 
 //	 LISTAR TODOS OS EXERCICIOS
 	@RequestMapping("/exercicioList")
 	public String listExercicios(Model model) {
-		Treino treino = new Treino();
 		Exercicio exercicio = new Exercicio();
-		List<Exercicio> exerciciosLista = daoExercicio.findAll();
 		List<TipoExercicio> tipoExercicioLista = daoTipoExercicio.findAll();
-		System.out.print(exerciciosLista);
 		model.addAttribute("treino", treino);
 		model.addAttribute("exerciciosLista", exerciciosLista);
 		model.addAttribute("exercicio", exercicio);
 		model.addAttribute("tipoExercicioLista", tipoExercicioLista);
 
 		return "/treino/cadastrarTreino.html";
+	}
+	
+	/* DELETE EXERCICIO */
+	@RequestMapping("/deleteExercicio/{id}")
+	public String deleteExercicio(Model model, @PathVariable Long id) {
+		daoExercicio.deleteById(id);
+//		exerciciosLista.
+		return "redirect:/treino/exercicioList";
 	}
 
 
