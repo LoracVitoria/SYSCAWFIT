@@ -64,7 +64,7 @@
 										<tr align="center" th:each="tipoExercicio: ${tipoExercicioLista}">
 											<td th:text="${tipoExercicio.id}"/>
 											<td th:text="${tipoExercicio.nome}"/>
-											<td th:text="${tipoExercicio.equipamento}"/>
+											<td th:text="${tipoExercicio.equipamento.nome}"/>
 											<td>
 											<!--verificar equipamento.nome pq não funciona-->
 												<a th:href="@{/tipoexercicio/delete/{id}(id=${tipoExercicio.id})}">
