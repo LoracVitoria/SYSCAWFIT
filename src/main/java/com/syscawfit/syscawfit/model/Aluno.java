@@ -1,19 +1,18 @@
 package com.syscawfit.syscawfit.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.springframework.format.annotation.DateTimeFormat;
+import lombok.*;
 
+import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
-import java.util.List;
+
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString
 @Entity
 public class Aluno {
 
@@ -22,18 +21,22 @@ public class Aluno {
     private Long id;
 
     private String nome;
+
+    @Column(unique = true)
     private String cpf;
-    private String imagem_aluno;
+
+    private String imagemAluno;
+
     private String telefone;
+
+    @Column(unique = true)
     private String email;
 
-    @DateTimeFormat(pattern = "dd/MM/yyyy")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dataNascimento;
 
-    @Enumerated(value = EnumType.STRING)
     private TipoPlano plano;
 
-     @OneToMany
-     List<Endereco> endereco;
+    private LocalDate dataIngresso = LocalDate.now();
 
 }
