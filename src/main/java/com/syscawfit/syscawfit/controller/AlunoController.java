@@ -56,9 +56,7 @@ public class AlunoController {
 	@RequestMapping("/new")
 	public String formularioAluno(Model model){
 		Aluno aluno = new Aluno();
-		Endereco endereco = new Endereco();
 		model.addAttribute("aluno", aluno);
-		model.addAttribute("endereco", endereco);
 		model.addAttribute("planos", TipoPlano.values());
 
 		return "/aluno/aluno.html";
@@ -66,10 +64,9 @@ public class AlunoController {
 
 	// Salvar Aluno
 	@PostMapping("/save")
-	public String salvarAluno(Aluno aluno,Endereco endereco, Model model){
+	public String salvarAluno(Aluno aluno, Model model){
+		enderecoDao.save(aluno.getEndereco());
 		alunoDao.save(aluno);
-		endereco.setAluno(aluno);
-		enderecoDao.save(endereco);
 
 		return "redirect:/aluno/list";
 	}
@@ -79,14 +76,6 @@ public class AlunoController {
 	public String deletarAluno(Model model, @PathVariable Long id){
 		// Buscar aluno por ID no Banco de Dados
 		Aluno aluno = alunoDao.findById(id).orElse(null);
-
-		// Buscar lista de endereços de Aluno
-		List<Endereco> enderecos = enderecoDao.findByAluno(aluno);
-
-		// Deleta todos os endereços da lista de Endereços
-		enderecos.forEach(endereco -> {
-			enderecoDao.delete(endereco);
-		});
 
 		// Deleta Aluno do Banco
 		alunoDao.delete(aluno);
@@ -98,27 +87,19 @@ public class AlunoController {
 	@RequestMapping("/editar/{id}")
 	public String editarAluno(Model model, @PathVariable Long id){
 		Aluno aluno = alunoDao.findById(id).orElse(null);
-		
-		// Procura primeiro endereço da lista de endereços por Aluno
-		Endereco endereco = enderecoDao.findByAluno(aluno).get(0);
 
 		model.addAttribute("aluno", aluno);
-		model.addAttribute("endereco", endereco);
 		model.addAttribute("planos", TipoPlano.values());
 
 		return "/aluno/editar.html";
 	}
 
 	@PostMapping("/update")
-	public  String atualizarAluno(Aluno aluno, Endereco endereco, Model model){
+	public  String atualizarAluno(Aluno aluno, Model model){
 		aluno.setId(alunoDao.findByCpf(aluno.getCpf()).getId());
-		endereco.setId(enderecoDao.findByAluno(aluno).get(0).getId());
 
-		// Atualizar em endereço o aluno
-		endereco.setAluno(aluno);
-
+		enderecoDao.save(aluno.getEndereco());
 		alunoDao.save(aluno);
-		enderecoDao.save(endereco);
 
 		return "redirect:/aluno/list";
 	}

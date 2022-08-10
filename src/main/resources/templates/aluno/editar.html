@@ -113,22 +113,26 @@
                         <h5 class="endereco-titulo mt-4">Endereço</h5>
 
                         <div class="row">
+                            <!-- <div class="col-2 m-2"> -->
+                                <input type="number" th:field="${aluno.endereco.id}"class="form-control" hidden="true">
+                            <!-- </div> -->
+
                             <!--CEP-->
                             <div class="col-2 m-2">
                                 <label for="inputPassword6" class="col-form-label">CEP *</label>
-                                <input type="text" id="cep" th:field="${endereco.cep}"class="form-control">
+                                <input type="text" id="cep" th:field="${aluno.endereco.cep}"class="form-control">
                                 <div class="invalid-feedback">CEP não encontrado</div>
                             </div>
                             <!--LOGRADOURO-->
                             <div class="col mt-2">
                                 <label for="inputPassword6" class="col-form-label">Logradouro *</label>
-                                <input type="text" id="logradouro" th:field="${endereco.logradouro}" class="form-control" >
+                                <input type="text" id="logradouro" th:field="${aluno.endereco.logradouro}" class="form-control" >
                                 <div class="invalid-feedback">Logradouro não informado</div>
                             </div>
                             <!--Nº-->
                             <div class="col-2 mt-2">
                                 <label for="inputPassword6" class="col-form-label">Nº *</label>
-                                <input type="text" id="numero" th:field="${endereco.numero}"class="form-control" >
+                                <input type="text" id="numero" th:field="${aluno.endereco.numero}"class="form-control" >
                                 <div class="invalid-feedback">Nº não informado</div>
                             </div>
                         </div>
@@ -137,19 +141,19 @@
                             <!--BAIRRO-->
                             <div class="col m-2">
                                 <label for="inputPassword6" class="col-form-label">Bairro *</label>
-                                <input type="text" id="bairro" th:field="${endereco.bairro}"class="form-control" >
+                                <input type="text" id="bairro" th:field="${aluno.endereco.bairro}"class="form-control" >
                                 <div class="invalid-feedback">Bairro não informado</div>
                             </div>
                             <!--CIDADE-->
                             <div class="col mt-2">
                                 <label for="inputPassword6" class="col-form-label">Cidade *</label>
-                                <input type="text" id="localidade" th:field="${endereco.cidade}"class="form-control" >
+                                <input type="text" id="localidade" th:field="${aluno.endereco.cidade}"class="form-control" >
                                 <div class="invalid-feedback">Cidade não informada</div>
                             </div>
                             <!--ESTADO-->
                             <div class="col-2 mt-2">
                                 <label for="inputPassword6" class="col-form-label">UF *</label>
-                                <input type="text" id="uf" th:field="${endereco.uf}"class="form-control" >
+                                <input type="text" id="uf" th:field="${aluno.endereco.uf}"class="form-control" >
                                 <div class="invalid-feedback">UF não informada</div>
                             </div>
                         </div>
@@ -158,7 +162,7 @@
                             <!--PAÍS-->
                             <div class="col-3 m-2">
                                 <label for="inputPassword6" class="col-form-label">País *</label>
-                                <input type="text" id="pais" th:field="${endereco.pais}"class="form-control" >
+                                <input type="text" id="pais" th:field="${aluno.endereco.pais}"class="form-control" >
                                 <div class="invalid-feedback">País não informado</div>
 
                             </div>

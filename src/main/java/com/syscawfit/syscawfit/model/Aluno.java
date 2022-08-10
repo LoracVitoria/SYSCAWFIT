@@ -4,6 +4,7 @@ import lombok.*;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -38,5 +39,10 @@ public class Aluno {
     private TipoPlano plano;
 
     private LocalDate dataIngresso = LocalDate.now();
+
+    @NotNull
+    @OneToOne(cascade = CascadeType.REMOVE)
+    private Endereco endereco;
+
 
 }
