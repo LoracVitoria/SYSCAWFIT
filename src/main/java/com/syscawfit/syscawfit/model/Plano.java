@@ -1,28 +1,31 @@
 package com.syscawfit.syscawfit.model;
 
+
 import lombok.*;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
+
 @Entity
-public class Endereco {
+public class Plano {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String cep;
-    private String logradouro;
-    private Long numero;
-    private String bairro;
-    private String cidade;
-    private String uf;
-    private String pais;
 
+    @NotNull
+    @Column(unique = true)
+    @Enumerated(EnumType.STRING)
+    private TipoPlano tipo;
+
+    @NotNull
+    private float valor;
 
 }

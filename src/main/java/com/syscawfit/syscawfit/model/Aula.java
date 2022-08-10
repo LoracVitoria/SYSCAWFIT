@@ -11,18 +11,20 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @ToString
 @Entity
-public class Endereco {
+public class Aula {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String cep;
-    private String logradouro;
-    private Long numero;
-    private String bairro;
-    private String cidade;
-    private String uf;
-    private String pais;
 
+    @Column(unique = true)
+    private AulaDiaHora aulaDiaHora;
+
+    @NotNull
+    private String nome;
+
+
+    @ManyToOne(cascade = CascadeType.REMOVE)
+    private Usuario professor;
 
 }
