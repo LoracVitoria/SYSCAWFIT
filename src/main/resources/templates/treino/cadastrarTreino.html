@@ -164,9 +164,9 @@
 								</thead>
 								<tbody>
 									
-									<tr align="center" th:each="exercicio: ${exerciciosLista}">
+									<tr align="center" th:each="exercicio : ${exerciciosLista}">
 										<td th:text="${exercicio.id}"/>
-										<td th:text="${exercicio.nome}" />
+										<td th:text="${exercicio.nome}"/>
 										<td>
 											<a th:href="@{/treino/deleteExercicio/{id}(id=${exercicio.id})}">
 												<i class="btn btn-dark" title="delete">Excluir</i>

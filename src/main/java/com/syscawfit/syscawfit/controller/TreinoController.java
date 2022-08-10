@@ -2,6 +2,7 @@ package com.syscawfit.syscawfit.controller;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -59,6 +60,8 @@ public class TreinoController {
 		}
 
 		daoTreino.save(treino);
+		
+		//salvar exercicios da lista no banco de dados com os respectivos ids dos treinos.
 
 		return "redirect:/treino/list";
 	}
@@ -120,8 +123,17 @@ public class TreinoController {
 	/* DELETE EXERCICIO */
 	@RequestMapping("/deleteExercicio/{id}")
 	public String deleteExercicio(Model model, @PathVariable Long id) {
+			
+		//verificar erro
+		for(Exercicio e : exerciciosLista) {
+		
+				exerciciosLista.remove(e);
+			 System.out.println(e);
+		}
+		
 		daoExercicio.deleteById(id);
-//		exerciciosLista.
+
+		
 		return "redirect:/treino/exercicioList";
 	}
 
