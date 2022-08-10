@@ -4,7 +4,7 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>SYSCAWFIT</title>
+        <title>SYSCAWFIT - Cadastrar Equipamentos</title>
         <link rel="stylesheet" th:href="@{/css/normalize.css}">
         <link rel="stylesheet" th:href="@{/css/reset.css}">
         <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
@@ -12,6 +12,8 @@
         <link rel="stylesheet" th:href="@{/css/style.css}">
         <link rel="stylesheet" th:href="@{/css/menu.css}">
         <link rel="stylesheet" th:href="@{/css/equipamentos/equipamentos.css}">
+        <!-- UIkit CSS -->
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.15.1/dist/css/uikit.min.css" />
     </head>
     <body>
         <!-- CABEÇALHO-->
@@ -25,39 +27,61 @@
 
             <!--CONTEÚDO DA PÁGINA-->
             <main class="col-9 border">
+            
+          		<header class="equipamentos-cadastro__header row">
+
+                    <h1 class="cadastro-header__titulo col m-4">
+                        <i class="bi bi-person-plus"></i>
+                        Cadastrar Equipamentos</h1>
+
+                </header>
+                
                 <section>
-                    <div class="cadastrar">
-                        <h1>CADASTRAR EQUIPAMENTOS</h1>
-
-                        <div class="container-fluid border overflow-auto conteudo mx-2">
-
-                            <form th:object="${equipamentos}"action="/equipamentos/save" method="POST">
-                            <input type="hidden" th:field="${equipamentos.id}"/>
-                                <label for="nome">NOME:</label>
-                                <br/>
-                                <input type="text" th:field="*{nome}" th:errorclass="inputError" autocomplete="off"/>
-                                <br/>
-                                <label for="descricao">DESCRIÇÃO:</label>
-                                <br/>
-                                <textarea type="text" th:field="*{descricao}" th:errorclass="inputError" autocomplete="off"/>
-                                
-                                <br/>
-                        
-                                <div class="mb-3 mt-3">
-                                    <p th:switch="${equipamentos.id>0}">
-                                    <button type="submit" th:case="${true}" class="btn btn-danger" th:text="Atualizar"></button>
-                                    <button type="submit" th:case="*" class="btn btn-primary" th:text="Adicionar"></button>
-                                    </p>
-                                </div>
-                            </form>
-                            <!--div class="imgEquipamento">
-                                <img src="" alt="">
-                            </!div-->
-                        </div>
-                    </div>
-                </section>
+                  <form class="cadastrar" enctype="multipart/form-data" th:object="${equipamentos}" action="/equipamentos/save" method="POST">
+                
+	                    <input type="hidden" th:field="${equipamentos.id}"/>
+	                   <div class="cadastrar_dados row">
+		                    <label for="nome">NOME:</label>
+		                    <br/>
+		                    <input type="text" th:field="*{nome}" th:errorclass="inputError" autocomplete="off"/>
+		                    <br/>
+		                    <label for="descricao">DESCRIÇÃO:</label>
+		                    <br/>
+		                    <textarea type="text" th:field="*{descricao}" th:errorclass="inputError" autocomplete="off"/>
+		                    <br/>
+	                   </div> 
+	                   
+	                  <!--div class="js-upload uk-placeholder uk-text-center">
+						  <span uk-icon="icon: cloud-upload"></span>
+						  <span class="uk-text-middle">Attach binaries by dropping them here or</span>
+						  <div uk-form-custom>
+						      <input type="file" multiple>
+						      <span class="uk-link">selecting one</span>
+						  </div>
+					  </div>
+						
+					  <progress id="js-progressbar" class="uk-progress" value="0" max="100" hidden></progress-->
+         
+	                   <!--botões-->
+	                    <div class="cadastrar_buttons">
+	                    	<div>
+		                    	<p th:switch="${equipamentos.id>0}">
+		                        <button type="submit" th:case="${true}" class="btn btn-primary btn-cadastro" th:text="Atualizar"></button>
+		                        <button type="submit" th:case="*" class="btn btn-primary btn-cadastro" th:text="Cadastrar"></button>
+		                     	</p>
+	                    	</div>                   
+	       
+	                 		 <div>
+	                            <button type="button" class="btn btn-primary btn-cancelar">
+	                                <i class="bi bi-x-lg text-danger p-2"></i>Cancelar                                  
+	                            </button>
+	                       </div>
+	                   </div> <!--fim cadastrar_buttons-->
+                  </form>                 
+                </section> 
             </main>
-        </div>
+        </div> <!--fim div row linha_centro-->
+        
         
         <!-- RODAPÉ-->
         <footer class="row linha-rodape">
@@ -67,8 +91,31 @@
         </footer>
 
         <!-- JavaScript Bundle with Popper -->
-<!--script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
- integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></--!script-->
- 		<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+
+        <!--script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></--!script-->
+        
+		</script-->
+ 		<script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+ 		<script type="text/javascript" th:src="@{/js/equipamentos.js}"></script>
+ 		<script type="text/javascript" th:src="@{/js/uikit.min.js}"></script>
+ 		<script type="text/javascript" th:src="@{/js/uikit-icons.min.js}"></script>
+ 		
+ 		<script>
+ 		
+	 		$(function(){
+				var settings = {
+					type= 'json',
+					filelimit = 1,
+					allow = '*.(jpg|jpeg|png)'
+				};
+				
+				UIkit.uploadSelect($('#upload-select'), settings);
+				UIkit.uploadDrop($('#upload-drop') ,settings)
+			
+			});;
+ 		
+ 		</script>
+ 		
     </body>
 </html>

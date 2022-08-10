@@ -9,7 +9,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-public class Equipamentos {
+public class Treino {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,51 +20,39 @@ public class Equipamentos {
 	@Size(min = 3, max = 50, message = "Campo deve conter entre {min} e {max} carácteres")
 	private String nome;
 	
-	@NotBlank(message = "campo obrigatório")
-	@Size(min = 3, max = 400, message = "Campo deve conter entre {min} e {max} carácteres")
-	private String descricao;
 	
-	private String nomeImagem;
+	public Treino() {}
 	
-
-	public Equipamentos() {}
-	
-	public Equipamentos(String nome, String descricao) {
+	public Treino( String nome) {
+		super();
 		this.nome = nome;
-		this.descricao = descricao;
 	}
+
 
 	public Long getId() {
 		return id;
 	}
 
+
 	public void setId(Long id) {
 		this.id = id;
 	}
+
 
 	public String getNome() {
 		return nome;
 	}
 
+
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
-	public String getDescricao() {
-		return descricao;
+
+	@Override
+	public String toString() {
+		return "Treino [id=" + id + ", nome=" + nome + "]";
 	}
 
-	public void setDescricao(String descricao) {
-		this.descricao = descricao;
-	}
 	
-	public String getNomeImagem() {
-		return nomeImagem;
-	}
-
-	public void setNomeImagem(String nomeImagem) {
-		this.nomeImagem = nomeImagem;
-	}
-	
-
 }

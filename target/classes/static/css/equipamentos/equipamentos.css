@@ -4,19 +4,59 @@
     /* border: 1px solid red; */
 }
 
-.main{
-    border: 1px solid red;
-    float: right;
-    color: white;
-    background: #062A40;
-    width: 80% ;
-    float: right;
-    display: grid;
-    height: 888px;
+
+/*CADASTRAR EQUIPAMENTOS HEADER*/
+
+.equipamentos-cadastro__header {
+    /* border: 1px solid red; */
+    /* margin: 1rem; */
+    display: flex;
+    height: 12%;
 }
 
+.cadastro-header__titulo {
+    margin-left: 4rem;
+    padding-right: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+
+/*FORM CADASTRAR EQUIPAMENTOS*/
+
+
+.cadastrar_buttons{
+	display: flex;
+	margin-top: 20px;
+}
+
+
+.btn-cadastro {
+    background: #91B021;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    margin-right: 20px;
+    padding: 6px;
+}
+
+.btn-cancelar {
+    background: #BFBFBF;
+    color:#062A40 ;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+}
+
+
+
+/*RESTANTE CADASTRAR EQUIPAMENTOS*/
+
 .cadastrar{
-    border: 1px solid red;
+	border: 3px solid #062A40;
+    border-radius: 0.5rem;
+    margin: 1rem;
+    margin-top: 3rem;
     padding: 50px;
     width: auto;
     height: 100%;
@@ -24,10 +64,6 @@
     font-weight: 700;
 }
 
-.cadastrar h1{
-    text-align: center;
-    margin-bottom: 30px;
-}
 
 .cadastrar input{
     margin-top: 10px;
@@ -38,7 +74,8 @@
  .cadastrar textarea{
     margin-top: 10px;
     width: 500px;
-    border-radius: 8px;
+    border-radius: 5px;
+    border: 1px solid #062A40;
  }
 
  .cadastrar label{
@@ -57,11 +94,10 @@
      border-radius: 10px;
  }
 
- /* pagina consultar equipamentos */
+ /* LISTAR EQUIPAMENTOS */
 
 
  .consultar{
-    border: 1px solid red;
     padding: 50px;
     width: auto;
     height: 100%;
@@ -74,4 +110,29 @@
 	margin-bottom: 50px;
 }
 
+/* BUTTONS HEADER */
 
+.col-right__buttons {
+    display: flex;
+}
+
+/* Coluna esquerda */
+
+.equipamentos-btn-link {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #062A40 ;
+    border: none;
+}
+
+.equipamentos-btn-novo {
+    background: #91B021;
+    color: white;
+    padding: 50px;
+}
+
+.equipamentos-btn-novo:hover {
+    background: #062A40;
+    color: #ECF229;
+}
