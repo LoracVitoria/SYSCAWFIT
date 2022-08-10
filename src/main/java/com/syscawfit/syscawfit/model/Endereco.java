@@ -24,8 +24,5 @@ public class Endereco {
     private String uf;
     private String pais;
 
-    @NotNull
-    @ManyToOne(cascade = CascadeType.REMOVE)
-    private Aluno aluno;
 
 }
