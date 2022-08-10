@@ -11,7 +11,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/menu.css}">
-    <link rel="stylesheet" th:href="@{/css/relatorio/relatorio.css}">
 
   </head>
 
@@ -29,64 +28,41 @@
           <!--CONTEÚDO DA PÁGINA-->
           <main class="col-9 border container-main overflow-auto" >
 
-            <div class="container">
-              <div class="row">
+            <div class="container border h-50">
+              <div class="row border">
                 <div class="col d-flex flex-row titulo-grade">
+                  <i class="bi bi-clipboard2-data-fill"></i>
                   <h2 class="mt-3">Relatório</h2>
                 </div>
               </div>
 
               <div class="row">
-                <div class="col">
-                  <form class="mt-4 mb-4" th:object="${relatorio}" action="/relatorio/filtro" method="get">
-                    <table class="table border border-secondary border-opacity-25 rounded-4 mt-4 tabela">
-                      <thead class="cabecalho-tabela">
-                        <tr>
-                          <th scope="col">Planos</th>
-                          <th scope="col" class="text-center">Valor total por plano</th>
-                          <th scope="col" class="text-center">Total de alunos por plano</th>
-
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr class="primeira-linha">
-                          <td>Mensal</td>
-                          <td th:text="${valorPlanosTipoMensal}" class="text-center"></td>
-                          <td th:text="${totalAlunosMensal}" class="text-center"></td>
-                        </tr>
-                        <tr class="segunda-linha">
-                          <td>Trimestral</td>
-                          <td th:text="${valorPlanosTipoTrimestral}" class="text-center"></td>
-                          <td th:text="${totalAlunosTrimestral}" class="text-center"></td>
-                        </tr>
-                        <tr class="terceira-linha">
-                          <td>Semestral</td>
-                          <td th:text="${valorPlanosTipoSemestral}" class="text-center"></td>
-                          <td th:text="${totalAlunosSemestral}" class="text-center"></td>
-                        </tr>
-                        <tr class="quarta-linha">
-                          <td>Anual</td>
-                          <td th:text="${valorPlanosTipo}" class="text-center"></td>
-                          <td th:text="${totalAlunosAnual}" class="text-center"></td>
-                        </tr>
-                        <tr class="quinta-linha">
-                          <td class="fw-bold">Valor total</td>
-                          <td th:text="${valorTotalPlanos}" class="text-center"></td>
-                          <td class="text-center">-</td>
-                        </tr>
-
-                        <tr class="linha-total">
-                          <td class="fw-bold">Total</td>
-                          <td th:text="${total_alunos}" class="text-center"></td>
-                          <td th:text="${total_alunos}" class="text-center"></td>
-                        </tr>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </form>
-                </div>
+                
               </div>
+
+
+
+
+
             </div>
+            
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+              <label class="form-check-label" for="flexCheckDefault">
+                Default checkbox
+              </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+              <label class="form-check-label" for="flexCheckChecked">
+                Checked checkbox
+              </label>
+            </div>
+
+
+
+
+            
           </main>
       </div>
 

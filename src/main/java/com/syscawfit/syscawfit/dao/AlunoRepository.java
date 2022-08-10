@@ -7,4 +7,6 @@ public interface AlunoRepository extends JpaRepository<Aluno,Long> {
 
     //findAll, findById, save, delete, update
     Aluno findByCpf(String cpf);
+
+
 }
