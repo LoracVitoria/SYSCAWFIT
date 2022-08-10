@@ -121,5 +121,46 @@
 	 right: 0px;
 }
 
+.btn-link{
+	text-decoration: none;
+}
 
+.button-consultar{
+	background: #BFBFBF;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    margin-top: 1.5rem;
+    color: #062A40;
+    margin-right: 10px;
+}
+
+.button-consultar:hover{
+	background: #062A40;
+  	color: white
+}
+
+ .col-left__input {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.col-right__buttons {
+    display: flex;
+}
+
+.button-pesquisar{
+	background: #BFBFBF;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    color: #062A40;
+    margin-right: 10px;
+}
+
+.button-pesquisar:hover{
+	background: #062A40;
+  	color: white;
+}
 
