@@ -1,14 +1,37 @@
-.app {
-    min-height: 100vh;
-    display: grid;
-    grid-template-areas:
-    "cabecalho cabecalho"
-    "menu      conteudo"
-    "rodape    rodape";
-    grid-template-columns: 20% 80%;
-    grid-template-rows: 20vh 74vh auto;
-
+html,body {
+    width: 100vw;
+    height: 100vh;
+    overflow-y: hidden;
+    overflow-x: hidden;
 }
+
+.linha-cabecalho {
+    height: 15vh;
+    background: #062A40;
+}
+
+.coluna-imagem {
+    display: flex;
+    justify-content: flex-end;
+    height: 15vh;
+}
+
+.coluna-texto {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 15vh;
+}
+
+
+.linha-centro {
+    height: 80vh;
+}
+
+.linha-rodape {
+    height: auto;
+}
+
 
 /*
 ========================================================================
@@ -16,17 +39,55 @@
 ========================================================================
 */
 
-.cabecalho {
-    background: #062A40 ;
-    display: flex;                      /* tranforma em Flex Container */
-    justify-content: space-between;     /* item distribuido com espaço no meio */
-    align-items: center;
-    padding: 2%;
-    grid-area: cabecalho;
+.logotipo {
+    height: 15vh;
 }
 
-.logotipo {
-    height: 12vh;
+.usuario__imagem {
+    height: 11vh;
+    width: 11vh;
+    background-size: cover;         /* para que as imagens não se repitam */
+    background-position: center;    /* para que as imagens ocupem todo o background */
+    background-repeat: no-repeat;   /* para que as imagens seham centralizadas na caixa */
+    border-radius: 100%;            /* bordas arredondadas */
+    margin-top: 1rem;
+    margin-left: 3rem;
+}
+
+.usuario__nome {
+    color: #ECF229;             
+    font-weight: bold; 
+    margin-top: 1.3rem;
+    margin-left: 0.5rem;
+}
+
+@media screen and (min-width:0){
+    .coluna-imagem {
+        /* background: green; */
+    }
+    .usuario__nome {
+        font-size: 11px;
+    }
+}
+
+@media screen and (min-width:768px){
+    .coluna-imagem {
+        /* background: gray; */
+    }
+    .usuario__nome {
+        font-size:16px;
+    }
+}
+
+
+/*
+========================================================================
+        CONTEÚDO
+========================================================================
+*/
+
+.conteudo {
+    height: 70vh;
 }
 
 /*
@@ -38,10 +99,11 @@
 .rodape {
     background: #062A40;
     text-align: center;
-    grid-area: rodape;
 }
 
 .rodape p {
     padding-top: 0.5rem;
     color: white;
 }
+
+
