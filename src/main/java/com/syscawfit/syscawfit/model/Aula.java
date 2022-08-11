@@ -11,13 +11,14 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @ToString
 @Entity
+@Table(uniqueConstraints = { @UniqueConstraint(columnNames = {"diaSemana", "hora"})})
 public class Aula {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(unique = true)
+    @Embedded
     private AulaDiaHora aulaDiaHora;
 
     @NotNull

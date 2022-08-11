@@ -1,8 +1,7 @@
 package com.syscawfit.syscawfit.controller;
 
 import com.syscawfit.syscawfit.dao.AlunoRepository;
-import com.syscawfit.syscawfit.dao.EnderecoRepository;
-import com.syscawfit.syscawfit.model.Endereco;
+import com.syscawfit.syscawfit.dao.EnderecoAlunoRepository;
 import com.syscawfit.syscawfit.model.TipoPlano;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,7 +22,7 @@ public class AlunoController {
 	private AlunoRepository alunoDao;
 
 	@Autowired
-	private EnderecoRepository enderecoDao;
+	private EnderecoAlunoRepository enderecoDao;
 
 	// Retorna Página de Consulta, com lista de Todos os Alunos ou Aluno por CPF
 	@RequestMapping("/list")
