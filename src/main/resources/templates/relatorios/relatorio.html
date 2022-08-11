@@ -28,7 +28,7 @@
           <!--CONTEÚDO DA PÁGINA-->
           <main class="col-9 border container-main overflow-auto" >
 
-            <div class="container border h-50">
+            <div class="container">
               <div class="row border">
                 <div class="col d-flex flex-row titulo-grade">
                   <i class="bi bi-clipboard2-data-fill"></i>
@@ -36,7 +36,44 @@
                 </div>
               </div>
 
-              <div class="row">
+              <div class="row h-50 border">
+
+                <form th:object="${relatorio}" action="/relatorio/filtro" method="get">
+                  <div class="col border">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="optionCheckBox" th:checked="${optionCheckBox}">
+                      <label class="form-check-label" for="flexCheckDefault">
+                        Total de alunos
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="optionCheckBox" th:checked="${optionCheckBox}">
+                      <label class="form-check-label" for="flexCheckChecked">
+                        Total de alunos por plano
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="optionCheckBox" th:checked="${optionCheckBox}">
+                      <label class="form-check-label" for="flexCheckChecked">
+                        Valor total de planos
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="optionCheckBox" th:checked="${optionCheckBox}">
+                      <label class="form-check-label" for="flexCheckChecked">
+                        Valor total por plano
+                      </label>
+                    </div>
+                  </div>
+
+
+
+                </form>
+                
+
+                <div class="col border">
+                  <p>Tabela Aqui!</p>
+                </div>
                 
               </div>
 
@@ -46,18 +83,7 @@
 
             </div>
             
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-              <label class="form-check-label" for="flexCheckDefault">
-                Default checkbox
-              </label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-              <label class="form-check-label" for="flexCheckChecked">
-                Checked checkbox
-              </label>
-            </div>
+            
 
 
 
