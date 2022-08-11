@@ -3,7 +3,6 @@ package com.syscawfit.syscawfit.model;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -11,7 +10,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @ToString
 @Entity
-public class Endereco {
+public class EnderecoAluno {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
