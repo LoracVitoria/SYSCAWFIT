@@ -53,8 +53,8 @@ html,body {
 }
 
 .usuario__imagem {
-    height: 11vh;
-    width: 11vh;
+    height: 11vh;                  /* definir espaço onde as imagens serão exibidas  */
+    width: 11vh;                   /* definir espaço onde as imagens serão exibidas */
     background-size: cover;         /* para que as imagens não se repitam */
     background-position: center;    /* para que as imagens ocupem todo o background */
     background-repeat: no-repeat;   /* para que as imagens seham centralizadas na caixa */
@@ -98,6 +98,7 @@ html,body {
 .conteudo {
     height: 70vh;
 }
+
 
 /*
 ========================================================================
