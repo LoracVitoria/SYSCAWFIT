@@ -32,8 +32,23 @@ public class RelatorioController {
         model.addAttribute("alunoList", alunoList);
         model.addAttribute("planoList",planoList);
 
+        buscarTotalAlunos(alunoList);
+
         return "/relatorios/relatorio";
     }
+
+
+    @RequestMapping("/select1")
+    public String buscaTotalAlunos(Model model){
+        boolean optionCheckBox = false;
+        model.addAttribute("optionCheckBox", optionCheckBox);
+
+
+        return "/relatorios/relatorio";
+    }
+
+
+
 
 
     public Integer buscarTotalAlunos(List<Aluno> alunos){
@@ -42,6 +57,8 @@ public class RelatorioController {
         alunos = alunoDao.findAll();
 
         Integer total_alunos = alunos.size();
+
+        System.out.println(total_alunos);
 
         return total_alunos;
     }
