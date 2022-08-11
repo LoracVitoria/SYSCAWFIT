@@ -5,16 +5,24 @@ html,body {
     overflow-x: hidden;
 }
 
-/* classes bootstrap sobrescritas*/
-.row {
-    padding: 0 !important;
-    margin: 0 !important;
-}
-
 .linha-cabecalho {
     height: 15vh;
     background: #062A40;
 }
+
+.coluna-imagem {
+    display: flex;
+    justify-content: flex-end;
+    height: 15vh;
+}
+
+.coluna-texto {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 15vh;
+}
+
 
 .linha-centro {
     height: 80vh;
@@ -31,6 +39,15 @@ html,body {
 ========================================================================
 */
 
+.cabecalho {
+    background: #062A40 ;
+    display: flex;                      /* tranforma em Flex Container */
+    justify-content: space-between;     /* item distribuido com espaço no meio */
+    align-items: center;
+    padding: 2%;
+    grid-area: cabecalho;
+}
+
 .logotipo {
     height: 15vh;
 }
@@ -44,14 +61,33 @@ html,body {
     border-radius: 100%;            /* bordas arredondadas */
     margin-top: 1rem;
     margin-left: 3rem;
-    background-image: url("../../img/imagem-usuario.jpg");
 }
 
 .usuario__nome {
     color: #ECF229;             
     font-weight: bold; 
-    margin-top: 2.5rem;
-} 
+    margin-top: 1.3rem;
+    margin-left: 0.5rem;
+}
+
+@media screen and (min-width:0){
+    .coluna-imagem {
+        /* background: green; */
+    }
+    .usuario__nome {
+        font-size: 11px;
+    }
+}
+
+@media screen and (min-width:768px){
+    .coluna-imagem {
+        /* background: gray; */
+    }
+    .usuario__nome {
+        font-size:16px;
+    }
+}
+
 
 /*
 ========================================================================
@@ -89,12 +125,12 @@ html,body {
 .rodape {
     background: #062A40;
     text-align: center;
+    grid-area: rodape;
 }
 
 .rodape p {
     padding-top: 0.5rem;
     color: white;
 }
-
 
 
