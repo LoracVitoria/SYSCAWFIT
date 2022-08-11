@@ -99,6 +99,22 @@ html,body {
     height: 70vh;
 }
 
+.principal_imagem {
+	justify-content: center;
+}
+
+.principal_imagem img{
+	margin: 0 auto;
+    animation-name: opacidade;
+    animation-duration: 4s;
+}
+
+  @keyframes opacidade{
+      0% {opacity: 0%;}
+      100% {opacity: 100%;}
+}
+
+
 
 /*
 ========================================================================
