@@ -42,7 +42,7 @@ public class Aluno {
 
     @NotNull
     @OneToOne(cascade = CascadeType.REMOVE)
-    private Endereco endereco;
+    private EnderecoAluno endereco;
 
 
 }
