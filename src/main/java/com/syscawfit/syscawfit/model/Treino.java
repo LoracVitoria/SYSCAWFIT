@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 //import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotBlank;
@@ -35,6 +36,7 @@ public class Treino {
 	
 //	@ManyToMany
 //	private Usuario responsavelTreino;
+//	pegar o usuario logado (springSecurity)
 	
 	@OneToMany(mappedBy = "treino")
 	private List<Exercicio> listaExercicios;

@@ -7,6 +7,7 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -55,16 +56,33 @@ public class TreinoController {
 	/* SAVE TREINO */
 	@PostMapping("/saveTreino")
 	public String save(@Valid Treino treino, BindingResult result, Model model) {
+
 		if (result.hasErrors()) {
 			return "redirect:/treino/cadastrarTreino.html";
 		}
 
 		daoTreino.save(treino);
+		
+		for(Exercicio e: exerciciosLista) {
+			e.setTreino(treino);
+			daoExercicio.save(e);
+		}
+		
 
-		// salvar exercicios da lista no banco de dados com os respectivos ids dos
-		// treinos.
-
-		return "redirect:/treino/list";
+		for(Exercicio e : exerciciosLista) {
+			if(e.equals(daoExercicio.getByTreinoId(treino.getId()))) {
+				e.setTreino(treino);
+			}
+		}
+		
+		treino.setListaExercicios(exerciciosLista);
+		
+		
+		daoTreino.save(treino);
+		
+//		exerciciosLista.clear();
+		
+		return "redirect:/treino/listTreinos";
 	}
 
 	// LISTA TODOS OS TREINOS
@@ -72,7 +90,7 @@ public class TreinoController {
 	public String list(Model model) {
 		List<Treino> treinoLista = daoTreino.findAll();
 		model.addAttribute("treinoLista", treinoLista);
-
+		model.addAttribute("listaExercicios", treino.getListaExercicios());
 		return "/treino/listarTreinos.html";
 	}
 
@@ -101,7 +119,7 @@ public class TreinoController {
 			return "redirect:/treino/cadastrarTreino.html";
 		}
 
-		daoExercicio.save(exercicio);
+//		daoExercicio.save(exercicio);
 
 		exerciciosLista.add(exercicio);
 
@@ -123,17 +141,16 @@ public class TreinoController {
 	}
 
 	/* DELETE EXERCICIO */
-	@RequestMapping("/deleteExercicio/{exercicio}")
-	public String deleteExercicio(Model model, @Valid Exercicio exercicio) {
-	
-		if(exerciciosLista.contains(exercicio)) {
-			exerciciosLista.remove(exercicio);
+	@RequestMapping("/deleteExercicio/{id}")
+	public String deleteExercicio(Model model, @PathVariable Long id) {
+
+		System.out.println(id);
+		for (int i = 0; i < exerciciosLista.size(); i++) {
+			if (id.equals(exerciciosLista.get(i).getId())) {
+				exerciciosLista.remove(i);
+//				daoExercicio.deleteById(id);
+			}
 		}
-		
-		
-		System.out.println(exerciciosLista);
-	
-		daoExercicio.deleteById(exercicio.getId());
 
 		return "redirect:/treino/exercicioList";
 	}

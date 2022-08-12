@@ -125,7 +125,8 @@
 							action="/treino/saveTreino" method="POST">
 
 							<input type="hidden" th:field="${treino.id}" />
-
+							<input type="hidden" th:field="${treino.id}" />
+							
 							<div class="cadastrarTreino col-7">
 								<div class="row">
 									<div class="col">
@@ -178,12 +179,11 @@
 										</tr>
 									</thead>
 									<tbody>
-
-										<tr align="center" th:each="exercicio : ${exerciciosLista}">
+										<tr align="center" th:each="exercicio : ${exerciciosLista}" th:field="*{listaExercicios}">
 											<td th:text="${exercicio.id}" />
 											<td th:text="${exercicio.nome}" />
 											<td>
-												<a th:href="@{/treino/deleteExercicio/{exercicio}(exercicio=${exercicio.id})}">
+												<a th:href="@{/treino/deleteExercicio/{id}(id=${exercicio.id})}">
 													<i class="btn btn-dark" title="delete">Excluir</i>
 												</a>
 

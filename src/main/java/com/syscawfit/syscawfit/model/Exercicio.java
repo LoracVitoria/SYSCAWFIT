@@ -99,6 +99,14 @@ public class Exercicio {
 		this.carga = carga;
 	}
 
+	public Treino getTreino() {
+		return treino;
+	}
+
+	public void setTreino(Treino treino) {
+		this.treino = treino;
+	}
+
 	@Override
 	public String toString() {
 		return "Exercicio [id=" + id + ", nome=" + nome + ", qtdeRepeticoes=" + qtdeRepeticoes + ", qtdeSeries="
