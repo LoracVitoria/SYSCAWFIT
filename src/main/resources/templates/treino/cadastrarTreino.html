@@ -173,17 +173,15 @@
 								<table class="table table-striped table-bordered table-hover ">
 									<thead>
 										<tr align="center">
-											<th>Id</th>
 											<th>Exercicio</th>
 											<th>Ações</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr align="center" th:each="exercicio : ${exerciciosLista}" th:field="*{listaExercicios}">
-											<td th:text="${exercicio.id}" />
 											<td th:text="${exercicio.nome}" />
 											<td>
-												<a th:href="@{/treino/deleteExercicio/{id}(id=${exercicio.id})}">
+												<a th:href="@{/treino/deleteExercicio/{exercicio}(exercicio=${exercicio})}">
 													<i class="btn btn-dark" title="delete">Excluir</i>
 												</a>
 

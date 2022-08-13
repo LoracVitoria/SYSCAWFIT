@@ -92,8 +92,12 @@ public class TreinoController {
 	}
 
 	/* DELETE TREINO */
-	@RequestMapping("/delete/{id}")
+	@RequestMapping("/deleteTreino/{id}")
 	public String delete(Model model, @PathVariable Long id) {
+		for(Exercicio e : exerciciosLista) {
+			daoExercicio.deleteById(e.getId());
+			exerciciosLista.remove(e);
+		}
 		daoTreino.deleteById(id);
 		return "redirect:/treino/list";
 	}
@@ -131,12 +135,12 @@ public class TreinoController {
 	}
 
 	/* DELETE EXERCICIO */
-	@RequestMapping("/deleteExercicio/{id}")
-	public String deleteExercicio(Model model, @PathVariable Long id) {
+	@RequestMapping("/deleteExercicio/{exercicio}")
+	public String deleteExercicio(Model model, @PathVariable String exercicio) {
 
-		System.out.println(id);
+			
 		for (int i = 0; i < exerciciosLista.size(); i++) {
-			if (id.equals(exerciciosLista.get(i).getId())) {
+			if (exercicio.equals(exerciciosLista.get(i).toString())) {
 				exerciciosLista.remove(i);
 //				daoExercicio.deleteById(id);
 			}
