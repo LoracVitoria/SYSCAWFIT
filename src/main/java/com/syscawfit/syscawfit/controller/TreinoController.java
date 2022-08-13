@@ -68,12 +68,6 @@ public class TreinoController {
 			daoExercicio.save(e);
 		}
 		
-
-		for(Exercicio e : exerciciosLista) {
-			if(e.equals(daoExercicio.getByTreinoId(treino.getId()))) {
-				e.setTreino(treino);
-			}
-		}
 		
 		treino.setListaExercicios(exerciciosLista);
 		

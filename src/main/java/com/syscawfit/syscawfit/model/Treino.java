@@ -98,7 +98,7 @@ public class Treino {
 	@Override
 	public String toString() {
 		return "Treino [id=" + id + ", nome=" + nome + ", dataInicioTreino=" + dataInicioTreino + ", datafimTreino="
-				+ datafimTreino + ", listaExercicios=" + listaExercicios + "]";
+				+ datafimTreino + "]";
 	}
 	//inserir lista de exercicios no toString();
 
