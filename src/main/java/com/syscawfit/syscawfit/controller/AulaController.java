@@ -74,9 +74,11 @@ public class AulaController {
     @RequestMapping("/editar/{id}")
     public String editarAula(Model model, @PathVariable Long id){
         Aula aula = aulaDao.findById(id).orElse(null);
+        List<Usuario> professores = usuarioDao.findAll();
 
         model.addAttribute("aula",aula);
         model.addAttribute("diasSemana",DiaSemana.values());
+        model.addAttribute("professores",professores);
 
         return "/aulas/editarAula";
     }

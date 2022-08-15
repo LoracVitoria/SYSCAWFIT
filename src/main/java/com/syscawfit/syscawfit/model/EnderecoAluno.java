@@ -15,6 +15,7 @@ public class EnderecoAluno {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+
     private String cep;
     private String logradouro;
     private Long numero;
@@ -22,6 +23,5 @@ public class EnderecoAluno {
     private String cidade;
     private String uf;
     private String pais;
-
 
 }

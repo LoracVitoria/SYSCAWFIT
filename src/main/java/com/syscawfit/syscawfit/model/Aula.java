@@ -3,7 +3,6 @@ package com.syscawfit.syscawfit.model;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
@@ -21,11 +20,9 @@ public class Aula {
     @Embedded
     private AulaDiaHora aulaDiaHora;
 
-    @NotNull
     private String nome;
 
-
-    @ManyToOne(cascade = CascadeType.REMOVE)
+    @ManyToOne
     private Usuario professor;
 
 }

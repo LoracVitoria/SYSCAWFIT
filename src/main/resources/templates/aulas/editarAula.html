@@ -58,9 +58,10 @@
                   <div class="mb-3">
                     <label class="col-form-label fw-bold">Professor(a) *</label>
                     <select class="form-select" th:field="${aula.professor}"aria-label="select example">
-                        <option th:each="professor : ${professores}"
-                                th:value="${professor}"
-                                th:text="${professor}"/>
+                      <option value=""></option>
+                      <option th:each="professor : ${professores}"
+                                th:value="${professor.id}"
+                                th:text="${professor.nome}"/>
                     </select>
                     <div class="invalid-feedback">Selecione uma opção</div>
                   </div>
