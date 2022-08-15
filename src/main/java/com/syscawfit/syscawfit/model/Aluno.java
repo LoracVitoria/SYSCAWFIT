@@ -4,6 +4,7 @@ import lombok.*;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.Date;
@@ -21,6 +22,7 @@ public class Aluno {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @NotBlank(message = "O campo nome deve ser preenchido")
     private String nome;
 
     @Column(unique = true)
@@ -30,7 +32,6 @@ public class Aluno {
 
     private String telefone;
 
-    @Column(unique = true)
     private String email;
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -40,7 +41,6 @@ public class Aluno {
 
     private LocalDate dataIngresso = LocalDate.now();
 
-    @NotNull
     @OneToOne(cascade = CascadeType.REMOVE)
     private EnderecoAluno endereco;
 

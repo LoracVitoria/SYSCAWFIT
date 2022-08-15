@@ -40,7 +40,8 @@
                   <div class="mb-3">
                     <label class="col-form-label fw-bold">Dia da Semana *</label>
                     <select class="form-select" th:field="${aula.aulaDiaHora.diaSemana}"aria-label="select example" required>
-                        <option th:each="diaSemana : ${diasSemana}"
+                      <option value=""></option>
+                      <option th:each="diaSemana : ${diasSemana}"
                                 th:value="${diaSemana}"
                                 th:text="${diaSemana}"/>
                     </select>
@@ -54,9 +55,9 @@
 
                   <div class="mb-3">
                     <label class="col-form-label fw-bold">Professor(a) *</label>
-                    <select class="form-select" th:field="${aula.professor}"aria-label="select example">
+                    <select class="form-select" th:field="${aula.professor}"aria-label="select example" required>
                         <option th:each="professor : ${professores}"
-                                th:value="${professor}"
+                                th:value="${professor.id}"
                                 th:text="${professor.nome}"/>
                     </select>
                     <div class="invalid-feedback">Selecione uma opção</div>
@@ -79,6 +80,12 @@
               <p>Todos os direitos reservados - 2022.</p>
           </div>
       </footer>
+
+      <script th:inline="javascript">
+        var professores = [[${professores}]];
+        console.log(professores);
+       
+      </script>
 
       <script type="text/javascript" th:src="@{/js/aula/cadastroAula.js}"></script>
 
