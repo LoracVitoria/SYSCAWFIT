@@ -65,15 +65,17 @@
 }
 
 
-.cadastrar input{
+#inputNome{
     margin-top: 10px;
     width: 500px;
     border-radius: 5px;
+    border: 2px solid #062A40;
 }
 
- .cadastrar textarea{
+ #textareaDescricao{
     margin-top: 10px;
     width: 500px;
+    height: 100px;
     border-radius: 5px;
     border: 2px solid #062A40;
  }

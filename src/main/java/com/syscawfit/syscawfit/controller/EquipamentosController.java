@@ -36,8 +36,12 @@ public class EquipamentosController {
 
 //	public static String caminhoImagens = "C:\\Users\\willi\\Desktop\\imagens";
 
-	public static String caminhoImagens = "C:\\Users\\willi\\Desktop\\syscawfit2\\SYSCAWFIT\\src\\main\\resources\\static\\img\\equipamentosImagens\\";
-
+//	public static String caminhoImagens = "C:\\Users\\willi\\Desktop\\syscawfit2\\SYSCAWFIT\\src\\main\\resources\\static\\img\\equipamentosImagens\\";
+	
+//	public static String caminhoImagens = ".." + File.separator + "SYSCAWFIT" + File.separator + "src" + File.separator + "main" 
+//	+ File.separator + "rersources" + File.separator + "static" + File.separator + "img" + File.separator + "equipamentosImagens" + File.separator;
+	
+	public static String caminhoImagens = "C:\\Users\\willi\\Desktop\\syscawfit_william3\\SYSCAWFIT\\src\\main\\resources\\static\\img\\equipamentosImagens\\";
 //	public static String caminhoImagens = "..\\src\\main\\resources\\static\\img\\equipamentosImagens\\";
 
 	// NOVO EQUIPAMENTO
@@ -57,7 +61,7 @@ public class EquipamentosController {
 			return "redirect:/equipamentos/cadastrarEquipamentos.html";
 		}
 
-		daoEquipamentos.saveAndFlush(equipamento);
+		daoEquipamentos.save(equipamento);
 		
 		try {
 			if (!file.isEmpty()) {
@@ -68,7 +72,7 @@ public class EquipamentosController {
 //				equipamento.setNomeImagem(caminhoImagens + "id" + String.valueOf(equipamento.getId()) + "_" + file.getOriginalFilename());
 
 				equipamento.setNomeImagem(String.valueOf(equipamento.getId()) + file.getOriginalFilename());
-				daoEquipamentos.saveAndFlush(equipamento);
+				daoEquipamentos.save(equipamento);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();

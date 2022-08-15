@@ -41,35 +41,35 @@
 
                  <!--Formulário-->
                  
-                <form class="row overflow-auto conteudo mx-2 formulario-aluno" action="">
-                    
+                <form class="row overflow-auto conteudo mx-2 formulario-aluno" th:object="${aluno}" action="/aluno/save" method="POST">
+                    <input type="hidden" th:field="${aluno.id}" />
                     <div class="col-9 primeira-coluna">
                         <!--NOME COMPLETO-->
                         <div class="row">
                             <div class="col m-2 mt-3 ">
-                                <label for="inputPassword6" class="col-form-label">Nome completo *</label>
-                                <input type="text" id="inputPassword6" class="form-control" required>
+                                <label for="nome" class="col-form-label">Nome completo *</label>
+                                 <input type="text" id="nome" th:field="*{nome}" class="form-control">
                             </div>
                         </div>
 
                         <div class="row">
                             <!--CPF-->
                             <div class="col m-2">
-                                <label for="inputPassword6" class="col-form-label">CPF *</label>
-                                <input type="text" id="cpf" class="form-control" onblur='validaCPF()' required>
+                                <label for="cpf" class="col-form-label">CPF *</label>
+                                <input type="text" id="cpf" th:field="*{cpf}" class="form-control" onblur='validaCPF()' >
                                 <div class="invalid-feedback">CPF inválido</div>
                             </div>
                             <!--DATA NASCIMENTO-->
-                            <div class="col m-2">
+                            <!--div class="col m-2">
                                 <label for="inputPassword6" class="col-form-label">Data de Nascimento *</label>
                                 <input type="date" id="dtNascimento" class="form-control" onblur='validarIdade()' required>
                                 <div class="invalid-feedback">Deve ser maior de 18 anos</div>
-                            </div>
+                            </!--div-->
                         </div>
                     </div>  
 
                     <!--Imagem do Aluno-->
-                    <div class="col segunda-coluna border">
+                    <!--div class="col segunda-coluna border">
                         <label class="picture form-control" for="picture__input" tabindex="0">
                             <input type="file" accept="image/*" id="picture__input">
                             <span>
@@ -79,18 +79,18 @@
                         </label>
                         <!-- <div class="container-imagem">
                             <img th:src="@{/img/}" alt="Selecione uma imagem" class="imagem-aluno" id="imgPhoto">
-                        </div> -->
-                    </div>
+                        </div>>
+                    </!--div-->
 
-                    <div class="row">
+                    <!--div class="row">
                         <div class="row">
-                            <!--TELEFONE-->
+                            <!--TELEFONE>
                             <div class="col m-2 ">
                                 <label for="inputPassword6" class="col-form-label">Telefone *</label>
                                 <input type="text" id="telefone" class="form-control" required placeholder="(00) 00000-0000">
                                 <div class="invalid-feedback">Telefone inválido</div>
                             </div>
-                            <!--E-MAIL-->
+                            <!--E-MAIL>
                             <div class="col-7 m-2">
                                 <label for="inputPassword6" class="col-form-label">E-mail *</label>
                                 <input type="email" id="inputPassword6" class="form-control" required>
@@ -98,7 +98,7 @@
                             </div>
                         </div>
 
-                        <!--TIPO DE PLANO-->
+                        <!--TIPO DE PLANO>
                         <div class="col-3 m-2">
                             <label for="inputPassword6" class="col-form-label">Tipo de plano *</label>
                             <select class="form-select" id="tipoPlano" required aria-label="select example">
@@ -110,24 +110,24 @@
                             </select>
                             <div class="invalid-feedback">Selecione uma opção</div>
                         </div>
-                    </div>
+                    </!--div-->
                     
-                        <h5 class="endereco-titulo mt-4">Endereço</h5>
+                        <!--h5 class="endereco-titulo mt-4">Endereço</--!h5>
 
                         <div class="row">
-                            <!--CEP-->
+                            <!--CEP>
                             <div class="col-2 m-2">
                                 <label for="inputPassword6" class="col-form-label">CEP *</label>
                                 <input type="text" id="cep" class="form-control" required>
                                 <div class="invalid-feedback">CEP não encontrado</div>
                             </div>
-                            <!--LOGRADOURO-->
+                            <!--LOGRADOURO>
                             <div class="col mt-2">
                                 <label for="inputPassword6" class="col-form-label">Logradouro *</label>
                                 <input type="text" id="logradouro" class="form-control" required>
                                 <div class="invalid-feedback">Logradouro não informado</div>
                             </div>
-                            <!--Nº-->
+                            <!--Nº>
                             <div class="col-2 mt-2">
                                 <label for="inputPassword6" class="col-form-label">Nº *</label>
                                 <input type="text" id="numero" class="form-control" required>
@@ -136,19 +136,19 @@
                         </div>
 
                         <div class="row">
-                            <!--BAIRRO-->
+                            <!--BAIRRO>
                             <div class="col m-2">
                                 <label for="inputPassword6" class="col-form-label">Bairro *</label>
                                 <input type="text" id="bairro" class="form-control" required>
                                 <div class="invalid-feedback">Bairro não informado</div>
                             </div>
-                            <!--CIDADE-->
+                            <!--CIDADE>
                             <div class="col mt-2">
                                 <label for="inputPassword6" class="col-form-label">Cidade *</label>
                                 <input type="text" id="localidade" class="form-control" required>
                                 <div class="invalid-feedback">Cidade não informada</div>
                             </div>
-                            <!--ESTADO-->
+                            <!--ESTADO>
                             <div class="col-2 mt-2">
                                 <label for="inputPassword6" class="col-form-label">UF *</label>
                                 <input type="text" id="uf" class="form-control" required>
@@ -157,13 +157,13 @@
                         </div>
 
                         <div class="row">
-                            <!--PAÍS-->
+                            <!--PAÍS>
                             <div class="col-3 m-2">
                                 <label for="inputPassword6" class="col-form-label">País *</label>
                                 <input type="text" id="pais" class="form-control" required>
                                 <div class="invalid-feedback">País não informado</div>
 
-                            </div>
+                            </div-->
                             <div class="col mt-2 buttons">
                                 <button type="submit" class="btn btn-primary button-cadastro mx-2 mb-4">
                                     <i class="bi bi-cloud-upload p-2"></i>Cadastrar

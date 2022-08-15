@@ -49,7 +49,7 @@
 							<div class="col">
 								<label for="nome">NOME:</label>
 								<br />
-								<input type="text" th:field="*{nome}" th:errorclass="inputError" autocomplete="off" />
+								<input id="inputNome" type="text" th:field="*{nome}" th:errorclass="inputError" autocomplete="off" />
 							</div>
 						</div>
 
@@ -57,7 +57,7 @@
 							<div class="col">
 								<label for="descricao">DESCRIÇÃO:</label>
 								<br />
-								<textarea type="text" th:field="*{descricao}" th:errorclass="inputError"
+								<textarea id="textareaDescricao" type="text" th:field="*{descricao}" th:errorclass="inputError"
 									autocomplete="off" />
 							</div>
 						</div>

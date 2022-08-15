@@ -102,11 +102,9 @@
 										<div class="col-sm-3 botoesCadastroExercicio">
 											<span th:switch="${exercicio.id>0}">
 												<button type="submit" th:case="${true}"
-													class="btn btn-primary button-cadastro"
-													>Atualizar</button>
+													class="btn btn-primary button-cadastro">Atualizar</button>
 												<button type="submit" th:case="*"
-													class="btn btn-primary button-cadastro"
-													>Cadastrar</button>
+													class="btn btn-primary button-cadastro">Cadastrar</button>
 											</span>
 
 											<button type="reset" class="btn btn-primary button-cancelar">
@@ -125,17 +123,35 @@
 							action="/treino/saveTreino" method="POST">
 
 							<input type="hidden" th:field="${treino.id}" />
-							<input type="hidden" th:field="${treino.id}" />
-							
+
+
 							<div class="cadastrarTreino col-7">
+									<h3>Cadastrar Treino</h3>
 								<div class="row">
 									<div class="col">
-										<p>cadastrar treino</p>
-										<label for="nome" class="col-form-label">Nome:</label>
+										<label for="floatingSelect" class="form-label">Aluno: *
+										</label>
+										<select th:field="*{aluno}" class="form-select scroll"
+											id="floatingSelect" aria-label="Floating label select example"
+											name="aluno" multiple="multiple">
+											<option th:each="aluno : ${listaAlunos}"
+												th:value="${aluno.id}"
+												th:text="'Nome: ' + ${aluno.nome} + ' | cpf: ' + ${aluno.cpf}"
+												th:selected="${aluno.id}">
+											</option>
+										</select>
+									</div>
+								</div>
+								
+								<div class="row">
+									<div class="col">
+										
+										<label for="nome" class="col-form-label">Nome do Treino:</label>
 										<input type="text" th:field="*{nome}" th:errorclass="inputError"
 											autocomplete="off" class="form-control" required>
 									</div>
 								</div>
+							
 
 								<div class="row">
 									<div class="col">
@@ -149,6 +165,7 @@
 											autocomplete="off" class="form-control" required>
 									</div>
 								</div>
+							
 
 								<div class="row">
 									<div class="col">
@@ -178,10 +195,12 @@
 										</tr>
 									</thead>
 									<tbody>
-										<tr align="center" th:each="exercicio : ${exerciciosLista}" th:field="*{listaExercicios}">
+										<tr align="center" th:each="exercicio : ${exerciciosLista}"
+											th:field="*{listaExercicios}">
 											<td th:text="${exercicio.nome}" />
 											<td>
-												<a th:href="@{/treino/deleteExercicio/{exercicio}(exercicio=${exercicio})}">
+												<a
+													th:href="@{/treino/deleteExercicio/{exercicio}(exercicio=${exercicio})}">
 													<i class="btn btn-dark" title="delete">Excluir</i>
 												</a>
 
