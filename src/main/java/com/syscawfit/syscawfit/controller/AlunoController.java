@@ -6,13 +6,16 @@ import com.syscawfit.syscawfit.model.TipoPlano;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 import com.syscawfit.syscawfit.model.Aluno;
 
+
+import javax.validation.ConstraintViolationException;
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Controller
 @RequestMapping("/aluno")
@@ -63,11 +66,30 @@ public class AlunoController {
 
 	// Salvar Aluno
 	@PostMapping("/save")
-	public String salvarAluno(Aluno aluno, Model model){
-		enderecoDao.save(aluno.getEndereco());
-		alunoDao.save(aluno);
+	public String salvarAluno(@Valid Aluno aluno, BindingResult result, Model model){
 
-		return "redirect:/aluno/list";
+		if (result.hasErrors()) {
+			List<String> errors = new ArrayList<>();
+			result.getAllErrors().forEach(error -> {
+				errors.add(error.getDefaultMessage());
+			});
+
+			model.addAttribute("aluno", aluno);
+			model.addAttribute("planos", TipoPlano.values());
+			model.addAttribute("mensagensErro", errors);
+
+			return "/aluno/aluno.html";
+		}
+
+		try {
+			enderecoDao.save(aluno.getEndereco());
+			alunoDao.save(aluno);
+
+			return "redirect:/aluno/list";
+		} catch (ConstraintViolationException e) {
+			System.out.println(e);
+			return "redirect:/aluno/list";
+		}
 	}
 
 	// Deletar Aluno
@@ -102,6 +124,7 @@ public class AlunoController {
 
 		return "redirect:/aluno/list";
 	}
+
 
 }
 

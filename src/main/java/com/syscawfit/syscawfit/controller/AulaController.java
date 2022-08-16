@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -55,10 +57,29 @@ public class AulaController {
 
     // Salvar aula
     @PostMapping("/save")
-    public String salvarAula( Aula aula, Model model){
-        aulaDao.save(aula);
+    public String salvarAula( @Valid Aula aula, BindingResult result, Model model){
 
-        return "redirect:/aulas/list";
+        if (result.hasErrors()) {
+            List<String> errors = new ArrayList<>();
+            result.getAllErrors().forEach(error -> {
+                errors.add(error.getDefaultMessage());
+            });
+
+            model.addAttribute("aula", aula);
+            model.addAttribute("planos", TipoPlano.values());
+            model.addAttribute("mensagensErro", errors);
+
+            return "/aulas/aula";
+        }
+
+        try {
+            aulaDao.save(aula);
+
+            return "redirect:/aulas/list";
+        } catch (ConstraintViolationException e) {
+            System.out.println(e);
+            return "redirect:/aulas/list";
+        }
     }
 
     // Deletar aula
