@@ -57,7 +57,7 @@
                     <select class="form-select" th:field="${aula.professor}"aria-label="select example">
                         <option th:each="professor : ${professores}"
                                 th:value="${professor}"
-                                th:text="${professor.nome}"/>
+                                th:text="${professor}"/>
                     </select>
                     <div class="invalid-feedback">Selecione uma opção</div>
                     
