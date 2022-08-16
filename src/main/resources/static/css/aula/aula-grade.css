@@ -1,0 +1,20 @@
+.button-cadastrar {
+    display: flex;
+    justify-content: end;
+}
+
+.button-cadastrar__aula {
+    background: #61BFFA;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.button-cadastrar__aula:hover {
+   color: #7DCDFF;
+   background:#363636 ;
+    
+}
+
+.bi-clock-fill {
+    font-size: 35px;
+}
