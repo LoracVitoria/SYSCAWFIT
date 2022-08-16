@@ -1,14 +1,7 @@
 package com.syscawfit.syscawfit.model;
 
-import lombok.*;
-
 import javax.persistence.*;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
 @Entity
 public class Endereco {
 
@@ -16,7 +9,7 @@ public class Endereco {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String cep;
-    private String logradouro;
+    private String rua;
     private Long numero;
     private String bairro;
     private String cidade;
@@ -40,12 +33,12 @@ public class Endereco {
         this.cep = cep;
     }
 
-    public String getLogradouro() {
-        return logradouro;
+    public String getRua() {
+        return rua;
     }
 
-    public void setLogradouro(String logradouro) {
-        this.logradouro = logradouro;
+    public void setRua(String rua) {
+        this.rua = rua;
     }
 
     public Long getNumero() {
@@ -76,7 +69,7 @@ public class Endereco {
         return uf;
     }
 
-    public void setUf(String uf) {
+    public void setUF(String uf) {
         this.uf = uf;
     }
 
