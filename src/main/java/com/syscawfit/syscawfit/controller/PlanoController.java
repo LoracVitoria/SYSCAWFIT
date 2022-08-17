@@ -6,9 +6,13 @@ import com.syscawfit.syscawfit.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.validation.ConstraintViolationException;
+import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -35,7 +39,24 @@ public class PlanoController {
 
     // Salvar plano
     @PostMapping("/save")
-    public String salvarAula(Plano plano, Model model){
+    public String salvarAula(@Valid Plano plano, BindingResult result, Model model){
+
+        if (result.hasErrors()) {
+            List<String> errors = new ArrayList<>();
+            result.getAllErrors().forEach(error -> {
+                errors.add(error.getDefaultMessage());
+            });
+
+            List<Plano> planos = planoDao.findAll();
+
+            model.addAttribute("plano",plano);
+            model.addAttribute("planos",planos);
+            model.addAttribute("tiposPlanos", TipoPlano.values());
+            model.addAttribute("mensagensErro", errors);
+
+            return "/planos/plano";
+        }
+
         //buscar no banco plano por tipo, caso não seja encontrado retornar nulo
         Plano planoExistente = planoDao.findPlanoByTipo(plano.getTipo()).orElse(null);
 
