@@ -1,11 +1,11 @@
-package com.syscawfit.syscawfit.dao;
+package com.syscawfit.dao;
 
-import com.syscawfit.syscawfit.model.Usuario;
+import com.syscawfit.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-public interface UsuarioDao extends JpaRepository<Usuario,Long> {
+public interface UsuarioRepository extends JpaRepository<Usuario,Long> {
     @Override
     void deleteById(Long aLong);
 
@@ -18,10 +18,10 @@ public interface UsuarioDao extends JpaRepository<Usuario,Long> {
     @Override
     <S extends Usuario> S save(S entity);
 
+    Usuario findByCpf(String username);
 
 
-
-    //findAll, findById, get, save, delete, update
+    //findAll, findById, get, save, delete,
 }
 
 

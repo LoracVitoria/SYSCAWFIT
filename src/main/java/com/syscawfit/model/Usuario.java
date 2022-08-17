@@ -1,6 +1,8 @@
-package com.syscawfit.syscawfit.model;
+package com.syscawfit.model;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Usuario {
@@ -9,23 +11,32 @@ public class Usuario {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nome;
-    private String CPF;
-    private String RG;
+    private String cpf;
+    private String rg;
     private String telefone;
     @OneToOne
     @JoinColumn(name = "endereco_id")
-    private Endereco endereco;
+    private EnderecoUsuario endereco;
     private String email;
     private Boolean situacao;
     private Boolean mantenedor;
     private String senha;
+     private String tipoUsuario;
+    @Transient
+    private ArrayList<String> tiposUsuarios = new ArrayList<String>();
 
+    public Usuario() {
+        this.tiposUsuarios.add("Administrador");
+       this.tiposUsuarios.add("Treinador");
+       this.tiposUsuarios.add("Limpeza");
+       this.tiposUsuarios.add("RH");
+    }
 
-    public Endereco getEndereco() {
+    public EnderecoUsuario getEndereco() {
         return endereco;
     }
 
-    public void setEndereco(Endereco endereco) {
+    public void setEndereco(EnderecoUsuario endereco) {
         this.endereco = endereco;
     }
 
@@ -46,20 +57,20 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public String getCPF() {
-        return CPF;
+    public String getCpf() {
+        return cpf;
     }
 
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 
-    public String getRG() {
-        return RG;
+    public String getRg() {
+        return rg;
     }
 
-    public void setRG(String RG) {
-        this.RG = RG;
+    public void setRg(String rg) {
+        this.rg = rg;
     }
 
     public String getTelefone() {
@@ -101,4 +112,5 @@ public class Usuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
 }

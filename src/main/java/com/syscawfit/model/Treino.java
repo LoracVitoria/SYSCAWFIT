@@ -1,4 +1,4 @@
-package com.syscawfit.syscawfit.model;
+package com.syscawfit.model;
 
 import java.time.LocalDate;
 import java.util.List;

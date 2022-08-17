@@ -1,4 +1,4 @@
-package com.syscawfit.syscawfit.model;
+package com.syscawfit.model;
 
 import lombok.*;
 
@@ -10,7 +10,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @ToString
 @Entity
-public class Endereco {
+public class EnderecoUsuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
