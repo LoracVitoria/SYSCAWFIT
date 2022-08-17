@@ -39,36 +39,26 @@
 
         <!--FORMULÁRIO-->
 
-        <form th:object="${usuario}" action="/usuario/save" method="post">
-            <div class="mb-3">
-              <label class="form-label">ID</label>
-              <input type="number" class="form-control" th:field="${usuario.id}" aria-describedby="emailHelp">
-            </div>
-            <div class="mb-3">
-              <label class="form-label">Nome</label>
-              <input type="text" class="form-control" th:field="${usuario.nome}" id="nome">
-            </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
-          </form>
-
-
-
-
-        <!-- <form class="row overflow-auto conteudo mx-2 formulario-usuario" action="">
+        <form class="row overflow-auto conteudo mx-2 formulario-usuario" th:object="${usuario}" action="/usuario/save" method="post">
 
             <div class="col-md-4">
                 <label for="validationCustom01" class="form-label">Nome:  </label>
-                <input type="text" class="form-control" id="validationCustom01" value="Nome Completo" required>
+                <input type="text" class="form-control" id="validationCustom01" th:field="${usuario.nome}" required>
             </div>
             <div class="col-md-4">
-                <label for="validationCustom02" class="form-label">CPF: </label>
-                <input type="text" class="form-control" id="validationCustom02" value="XXX.XXX.XXX-X" required>
+                <label for="validationCustom02" class="form-label" >CPF: </label>
+                <input type="text" class="form-control" id="validationCustom02" th:field="${usuario.cpf}" required>
+            </div>
+            <br/>
+            <div class="col-md-4">
+                <label for="validationCustom02" class="form-label" >RG: </label>
+                <input type="text" class="form-control" id="validationCustom02" th:field="${usuario.rg}" required>
             </div>
             <br/>
             <div class="col-md-4">
                 <label for="validationCustomUsername" class="form-label">E-mail: </label>
                 <div class="input-group has-validation">
-                    <span class="input-group-text" id="inputGroupPrepend">@</span>
+                    <span class="input-group-text" id="inputGroupPrepend" th:field="${usuario.email}">@</span>
                     <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
                     <div class="invalid-feedback">
                         Por favor, insira um e-mail válido!
@@ -76,22 +66,22 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <label for="validationCustom03" class="form-label">Telefone: </label>
-                <input type="text" class="form-control" id="validationCustom03" required>
+                <label for="validationCustom03" class="form-label" >Telefone: </label>
+                <input type="text" class="form-control" id="validationCustom03" th:field="${usuario.telefone}" required>
                 <div class="invalid-feedback">
                     Por favor, insira um telefone!
                 </div>
             </div>
-            <br>
-            <br>
+            <br/>
+            <br/>
             <div class="col-md-3">
                 <label for="validationCustom04" class="form-label">Tipo de Usuário: </label>
                 <select class="form-select" id="validationCustom04" required>
                     <option selected disabled value=false>Escolha uma opção</option>
-                    <option>Administrador</option>
-                    <option>Treinador</option>
-                    <option>Limpeza</option>
-                    <option>RH</option>
+                    <option th:field="${usuario.tipoUsuario}">Administrador</option>
+                    <option th:field="${usuario.tipoUsuario}">Treinador</option>
+                    <option th:field="${usuario.tipoUsuario}">Limpeza</option>
+                    <option th:field="${usuario.tipoUsuario}">RH</option>
 
                 </select>
                 <div class="invalid-feedback">
@@ -103,7 +93,7 @@
                 <p></p>
                 <label for="validationCustom05" class="form-label">Situação: </label>
                 <label class="switch">
-                    <input type="checkbox">
+                    <input type="checkbox" th:field="${usuario.situacao}">
                     <span class="slider round"></span>
                 </label>
             <br/>
@@ -112,7 +102,7 @@
                     <label class="picture form-control" for="picture__input" tabindex="0">
                         <input type="file" accept="image/*" id="picture__input">
                         <span>
-                                <img class="picture__image"  alt="">Selecione uma imagem!
+                                <img class="picture__image"  alt="" th:field="${usuario.imagem}">Selecione uma imagem!
 
                             </span>
                     </label>
@@ -123,13 +113,13 @@
             <br/>
 
             <!--ENDEREÇO-->
-            <!-- <section class="container__endereco">
+            <section class="container__endereco">
                 <h5 class="titulo-endereco">Endereço</h5>
 
                 <div class="row">
                     <div class="col-md-4">
                         <label for="validationServer03" class="form-label">CEP</label>
-                        <input type="text" class="form-control is-invalid" value="XXXXX-XXX" id="validationServer03" aria-describedby="validationServer03Feedback" required>
+                        <input type="text" class="form-control is-invalid" th:field="${usuario.endereco.cep} id="validationServer03" aria-describedby="validationServer03Feedback" required>
                         <div id="validationServer03Feedback" class="invalid-feedback">
                            Por favor, insira um CEP válido!.
                         </div>
@@ -137,7 +127,7 @@
 
                     <div class="col-md-8">
                         <label for="validationServer03" class="form-label">Rua</label>
-                        <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" required>
+                        <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" th:field="${usuario.endereco.logradouro}" required>
                     </div>
                 </div>
 
@@ -145,17 +135,17 @@
 
                     <div class="col-md-2">
                         <label for="validationServer03" class="form-label">Nº</label>
-                        <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" required>
+                        <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" th:field="${usuario.endereco.numero}" required>
                     </div>
 
                     <div class="col-md-5">
                         <label for="validationServer03" class="form-label">Bairro</label>
-                        <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" required>
+                        <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" th:field="${usuario.endereco.bairro}"  required>
                     </div>
 
                     <div class="col-md-5">
                         <label for="validationServer04" class="form-label">Cidade</label>
-                        <select class="form-select is-invalid" id="validationServer04" aria-describedby="validationServer04Feedback" required>
+                        <select class="form-select is-invalid" id="validationServer04" aria-describedby="validationServer04Feedback" th:field="${usuario.endereco.cidade}" required>
                             <option selected disabled value="">Selecione</option>
                             <option>...</option>
                         </select>
@@ -165,7 +155,7 @@
                 <div class="row">
                     <div class="col-md-3">
                         <label for="validationServer04" class="form-label">UF</label>
-                        <select class="form-select is-invalid" id="validationServer04" aria-describedby="validationServer04Feedback" required>
+                        <select class="form-select is-invalid" id="validationServer04" aria-describedby="validationServer04Feedback" th:field="${usuario.endereco.uf}" required>
                             <option selected disabled value="">Selecione...</option>
                             <option>...</option>
                         </select>
@@ -173,14 +163,14 @@
 
                     <div class="col-md-3">
                         <label for="validationServer04" class="form-label">País</label>
-                        <select class="form-select is-invalid" id="validationServer04" aria-describedby="validationServer04Feedback" required>
+                        <select class="form-select is-invalid" id="validationServer04" aria-describedby="validationServer04Feedback" th:field="${usuario.endereco.pais}"  required>
                             <option selected disabled value="">Selecione...</option>
                             <option>...</option>
                         </select>
                     </div>
                 </div>
             </section>
-        </form> -->
+        </form>
     </main>
 </div>
 

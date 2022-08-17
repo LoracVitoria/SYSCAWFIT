@@ -20,19 +20,93 @@
 </head>
 
 <body>
-<!-- CABEÇALHO-->
-<header th:replace="cabecalho:: cabecalho"/>
-<!-- MENU-->
-<div class="row linha-centro">
-    <!-- MENU-->
-    <nav class="col-3 border container-menu">
-        <nav th:replace="menu:: menu"/>
-    </nav>
-<!--CONTEÚDO DA PÁGINA-->
-    <main class="col-9 border">
-        
-        <p>Esta é uma página de retorno</p>
-        
+        <!-- CABEÇALHO-->
+        <header th:replace="cabecalho:: cabecalho"/>
+
+        <div class="row linha-centro">
+            <!-- MENU-->
+            <nav class="col-3 border container-menu">
+                <nav th:replace="menu:: menu"/>
+            </nav>
+
+            <!--CONTEÚDO DA PÁGINA-->
+
+            <main class="col-9 border" >
+                <form th:object="${usuario}" action="/usuario/list" method="GET">
+                    <!--Header-->
+                    <article class="row linha-header">
+                        <div class="col col-left__input p-3">
+                            <label class="form-label form__label">Usuário</label>
+                            <input type="text" id="cpfBusca" th:field="*{cpf}" class="form-control w-75 h-75 form__input" placeholder="Digite o CPF">
+                        </div>
+
+                        <div class="col-auto col-right__buttons p-3">
+                            <div class="col mx-2">
+                                <button type="submit" class="btn btn-link button-pesquisar">
+                                    <i class="bi bi-search p-2"></i>Pesquisar
+                                </button>
+                            </div>
+
+                            <div class="col-auto">
+                                <a class="link-button" th:href="@{/usuario/new}">
+                                    <button type="button" class="btn btn-link button-novo">
+                                        <i class="bi bi-plus-square p-2"></i>Novo usuário
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </article>
+
+                    <!--Tabela -->
+
+                    <article class="container-fluid overflow-auto conteudo p-3">
+<!--alterar aqui depois-->
+                        <section class="row usuario--">
+                            <div class="col p-3">
+
+                                <table class="table table-light table-striped table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>Cód.</th>
+                                        <th>Nome</th>
+                                        <th>CPF</th>
+                                        <th>RG</th>
+                                        <th>E-mail</th>
+                                        <th>Telefone</th>
+                                        <th>Situação</th>
+                                        <th>Tipo</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <!-- usando o thymeleaf para iterar na lista  -->
+                                    <tr th:each="usuario: ${usuarios}">
+                                        <td th:text="${usuario.id}"/>
+                                        <td th:text="${usuario.nome}"/>
+                                        <td th:text="${usuario.cpf}"/>
+                                        <td th:text="${usuario.rg}"/>
+                                        <td th:text="${usuario.email}" />
+                                        <td th:text="${usuario.telefone}"/>
+                                        <td th:text="${usuario.situacao}"/>
+                                        <td th:text="${usuario.tipo}"/>
+
+
+
+                                        <!-- opção de excluir  -->
+                                        <td><a th:href="@{/usuario/delete/{id}(id=${usuario.id})}">
+                                            <i class="bi bi-dash-circle" title="delete"></i>
+                                        </a></td>
+
+                                        <!-- opção de editar  -->
+                                        <td><a th:href="@{/usuario/update/{id}(id=${usuario.id})}">
+                                            <i class="bi bi-pencil" title="editar"></i>
+                                        </a></td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </section>
+                    </article>
+                </form>
     </main>
 </div>
 
@@ -45,6 +119,7 @@
 
     <!-- JavaScript Bundle with Popper -->
     <script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/aluno/mascaras.js}"></script>
     </body>
 </html>
 

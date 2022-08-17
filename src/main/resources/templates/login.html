@@ -1,6 +1,7 @@
 
 <!------ Include the above in your HEAD tag ---------->
 
+<!--
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -11,7 +12,7 @@
     <link rel="stylesheet" th:href="@{/css/login.css}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 </head>
-<!--Coded with love by Mutiullah Samim-->
+&lt;!&ndash;Coded with love by Mutiullah Samim&ndash;&gt;
 <body>
 <div class="container h-100">
     <div class="d-flex justify-content-center h-100">
@@ -27,7 +28,7 @@
                         <div class="input-group-append">
                             <span class="input-group-text"><i class="fas fa-user"></i></span>
                         </div>
-                        <input type="text" name="" class="form-control input_user" value="" placeholder="CPF">
+                        <input type="text" name="" class="form-control input_user" value="" placeholder="Usuario">
                     </div>
                     <div class="input-group mb-2">
                         <div class="input-group-append">
@@ -55,5 +56,26 @@
         </div>
     </div>
 </div>
+</body>
+</html>-->
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">
+<head>
+    <title>Spring Security Example </title>
+</head>
+<body>
+<div th:if="${param.error}">
+    Invalid username and password.
+</div>
+<div th:if="${param.logout}">
+    You have been logged out.
+</div>
+<form th:action="@{/login}" method="post">
+    <div><label> User Name : <input type="text" name="username"/> </label></div>
+    <div><label> Password: <input type="password" name="password"/> </label></div>
+    <div><input type="submit" value="Sign In"/></div>
+</form>
 </body>
 </html>
