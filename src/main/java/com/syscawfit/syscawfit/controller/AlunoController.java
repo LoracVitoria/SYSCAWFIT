@@ -2,7 +2,9 @@ package com.syscawfit.syscawfit.controller;
 
 import com.syscawfit.syscawfit.dao.AlunoRepository;
 import com.syscawfit.syscawfit.dao.EnderecoAlunoRepository;
+import com.syscawfit.syscawfit.model.DiaSemana;
 import com.syscawfit.syscawfit.model.TipoPlano;
+import com.syscawfit.syscawfit.model.Usuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -68,12 +70,19 @@ public class AlunoController {
 	@PostMapping("/save")
 	public String salvarAluno(@Valid Aluno aluno, BindingResult result, Model model){
 
+		List<String> errors = new ArrayList<>();
+
 		if (result.hasErrors()) {
-			List<String> errors = new ArrayList<>();
 			result.getAllErrors().forEach(error -> {
 				errors.add(error.getDefaultMessage());
 			});
+		}
 
+		if (alunoDao.findByCpf(aluno.getCpf()) != null) {
+			errors.add("CPF já cadastrado!");
+		}
+
+		if (!errors.isEmpty()) {
 			model.addAttribute("aluno", aluno);
 			model.addAttribute("planos", TipoPlano.values());
 			model.addAttribute("mensagensErro", errors);
@@ -81,15 +90,11 @@ public class AlunoController {
 			return "/aluno/aluno.html";
 		}
 
-		try {
-			enderecoDao.save(aluno.getEndereco());
-			alunoDao.save(aluno);
+		enderecoDao.save(aluno.getEndereco());
+		alunoDao.save(aluno);
 
-			return "redirect:/aluno/list";
-		} catch (ConstraintViolationException e) {
-			System.out.println(e);
-			return "redirect:/aluno/list";
-		}
+		return "redirect:/aluno/list";
+
 	}
 
 	// Deletar Aluno

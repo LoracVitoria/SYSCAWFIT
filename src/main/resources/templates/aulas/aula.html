@@ -13,6 +13,17 @@
     <link rel="stylesheet" th:href="@{/css/menu.css}">
     <link rel="stylesheet" th:href="@{/css/aula/aula-formulario.css}">
 
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    $(document).ready(function(){
+        $(".toast").toast({
+          autohide: false
+        });
+        $(".toast").toast("show");
+    });
+    </script>
+
   </head>
 
   <body>
@@ -29,17 +40,29 @@
           <!--CONTEÚDO DA PÁGINA-->
           <main class="col-9 border d-flex justify-content-center">
 
+            <div class="toast-container end-0 bottom-0 p-3 mb-5">
+              <div class="toast bg-warning" role="alert" aria-live="assertive" aria-atomic="true" th:each="erro : ${mensagensErro}"  th:if="${mensagensErro}">
+                <div class="toast-header bg-warning text-dark">
+
+                  <strong class="me-auto"><i class="bi bi-exclamation-circle-fill"></i> Atenção!</strong>
+                  <small class="text-muted">agora mesmo</small>
+                  <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body" th:text="${erro}"></div>
+              </div>
+            </div>
+
             <div class="card m-4 card-formulario">
               <div class="card-body card-formulario__body">
                 <form th:object="${aula}" action="/aulas/save" method="post">
                   <div class="mb-3 mt-3">
                     <label class="form-label fw-bold">Nome *</label>
-                    <input type="text" class="form-control" id="" th:field="${aula.nome}">
+                    <input type="text" class="form-control" id="" th:field="${aula.nome}" required>
                   </div>
   
                   <div class="mb-3">
                     <label class="col-form-label fw-bold">Dia da Semana *</label>
-                    <select class="form-select" th:field="${aula.aulaDiaHora.diaSemana}"aria-label="select example" >
+                    <select class="form-select" th:field="${aula.aulaDiaHora.diaSemana}"aria-label="select example" required>
                       <option value=""></option>
                       <option th:each="diaSemana : ${diasSemana}"
                                 th:value="${diaSemana}"
@@ -50,13 +73,14 @@
 
                   <div class="mb-3 mt-3">
                     <label class="form-label fw-bold">Hora *</label>
-                    <input type="time" class="form-control" id=""  th:field="${aula.aulaDiaHora.hora}" >
+                    <input type="time" class="form-control" id=""  th:field="${aula.aulaDiaHora.hora}" required>
                   </div>
 
                   <div class="mb-3">
                     <label class="col-form-label fw-bold">Professor(a) *</label>
-                    <select class="form-select" th:field="${aula.professor}"aria-label="select example" >
-                        <option th:each="professor : ${professores}"
+                    <select class="form-select" th:field="${aula.professor}"aria-label="select example" required>
+                      <option value=""></option>
+                      <option th:each="professor : ${professores}"
                                 th:value="${professor.id}"
                                 th:text="${professor.nome}"/>
                     </select>
