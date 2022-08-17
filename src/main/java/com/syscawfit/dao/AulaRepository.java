@@ -1,9 +1,9 @@
-package com.syscawfit.syscawfit.dao;
+package com.syscawfit.dao;
 
 
-import com.syscawfit.syscawfit.model.Aula;
-import com.syscawfit.syscawfit.model.AulaDiaHora;
-import com.syscawfit.syscawfit.model.DiaSemana;
+import com.syscawfit.model.Aula;
+import com.syscawfit.model.AulaDiaHora;
+import com.syscawfit.model.DiaSemana;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import java.util.List;

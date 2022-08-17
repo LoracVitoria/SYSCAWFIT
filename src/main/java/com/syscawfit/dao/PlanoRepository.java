@@ -1,7 +1,7 @@
-package com.syscawfit.syscawfit.dao;
+package com.syscawfit.dao;
 
-import com.syscawfit.syscawfit.model.Plano;
-import com.syscawfit.syscawfit.model.TipoPlano;
+import com.syscawfit.model.Plano;
+import com.syscawfit.model.TipoPlano;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

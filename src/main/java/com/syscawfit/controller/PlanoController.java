@@ -1,8 +1,8 @@
-package com.syscawfit.syscawfit.controller;
+package com.syscawfit.controller;
 
 
-import com.syscawfit.syscawfit.dao.PlanoRepository;
-import com.syscawfit.syscawfit.model.*;
+import com.syscawfit.dao.PlanoRepository;
+import com.syscawfit.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

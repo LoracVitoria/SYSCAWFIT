@@ -1,4 +1,4 @@
-package com.syscawfit.syscawfit.controller;
+package com.syscawfit.controller;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,10 +15,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.syscawfit.syscawfit.dao.EquipamentosRepository;
-import com.syscawfit.syscawfit.dao.TipoExercicioRepository;
-import com.syscawfit.syscawfit.model.Equipamentos;
-import com.syscawfit.syscawfit.model.TipoExercicio;
+import com.syscawfit.dao.EquipamentosRepository;
+import com.syscawfit.dao.TipoExercicioRepository;
+import com.syscawfit.model.Equipamentos;
+import com.syscawfit.model.TipoExercicio;
 
 @Controller
 @RequestMapping("/tipoexercicio")

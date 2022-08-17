@@ -35,6 +35,13 @@
             <a class="nav-link" th:href="@{/usuario/list}">Usuários</a>
         </li>
 
+
+        <li th:action="@{/logout}" method="post">
+            <input type="submit" value="Log out" />
+        </li>
+
+
+
     </ul>
 </nav>
 

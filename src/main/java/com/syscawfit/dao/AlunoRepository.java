@@ -1,6 +1,6 @@
-package com.syscawfit.syscawfit.dao;
+package com.syscawfit.dao;
 
-import com.syscawfit.syscawfit.model.Aluno;
+import com.syscawfit.model.Aluno;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AlunoRepository extends JpaRepository<Aluno,Long> {
