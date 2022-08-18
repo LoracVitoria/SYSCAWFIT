@@ -5,16 +5,21 @@ import com.syscawfit.syscawfit.dao.AulaRepository;
 import com.syscawfit.syscawfit.dao.UsuarioDao;
 import com.syscawfit.syscawfit.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -59,14 +64,24 @@ public class AulaController {
     @PostMapping("/save")
     public String salvarAula( @Valid Aula aula, BindingResult result, Model model){
 
+        List<String> errors = new ArrayList<>();
+
         if (result.hasErrors()) {
-            List<String> errors = new ArrayList<>();
             result.getAllErrors().forEach(error -> {
                 errors.add(error.getDefaultMessage());
             });
+        }
 
-            model.addAttribute("aula", aula);
-            model.addAttribute("planos", TipoPlano.values());
+        if (aulaDao.findByAulaDiaHora(aula.getAulaDiaHora()) != null) {
+            errors.add("Já existe aula cadastrada neste dia e horário!");
+        }
+
+        List<Usuario> professores = usuarioDao.findAll();
+
+        if (!errors.isEmpty()) {
+            model.addAttribute("aula",aula);
+            model.addAttribute("diasSemana",DiaSemana.values());
+            model.addAttribute("professores", professores);
             model.addAttribute("mensagensErro", errors);
 
             return "/aulas/aula";
@@ -74,10 +89,9 @@ public class AulaController {
 
         try {
             aulaDao.save(aula);
-
             return "redirect:/aulas/list";
+
         } catch (ConstraintViolationException e) {
-            System.out.println(e);
             return "redirect:/aulas/list";
         }
     }
@@ -105,10 +119,37 @@ public class AulaController {
     }
 
     @PostMapping("/update")
-    public  String atualizarAula(Aula aula){
-        aula = aulaDao.save(aula);
+    public  String atualizarAula(@Valid Aula aula,BindingResult result, Model model){
 
-        return "redirect:/aulas/list";
+        List<String> errors = new ArrayList<>();
+
+        if (result.hasErrors()) {
+            result.getAllErrors().forEach(error -> {
+                errors.add(error.getDefaultMessage());
+            });
+        }
+
+        if (aulaDao.findByAulaDiaHora(aula.getAulaDiaHora()) != null) {
+            errors.add("Já existe aula cadastrada neste dia e horário!");
+        }
+
+        List<Usuario> professores = usuarioDao.findAll();
+
+        if (!errors.isEmpty()) {
+            model.addAttribute("aula",aula);
+            model.addAttribute("diasSemana",DiaSemana.values());
+            model.addAttribute("professores", professores);
+            model.addAttribute("mensagensErro", errors);
+
+            return "/aulas/aula";
+        }
+
+        try {
+            aulaDao.save(aula);
+            return "redirect:/aulas/list";
+
+        } catch (ConstraintViolationException e) {
+            return "redirect:/aulas/list";
+        }
     }
-
 }

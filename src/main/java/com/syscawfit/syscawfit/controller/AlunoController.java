@@ -116,7 +116,28 @@ public class AlunoController {
 	}
 
 	@PostMapping("/update")
-	public  String atualizarAluno(Aluno aluno, Model model){
+	public  String atualizarAluno(@Valid Aluno aluno, BindingResult result, Model model){
+
+//		List<String> errors = new ArrayList<>();
+//
+//		if (result.hasErrors()) {
+//			result.getAllErrors().forEach(error -> {
+//				errors.add(error.getDefaultMessage());
+//			});
+//		}
+//
+//		if (alunoDao.findByCpf(aluno.getCpf()) != null) {
+//			errors.add("Não é possível efetuar essa alteração. CPF já existe!");
+//		}
+//
+//		if (!errors.isEmpty()) {
+//			model.addAttribute("aluno", aluno);
+//			model.addAttribute("planos", TipoPlano.values());
+//			model.addAttribute("mensagensErro", errors);
+//
+//			return "/aluno/aluno.html";
+//		}
+
 		aluno.setId(alunoDao.findByCpf(aluno.getCpf()).getId());
 
 		enderecoDao.save(aluno.getEndereco());
@@ -124,7 +145,6 @@ public class AlunoController {
 
 		return "redirect:/aluno/list";
 	}
-
 
 }
 
