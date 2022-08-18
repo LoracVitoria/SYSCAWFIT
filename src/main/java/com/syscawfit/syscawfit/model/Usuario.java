@@ -2,6 +2,7 @@ package com.syscawfit.syscawfit.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.Objects;
 
 @Entity
 public class Usuario{
@@ -15,24 +16,21 @@ public class Usuario{
     private String telefone;
     private String email;
     private Boolean situacao;
-    private Boolean mantenedor;
     private String senha;
-     @Transient
-    private String imagemUsuario;
-    @OneToOne
-    @JoinColumn(name = "endereco_id")
+//    private String imagemUsuario;
+
+    @NotNull
+    @OneToOne(cascade = CascadeType.REMOVE)
     private EnderecoUsuario endereco;
     @NotNull
-    @Column(unique = true)
     @Enumerated(EnumType.STRING)
     private TipoUsuario tipoUsuario;
     @NotNull
-    @Column(unique = true)
     @Enumerated(EnumType.STRING)
     private TipoFuncionario tipoFuncionario;
-    public Usuario() {
 
-    }
+    public Usuario() {}
+
 
     public EnderecoUsuario getEndereco() {
         return endereco;
@@ -99,14 +97,6 @@ public class Usuario{
         this.situacao = situacao;
     }
 
-    public Boolean getMantenedor() {
-        return mantenedor;
-    }
-
-    public void setMantenedor(Boolean mantenedor) {
-        this.mantenedor = mantenedor;
-    }
-
     public String getSenha() {
         return senha;
     }
@@ -129,5 +119,42 @@ public class Usuario{
 
     public void setTipoFuncionario(TipoFuncionario tipoFuncionario) {
         this.tipoFuncionario = tipoFuncionario;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", cpf='" + cpf + '\'' +
+                ", rg='" + rg + '\'' +
+                ", telefone='" + telefone + '\'' +
+                ", email='" + email + '\'' +
+                ", situacao=" + situacao +
+                ", senha='" + senha + '\'' +
+//                ", imagemUsuario='" + imagemUsuario + '\'' +
+                ", endereco=" + endereco +
+                ", tipoUsuario=" + tipoUsuario +
+                ", tipoFuncionario=" + tipoFuncionario +
+                '}';
+    }
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Usuario usuario = (Usuario) o;
+        return Objects.equals(id, usuario.id) && Objects.equals(nome, usuario.nome)
+                && Objects.equals(cpf, usuario.cpf) && Objects.equals(rg, usuario.rg)
+                && Objects.equals(telefone, usuario.telefone) && Objects.equals(email, usuario.email)
+                && Objects.equals(situacao, usuario.situacao)
+                && Objects.equals(senha, usuario.senha) && Objects.equals(endereco, usuario.endereco)
+                && tipoUsuario == usuario.tipoUsuario && tipoFuncionario == usuario.tipoFuncionario;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nome, cpf, rg, telefone, email, situacao, senha, endereco, tipoUsuario, tipoFuncionario);
     }
 }

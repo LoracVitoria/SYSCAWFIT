@@ -3,7 +3,7 @@ package com.syscawfit.syscawfit.model;
 public enum TipoUsuario {
     Funcionario("Funcionário"),
     Mantenedor("Mantenedor");
-    private String tipoUsuario;
+    private final String tipoUsuario;
 
     TipoUsuario(String tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
@@ -13,4 +13,8 @@ public enum TipoUsuario {
         return tipoUsuario;
     }
 
+//    @Override
+//    public String toString() {
+//        return  this.tipoUsuario;
+//    }
 }

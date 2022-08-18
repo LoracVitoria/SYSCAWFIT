@@ -15,8 +15,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long> {
     @Override
     Usuario getById(Long aLong);
 
-    @Override
-    <S extends Usuario> S save(S entity);
 
     Usuario findByCpf(String username);
 

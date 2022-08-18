@@ -3,12 +3,8 @@ package com.syscawfit.syscawfit.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.Objects;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
 @Entity
 public class EnderecoUsuario {
 
@@ -22,6 +18,18 @@ public class EnderecoUsuario {
     private String cidade;
     private String uf;
     private String pais;
+
+    public EnderecoUsuario(String cep, String logradouro, Long numero, String bairro, String cidade, String uf, String pais) {
+        this.cep = cep;
+        this.logradouro = logradouro;
+        this.numero = numero;
+        this.bairro = bairro;
+        this.cidade = cidade;
+        this.uf = uf;
+        this.pais = pais;
+    }
+    public EnderecoUsuario() {}
+
 
 
     public Long getId() {
@@ -86,5 +94,32 @@ public class EnderecoUsuario {
 
     public void setPais(String pais) {
         this.pais = pais;
+    }
+
+    @Override
+    public String toString() {
+        return "EnderecoUsuario{" +
+                "id=" + id +
+                ", cep='" + cep + '\'' +
+                ", logradouro='" + logradouro + '\'' +
+                ", numero=" + numero +
+                ", bairro='" + bairro + '\'' +
+                ", cidade='" + cidade + '\'' +
+                ", uf='" + uf + '\'' +
+                ", pais='" + pais + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EnderecoUsuario that = (EnderecoUsuario) o;
+        return Objects.equals(id, that.id) && Objects.equals(cep, that.cep) && Objects.equals(logradouro, that.logradouro) && Objects.equals(numero, that.numero) && Objects.equals(bairro, that.bairro) && Objects.equals(cidade, that.cidade) && Objects.equals(uf, that.uf) && Objects.equals(pais, that.pais);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, cep, logradouro, numero, bairro, cidade, uf, pais);
     }
 }

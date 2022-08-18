@@ -13,6 +13,8 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/menu.css}">
     <link rel="stylesheet" th:href="@{/css/usuario/cadastro-usuario.css}">
+    <link rel="stylesheet" th:href="@{/css/usuario/listar-usuario.css}">
+
 
     <!--Jquery-->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
@@ -75,7 +77,9 @@
                                         <th>Telefone</th>
                                         <th>Situação</th>
                                         <th>Tipo de Usuário</th>
-                                    </tr>
+                                        <th>Tipo de Funcionário</th>
+                                        <th>Opções<tr/>
+
                                     </thead>
                                     <tbody>
                                     <!-- usando o thymeleaf para iterar na lista  -->
@@ -87,18 +91,19 @@
                                         <td th:text="${usuario.email}" />
                                         <td th:text="${usuario.telefone}"/>
                                         <td th:text="${usuario.situacao}"/>
-                                        <td th:text="${usuario.tipoUsuario}"/>
+                                        <td th:text="${usuario.tipoUsuario.tipoUsuario}"/>
+                                        <td th:text="${usuario.tipoFuncionario.tipoFuncionario}"/>
 
 
 
                                         <!-- opção de excluir  -->
                                         <td><a th:href="@{/usuario/delete/{id}(id=${usuario.id})}">
-                                            <i class="bi bi-dash-circle" title="delete"></i>
-                                        </a></td>
+                                            <i class="but" title="delete">Excluir</i>
+                                        </a>
 
                                         <!-- opção de editar  -->
-                                        <td><a th:href="@{/usuario/update/{id}(id=${usuario.id})}">
-                                            <i class="bi bi-pencil" title="editar"></i>
+                                        <a th:href="@{/usuario/update/{id}(id=${usuario.id})}">
+                                            <i class="bi bi-pencil" title="editar">Editar</i>
                                         </a></td>
                                     </tr>
                                     </tbody>

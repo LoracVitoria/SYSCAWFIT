@@ -1,0 +1,23 @@
+.button-pesquisar{
+    background: #BFBFBF;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    color: #062A40;
+    margin-right: 10px;
+}
+
+.button-pesquisar:hover {
+    background: #062A40;
+    color: white;
+}
+
+.button-novo {
+    background: #91B021;
+    color: white;
+}
+
+.button-novo:hover {
+    background: #062A40;
+    color: #ECF229;
+}
