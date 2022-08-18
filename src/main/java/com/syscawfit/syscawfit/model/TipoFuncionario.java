@@ -7,7 +7,7 @@ public enum TipoFuncionario {
     Treinador("Treinador"),
     Limpeza("Limpeza"),
     Financeiro("Financeiro");
-    private String tipoFuncionario;
+    private final String tipoFuncionario;
 
     TipoFuncionario(String tipoFuncionario) {
         this.tipoFuncionario = tipoFuncionario;
@@ -17,4 +17,8 @@ public enum TipoFuncionario {
         return tipoFuncionario;
     }
 
+//    @Override
+//    public String toString() {
+//        return this.tipoFuncionario;
+//    }
 }

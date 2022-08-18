@@ -62,24 +62,24 @@
                     <!--DATA NASCIMENTO-->
                     <div class="col m-2">
                         <label for="inputPassword6" class="col-form-label">RG *</label>
-                        <input type="date" id="rg" th:field="${usuario.rg}" class="form-control" onblur='validaRG()' >
+                        <input type="text" id="rg" th:field="${usuario.rg}" class="form-control" >
                     </div>
                 </div>
             </div>
 
-            <!--Imagem do Aluno-->
-            <div class="col segunda-coluna border">
-                <label class="picture form-control" for="picture__input" tabindex="0">
-                    <input type="file" accept="image/*" id="picture__input" th:field="${usuario.imagemUsuario}">
-                    <span>
-                                <img class="picture__image"  alt="">Selecione uma imagem
+            <!--Imagem-->
+<!--            <div class="col segunda-coluna border">-->
+<!--                <label class="picture form-control" for="picture__input" tabindex="0">-->
+<!--                    <input type="file" accept="image/*" id="picture__input" th:field="${usuario.imagemUsuario}">-->
+<!--                    <span>-->
+<!--                                <img class="picture__image"  alt="">Selecione uma imagem-->
 
-                            </span>
-                </label>
-                <!-- <div class="container-imagem">
-                    <img th:src="@{/img/}" alt="Selecione uma imagem" class="imagem-aluno" id="imgPhoto">
-                </div> -->
-            </div>
+<!--                            </span>-->
+<!--                </label>-->
+<!--                &lt;!&ndash; <div class="container-imagem">-->
+<!--                    <img th:src="@{/img/}" alt="Selecione uma imagem" class="imagem-aluno" id="imgPhoto">-->
+<!--                </div> &ndash;&gt;-->
+<!--            </div>-->
 
             <div class="row">
                 <div class="row">
@@ -99,22 +99,22 @@
 
                 <!--TIPO DE USUARIO-->
                 <div class="col-3 m-2">
-                    <label for="inputPassword6" class="col-form-label">*</label>
-                    <select class="form-select" th:field="${tipo.usuario}" aria-label="select example" onblur="validaCampo()">
-                        <option th:each="tipoUsuario : ${tipoUsuarios}"
+                    <label for="inputPassword6" class="col-form-label">Tipo de Usuário *</label>
+                    <select class="form-select" th:field="${usuario.tipoUsuario}" aria-label="select example" onblur="validaCampo()">
+                        <option th:each="tipoUsuario : ${T(com.syscawfit.syscawfit.model.TipoUsuario).values()}"
                                 th:value="${tipoUsuario}"
-                                th:text="${tipoUsuario}"/>
+                                th:text="${tipoUsuario.tipoUsuario}"/>
                     </select>
                     <div class="invalid-feedback">Selecione uma opção</div>
                 </div>
 
                 <!--TIPO DE FUNCIONARIO-->
                 <div class="col-3 m-2">
-                    <label for="inputPassword6" class="col-form-label">*</label>
-                    <select class="form-select" th:field="${tipo.funcionario}" aria-label="select example" onblur="validaCampo()">
-                        <option th:each="tipoFuncionario : ${tipoFuncionarios}"
+                    <label for="inputPassword6" class="col-form-label">Tipo de Funcionário *</label>
+                    <select class="form-select" th:field="${usuario.tipoFuncionario}" aria-label="select example" onblur="validaCampo()">
+                        <option th:each="tipoFuncionario : ${T(com.syscawfit.syscawfit.model.TipoFuncionario).values()}"
                                 th:value="${tipoFuncionario}"
-                                th:text="${tipoFuncionario}"/>
+                                th:text="${tipoFuncionario.tipoFuncionario}"/>
                     </select>
                     <div class="invalid-feedback">Selecione uma opção</div>
                 </div>
@@ -122,7 +122,16 @@
                 <!-- SITUACAO -->
                 <div class="col-3 m-2">
                     <label for="inputPassword6" class="col-form-label">Situação *</label>
-
+                    </br>
+                    <input type="checkbox" data-toggle="toggle" data-on="Enable" data-off="Disable" th:field="${usuario.situacao}">
+                    <script>
+                        $(function() {
+                            $('#toggle-two').bootstrapToggle({
+                                on: 'Ativo',
+                                off: 'Inativo'
+                            });
+                        })
+                    </script>
                 </div>
 
             </div>
@@ -133,7 +142,7 @@
                 <!--CEP-->
                 <div class="col-2 m-2">
                     <label for="inputPassword6" class="col-form-label">CEP *</label>
-                    <input type="text" id="cep" th:field="${usuario.endereco.cep}"class="form-control">
+                    <input type="text" id="cep" th:field="${usuario.endereco.cep}" class="form-control">
                     <div class="invalid-feedback">CEP não encontrado</div>
                 </div>
                 <!--LOGRADOURO-->
