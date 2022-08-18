@@ -39,140 +39,295 @@
 
         <!--FORMULÁRIO-->
 
+        <!--Formulário-->
+
         <form class="row overflow-auto conteudo mx-2 formulario-usuario" th:object="${usuario}" action="/usuario/save" method="post">
 
-            <div class="col-md-4">
-                <label for="validationCustom01" class="form-label">Nome:  </label>
-                <input type="text" class="form-control" id="validationCustom01" th:field="${usuario.nome}" required>
-            </div>
-            <div class="col-md-4">
-                <label for="validationCustom02" class="form-label" >CPF: </label>
-                <input type="text" class="form-control" id="validationCustom02" th:field="${usuario.cpf}" required>
-            </div>
-            <br/>
-            <div class="col-md-4">
-                <label for="validationCustom02" class="form-label" >RG: </label>
-                <input type="text" class="form-control" id="validationCustom02" th:field="${usuario.rg}" required>
-            </div>
-            <br/>
-            <div class="col-md-4">
-                <label for="validationCustomUsername" class="form-label">E-mail: </label>
-                <div class="input-group has-validation">
-                    <span class="input-group-text" id="inputGroupPrepend" th:field="${usuario.email}">@</span>
-                    <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>
-                    <div class="invalid-feedback">
-                        Por favor, insira um e-mail válido!
+            <div class="col-9 primeira-coluna">
+                <!--NOME COMPLETO-->
+                <div class="row">
+                    <div class="col m-2 mt-3 ">
+                        <label for="inputPassword6" class="col-form-label">Nome completo *</label>
+                        <input type="text" id="nome" th:field="${usuario.nome}" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!--CPF-->
+                    <div class="col m-2">
+                        <label for="inputPassword6" class="col-form-label">CPF *</label>
+                        <input type="text" id="cpf" th:field="${usuario.cpf}" class="form-control" onblur='validaCPF()' >
+                        <div class="invalid-feedback">CPF inválido</div>
+                    </div>
+                    <!--DATA NASCIMENTO-->
+                    <div class="col m-2">
+                        <label for="inputPassword6" class="col-form-label">RG *</label>
+                        <input type="date" id="rg" th:field="${usuario.rg}" class="form-control" onblur='validaRG()' >
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <label for="validationCustom03" class="form-label" >Telefone: </label>
-                <input type="text" class="form-control" id="validationCustom03" th:field="${usuario.telefone}" required>
-                <div class="invalid-feedback">
-                    Por favor, insira um telefone!
-                </div>
-            </div>
-            <br/>
-            <br/>
-            <div class="col-md-3">
-                <label for="validationCustom04" class="form-label">Tipo de Usuário: </label>
-                <select class="form-select" id="validationCustom04" required>
-                    <option selected disabled value=false>Escolha uma opção</option>
-                    <option th:field="${usuario.tipoUsuario}">Administrador</option>
-                    <option th:field="${usuario.tipoUsuario}">Treinador</option>
-                    <option th:field="${usuario.tipoUsuario}">Limpeza</option>
-                    <option th:field="${usuario.tipoUsuario}">RH</option>
 
-                </select>
-                <div class="invalid-feedback">
-                    Por favor, selecione um valor válido!
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <p></p>
-                <label for="validationCustom05" class="form-label">Situação: </label>
-                <label class="switch">
-                    <input type="checkbox" th:field="${usuario.situacao}">
-                    <span class="slider round"></span>
-                </label>
-            <br/>
-                </div>
-                <div class="col segunda-coluna bord/etc/apt/sources.lister">
-                    <label class="picture form-control" for="picture__input" tabindex="0">
-                        <input type="file" accept="image/*" id="picture__input">
-                        <span>
-                                <img class="picture__image"  alt="" th:field="${usuario.imagem}">Selecione uma imagem!
+            <!--Imagem do Aluno-->
+            <div class="col segunda-coluna border">
+                <label class="picture form-control" for="picture__input" tabindex="0">
+                    <input type="file" accept="image/*" id="picture__input" th:field="${usuario.imagemUsuario}">
+                    <span>
+                                <img class="picture__image"  alt="">Selecione uma imagem
 
                             </span>
-                    </label>
-                </div>
-            <div class="col-12">
-                <button class="btn btn-primary" type="submit">Salvar</button>
+                </label>
+                <!-- <div class="container-imagem">
+                    <img th:src="@{/img/}" alt="Selecione uma imagem" class="imagem-aluno" id="imgPhoto">
+                </div> -->
             </div>
-            <br/>
 
-            <!--ENDEREÇO-->
-            <section class="container__endereco">
-                <h5 class="titulo-endereco">Endereço</h5>
-
+            <div class="row">
                 <div class="row">
-                    <div class="col-md-4">
-                        <label for="validationServer03" class="form-label">CEP</label>
-                        <input type="text" class="form-control is-invalid" th:field="${usuario.endereco.cep} id="validationServer03" aria-describedby="validationServer03Feedback" required>
-                        <div id="validationServer03Feedback" class="invalid-feedback">
-                           Por favor, insira um CEP válido!.
-                        </div>
+                    <!--TELEFONE-->
+                    <div class="col m-2 ">
+                        <label for="inputPassword6" class="col-form-label">Telefone *</label>
+                        <input type="text" id="telefone" th:field="${usuario.telefone}" class="form-control" placeholder="(00) 00000-0000">
+                        <div class="invalid-feedback">Telefone inválido</div>
                     </div>
-
-                    <div class="col-md-8">
-                        <label for="validationServer03" class="form-label">Rua</label>
-                        <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" th:field="${usuario.endereco.logradouro}" required>
+                    <!--E-MAIL-->
+                    <div class="col-7 m-2">
+                        <label for="inputPassword6" class="col-form-label">E-mail *</label>
+                        <input type="email" id="email" th:field="${usuario.email}" class="form-control" >
+                        <div class="invalid-feedback">E-mail inválido</div>
                     </div>
                 </div>
 
-                <div class="row">
-
-                    <div class="col-md-2">
-                        <label for="validationServer03" class="form-label">Nº</label>
-                        <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" th:field="${usuario.endereco.numero}" required>
-                    </div>
-
-                    <div class="col-md-5">
-                        <label for="validationServer03" class="form-label">Bairro</label>
-                        <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" th:field="${usuario.endereco.bairro}"  required>
-                    </div>
-
-                    <div class="col-md-5">
-                        <label for="validationServer04" class="form-label">Cidade</label>
-                        <select class="form-select is-invalid" id="validationServer04" aria-describedby="validationServer04Feedback" th:field="${usuario.endereco.cidade}" required>
-                            <option selected disabled value="">Selecione</option>
-                            <option>...</option>
-                        </select>
-                    </div>
+                <!--TIPO DE USUARIO-->
+                <div class="col-3 m-2">
+                    <label for="inputPassword6" class="col-form-label">*</label>
+                    <select class="form-select" th:field="${tipo.usuario}" aria-label="select example" onblur="validaCampo()">
+                        <option th:each="tipoUsuario : ${tipoUsuarios}"
+                                th:value="${tipoUsuario}"
+                                th:text="${tipoUsuario}"/>
+                    </select>
+                    <div class="invalid-feedback">Selecione uma opção</div>
                 </div>
 
-                <div class="row">
-                    <div class="col-md-3">
-                        <label for="validationServer04" class="form-label">UF</label>
-                        <select class="form-select is-invalid" id="validationServer04" aria-describedby="validationServer04Feedback" th:field="${usuario.endereco.uf}" required>
-                            <option selected disabled value="">Selecione...</option>
-                            <option>...</option>
-                        </select>
-                    </div>
-
-                    <div class="col-md-3">
-                        <label for="validationServer04" class="form-label">País</label>
-                        <select class="form-select is-invalid" id="validationServer04" aria-describedby="validationServer04Feedback" th:field="${usuario.endereco.pais}"  required>
-                            <option selected disabled value="">Selecione...</option>
-                            <option>...</option>
-                        </select>
-                    </div>
+                <!--TIPO DE FUNCIONARIO-->
+                <div class="col-3 m-2">
+                    <label for="inputPassword6" class="col-form-label">*</label>
+                    <select class="form-select" th:field="${tipo.funcionario}" aria-label="select example" onblur="validaCampo()">
+                        <option th:each="tipoFuncionario : ${tipoFuncionarios}"
+                                th:value="${tipoFuncionario}"
+                                th:text="${tipoFuncionario}"/>
+                    </select>
+                    <div class="invalid-feedback">Selecione uma opção</div>
                 </div>
-            </section>
+
+                <!-- SITUACAO -->
+                <div class="col-3 m-2">
+                    <label for="inputPassword6" class="col-form-label">Situação *</label>
+
+                </div>
+
+            </div>
+
+            <h5 class="endereco-titulo mt-4">Endereço</h5>
+
+            <div class="row">
+                <!--CEP-->
+                <div class="col-2 m-2">
+                    <label for="inputPassword6" class="col-form-label">CEP *</label>
+                    <input type="text" id="cep" th:field="${usuario.endereco.cep}"class="form-control">
+                    <div class="invalid-feedback">CEP não encontrado</div>
+                </div>
+                <!--LOGRADOURO-->
+                <div class="col mt-2">
+                    <label for="inputPassword6" class="col-form-label">Logradouro *</label>
+                    <input type="text" id="logradouro" th:field="${usuario.endereco.logradouro}" class="form-control" >
+                    <div class="invalid-feedback">Logradouro não informado</div>
+                </div>
+                <!--Nº-->
+                <div class="col-2 mt-2">
+                    <label for="inputPassword6" class="col-form-label">Nº *</label>
+                    <input type="text" id="numero" th:field="${usuario.endereco.numero}" class="form-control" >
+                    <div class="invalid-feedback">Nº não informado</div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!--BAIRRO-->
+                <div class="col m-2">
+                    <label for="inputPassword6" class="col-form-label">Bairro *</label>
+                    <input type="text" id="bairro" th:field="${usuario.endereco.bairro}" class="form-control" >
+                    <div class="invalid-feedback">Bairro não informado</div>
+                </div>
+                <!--CIDADE-->
+                <div class="col mt-2">
+                    <label for="inputPassword6" class="col-form-label">Cidade *</label>
+                    <input type="text" id="localidade" th:field="${usuario.endereco.cidade}" class="form-control" >
+                    <div class="invalid-feedback">Cidade não informada</div>
+                </div>
+                <!--ESTADO-->
+                <div class="col-2 mt-2">
+                    <label for="inputPassword6" class="col-form-label">UF *</label>
+                    <input type="text" id="uf" th:field="${usuario.endereco.uf}" class="form-control" >
+                    <div class="invalid-feedback">UF não informada</div>
+                </div>
+            </div>
+
+            <div class="row">
+                <!--PAÍS-->
+                <div class="col-3 m-2">
+                    <label for="inputPassword6" class="col-form-label">País *</label>
+                    <input type="text" id="pais" th:field="${usuario.endereco.pais}" class="form-control" >
+                    <div class="invalid-feedback">País não informado</div>
+
+                </div>
+                <div class="col mt-2 buttons">
+                    <button type="submit" class="btn btn-primary button-cadastro mx-2 mb-4">
+                        <i class="bi bi-cloud-upload p-2"></i>Cadastrar
+                    </button>
+
+                    <button type="reset" class="btn btn-primary  button-cancelar mb-4">
+                        <i class="bi bi-x-lg text-danger p-2"></i>Cancelar
+                    </button>
+                </div>
+            </div>
         </form>
     </main>
 </div>
+
+
+<!--        <form class="row overflow-auto conteudo mx-2 formulario-usuario" th:object="${usuario}" action="/usuario/save" method="post">-->
+<!--            <div-->
+<!--            <div class="col-md-4">-->
+<!--                <label for="validationCustom01" class="col-form-label">Nome:  </label>-->
+<!--                <input type="text" class="form-control" id="validationCustom01" th:field="${usuario.nome}" required>-->
+<!--            </div>-->
+<!--            <div class="col-md-4">-->
+<!--                <label for="validationCustom02" class="col-form-label" >CPF: </label>-->
+<!--                <input type="text" class="form-control" id="validationCustom02" th:field="${usuario.cpf}" required>-->
+<!--            </div>-->
+<!--            <br/>-->
+<!--            <div class="col m-2">-->
+<!--                <label for="inputPassword6" class="col-form-label" >RG: </label>-->
+<!--                <input type="text" class="form-control" id="validationCustom02" th:field="${usuario.rg}" required>-->
+<!--            </div>-->
+<!--            <br/>-->
+<!--            <div class="col-md-4">-->
+<!--                <label for="validationCustomUsername" class="form-label">E-mail: </label>-->
+<!--                <div class="input-group has-validation">-->
+<!--                    <span class="input-group-text" id="inputGroupPrepend" th:field="${usuario.email}">@</span>-->
+<!--                    <input type="text" class="form-control" id="validationCustomUsername" aria-describedby="inputGroupPrepend" required>-->
+<!--                    <div class="invalid-feedback">-->
+<!--                        Por favor, insira um e-mail válido!-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="col-md-6">-->
+<!--                <label for="validationCustom03" class="form-label" >Telefone: </label>-->
+<!--                <input type="text" class="form-control" id="validationCustom03" th:field="${usuario.telefone}" required>-->
+<!--                <div class="invalid-feedback">-->
+<!--                    Por favor, insira um telefone!-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <br/>-->
+<!--            <br/>-->
+<!--            <div class="col-md-3">-->
+<!--                <label for="validationCustom04" class="form-label">Tipo de Usuário: </label>-->
+<!--                <select class="form-select" id="validationCustom04" required>-->
+<!--                    <option selected disabled value=false>Escolha uma opção</option>-->
+<!--                    <option th:field="${usuario.tipoUsuario}">Administrador</option>-->
+<!--                    <option th:field="${usuario.tipoUsuario}">Treinador</option>-->
+<!--                    <option th:field="${usuario.tipoUsuario}">Limpeza</option>-->
+<!--                    <option th:field="${usuario.tipoUsuario}">RH</option>-->
+
+<!--                </select>-->
+<!--                <div class="invalid-feedback">-->
+<!--                    Por favor, selecione um valor válido!-->
+<!--                </div>-->
+<!--            </div>-->
+
+<!--            <div class="col-md-3">-->
+<!--                <p></p>-->
+<!--                <label for="validationCustom05" class="form-label">Situação: </label>-->
+<!--                <label class="switch">-->
+<!--                    <input type="checkbox" th:field="${usuario.situacao}">-->
+<!--                    <span class="slider round"></span>-->
+<!--                </label>-->
+<!--            <br/>-->
+<!--                </div>-->
+<!--                <div class="col segunda-coluna bord/etc/apt/sources.lister">-->
+<!--                    <label class="picture form-control" for="picture__input" tabindex="0">-->
+<!--                        <input type="file" accept="image/*" id="picture__input">-->
+<!--                        <span>-->
+<!--                                <img class="picture__image"  alt="" th:field="${usuario.imagem}">Selecione uma imagem!-->
+
+<!--                            </span>-->
+<!--                    </label>-->
+<!--                </div>-->
+<!--            <div class="col-12">-->
+<!--                <button class="btn btn-primary" type="submit">Salvar</button>-->
+<!--            </div>-->
+<!--            <br/>-->
+
+<!--            &lt;!&ndash;ENDEREÇO&ndash;&gt;-->
+<!--            <section class="container__endereco">-->
+<!--                <h5 class="titulo-endereco">Endereço</h5>-->
+
+<!--                <div class="row">-->
+<!--                    <div class="col-md-4">-->
+<!--                        <label for="validationServer03" class="form-label">CEP</label>-->
+<!--                        <input type="text" class="form-control is-invalid" th:field="${usuario.endereco.cep} id="validationServer03" aria-describedby="validationServer03Feedback" required>-->
+<!--                        <div id="validationServer03Feedback" class="invalid-feedback">-->
+<!--                           Por favor, insira um CEP válido!.-->
+<!--                        </div>-->
+<!--                    </div>-->
+
+<!--                    <div class="col-md-8">-->
+<!--                        <label for="validationServer03" class="form-label">Rua</label>-->
+<!--                        <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" th:field="${usuario.endereco.logradouro}" required>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div class="row">-->
+
+<!--                    <div class="col-md-2">-->
+<!--                        <label for="validationServer03" class="form-label">Nº</label>-->
+<!--                        <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" th:field="${usuario.endereco.numero}" required>-->
+<!--                    </div>-->
+
+<!--                    <div class="col-md-5">-->
+<!--                        <label for="validationServer03" class="form-label">Bairro</label>-->
+<!--                        <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" th:field="${usuario.endereco.bairro}"  required>-->
+<!--                    </div>-->
+
+<!--                    <div class="col-md-5">-->
+<!--                        <label for="validationServer04" class="form-label">Cidade</label>-->
+<!--                        <select class="form-select is-invalid" id="validationServer04" aria-describedby="validationServer04Feedback" th:field="${usuario.endereco.cidade}" required>-->
+<!--                            <option selected disabled value="">Selecione</option>-->
+<!--                            <option>...</option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div class="row">-->
+<!--                    <div class="col-md-3">-->
+<!--                        <label for="validationServer04" class="form-label">UF</label>-->
+<!--                        <select class="form-select is-invalid" id="validationServer04" aria-describedby="validationServer04Feedback" th:field="${usuario.endereco.uf}" required>-->
+<!--                            <option selected disabled value="">Selecione...</option>-->
+<!--                            <option>...</option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+
+<!--                    <div class="col-md-3">-->
+<!--                        <label for="validationServer04" class="form-label">País</label>-->
+<!--                        <select class="form-select is-invalid" id="validationServer04" aria-describedby="validationServer04Feedback" th:field="${usuario.endereco.pais}"  required>-->
+<!--                            <option selected disabled value="">Selecione...</option>-->
+<!--                            <option>...</option>-->
+<!--                        </select>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </section>-->
+<!--        </form>-->
+<!--    </main>-->
+<!--</div>-->
 
     <!-- RODAPÉ-->
     <footer class="row linha-rodape">
@@ -183,6 +338,11 @@
 
     <!-- JavaScript Bundle with Popper -->
     <script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/aluno/endereco.js}"></script>
+<script type="text/javascript" th:src="@{/js/aluno/validacao-cpf.js}"></script>
+<script type="text/javascript" th:src="@{/js/aluno/mascaras.js}"></script>
+
     </body>
 </html>
 
