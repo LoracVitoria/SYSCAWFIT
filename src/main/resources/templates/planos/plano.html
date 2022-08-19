@@ -35,8 +35,14 @@
                 <!--Mensal-->
                 <div class="col">
                   <div class="card mt-3 ">
-                    <h5 class="card-header text-center">Mensal</h5>
-                    <div class="card-body card-plano" id="planos-mensal">
+                    <h5 class="card-header text-center">Mensal
+                      <td><a th:href="@{/planos/delete/{id}(id=${planoMensal.id})}">
+                        <i th:if="${planoMensal.valor}" class="bi bi-x" title="excluir"></i>
+                      </a></td>
+                    </h5>
+                    <div class="card-body card-plano">
+                      <h5 th:if="${planoMensal.valor}" th:text="${'R$ ' + planoMensal.valor}" class="text-center"></h5>
+                      <h5 th:unless="${planoMensal.valor}" class="text-center">-</h5>
                     </div>
                   </div>
                 </div>
@@ -44,8 +50,14 @@
                 <!--Trimestral-->
                 <div class="col">
                   <div class="card mt-3">
-                    <h5 class="card-header text-center">Trimestral</h5>
-                    <div class="card-body card-plano" id="planos-trimestral">
+                    <h5 class="card-header text-center">Trimestral
+                      <td><a th:href="@{/planos/delete/{id}(id=${planoTrimestral.id})}">
+                        <i th:if="${planoTrimestral.valor}" class="bi bi-x" title="excluir"></i>
+                      </a></td>
+                    </h5>
+                    <div class="card-body card-plano">
+                      <h5 th:if="${planoTrimestral.valor}" th:text="${'R$ ' + planoTrimestral.valor}" class="text-center"></h5>
+                      <h5 th:unless="${planoTrimestral.valor}" class="text-center">-</h5>
                     </div>
                   </div>
                 </div>
@@ -53,8 +65,14 @@
                 <!--Semestral-->
                 <div class="col">
                   <div class="card mt-3">
-                    <h5 class="card-header text-center">Semestral</h5>
-                    <div class="card-body card-plano" id="planos-semestral">
+                    <h5 class="card-header text-center">Semestral
+                      <td><a th:href="@{/planos/delete/{id}(id=${planoSemestral.id})}">
+                        <i th:if="${planoSemestral.valor}" class="bi bi-x" title="excluir"></i>
+                      </a></td>
+                    </h5>
+                    <div class="card-body card-plano">
+                      <h5 th:if="${planoSemestral.valor}" th:text="${'R$ ' + planoSemestral.valor}" class="text-center"></h5>
+                      <h5 th:unless="${planoSemestral.valor}" class="text-center">-</h5>
                     </div>
                   </div>
                 </div>
@@ -62,8 +80,14 @@
                 <!--Anual-->
                 <div class="col">
                   <div class="card mt-3">
-                    <h5 class="card-header text-center">Anual</h5>
-                    <div class="card-body card-plano" id="planos-anual">
+                    <h5 class="card-header text-center">Anual
+                      <td><a th:href="@{/planos/delete/{id}(id=${planoAnual.id})}">
+                        <i th:if="${planoAnual.valor}" class="bi bi-x" title="excluir"></i>
+                      </a></td>
+                    </h5>
+                    <div class="card-body card-plano">
+                      <h5 th:if="${planoAnual.valor}" th:text="${'R$ ' + planoAnual.valor}" class="text-center"></h5>
+                      <h5 th:unless="${planoAnual.valor}" class="text-center">-</h5>
                     </div>
                   </div>
                 </div>
@@ -101,14 +125,11 @@
                             <i class="bi bi-plus-square p-2"></i>Salvar
                           </button>
                           </div>
-                          
                         </div>
                       </form>
                     </div>
                   </div>    
-
               </div>
-                
               </div>
             </div>
           </main>
@@ -120,70 +141,6 @@
               <p>Todos os direitos reservados - 2022.</p>
           </div>
       </footer>
-
-      <script th:inline="javascript">
-        const mensal = document.getElementById("planos-mensal");
-        const trimestral = document.getElementById("planos-trimestral")
-        const semestral = document.getElementById("planos-semestral")
-        const anual = document.getElementById("planos-anual")
-
-        const planos = [[${planos}]]
-
-        planos.forEach(plano => {
-          let element = document.createElement('h5');
-          element.setAttribute("class", "card-title text-center");
-          element.innerText = `R$ ${plano.valor}`;
-
-          switch (plano.tipo) {
-            case 'Mensal':
-              mensal.appendChild(element);
-              break;
-
-            case 'Trimestral':
-              trimestral.appendChild(element);
-              break;
-
-            case 'Semestral':
-              semestral.appendChild(element);
-              break;
-
-            case 'Anual':
-              anual.appendChild(element);
-              break;
-          }
-        })
-
-        
-
-        if (mensal.childElementCount == 0) {
-          let element = document.createElement('h5');
-          element.setAttribute("class", "card-title text-center");
-          element.innerText = '-';
-          mensal.appendChild(element)
-        }
-
-        if (trimestral.childElementCount == 0) {
-          let element = document.createElement('h5');
-          element.setAttribute("class", "card-title text-center");
-          element.innerText = '-';
-          trimestral.appendChild(element)
-        }
-        
-        if (semestral.childElementCount == 0) {
-          let element = document.createElement('h5');
-          element.setAttribute("class", "card-title text-center");
-          element.innerText = '-';
-          semestral.appendChild(element)
-        } 
-
-        if (anual.childElementCount == 0) {
-          let element = document.createElement('h5');
-          element.setAttribute("class", "card-title text-center");
-          element.innerText = '-';
-          anual.appendChild(element)
-        }
-
-      </script>
 
       <script type="text/javascript" th:src="@{/js/plano/script-planos.js}"></script>
       <!-- JavaScript Bundle with Popper -->
