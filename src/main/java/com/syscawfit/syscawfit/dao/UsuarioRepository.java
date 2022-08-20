@@ -18,7 +18,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long> {
 
     Usuario findByCpf(String username);
 
-
     //findAll, findById, get, save, delete,
 }
 
