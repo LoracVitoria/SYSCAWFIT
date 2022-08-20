@@ -29,8 +29,8 @@
         <nav th:replace="menu:: menu"/>
     </nav>
 <!--CONTEÚDO DA PÁGINA-->
-    <main class="col-9 border">
-        <div class="col mb-5">
+    <main class="col-9 border ">
+        <div class="col mb-4">
             <h1 class="header-titulo m-3">
                 <i class="bi bi-person-plus"></i>
                 Cadastrar
@@ -43,26 +43,29 @@
 
         <form class="row overflow-auto conteudo mx-2 formulario-usuario" th:object="${usuario}" action="/usuario/save" method="post">
 
-            <div class="col-9 primeira-coluna">
+            <div class="primeira-coluna">
                 <!--NOME COMPLETO-->
                 <div class="row">
-                    <div class="col m-2 mt-3 ">
+                    <div class="col m-0 mt-0 ">
                         <label for="inputPassword6" class="col-form-label">Nome completo *</label>
-                        <input type="text" id="nome" th:field="${usuario.nome}" class="form-control">
+                        <input type="text" id="nome" th:field="${usuario.nome}" class="form-control" required>
+                    </div>
+                    <div class="col-4 m-0 mt-0">
+                        <label for="inputPassword6" class="col-form-label">RG </label>
+                        <input type="text" id="rg" th:field="${usuario.rg}" class="form-control" >
                     </div>
                 </div>
 
                 <div class="row">
                     <!--CPF-->
-                    <div class="col m-2">
+                    <div class="col m-0">
                         <label for="inputPassword6" class="col-form-label">CPF *</label>
-                        <input type="text" id="cpf" th:field="${usuario.cpf}" class="form-control" onblur='validaCPF()' >
+                        <input type="text" id="cpf" th:field="${usuario.cpf}" class="form-control" onblur='validaCPF()' required>
                         <div class="invalid-feedback">CPF inválido</div>
                     </div>
-                    <!--DATA NASCIMENTO-->
-                    <div class="col m-2">
-                        <label for="inputPassword6" class="col-form-label">RG *</label>
-                        <input type="text" id="rg" th:field="${usuario.rg}" class="form-control" >
+                    <div class="col-5 m-0">
+                        <label for="inputPassword6" class="col-form-label">Senha *</label>
+                        <input type="password" id="senha" minlength="6" th:field="${usuario.cpf}" class="form-control" required >
                     </div>
                 </div>
             </div>
@@ -84,21 +87,22 @@
             <div class="row">
                 <div class="row">
                     <!--TELEFONE-->
-                    <div class="col m-2 ">
-                        <label for="inputPassword6" class="col-form-label">Telefone *</label>
+                    <div class="col m-0 ">
+                        <label for="inputPassword6" class="col-form-label">Telefone </label>
                         <input type="text" id="telefone" th:field="${usuario.telefone}" class="form-control" placeholder="(00) 00000-0000">
                         <div class="invalid-feedback">Telefone inválido</div>
                     </div>
                     <!--E-MAIL-->
                     <div class="col-7 m-2">
-                        <label for="inputPassword6" class="col-form-label">E-mail *</label>
+                        <label for="inputPassword6" class="col-form-label">E-mail </label>
                         <input type="email" id="email" th:field="${usuario.email}" class="form-control" >
                         <div class="invalid-feedback">E-mail inválido</div>
                     </div>
                 </div>
 
-                <!--TIPO DE USUARIO-->
-                <div class="col-3 m-2">
+                <div class="row">
+                    <!--TIPO DE USUARIO-->
+                <div class="col-5 m-0">
                     <label for="inputPassword6" class="col-form-label">Tipo de Usuário *</label>
                     <select class="form-select" th:field="${usuario.tipoUsuario}" aria-label="select example" onblur="validaCampo()">
                         <option th:each="tipoUsuario : ${T(com.syscawfit.syscawfit.model.TipoUsuario).values()}"
@@ -109,7 +113,7 @@
                 </div>
 
                 <!--TIPO DE FUNCIONARIO-->
-                <div class="col-3 m-2">
+                <div class="col-4 m-0">
                     <label for="inputPassword6" class="col-form-label">Tipo de Funcionário *</label>
                     <select class="form-select" th:field="${usuario.tipoFuncionario}" aria-label="select example" onblur="validaCampo()">
                         <option th:each="tipoFuncionario : ${T(com.syscawfit.syscawfit.model.TipoFuncionario).values()}"
@@ -120,9 +124,9 @@
                 </div>
 
                 <!-- SITUACAO -->
-                <div class="col-3 m-2">
+                <div class="col-2 m-0">
                     <label for="inputPassword6" class="col-form-label">Situação *</label>
-                    </br>
+                    <br/>
                     <input type="checkbox" data-toggle="toggle" data-on="Enable" data-off="Disable" th:field="${usuario.situacao}">
                     <script>
                         $(function() {
@@ -133,8 +137,8 @@
                         })
                     </script>
                 </div>
-
             </div>
+       </div>
 
             <h5 class="endereco-titulo mt-4">Endereço</h5>
 

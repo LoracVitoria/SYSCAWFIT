@@ -1,35 +1,81 @@
 package com.syscawfit.syscawfit.model;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class Usuario{
+public class Usuario {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String nome;
+    @NotNull
     private String cpf;
     private String rg;
     private String telefone;
     private String email;
     private Boolean situacao;
+    @NotNull
     private String senha;
 //    private String imagemUsuario;
 
-    @NotNull
     @OneToOne(cascade = CascadeType.REMOVE)
     private EnderecoUsuario endereco;
-    @NotNull
     @Enumerated(EnumType.STRING)
     private TipoUsuario tipoUsuario;
-    @NotNull
     @Enumerated(EnumType.STRING)
     private TipoFuncionario tipoFuncionario;
 
-    public Usuario() {}
+    public Usuario() {
+    }
+
+    private int active;
+
+    private String roles = "";
+
+    private String permissions = "";
+
+    public Usuario(String username, String password, String roles, String permissions) {
+        this.cpf = username;
+        this.senha = password;
+        this.roles = roles;
+        this.permissions = permissions;
+        this.active = 1;
+    }
+
+
+    public int getActive() {
+        return active;
+    }
+
+    public String getRoles() {
+        return roles;
+    }
+
+    public String getPermissions() {
+        return permissions;
+    }
+
+    public List<String> getRoleList() {
+        if (this.roles.length() > 0) {
+            return Arrays.asList(this.roles.split(","));
+        }
+        return new ArrayList<>();
+    }
+
+    public List<String> getPermissionList() {
+        if (this.permissions.length() > 0) {
+            return Arrays.asList(this.permissions.split(","));
+        }
+        return new ArrayList<>();
+    }
 
 
     public EnderecoUsuario getEndereco() {
@@ -132,29 +178,25 @@ public class Usuario{
                 ", email='" + email + '\'' +
                 ", situacao=" + situacao +
                 ", senha='" + senha + '\'' +
-//                ", imagemUsuario='" + imagemUsuario + '\'' +
                 ", endereco=" + endereco +
                 ", tipoUsuario=" + tipoUsuario +
                 ", tipoFuncionario=" + tipoFuncionario +
+                ", active=" + active +
+                ", roles='" + roles + '\'' +
+                ", permissions='" + permissions + '\'' +
                 '}';
     }
-
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Usuario usuario = (Usuario) o;
-        return Objects.equals(id, usuario.id) && Objects.equals(nome, usuario.nome)
-                && Objects.equals(cpf, usuario.cpf) && Objects.equals(rg, usuario.rg)
-                && Objects.equals(telefone, usuario.telefone) && Objects.equals(email, usuario.email)
-                && Objects.equals(situacao, usuario.situacao)
-                && Objects.equals(senha, usuario.senha) && Objects.equals(endereco, usuario.endereco)
-                && tipoUsuario == usuario.tipoUsuario && tipoFuncionario == usuario.tipoFuncionario;
+        return active == usuario.active && Objects.equals(id, usuario.id) && Objects.equals(nome, usuario.nome) && Objects.equals(cpf, usuario.cpf) && Objects.equals(rg, usuario.rg) && Objects.equals(telefone, usuario.telefone) && Objects.equals(email, usuario.email) && Objects.equals(situacao, usuario.situacao) && Objects.equals(senha, usuario.senha) && Objects.equals(endereco, usuario.endereco) && tipoUsuario == usuario.tipoUsuario && tipoFuncionario == usuario.tipoFuncionario && Objects.equals(roles, usuario.roles) && Objects.equals(permissions, usuario.permissions);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nome, cpf, rg, telefone, email, situacao, senha, endereco, tipoUsuario, tipoFuncionario);
+        return Objects.hash(id, nome, cpf, rg, telefone, email, situacao, senha, endereco, tipoUsuario, tipoFuncionario, active, roles, permissions);
     }
 }

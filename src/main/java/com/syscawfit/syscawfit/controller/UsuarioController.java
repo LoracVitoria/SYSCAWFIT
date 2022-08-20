@@ -28,9 +28,7 @@ public class UsuarioController {
         @RequestMapping("/list")
         public String list(Model model, String cpf) {
             List<Usuario> usuarios = new ArrayList<>();
-            if (cpf == "") {
-                return "redirect:/usuario/list";
-            } else if (cpf == null) {
+            if (cpf.isBlank() || cpf.isEmpty() || cpf==null) {
                 usuarios = daoUsuario.findAll();
             } else {
                 Usuario usuario = daoUsuario.findByCpf(cpf);
@@ -40,7 +38,7 @@ public class UsuarioController {
                     return "redirect:/usuario/list.html";
                 }
             }
-            model.addAttribute("usuarios", usuarios );
+            model.addAttribute("usuarios", usuarios);
             model.addAttribute("usuario", new Usuario());
 
             return "/usuario/list.html";
@@ -58,7 +56,9 @@ public class UsuarioController {
         }
       @RequestMapping("/save")
         public String saveUsuario(Usuario usuario) {
-            daoEndereco.save(usuario.getEndereco());
+            if (usuario.getEndereco()!= null) {
+                daoEndereco.save(usuario.getEndereco());
+            }
             daoUsuario.save(usuario);
             return "redirect:/usuario/list";
         }
