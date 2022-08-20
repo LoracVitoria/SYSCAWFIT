@@ -1,135 +1,70 @@
-<html xmlns:th="http://www.thymeleaf.org">
-<head th:insert="fragments.html :: headerfiles">
-    <title>Log in</title>
-</head>
-<body>
-<div class="container">
-    <div style="width:600px;margin-left: auto;margin-right: auto;margin-top:24px;padding: 24px;">
-        <div class="card">
-            <div class="card-header">
-                <i class="fa fa-user"></i> Please Login
-            </div>
-            <div class="card-block" style="padding: 24px;">
-                <form name="f" th:action="@{/signin}" method="post">
-                    <fieldset>
-                        <!-- Thymeleaf + Spring Security error display -->
-                        <div th:if="${param.error}" class="alert alert-danger">
-                            Invalid username and password.
-                        </div>
-
-                        <div th:if="${param.logout}" class="alert alert-success">
-                            You have been logged out.
-                        </div>
-
-                        <!-- Login Controls -->
-                        <div class="form-group">
-                            <label for="txtUsername">Username</label>
-                            <input type="text" class="form-control" id="txtUsername" name="txtUsername"
-                                   placeholder="Username">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="txtPassword">Password</label>
-                            <input type="password" class="form-control" id="txtPassword" name="txtPassword"
-                                   placeholder="Password">
-                        </div>
-
-<!--                        <div class="form-check">-->
-<!--                            <input type="checkbox" class="form-check-input" id="checkRememberMe" name="checkRememberMe">-->
-<!--                            <label class="form-check-label" for="checkRememberMe">Remember me?</label>-->
-<!--                        </div>-->
-
-<!--                        &lt;!&ndash; Login Button &ndash;&gt;-->
-                        <div class="form-actions" style="margin-top: 12px;">
-                            <button type="submit" class="btn btn-success">Log in</button>
-                        </div>
-                    </fieldset>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-</body>
-</html>
-
-
-<!------ Include the above in your HEAD tag ---------->
-
-<!--
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Login Page</title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <link rel="stylesheet" th:href="@{/css/login.css}">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!--Jquery-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 </head>
-&lt;!&ndash;Coded with love by Mutiullah Samim&ndash;&gt;
 <body>
 <div class="container h-100">
     <div class="d-flex justify-content-center h-100">
-        <div class="user_card">
-            <div class="d-flex justify-content-center">
-                <div class="brand_logo_container">
-                    <img src="./resources/static/img/imagem-logo.PNG" class="brand_logo" alt="Logo">
-                </div>
-            </div>
-            <div class="d-flex justify-content-center form_container">
-                <form>
-                    <div class="input-group mb-3">
-                        <div class="input-group-append">
-                            <span class="input-group-text"><i class="fas fa-user"></i></span>
-                        </div>
-                        <input type="text" name="" class="form-control input_user" value="" placeholder="Usuario">
-                    </div>
-                    <div class="input-group mb-2">
-                        <div class="input-group-append">
-                            <span class="input-group-text"><i class="fas fa-key"></i></span>
-                        </div>
-                        <input type="password" name="" class="form-control input_pass" value="" placeholder="Senha">
-                    </div>
-                    <div class="form-group">
-                        <div class="custom-control custom-checkbox">
-                            <input type="checkbox" class="custom-control-input" id="customControlInline">
-                            <label class="custom-control-label" for="customControlInline">Continuar conectado</label>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-center mt-3 login_container">
-                        <button type="button" name="button" class="btn login_btn">Login</button>
-                    </div>
-                </form>
-            </div>
 
-            <div class="mt-4">
-                <div class="d-flex justify-content-center links">
-                    <a href="#">Esqueceu sua senha?</a>
-                </div>
-            </div>
+<div class="col-md m-auto d-block">
+    <div>
+        <img th:src="@{/img/imagem-logo.PNG}" alt="logo" class=" img-fluid logotipo">
+    </div>
+    <div class="user_card">
+
+        <div class="card-block" style="padding: 24px;">
+            <h2 class="title">Entrar</h2>
+            <hr/>
+                    <form name="f" th:action="@{/signin}" method="post">
+                    <!-- Thymeleaf + Spring Security error display -->
+                    <div th:if="${param.error}" class="alert alert-danger">
+                        Usuário e senha inválidos!
+                    </div>
+
+                    <div th:if="${param.logout}" class="alert alert-success">
+                        Você foi desconectado!
+                    </div>
+
+                    <!-- Login Controls -->
+                    <div class="form-group">
+                        <label for="txtUsername">CPF</label>
+                        <input type="text" class="form-control" id="txtUsername" name="txtUsername" placeholder="XXX.XXX.XXX-XX" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="txtPassword">Senha</label>
+                        <input type="password" class="form-control" id="txtPassword" name="txtPassword"
+                               placeholder="senha" minlength="6" required>
+                        <br/>
+                    </div>
+
+                            <button type="submit" name="button" class="btn login_btn">Login</button>
+        <hr/>
+        <div class="d-flex justify-content-center links">
+            <a href="#">Esqueceu sua senha?</a>
+        </div>
+
+        </form>
         </div>
     </div>
 </div>
-</body>
-</html>-->
+            </div>
+    </div>
+<footer class="row linha-rodape">
+        <div class="col rodape">
+            <p>Todos os direitos reservados - 2022.</p>
+        </div>
+    </footer>
 
-<!--<!DOCTYPE html>-->
-<!--<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"-->
-<!--      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3" lang="en">-->
-<!--<head>-->
-<!--    <title>Spring Security Example </title>-->
-<!--</head>-->
-<!--<body>-->
-<!--<div th:if="${param.error}">-->
-<!--    Invalid username and password.-->
-<!--</div>-->
-<!--<div th:if="${param.logout}">-->
-<!--    You have been logged out.-->
-<!--</div>-->
-<!--<form th:action="@{/login}" method="post">-->
-<!--    <div><label> User Name : <input type="text" name="username" th:field="${usuario.cpf}"/> </label></div>-->
-<!--    <div><label> Password: <input type="password" name="password" th:field="${usuario.senha}"/> </label></div>-->
-<!--    <div><input type="submit" value="Sign In"/></div>-->
-<!--</form>-->
-<!--</body>-->
-<!--</html>-->
+    <!-- JavaScript Bundle with Popper -->
+    <script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+    <script type="text/javascript" th:src="@{/js/aluno/mascaras.js}"></script>
+
+</body>
+</html>

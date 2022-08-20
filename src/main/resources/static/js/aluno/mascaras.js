@@ -14,6 +14,9 @@ $("#cpfBusca").keypress(function() {
     $(this).mask('000.000.000-00');
 });
 
+$("#txtUsername").keypress(function() {
+    $(this).mask('000.000.000-00');
+});
 
 
 
