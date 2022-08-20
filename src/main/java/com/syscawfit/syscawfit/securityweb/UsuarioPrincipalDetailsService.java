@@ -9,19 +9,18 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class UsuarioPrincipalDetailsService implements UserDetailsService {
-        private UsuarioRepository userRepository;
+    private UsuarioRepository userRepository;
 
-        public UsuarioPrincipalDetailsService(UsuarioRepository userRepository) {
-            this.userRepository = userRepository;
-        }
+    public UsuarioPrincipalDetailsService(UsuarioRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
+    @Override
+    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+        Usuario user = this.userRepository.findByCpf(s);
+        UsuarioPrincipal userPrincipal = new UsuarioPrincipal(user);
 
-        @Override
-        public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-            Usuario user = this.userRepository.findByCpf(s);
-            UsuarioPrincipal userPrincipal = new UsuarioPrincipal(user);
-
-            return userPrincipal;
-        }
+        return userPrincipal;
+    }
 
 }

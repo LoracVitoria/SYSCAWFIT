@@ -1,7 +1,6 @@
 package com.syscawfit.syscawfit;
 
 
-
 import org.apache.catalina.Context;
 import org.apache.catalina.connector.Connector;
 import org.apache.tomcat.util.descriptor.web.SecurityCollection;
@@ -21,7 +20,8 @@ public class SyscawfitApplication {
         SpringApplication.run(SyscawfitApplication.class, args);
 
     }
-// configurar
+
+    // configurar
     @GetMapping("/login")
     public String homePage() {
 
@@ -48,7 +48,7 @@ public class SyscawfitApplication {
 //        return tomcat;
 //    }
 //
-//    /*
+//
 //    We need to redirect from HTTP to HTTPS. Without SSL, this application used
 //    port 8082. With SSL it will use port 8443. So, any request for 8082 needs to be
 //    redirected to HTTPS on 8443.
