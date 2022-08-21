@@ -1,7 +1,7 @@
 package com.syscawfit.syscawfit.model;
 
 public enum TipoFuncionario {
-    Administrador("Administrador"),
+    Administracao("Administração"),
     Recepcao("Recepção"),
     RH("RH"),
     Treinador("Treinador"),

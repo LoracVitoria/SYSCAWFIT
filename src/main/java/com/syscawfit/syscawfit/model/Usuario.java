@@ -32,35 +32,32 @@ public class Usuario {
     private TipoUsuario tipoUsuario;
     @Enumerated(EnumType.STRING)
     private TipoFuncionario tipoFuncionario;
-
-    public Usuario() {
-    }
-
-    private int active;
-
     private String roles = "";
 
-    private String permissions = "";
+    public Usuario() {}
 
-    public Usuario(String username, String password, String roles, String permissions) {
+
+    public Usuario(String username, String password, String roles, Boolean situacao, TipoUsuario tipoUsuario) {
         this.cpf = username;
         this.senha = password;
-        this.roles = roles;
-        this.permissions = permissions;
-        this.active = 1;
+        this.situacao = situacao;
+        this.tipoUsuario = tipoUsuario;
+        this.setRoles(roles);
     }
 
 
-    public int getActive() {
-        return active;
-    }
 
+    public void setRoles(String roles) {
+        if(this.getTipoUsuario() != null && this.getTipoUsuario().getTipoUsuario().compareTo("Mantenedor")==0){
+            this.roles = "ADMIN";
+        }else if(this.getTipoUsuario() != null && this.getTipoUsuario().getTipoUsuario().compareTo( "Funcionário")==0) {
+            this.roles = "USER";
+        }else {
+            this.roles = roles;
+        }
+    }
     public String getRoles() {
         return roles;
-    }
-
-    public String getPermissions() {
-        return permissions;
     }
 
     public List<String> getRoleList() {
@@ -70,14 +67,6 @@ public class Usuario {
         return new ArrayList<>();
     }
 
-    public List<String> getPermissionList() {
-        if (this.permissions.length() > 0) {
-            return Arrays.asList(this.permissions.split(","));
-        }
-        return new ArrayList<>();
-    }
-
-
     public EnderecoUsuario getEndereco() {
         return endereco;
     }
@@ -85,7 +74,6 @@ public class Usuario {
     public void setEndereco(EnderecoUsuario endereco) {
         this.endereco = endereco;
     }
-
 
     public Long getId() {
         return id;
@@ -181,9 +169,7 @@ public class Usuario {
                 ", endereco=" + endereco +
                 ", tipoUsuario=" + tipoUsuario +
                 ", tipoFuncionario=" + tipoFuncionario +
-                ", active=" + active +
                 ", roles='" + roles + '\'' +
-                ", permissions='" + permissions + '\'' +
                 '}';
     }
 
@@ -192,11 +178,11 @@ public class Usuario {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Usuario usuario = (Usuario) o;
-        return active == usuario.active && Objects.equals(id, usuario.id) && Objects.equals(nome, usuario.nome) && Objects.equals(cpf, usuario.cpf) && Objects.equals(rg, usuario.rg) && Objects.equals(telefone, usuario.telefone) && Objects.equals(email, usuario.email) && Objects.equals(situacao, usuario.situacao) && Objects.equals(senha, usuario.senha) && Objects.equals(endereco, usuario.endereco) && tipoUsuario == usuario.tipoUsuario && tipoFuncionario == usuario.tipoFuncionario && Objects.equals(roles, usuario.roles) && Objects.equals(permissions, usuario.permissions);
+        return  Objects.equals(id, usuario.id) && Objects.equals(nome, usuario.nome) && Objects.equals(cpf, usuario.cpf) && Objects.equals(rg, usuario.rg) && Objects.equals(telefone, usuario.telefone) && Objects.equals(email, usuario.email) && Objects.equals(situacao, usuario.situacao) && Objects.equals(senha, usuario.senha) && Objects.equals(endereco, usuario.endereco) && tipoUsuario == usuario.tipoUsuario && tipoFuncionario == usuario.tipoFuncionario && Objects.equals(roles, usuario.roles);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nome, cpf, rg, telefone, email, situacao, senha, endereco, tipoUsuario, tipoFuncionario, active, roles, permissions);
+        return Objects.hash(id, nome, cpf, rg, telefone, email, situacao, senha, endereco, tipoUsuario, tipoFuncionario, roles);
     }
 }

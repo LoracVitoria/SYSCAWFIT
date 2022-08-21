@@ -3,22 +3,22 @@
 <nav class="navbar" th:fragment="menu">
 
     <!-- Itens do Menu -->
-   
-    <ul class="navbar-nav lista" >
+
+    <ul class="navbar-nav lista">
 
         <li class="nav-item">
             <a class="nav-link" th:href="@{/aluno/list}">Aluno</a>
         </li>
 
         <li class="nav-item">
-            <a class="nav-link"th:href="@{/treino/new}">Treino</a>
+            <a class="nav-link" th:href="@{/treino/new}">Treino</a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" th:href="@{/tipoexercicio/list}">Tipos de Exericios</a>
         </li>
 
-         <li class="nav-item">
+        <li class="nav-item">
             <a class="nav-link" th:href="@{/equipamentos/list}">Equipamentos</a>
         </li>
 
@@ -39,12 +39,15 @@
         <li class="nav-item">
             <a class="nav-link" th:href="@{/usuario/new}">Usuários</a>
         </li>
-<!--        configurar-->
-        <li th:action="@{/logout}" method="post">
-            <input type="submit" value="Log out" />
-        </li>
-
-
-
+        <!--        configurar-->
+<!--<li class="nav-item"></li>-->
+        <br/>
+        <div class="nav-item end-100">
+            <form class="form my-2 my-lg-0 " form-method="post" th:action="@{/logout}">
+                <button sec:authorize="isAuthenticated()" class="btn btn-outline-danger my-2 my-sm-0 btn-sm"
+                        type="submit">Logout
+                </button>
+            </form>
+        </div>
     </ul>
 </nav>
