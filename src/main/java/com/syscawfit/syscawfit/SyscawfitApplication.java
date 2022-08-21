@@ -22,11 +22,6 @@ public class SyscawfitApplication {
     }
 
     // configurar
-    @GetMapping("/login")
-    public String homePage() {
-
-        return "/login.html";
-    }
 //    @Bean
 //    public ServletWebServerFactory servletContainer() {
 //        // Enable SSL Trafic

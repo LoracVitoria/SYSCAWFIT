@@ -13,8 +13,4 @@ public enum TipoUsuario {
         return tipoUsuario;
     }
 
-//    @Override
-//    public String toString() {
-//        return  this.tipoUsuario;
-//    }
 }
