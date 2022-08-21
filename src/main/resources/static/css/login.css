@@ -74,6 +74,17 @@ h2,hr{
     background-color: #bcbebf !important;
 }
 
+.rodape {
+    background: #062A40;
+    text-align: center;
+    grid-area: rodape;
+}
+
+.rodape p {
+    padding-top: 0.5rem;
+    color: white;
+}
+
 .div_imagem{
     width: 370px;
     height: 170px;

@@ -14,7 +14,6 @@
     <link rel="stylesheet" th:href="@{/css/menu.css}">
     <link rel="stylesheet" th:href="@{/css/usuario/cadastro-usuario.css}">
 
-
     <!--Jquery-->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
@@ -23,6 +22,7 @@
 <body>
 <!-- CABEÇALHO-->
 <header th:replace="cabecalho:: cabecalho"/>
+<!-- MENU-->
 <div class="row linha-centro">
     <!-- MENU-->
     <nav class="col-3 border container-menu">
@@ -39,7 +39,9 @@
 
         <!--FORMULÁRIO-->
 
-        <form class="row overflow-auto conteudo mx-2 formulario-usuario" th:object="${usuario}" action="/usuario/save" method="POST">
+        <!--Formulário-->
+
+        <form class="row overflow-auto conteudo mx-2 formulario-usuario" th:object="${usuario}" action="/usuario/save" method="post">
 
             <div class="primeira-coluna">
                 <!--NOME COMPLETO-->
@@ -125,12 +127,7 @@
                 <div class="col-2 m-0">
                     <label for="inputPassword6" class="col-form-label">Situação *</label>
                     <br/>
-                    <div class="container">
-                        <label class="switch" for="checkbox">
-                            <input type="checkbox" id="checkbox" th:checked="${usuario.situacao}"/>
-                            <div class="slider round"></div>
-                        </label>
-                    </div>
+                    <input type="checkbox" checked data-toggle="toggle" data-on="Ativo" data-onstyle="sucess" data-off="Inativo" th:field="${usuario.situacao}" >
 <!--                    <script>-->
 <!--                        $(function() {-->
 <!--                            $('#toggle-two').bootstrapToggle({-->
@@ -218,11 +215,11 @@
     </footer>
 
     <!-- JavaScript Bundle with Popper -->
+    <script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/aluno/endereco.js}"></script>
 <script type="text/javascript" th:src="@{/js/aluno/validacao-cpf.js}"></script>
 <script type="text/javascript" th:src="@{/js/aluno/mascaras.js}"></script>
-
 
     </body>
 </html>
