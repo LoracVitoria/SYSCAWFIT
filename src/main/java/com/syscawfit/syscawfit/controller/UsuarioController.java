@@ -54,11 +54,16 @@ public class UsuarioController {
 
             return "usuario/cadastro.html";
         }
-      @RequestMapping("/save")
-        public String saveUsuario(Usuario usuario) {
-            if (usuario.getEndereco()!= null) {
+      @PostMapping("/save")
+        public String save(Usuario usuario) {
+            if (usuario.getEndereco() != null) {
                 daoEndereco.save(usuario.getEndereco());
             }
+          if(usuario.getTipoUsuario() != null && usuario.getTipoUsuario().name().compareTo("Mantenedor")==0){
+              usuario.setRoles("ADMIN");
+          }else if(usuario.getTipoUsuario() != null && usuario.getTipoUsuario().name().compareTo( "Funcionário")==0) {
+              usuario.setRoles("USER");
+          }
             daoUsuario.save(usuario);
             return "redirect:/usuario/list";
         }
