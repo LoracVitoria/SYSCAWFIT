@@ -84,3 +84,14 @@ h2,hr{
     padding-top: 0.5rem;
     color: white;
 }
+
+.div_imagem{
+    width: 370px;
+    height: 170px;
+    alignment: center;
+}
+.imagem{
+    width: 370px;
+    height: 170px;
+    object-fit: contain;
+}

@@ -59,6 +59,12 @@ public class UsuarioController {
             if (usuario.getEndereco()!= null) {
                 daoEndereco.save(usuario.getEndereco());
             }
+          if(usuario.getTipoUsuario() != null && usuario.getTipoUsuario().name().compareTo("Mantenedor")==0){
+              usuario.setRoles("ADMIN");
+          }else if(usuario.getTipoUsuario() != null && usuario.getTipoUsuario().name().compareTo( "Funcionário")==0) {
+              usuario.setRoles("USER");
+          }
+
             daoUsuario.save(usuario);
             return "redirect:/usuario/list";
         }

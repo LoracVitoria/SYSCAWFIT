@@ -42,24 +42,19 @@ public class Usuario {
         this.senha = password;
         this.situacao = situacao;
         this.tipoUsuario = tipoUsuario;
-        this.setRoles(roles);
+        this.roles = roles;
     }
 
 
 
-    public void setRoles(String roles) {
-        if(this.getTipoUsuario() != null && this.getTipoUsuario().getTipoUsuario().compareTo("Mantenedor")==0){
-            this.roles = "ADMIN";
-        }else if(this.getTipoUsuario() != null && this.getTipoUsuario().getTipoUsuario().compareTo( "Funcionário")==0) {
-            this.roles = "USER";
-        }else {
-            this.roles = roles;
-        }
-    }
+
     public String getRoles() {
         return roles;
     }
 
+    public void setRoles(String roles) {
+        this.roles = roles;
+    }
     public List<String> getRoleList() {
         if (this.roles.length() > 0) {
             return Arrays.asList(this.roles.split(","));
@@ -185,4 +180,6 @@ public class Usuario {
     public int hashCode() {
         return Objects.hash(id, nome, cpf, rg, telefone, email, situacao, senha, endereco, tipoUsuario, tipoFuncionario, roles);
     }
+
+
 }

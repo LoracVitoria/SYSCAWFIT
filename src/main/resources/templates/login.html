@@ -11,60 +11,65 @@
 <body>
 <div class="container h-100">
     <div class="d-flex justify-content-center h-100">
+        <div class="align-content-center position-relative">
+            <div class="col-md m-auto d-grid">
+                <div class="row div_imagem">
+                    <img th:src="@{/img/imagem-logo.PNG}" alt="logo" class=" imagem logotipo">
+                </div>
+                <div class="user_card">
 
-<div class="col-md m-auto d-block">
-    <div>
-        <img th:src="@{/img/imagem-logo.PNG}" alt="logo" class=" img-fluid logotipo">
-    </div>
-    <div class="user_card">
+                    <div class="card-block" style="padding: 24px;">
+                        <h2 class="title text-center">Entrar</h2>
+                        <hr/>
+                        <form name="f" th:action="@{/signin}" method="post">
+                            <!-- Thymeleaf + Spring Security error display -->
+                            <div th:if="${param.error}" class="alert alert-danger">
+                                Usuário e senha inválidos!
+                            </div>
 
-        <div class="card-block" style="padding: 24px;">
-            <h2 class="title">Entrar</h2>
-            <hr/>
-                    <form name="f" th:action="@{/signin}" method="post">
-                    <!-- Thymeleaf + Spring Security error display -->
-                    <div th:if="${param.error}" class="alert alert-danger">
-                        Usuário e senha inválidos!
-                    </div>
+                            <div th:if="${param.logout}" class="alert alert-success">
+                                Você foi desconectado!
+                            </div>
 
-                    <div th:if="${param.logout}" class="alert alert-success">
-                        Você foi desconectado!
-                    </div>
+                            <!-- Login Controls -->
+                            <div class="form-group">
+                                <label for="txtUsername">CPF</label>
+                                <input type="text" class="form-control" id="txtUsername" name="txtUsername"
+                                       placeholder="XXX.XXX.XXX-XX" required>
+                            </div>
 
-                    <!-- Login Controls -->
-                    <div class="form-group">
-                        <label for="txtUsername">CPF</label>
-                        <input type="text" class="form-control" id="txtUsername" name="txtUsername" placeholder="XXX.XXX.XXX-XX" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="txtPassword">Senha</label>
-                        <input type="password" class="form-control" id="txtPassword" name="txtPassword"
-                               placeholder="senha" minlength="6" required>
-                        <br/>
-                    </div>
+                            <div class="form-group">
+                                <label for="txtPassword">Senha</label>
+                                <input type="password" class="form-control" id="txtPassword" name="txtPassword"
+                                       placeholder="senha" minlength="6" required>
+                                <br/>
+                            </div>
 
                             <button type="submit" name="button" class="btn login_btn">Login</button>
-        <hr/>
-        <div class="d-flex justify-content-center links">
-            <a href="#">Esqueceu sua senha?</a>
-        </div>
+                            <hr/>
+                            <div class="d-flex justify-content-center links">
+                                <a href="#">Esqueceu sua senha?</a>
+                            </div>
 
-        </form>
-        </div>
-    </div>
-</div>
+                        </form>
+                    </div>
+                </div>
             </div>
-    </div>
-<footer class="row linha-rodape">
-        <div class="col rodape">
-            <p>Todos os direitos reservados - 2022.</p>
+            <footer class="row rodape position-absolute bottom-0 text-center">
+                <!--                <div class="col linha-rodape position-absolute bottom-0">-->
+                <p>Todos os direitos reservados - 2022.</p>
+                <!--                </div>-->
+            </footer>
         </div>
-    </footer>
 
-    <!-- JavaScript Bundle with Popper -->
-    <script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
-    <script type="text/javascript" th:src="@{/js/aluno/mascaras.js}"></script>
+    </div>
+
+</div>
+
+
+<!-- JavaScript Bundle with Popper -->
+<script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/aluno/mascaras.js}"></script>
 
 </body>
 </html>

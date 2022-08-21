@@ -127,15 +127,15 @@
                 <div class="col-2 m-0">
                     <label for="inputPassword6" class="col-form-label">Situação *</label>
                     <br/>
-                    <input type="checkbox" data-toggle="toggle" data-on="Enable" data-off="Disable" th:field="${usuario.situacao}">
-                    <script>
-                        $(function() {
-                            $('#toggle-two').bootstrapToggle({
-                                on: 'Ativo',
-                                off: 'Inativo'
-                            });
-                        })
-                    </script>
+                    <input type="checkbox" checked data-toggle="toggle" data-on="Ativo" data-onstyle="sucess" data-off="Inativo" th:field="${usuario.situacao}" >
+<!--                    <script>-->
+<!--                        $(function() {-->
+<!--                            $('#toggle-two').bootstrapToggle({-->
+<!--                                on: 'Ativo',-->
+<!--                                off: 'Inativo'-->
+<!--                            });-->
+<!--                        })-->
+<!--                    </script>-->
                 </div>
             </div>
        </div>
