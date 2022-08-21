@@ -44,6 +44,10 @@ public class Usuario {
         this.tipoUsuario = tipoUsuario;
         this.roles = roles;
     }
+
+
+
+
     public String getRoles() {
         return roles;
     }
