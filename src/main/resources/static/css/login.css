@@ -73,3 +73,14 @@ h2,hr{
 .custom-checkbox .custom-control-input:checked~.custom-control-label::before {
     background-color: #bcbebf !important;
 }
+
+.rodape {
+    background: #062A40;
+    text-align: center;
+    grid-area: rodape;
+}
+
+.rodape p {
+    padding-top: 0.5rem;
+    color: white;
+}
