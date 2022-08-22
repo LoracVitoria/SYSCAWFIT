@@ -4,6 +4,7 @@ import lombok.*;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
@@ -49,6 +50,7 @@ public class Aluno {
 
     private LocalDate dataIngresso = LocalDate.now();
 
+    @Valid
     @OneToOne(cascade = CascadeType.REMOVE)
     private EnderecoAluno endereco;
 
