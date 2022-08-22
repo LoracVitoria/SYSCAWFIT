@@ -36,17 +36,29 @@ public class Usuario {
 
     public Usuario() {}
 
-
-    public Usuario(String username, String password, String roles, Boolean situacao, TipoUsuario tipoUsuario) {
+    public Usuario(String username, String password, String roles, Boolean situacao, TipoUsuario tipoUsuario, TipoFuncionario tipoFuncionario) {
         this.cpf = username;
         this.senha = password;
         this.situacao = situacao;
         this.tipoUsuario = tipoUsuario;
+        this.tipoFuncionario =tipoFuncionario;
         this.roles = roles;
     }
 
-
-
+//
+//    public Usuario(String nome, String cpf, String rg, String telefone, String email, Boolean situacao, String senha, EnderecoUsuario endereco, TipoUsuario tipoUsuario, TipoFuncionario tipoFuncionario, String roles) {
+//        this.nome = nome;
+//        this.cpf = cpf;
+//        this.rg = rg;
+//        this.telefone = telefone;
+//        this.email = email;
+//        this.situacao = situacao;
+//        this.senha = senha;
+//        this.endereco = endereco;
+//        this.tipoUsuario = tipoUsuario;
+//        this.tipoFuncionario = tipoFuncionario;
+//        this.roles = roles;
+//    }
 
     public String getRoles() {
         return roles;

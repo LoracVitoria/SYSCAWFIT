@@ -10,15 +10,11 @@ public enum TipoFuncionario {
     private final String tipoFuncionario;
 
     TipoFuncionario(String tipoFuncionario) {
+
         this.tipoFuncionario = tipoFuncionario;
     }
 
     public String getTipoFuncionario() {
         return tipoFuncionario;
     }
-
-//    @Override
-//    public String toString() {
-//        return this.tipoFuncionario;
-//    }
 }
