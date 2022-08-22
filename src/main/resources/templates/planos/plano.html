@@ -11,18 +11,6 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/menu.css}">
-    <link rel="stylesheet" th:href="@{/css/plano/plano-formulario.css}">
-
-    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-    <script>
-    $(document).ready(function(){
-        $(".toast").toast({
-          autohide: false
-        });
-        $(".toast").toast("show");
-    });
-    </script>
 
   </head>
 
@@ -38,101 +26,86 @@
           </nav>
 
           <!--CONTEÚDO DA PÁGINA-->
-          <main class="col-9 border container-main overflow-auto" >
-
-            <div class="toast-container end-0 bottom-0 p-3 mb-5">
-              <div class="toast bg-warning" role="alert" aria-live="assertive" aria-atomic="true" th:each="erro : ${mensagensErro}"  th:if="${mensagensErro}">
-                <div class="toast-header bg-warning text-dark">
-
-                  <strong class="me-auto"><i class="bi bi-exclamation-circle-fill"></i> Atenção!</strong>
-                  <small class="text-muted">agora mesmo</small>
-                  <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+          <main class="col-9 border">
+            
+            <div class="row" style="height: 20vh;">
+               
+              <!--Mensal-->
+              <div class="col">
+                <div class="card mt-3">
+                  <h5 class="card-header text-center">Mensal</h5>
+                  <div class="card-body">
+                    <h5 class="card-title text-center">R$ 89,90 </h5>
+                  </div>
                 </div>
-                <div class="toast-body" th:text="${erro}"></div>
+              </div>
+
+              <!--Trimestral-->
+              <div class="col">
+                <div class="card mt-3">
+                  <h5 class="card-header text-center">Trimestral</h5>
+                  <div class="card-body">
+                    <h5 class="card-title text-center">R$ 199,00 </h5>
+                  </div>
+                </div>
+              </div>
+
+              <!--Semestral-->
+              <div class="col">
+                <div class="card mt-3">
+                  <h5 class="card-header text-center">Semestral</h5>
+                  <div class="card-body">
+                    <h5 class="card-title text-center">377,50</h5>
+                  </div>
+                </div>
+              </div>
+
+              <!--Anual-->
+              <div class="col">
+                <div class="card mt-3">
+                  <h5 class="card-header text-center">Anual</h5>
+                  <div class="card-body">
+                    <h5 class="card-title text-center">R$ 671,00</h5>
+                  </div>
+                </div>
               </div>
             </div>
-            
-            <div class="container-fluid conteudo">
-              <div class="row">
-                
-                <!--Mensal-->
-                <div class="col">
-                  <div class="card mt-3 ">
-                    <h5 class="card-header text-center">Mensal</h5>
-                    <div class="card-body card-plano" id="planos-mensal">
-                    </div>
+
+            <div class="row" style="height: 20vh;">
+
+              <form th:object="${plano}" action="/planos/save" method="post" id="form-plano">
+
+                <div class="row g-3 align-items-center">
+                  <div class="mb-3 mt-3">
+                    <input type="number" class="form-control" id="" th:field="${plano.id}" hidden="true">
+                  </div>
+                  <div class="col-auto">
+                    <label class="col-form-label mt-3">Tipo de plano *</label>
+                  </div>
+                  <div class="col-4">
+                    <select class="form-select mt-3" th:field="${plano.tipo}" id="plano" onblur='validaCampoPlano()'  >
+                      <option value=""></option>
+                      <option th:each="tipo : ${planos}"
+                              th:value="${tipo}"
+                              th:text="${tipo}"/>
+                    </select>
+                  <div class="invalid-feedback">Selecione uma opção</div>
+                  </div>
+
+                  <div class="col-auto">
+                    <label class="col-form-label mt-3">Valor *</label>
+                  </div>
+                  <div class="col-2">
+                    <input type="number" class="form-control mt-3" th:field="${plano.valor}" id="valor" onblur='validaCampoValor()' required >
+                    <div class="invalid-feedback">Informe um valor</div>
+                  </div>
+
+                  <div class="col">
+                    <button type="submit" class="btn btn-primary mt-3">Salvar</button>
                   </div>
                 </div>
+              </form>
 
-                <!--Trimestral-->
-                <div class="col">
-                  <div class="card mt-3">
-                    <h5 class="card-header text-center">Trimestral</h5>
-                    <div class="card-body card-plano" id="planos-trimestral">
-                    </div>
-                  </div>
-                </div>
-
-                <!--Semestral-->
-                <div class="col">
-                  <div class="card mt-3">
-                    <h5 class="card-header text-center">Semestral</h5>
-                    <div class="card-body card-plano" id="planos-semestral">
-                    </div>
-                  </div>
-                </div>
-
-                <!--Anual-->
-                <div class="col">
-                  <div class="card mt-3">
-                    <h5 class="card-header text-center">Anual</h5>
-                    <div class="card-body card-plano" id="planos-anual">
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="row">
-
-                <div class="col d-flex mt-5 mb-3 justify-content-center">
-
-                  <div class="card card-formulario">
-                    <div class="card-body">
-                      
-                      <form th:object="${plano}" action="/planos/save" method="post" id="form-plano">
-
-                        <div class="row g-3 align-items-center">
-                            <label class="form-label fw-bold">Tipo de Plano</label>
-                            <select class="form-select mt-2" th:field="${plano.tipo}" id="plano" onblur='validaCampoPlano()' required>
-                              <option value=""></option>
-                              <option th:each="tipo : ${tiposPlanos}"
-                                      th:value="${tipo}"
-                                      th:text="${tipo}"/>
-                            </select>                      
-                            <div class="invalid-feedback">Selecione uma opção</div>
-        
-                          <label class="form-label fw-bold">Valor</label>
-                          <div class="input-group mb-3 mt-2">
-                            <div class="input-group-prepend">
-                              <span class="input-group-text">R$</span>
-                            </div>
-                            <input type="number" min="10" class="form-control" th:field="${plano.valor}" id="valor" onblur='validaCampoValor()' required>
-                            <div class="invalid-feedback">Informe um valor</div>
-                          </div>
-        
-                          <button type="submit" class="btn btn-salvar">
-                            <i class="bi bi-plus-square p-2"></i>Salvar
-                          </button>
-                          </div>
-                          
-                        </div>
-                      </form>
-                    </div>
-                  </div>    
-
-              </div>
-                
-              </div>
             </div>
           </main>
       </div>
@@ -143,70 +116,6 @@
               <p>Todos os direitos reservados - 2022.</p>
           </div>
       </footer>
-
-      <script th:inline="javascript">
-        const mensal = document.getElementById("planos-mensal");
-        const trimestral = document.getElementById("planos-trimestral")
-        const semestral = document.getElementById("planos-semestral")
-        const anual = document.getElementById("planos-anual")
-
-        const planos = [[${planos}]]
-
-        planos.forEach(plano => {
-          let element = document.createElement('h5');
-          element.setAttribute("class", "card-title text-center");
-          element.innerText = `R$ ${plano.valor}`;
-
-          switch (plano.tipo) {
-            case 'Mensal':
-              mensal.appendChild(element);
-              break;
-
-            case 'Trimestral':
-              trimestral.appendChild(element);
-              break;
-
-            case 'Semestral':
-              semestral.appendChild(element);
-              break;
-
-            case 'Anual':
-              anual.appendChild(element);
-              break;
-          }
-        })
-
-        
-
-        if (mensal.childElementCount == 0) {
-          let element = document.createElement('h5');
-          element.setAttribute("class", "card-title text-center");
-          element.innerText = '-';
-          mensal.appendChild(element)
-        }
-
-        if (trimestral.childElementCount == 0) {
-          let element = document.createElement('h5');
-          element.setAttribute("class", "card-title text-center");
-          element.innerText = '-';
-          trimestral.appendChild(element)
-        }
-        
-        if (semestral.childElementCount == 0) {
-          let element = document.createElement('h5');
-          element.setAttribute("class", "card-title text-center");
-          element.innerText = '-';
-          semestral.appendChild(element)
-        } 
-
-        if (anual.childElementCount == 0) {
-          let element = document.createElement('h5');
-          element.setAttribute("class", "card-title text-center");
-          element.innerText = '-';
-          anual.appendChild(element)
-        }
-
-      </script>
 
       <script type="text/javascript" th:src="@{/js/plano/script-planos.js}"></script>
       <!-- JavaScript Bundle with Popper -->

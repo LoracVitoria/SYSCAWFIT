@@ -56,7 +56,7 @@
                         </thead>
                          <!-- usando o thymeleaf para iterar na lista de alunos -->
                          <tr th:each="aula: ${aulas}">
-                            <td th:text="${aula.professor.nome}" />
+                            <td th:text="${aula.professor}" />
                             <td th:text="${aula.nome}"/>
                             <td th:text="${aula.aulaDiaHora.diaSemana}"/>
                             <td th:text="${aula.aulaDiaHora.hora}"/>
@@ -85,12 +85,6 @@
               <p>Todos os direitos reservados - 2022.</p>
           </div>
       </footer>
-
-      <script th:inline="javascript">
-        var aulas = [[${aulas}]];
-        console.log(aulas);
-       
-      </script>
 
       <!-- JavaScript Bundle with Popper -->
       <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script> -->

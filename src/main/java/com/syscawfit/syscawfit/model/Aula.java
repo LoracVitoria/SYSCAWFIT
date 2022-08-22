@@ -3,8 +3,6 @@ package com.syscawfit.syscawfit.model;
 import lombok.*;
 
 import javax.persistence.*;
-import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 
 @Getter
@@ -13,23 +11,20 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @ToString
 @Entity
-@Table(uniqueConstraints = { @UniqueConstraint(columnNames = {"diaSemana", "hora"})})
 public class Aula {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Valid
-    @NotNull(message = "O campo dia e hora deve ser preenchido.")
-    @Embedded
+    @Column(unique = true)
     private AulaDiaHora aulaDiaHora;
 
-    @NotBlank(message = "O campo nome deve ser preenchido.")
+    @NotNull
     private String nome;
 
-    @NotNull(message = "O campo professor deve ser preenchido.")
-    @ManyToOne
+
+    @ManyToOne(cascade = CascadeType.REMOVE)
     private Usuario professor;
 
 }

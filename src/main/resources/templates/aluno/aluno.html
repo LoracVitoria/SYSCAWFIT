@@ -101,7 +101,7 @@
                         <!--TIPO DE PLANO-->
                         <div class="col-3 m-2">
                             <label for="inputPassword6" class="col-form-label">Tipo de plano *</label>
-                            <select class="form-select" th:field="${aluno.plano}"aria-label="select example">
+                            <select class="form-select" th:field="${aluno.plano}"aria-label="select example" onblur="validaCampo()">
                                 <option th:each="plano : ${planos}"
                                         th:value="${plano}"
                                         th:text="${plano}"/>

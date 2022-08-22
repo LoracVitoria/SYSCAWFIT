@@ -5,21 +5,14 @@ import com.syscawfit.syscawfit.dao.AulaRepository;
 import com.syscawfit.syscawfit.dao.UsuarioDao;
 import com.syscawfit.syscawfit.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -62,32 +55,10 @@ public class AulaController {
 
     // Salvar aula
     @PostMapping("/save")
-    public String salvarAula( @Valid Aula aula, BindingResult result, Model model){
+    public String salvarAula( Aula aula, Model model){
+        aulaDao.save(aula);
 
-        if (result.hasErrors()) {
-            List<String> errors = new ArrayList<>();
-            result.getAllErrors().forEach(error -> {
-                errors.add(error.getDefaultMessage());
-            });
-
-            List<Usuario> professores = usuarioDao.findAll();
-
-            model.addAttribute("aula",aula);
-            model.addAttribute("diasSemana",DiaSemana.values());
-            model.addAttribute("professores", professores);
-            model.addAttribute("mensagensErro", errors);
-
-            return "/aulas/aula";
-        }
-
-
-        try {
-            aulaDao.save(aula);
-            return "redirect:/aulas/list";
-
-        } catch (ConstraintViolationException e) {
-            return "redirect:/aulas/list";
-        }
+        return "redirect:/aulas/list";
     }
 
     // Deletar aula
@@ -103,11 +74,9 @@ public class AulaController {
     @RequestMapping("/editar/{id}")
     public String editarAula(Model model, @PathVariable Long id){
         Aula aula = aulaDao.findById(id).orElse(null);
-        List<Usuario> professores = usuarioDao.findAll();
 
         model.addAttribute("aula",aula);
         model.addAttribute("diasSemana",DiaSemana.values());
-        model.addAttribute("professores",professores);
 
         return "/aulas/editarAula";
     }
