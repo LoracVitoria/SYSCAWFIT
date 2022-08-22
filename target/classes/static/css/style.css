@@ -1,46 +1,21 @@
-.app {
-    min-height: 100vh;
-    display: grid;
-    grid-template-areas:
-    "cabecalho cabecalho"
-    "menu      conteudo"
-    "rodape    rodape";
-    grid-template-columns: 20% 80%;
-    grid-template-rows: 20vh 74vh auto;
-
 body {
     height: 100vh;
 }
 
-/*
-========================================================================
-        CABEÇALHO
-========================================================================
-*/
-
 .cabecalho {
-    background: #062A40 ;
+    background: #062A40 ;             /* cor de fundo cabeçalho */
+    height: 20%;                        /* altura cabeçalho */
+    width: 100%;
+    position: relative;                 /* posição */
     display: flex;                      /* tranforma em Flex Container */
     justify-content: space-between;     /* item distribuido com espaço no meio */
     align-items: center;
-    padding: 2%;
-    grid-area: cabecalho;
+    padding: 100px;
 }
 
 .logotipo {
-    height: 12vh;
-}
-
-/*
-========================================================================
-        RODAPÉ
-========================================================================
-*/
-
-.rodape {
-    background: #062A40;
-    text-align: center;
-    grid-area: rodape;
+    width: 300px;
+    height: 100px;
 }
 
 .tela-body{
@@ -50,9 +25,5 @@ body {
     top: 50px;
 }
 
-.rodape p {
-    padding-top: 0.5rem;
-    color: white;
-}
 
 
