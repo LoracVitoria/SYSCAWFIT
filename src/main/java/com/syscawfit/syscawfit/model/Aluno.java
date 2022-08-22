@@ -1,29 +1,18 @@
 package com.syscawfit.syscawfit.model;
 
-//import lombok.AllArgsConstructor;
-//import lombok.Getter;
-//import lombok.NoArgsConstructor;
-//import lombok.Setter;
-//import org.springframework.format.annotation.DateTimeFormat;
+import lombok.*;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import org.springframework.format.annotation.DateTimeFormat;
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.Date;
 
-import lombok.AllArgsConstructor;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@EqualsAndHashCode
 @Entity
 public class Aluno {
 
@@ -32,7 +21,22 @@ public class Aluno {
     private Long id;
 
     private String nome;
-    
+
+    @Column(unique = true)
     private String cpf;
+
+    private String imagemAluno;
+
+    private String telefone;
+
+    @Column(unique = true)
+    private String email;
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date dataNascimento;
+
+    private TipoPlano plano;
+
+    private LocalDate dataIngresso = LocalDate.now();
 
 }

@@ -34,14 +34,14 @@
 
                 <div class="col mb-5">
                     <h1 class="header-titulo m-3">
-                        <i class="bi bi-person-plus"></i>
-                        Cadastrar
+                        <i class="bi bi-pencil"></i>
+                        Editar
                     </h1>
                 </div>
 
                  <!--Formulário-->
                  
-                <form class="row overflow-auto conteudo mx-2 formulario-aluno" th:object="${aluno}" action="/aluno/save" method="post">
+                <form class="row overflow-auto conteudo mx-2 formulario-aluno" th:object="${aluno}" action="/aluno/update" method="post">
                     
                     <div class="col-9 primeira-coluna">
                         <!--NOME COMPLETO-->
@@ -164,7 +164,7 @@
                             </div>
                             <div class="col mt-2 buttons">
                                 <button type="submit" class="btn btn-primary button-cadastro mx-2 mb-4">
-                                    <i class="bi bi-cloud-upload p-2"></i>Cadastrar
+                                    <i class="bi bi-cloud-upload p-2"></i>Salvar alterações
                                 </button>
     
                                 <button type="reset" class="btn btn-primary  button-cancelar mb-4">
