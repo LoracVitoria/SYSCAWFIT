@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface EnderecoRepository extends JpaRepository<Endereco, Long> {
 
+    // Função para buscar lista de Endereço por Aluno
+    List<Endereco> findByAluno(Aluno aluno);
 }
