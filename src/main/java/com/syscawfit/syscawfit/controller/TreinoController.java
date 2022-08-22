@@ -20,7 +20,6 @@ import com.syscawfit.syscawfit.dao.ExercicioRepository;
 import com.syscawfit.syscawfit.dao.TipoExercicioRepository;
 import com.syscawfit.syscawfit.dao.TreinoRepository;
 import com.syscawfit.syscawfit.model.Aluno;
-import com.syscawfit.syscawfit.model.Equipamentos;
 import com.syscawfit.syscawfit.model.Exercicio;
 import com.syscawfit.syscawfit.model.TipoExercicio;
 import com.syscawfit.syscawfit.model.Treino;
