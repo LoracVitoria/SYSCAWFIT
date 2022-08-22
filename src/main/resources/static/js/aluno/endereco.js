@@ -17,8 +17,6 @@ const mostraDados = function (result){
 cep.addEventListener("blur", (e) =>{
     let search = cep.value.replace(/\.|-/g,"");
 
-    console.log(search)
-
     const options = {
         method: 'GET',
         mode: 'cors',

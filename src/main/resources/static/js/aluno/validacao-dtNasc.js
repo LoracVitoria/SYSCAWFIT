@@ -35,7 +35,6 @@ function validarIdade(data){
 
   } else 
       invalid(field);
-    
 }  
 
 function valid(field) {
