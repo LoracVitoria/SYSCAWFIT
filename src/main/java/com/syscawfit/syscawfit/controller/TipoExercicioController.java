@@ -1,6 +1,8 @@
 package com.syscawfit.syscawfit.controller;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -8,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +29,8 @@ public class TipoExercicioController {
 
 	@Autowired
 	private EquipamentosRepository daoEquipamento;
+
+	private Optional<TipoExercicio> t1;
 
 	/* NOVO TIPO_EXERCICIO */
 	@RequestMapping("/new")
@@ -58,12 +63,18 @@ public class TipoExercicioController {
 	}
 
 	// ENVIAR DADOS DA BUSCA POR ID PARA A PAGINA cadastrarTipoExercicio.html
-	@RequestMapping("/update/{id}")
-	public String getUpdate(Model model, @PathVariable Long id) {
+	@GetMapping("/update/{id}")
+	public String getUpdate(Model model, @PathVariable("id") Long id) {
+		t1 = daoExercicio.findById(id);
+		List<Equipamentos> equipamentosList = daoEquipamento.findAll();
+		if (t1.isEmpty()) {
+			throw new IllegalArgumentException("equipamento não encontrado.");
+		}
 
-		model.addAttribute("tipoExercicio", daoExercicio.getById(id));
+		model.addAttribute("equipamentosList", equipamentosList);
+		model.addAttribute("tipoExercicio", t1.get());
 
-		return "redirect:/exercicios/cadastrarTipoExercicio.html";
+		return "/exercicios/cadastrarTipoExercicio.html";
 	}
 
 	/* DELETE TIPO_EXERCICIO */
@@ -82,6 +93,4 @@ public class TipoExercicioController {
 		return "/exercicios/listaTipoExercicio.html";
 	}
 
-	
-	
 }

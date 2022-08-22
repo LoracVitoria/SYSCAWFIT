@@ -64,13 +64,13 @@
 					<tbody>
 
 						<tr align="center" th:each="equipamentos: ${equipamentosList}">
-							<td th:text="${equipamentos.id}" />
-							<td th:text="${equipamentos.nome}" />
-							<td th:text="${equipamentos.descricao}" />
+							<td style="padding-top: 40px" th:text="${equipamentos.id}" />
+							<td style="padding-top: 40px" th:text="${equipamentos.nome}" />
+							<td style="padding-top: 40px" th:text="${equipamentos.descricao}" />
 							<td><img th:src="@{/equipamentos/mostrarImagem/{imagem}(imagem=${equipamentos.nomeImagem})}"
-									width="100" heigh="100" /></td>
-							<td>
-								<a th:href="@{/equipamentos/delete/{id}(id=${equipamentos.id})}">
+									width="80" heigh="80" /></td>
+							<td style="padding-top: 40px">
+								<a style="margin-right: 20px;" th:href="@{/equipamentos/delete/{id}(id=${equipamentos.id})}">
 									<i class="btn btn-danger">Excluir</i>
 								</a>
 

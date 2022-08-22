@@ -20,30 +20,32 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.client.HttpServerErrorException;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.syscawfit.syscawfit.dao.EquipamentosRepository;
+import com.syscawfit.syscawfit.exceptions.DeleteEquipamentoException;
 import com.syscawfit.syscawfit.model.Equipamentos;
+import com.syscawfit.syscawfit.services.EquipamentosService;
 
 @Controller
 @RequestMapping("/equipamentos")
 public class EquipamentosController {
 
+	private static final String String = null;
+
 	@Autowired
 	private EquipamentosRepository daoEquipamentos;
-
-//	public static String caminhoImagens = "/src/main/resources/static/equipamentoImagens";
-
-//	public static String caminhoImagens = "C:\\Users\\willi\\Desktop\\imagens";
-
-//	public static String caminhoImagens = "C:\\Users\\willi\\Desktop\\syscawfit2\\SYSCAWFIT\\src\\main\\resources\\static\\img\\equipamentosImagens\\";
 	
-//	public static String caminhoImagens = ".." + File.separator + "SYSCAWFIT" + File.separator + "src" + File.separator + "main" 
-//	+ File.separator + "rersources" + File.separator + "static" + File.separator + "img" + File.separator + "equipamentosImagens" + File.separator;
-	
-	public static String caminhoImagens = "C:\\Users\\willi\\Desktop\\syscawfit_william3\\SYSCAWFIT\\src\\main\\resources\\static\\img\\equipamentosImagens\\";
-//	public static String caminhoImagens = "..\\src\\main\\resources\\static\\img\\equipamentosImagens\\";
+	@Autowired
+	private EquipamentosService equipamentosService;
 
+	// caminho windows:
+	public static String caminhoImagens = "..\\SYSCAWFIT\\src\\main\\resources\\static\\img\\equipamentosImagens\\";
+	
+//	caminho linuxe MacOs
+//	public static String caminhoImagens = "../SYSCAWFIT/src/main/resources/static/img/equipamentosImagens/";
+	
 	// NOVO EQUIPAMENTO
 	@RequestMapping("/new")
 	public String newForm(Model model) {
@@ -62,14 +64,13 @@ public class EquipamentosController {
 		}
 
 		daoEquipamentos.save(equipamento);
-		
+
 		try {
 			if (!file.isEmpty()) {
 				byte[] bytes = file.getBytes();
-				Path caminho = Paths.get(caminhoImagens + String.valueOf(equipamento.getId()) + file.getOriginalFilename());
+				Path caminho = Paths
+						.get(caminhoImagens + String.valueOf(equipamento.getId()) + file.getOriginalFilename());
 				Files.write(caminho, bytes);
-
-//				equipamento.setNomeImagem(caminhoImagens + "id" + String.valueOf(equipamento.getId()) + "_" + file.getOriginalFilename());
 
 				equipamento.setNomeImagem(String.valueOf(equipamento.getId()) + file.getOriginalFilename());
 				daoEquipamentos.save(equipamento);
@@ -77,17 +78,9 @@ public class EquipamentosController {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
 
 		return "redirect:/equipamentos/list";
 	}
-
-//	/* UPDATE EQUIPAMENTOS */
-//	@PostMapping("/update")
-//	public String update(Equipamentos equipamento, Model model) {
-//		daoEquipamentos.save(equipamento);
-//		return "redirect:/equipamentos/list";
-//	}
 
 	/* EDITAR EQUIPAMENTOS */
 	@GetMapping("/update/{id}")
@@ -100,19 +93,17 @@ public class EquipamentosController {
 		return "/equipamentos/cadastrarEquipamentos.html";
 	}
 
-//	// ENVIAR DADOS DA BUSCA POR ID PARA A PAGINA cadastrarTipoExercicio.html
-//		@RequestMapping("/update/{id}")
-//		public String getUpdate(Model model, @PathVariable Long id) {
-//
-//			model.addAttribute("tipoExercicio", daoExercicio.getById(id));
-//
-//			return "redirect:/exercicios/cadastrarTipoExercicio.html";
-//		}
-
 	/* DELETE EQUIPAMENTOS */
 	@RequestMapping("/delete/{id}")
 	public String delete(Model model, @PathVariable Long id) {
-		daoEquipamentos.deleteById(id);
+		
+		try{
+		equipamentosService.deleteById(id);
+		}catch (DeleteEquipamentoException e) {
+			String msg = e.getMessage();
+			model.addAttribute("mensagem", msg);
+			System.out.println(msg);
+		}
 		return "redirect:/equipamentos/list";
 	}
 
@@ -130,8 +121,8 @@ public class EquipamentosController {
 	public byte[] retornarImagem(Model model, @PathVariable("imagem") String imagem) throws IOException {
 		File imagemArquivo = new File(caminhoImagens + imagem);
 		if (imagem != null || imagem.trim().length() > 0) {
-				return Files.readAllBytes(imagemArquivo.toPath());
-		
+			return Files.readAllBytes(imagemArquivo.toPath());
+
 		}
 
 		return null;

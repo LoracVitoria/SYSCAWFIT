@@ -146,7 +146,16 @@
 	margin-top: 50px;
 }
 
+/*FORMATAÇÃO DA TABELA DO TREINO*/
 
+.formatandoEquipamentos{
+	background-color:#062A40;
+	color: #ECF229;
+}
+
+#teste{
+	padding-top: 40px;
+}
 
 
 

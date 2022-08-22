@@ -57,23 +57,6 @@ html,body {
     height: 70vh;
 }
 
-.principal_imagem {
-	justify-content: center;
-}
-
-.principal_imagem img{
-	margin: 0 auto;
-    animation-name: opacidade;
-    animation-duration: 4s;
-}
-
-  @keyframes opacidade{
-      0% {opacity: 0%;}
-      100% {opacity: 100%;}
-}
-
-
-
 /*
 ========================================================================
         RODAPÉ
@@ -90,5 +73,42 @@ html,body {
     color: white;
 }
 
+/*
+========================================================================
+        IMAGEM CENTRO INDEX
+========================================================================
+*/
+
+.imagemIndexCentro{
+	margin-top: 180px;
+	justify-content: center;
+	align-items: center;
+	align-self: center;
+	display: flex;
+	animation-name: opacidade;
+    animation-duration: 4s;
+}
+
+.imagemIndexCentro img{
+	border-radius: 20px;
+}
+
+.textoImagem{
+	text-align: center;
+	animation-name: texto;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes texto {
+    0%   {color: white;}
+    100% {color: #062A40; }
+}
+
+ @keyframes opacidade{
+      0% {opacity: 0%;}
+      100% {opacity: 100%;}
+  }
+ 	
 
 

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>SYSCAWFIT</title>
+	<link rel="stylesheet" th:href="@{/css/normalize.css}">
+	<link rel="stylesheet" th:href="@{/css/reset.css}">
+	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+	<link rel="stylesheet" th:href="@{/css/style.css}">
+	<link rel="stylesheet" th:href="@{/css/menu.css}">
+	<link rel="stylesheet" th:href="@{/css/exercicios/exercicios.css}">
+	<link rel="stylesheet" th:href="@{/css/treino.css}">
+</head>
+
+<body>
+	<!-- CABEÇALHO-->
+	<header th:replace="cabecalho:: cabecalho" />
+
+	<div class="row linha-centro">
+		<!-- MENU-->
+		<nav class="col-3 border container-menu">
+			<nav th:replace="menu:: menu" />
+		</nav>
+
+		<!--CONTEÚDO DA PÁGINA-->
+		<main class="col-9 border">
+			<header class="equipamentos-cadastro__header row">
+
+				<div class="col p-3">
+					<h1 class="cadastro-header__titulo col m-4">
+						<i class="bi bi-list"></i>
+						Treino
+					</h1>
+				</div>
+
+				<div class="col-auto col-right__buttons p-4">
+					<div class="col mx-2">
+						<a class="link-button" th:href="@{/treino/listTreinos}">
+							<button type="button" class="btn btn-link button-consultar">
+								<i class="bi bi-search p-2"></i>Consultar Treinos
+							</button>
+						</a>
+					</div>
+				</div>
+
+			</header>
+			<div class="container-fluid overflow-auto conteudo mx-2">
+				<table class="table table-striped table-bordered table-hover ">
+					<thead class="formatando">
+						<tr align="center">
+							<th id="alunoTable">Aluno</th>
+							<th>Treino</th>
+							<th>Data de Início</th>
+							<th>Data de finalização</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr align="center" th:each="treino: ${treinoListAbrir}">
+							<td th:text="${treino.aluno.nome}" />
+							<td th:text="${treino.nome}" />
+							<td th:text="${treino.dataInicioTreino}" />
+							<td th:text="${treino.datafimTreino}" />
+						</tr>
+					</tbody>
+				</table>
+				<table class="table table-striped table-bordered">
+					<thead class="formatando">
+						<tr align="center">
+							<th>Nome exercicio</th>
+							<th>Quantidade de séries</th>
+							<th>Quantidade de repetições</th>
+							<th>Carga (kg)</th>
+							<th>Tipo de Exercicio</th>
+							<th>Equipamento</th>
+							<th>Equipamento Imagem</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr align="center" th:each="exercicio: ${listaExercicios}">
+							<td id="formatandoTh" th:text="${exercicio.nome}" />
+							<td id="formatandoTh" th:text="${exercicio.qtdeSeries}" />
+							<td id="formatandoTh" th:text="${exercicio.qtdeRepeticoes}" />
+							<td id="formatandoTh" th:text="${exercicio.carga}"  />
+							<td id="formatandoTh" th:text="${exercicio.tipoExercicio.nome}" />
+							<td id="formatandoTh" th:text="${exercicio.tipoExercicio.equipamento.nome}" />
+							<td><img th:src="@{/equipamentos/mostrarImagem/{imagem}(imagem=${exercicio.tipoExercicio.equipamento.nomeImagem})}"
+									width="70" heigh="0" />
+							
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</main>
+
+	</div>
+	<!--fim linha centro-->
+
+
+
+
+
+	<!--RODAPÉ-->
+	<footer class="row linha-rodape">
+		<div class="col rodape">
+			<p>Todos os direitos reservados - 2022.</p>
+		</div>
+	</footer>
+
+	<!-- JavaScript Bundle with Popper -->
+	<!--script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" 
+		integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"><---!script-->
+	<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
+</body>
+
+</html>

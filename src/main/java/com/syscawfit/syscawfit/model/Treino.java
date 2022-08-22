@@ -2,6 +2,7 @@ package com.syscawfit.syscawfit.model;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -38,9 +39,9 @@ public class Treino {
 	
 //	@ManyToMany
 //	private Usuario responsavelTreino;
-//	pegar o usuario logado (springSecurity)
+//	pegar lista de usuarios.
 	
-	@OneToMany(mappedBy = "treino", cascade = CascadeType.REMOVE, orphanRemoval = true)
+	@OneToMany(mappedBy = "treino", cascade = CascadeType.REMOVE)
 	private List<Exercicio> listaExercicios;
 	
 	@ManyToOne
@@ -117,9 +118,16 @@ public class Treino {
 		return "Treino [id=" + id + ", nome=" + nome + ", dataInicioTreino=" + dataInicioTreino + ", datafimTreino="
 				+ datafimTreino + "]";
 	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(aluno, dataInicioTreino, datafimTreino, id, listaExercicios, nome);
+	}
+
 	
 	
-	//inserir lista de exercicios no toString();
+	
+	
 
 	
 }
