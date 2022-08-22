@@ -226,7 +226,9 @@ input:checked + .slider:before {
 .slider.round:before {
     border-radius: 50%;
 }
-
+.button-padrao{
+    color:#062A40;
+}
 
 
 

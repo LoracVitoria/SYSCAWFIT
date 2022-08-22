@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IElist=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SYSCAWFIT</title>
-    <link rel="stylesheet" th:href="@{/csslist/normalize.css}">
+    <link rel="stylesheet" th:href="@{/css/normalize.css}">
     <link rel="stylesheet" th:href="@{/css/reset.css}">
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
-    <link rel="slisttylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" th:href="@{/css/menu.css}">
     <link rel="stylesheet" th:href="@{/css/usuario/cadastro-usuario.css}">
@@ -28,140 +28,158 @@
     <nav class="col-3 border container-menu">
         <nav th:replace="menu:: menu"/>
     </nav>
-<!--CONTEÚDO DA PÁGINA-->
+    <!--CONTEÚDO DA PÁGINA-->
     <main class="col-9 border ">
-        <div class="col mb-4">
-            <h1 class="header-titulo m-3">
+        <div class="col mb-4" th:switch="${usuario.id>0}">
+            <h1 class="header-titulo m-3" th:case="${true}">
+                <i class="bi bi-person-plus button-padrao"></i>
+                  Editar Usuário
+            </h1>
+            <h1 class="header-titulo m-3" th:case="*">
                 <i class="bi bi-person-plus"></i>
-                Cadastrar
+                  Cadastrar Usuário
             </h1>
         </div>
 
         <!--FORMULÁRIO-->
 
-        <form class="row overflow-auto conteudo mx-2 formulario-usuario" th:object="${usuario}" action="/usuario/save" method="POST">
+        <form class="row overflow-auto conteudo mx-2 formulario-usuario" th:object="${usuario}" action="/admin/usuario/save"
+              method="POST">
+            <input type="hidden" th:field="${usuario.id}"/>
 
             <div class="primeira-coluna">
                 <!--NOME COMPLETO-->
                 <div class="row">
                     <div class="col m-0 mt-0 ">
-                        <label for="inputPassword6" class="col-form-label">Nome completo *</label>
+                        <label for="inputPassword6" class="col-form-label">Nome completo</label>
                         <input type="text" id="nome" th:field="${usuario.nome}" class="form-control" required>
                     </div>
                     <div class="col-4 m-0 mt-0">
-                        <label for="inputPassword6" class="col-form-label">RG </label>
-                        <input type="text" id="rg" th:field="${usuario.rg}" class="form-control" >
+                        <label for="inputPassword6" class="col-form-label">RG</label>
+                        <input type="number" id="rg" th:field="${usuario.rg}" class="form-control" required>
                     </div>
                 </div>
 
                 <div class="row">
                     <!--CPF-->
                     <div class="col m-0">
-                        <label for="inputPassword6" class="col-form-label">CPF *</label>
-                        <input type="text" id="cpf" th:field="${usuario.cpf}" class="form-control" onblur='validaCPF()' required>
+                        <label for="inputPassword6" class="col-form-label">CPF</label>
+                        <input type="text" id="cpf" th:field="${usuario.cpf}" class="form-control" onblur='validaCPF()'
+                               required>
                         <div class="invalid-feedback">CPF inválido</div>
                     </div>
                     <div class="col-5 m-0">
-                        <label for="inputPassword6" class="col-form-label">Senha *</label>
-                        <input type="password" id="senha" minlength="6" th:field="${usuario.cpf}" class="form-control" required >
+                        <label for="inputPassword6" class="col-form-label">Senha</label>
+                        <input type="password" id="senha" minlength="6" th:field="${usuario.senha}" class="form-control"
+                               name="txtPassword" required>
                     </div>
                 </div>
             </div>
 
             <!--Imagem-->
-<!--            <div class="col segunda-coluna border">-->
-<!--                <label class="picture form-control" for="picture__input" tabindex="0">-->
-<!--                    <input type="file" accept="image/*" id="picture__input" th:field="${usuario.imagemUsuario}">-->
-<!--                    <span>-->
-<!--                                <img class="picture__image"  alt="">Selecione uma imagem-->
+            <!--            <div class="col segunda-coluna border">-->
+            <!--                <label class="picture form-control" for="picture__input" tabindex="0">-->
+            <!--                    <input type="file" accept="image/*" id="picture__input" th:field="${usuario.imagemUsuario}">-->
+            <!--                    <span>-->
+            <!--                                <img class="picture__image"  alt="">Selecione uma imagem-->
 
-<!--                            </span>-->
-<!--                </label>-->
-<!--                &lt;!&ndash; <div class="container-imagem">-->
-<!--                    <img th:src="@{/img/}" alt="Selecione uma imagem" class="imagem-aluno" id="imgPhoto">-->
-<!--                </div> &ndash;&gt;-->
-<!--            </div>-->
+            <!--                            </span>-->
+            <!--                </label>-->
+            <!--                &lt;!&ndash; <div class="container-imagem">-->
+            <!--                    <img th:src="@{/img/}" alt="Selecione uma imagem" class="imagem-aluno" id="imgPhoto">-->
+            <!--                </div> &ndash;&gt;-->
+            <!--            </div>-->
 
             <div class="row">
                 <div class="row">
                     <!--TELEFONE-->
                     <div class="col m-0 ">
-                        <label for="inputPassword6" class="col-form-label">Telefone </label>
-                        <input type="text" id="telefone" th:field="${usuario.telefone}" class="form-control" placeholder="(00) 00000-0000">
+                        <label for="inputPassword6" class="col-form-label">Telefone</label>
+                        <input type="text" id="telefone" th:field="${usuario.telefone}" class="form-control"
+                               placeholder="(00) 00000-0000" required>
                         <div class="invalid-feedback">Telefone inválido</div>
                     </div>
                     <!--E-MAIL-->
                     <div class="col-7 m-2">
-                        <label for="inputPassword6" class="col-form-label">E-mail </label>
-                        <input type="email" id="email" th:field="${usuario.email}" class="form-control" >
+                        <label for="inputPassword6" class="col-form-label">E-mail</label>
+                        <input type="email" id="email" th:field="${usuario.email}" class="form-control" required>
                         <div class="invalid-feedback">E-mail inválido</div>
                     </div>
                 </div>
 
                 <div class="row">
                     <!--TIPO DE USUARIO-->
-                <div class="col-5 m-0">
-                    <label for="inputPassword6" class="col-form-label">Tipo de Usuário *</label>
-                    <select class="form-select" th:field="${usuario.tipoUsuario}" aria-label="select example" onblur="validaCampo()">
-                        <option th:each="tipoUsuario : ${T(com.syscawfit.syscawfit.model.TipoUsuario).values()}"
-                                th:value="${tipoUsuario}"
-                                th:text="${tipoUsuario.tipoUsuario}"/>
-                    </select>
-                    <div class="invalid-feedback">Selecione uma opção</div>
-                </div>
-
-                <!--TIPO DE FUNCIONARIO-->
-                <div class="col-4 m-0">
-                    <label for="inputPassword6" class="col-form-label">Tipo de Funcionário *</label>
-                    <select class="form-select" th:field="${usuario.tipoFuncionario}" aria-label="select example" onblur="validaCampo()">
-                        <option th:each="tipoFuncionario : ${T(com.syscawfit.syscawfit.model.TipoFuncionario).values()}"
-                                th:value="${tipoFuncionario}"
-                                th:text="${tipoFuncionario.tipoFuncionario}"/>
-                    </select>
-                    <div class="invalid-feedback">Selecione uma opção</div>
-                </div>
-
-                <!-- SITUACAO -->
-                <div class="col-2 m-0">
-                    <label for="inputPassword6" class="col-form-label">Situação *</label>
-                    <br/>
-                    <div class="container">
-                        <label class="switch" for="checkbox">
-                            <input type="checkbox" id="checkbox" th:checked="${usuario.situacao}"/>
-                            <div class="slider round"></div>
-                        </label>
+                    <div class="col-5 m-0">
+                        <label for="inputPassword6" class="col-form-label">Tipo de Usuário</label>
+                        <select class="form-select" th:field="${usuario.tipoUsuario}" aria-label="select example"
+                                onblur="validaCampo()">
+                            <option th:each="tipoUsuario : ${T(com.syscawfit.syscawfit.model.TipoUsuario).values()}"
+                                    th:value="${tipoUsuario}"
+                                    th:text="${tipoUsuario.tipoUsuario}"/>
+                        </select>
+                        <div class="invalid-feedback">Selecione uma opção</div>
                     </div>
-<!--                    <script>-->
-<!--                        $(function() {-->
-<!--                            $('#toggle-two').bootstrapToggle({-->
-<!--                                on: 'Ativo',-->
-<!--                                off: 'Inativo'-->
-<!--                            });-->
-<!--                        })-->
-<!--                    </script>-->
+
+                    <!--TIPO DE FUNCIONARIO-->
+                    <div class="col-4 m-0">
+                        <label for="inputPassword6" class="col-form-label">Tipo de Funcionário</label>
+                        <select class="form-select" th:field="${usuario.tipoFuncionario}" aria-label="select example"
+                                onblur="validaCampo()">
+                            <option th:each="tipoFuncionario : ${T(com.syscawfit.syscawfit.model.TipoFuncionario).values()}"
+                                    th:value="${tipoFuncionario}"
+                                    th:text="${tipoFuncionario.tipoFuncionario}"/>
+                        </select>
+                        <div class="invalid-feedback">Selecione uma opção</div>
+                    </div>
+
+                    <!-- SITUACAO -->
+                    <div class="col-2 m-0">
+                        <label for="inputPassword6" class="col-form-label">Situação</label>
+                        <br/>
+                        <div class="container">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked th:field="${usuario.situacao}">
+                                <label class="form-check-label" for="flexSwitchCheckChecked"></label>
+                            </div>
+<!--                            <label class="switch" for="toggle">-->
+<!--                                <input checked type="checkbox" id="toggle" th:field="${usuario.situacao}"/>-->
+<!--                                <div class="slider round">-->
+<!--                                    <script>-->
+<!--                                    $(function() {-->
+<!--                                        $('#toggle').bootstrap.toggle({-->
+<!--                                            on: true,-->
+<!--                                            off: false-->
+<!--                                        });-->
+<!--                                    })-->
+<!--                                </script>-->
+<!--                                </div>-->
+
+<!--                            </label>-->
+                        </div>
+
+                    </div>
                 </div>
             </div>
-       </div>
 
             <h5 class="endereco-titulo mt-4">Endereço</h5>
 
             <div class="row">
                 <!--CEP-->
                 <div class="col-2 m-2">
-                    <label for="inputPassword6" class="col-form-label">CEP *</label>
-                    <input type="text" id="cep" th:field="${usuario.endereco.cep}" class="form-control">
+                    <label for="inputPassword6" class="col-form-label">CEP</label>
+                    <input type="text" id="cep" th:field="${usuario.endereco.cep}" class="form-control" required>
                     <div class="invalid-feedback">CEP não encontrado</div>
                 </div>
                 <!--LOGRADOURO-->
                 <div class="col mt-2">
-                    <label for="inputPassword6" class="col-form-label">Logradouro *</label>
-                    <input type="text" id="logradouro" th:field="${usuario.endereco.logradouro}" class="form-control" >
+                    <label for="inputPassword6" class="col-form-label">Logradouro</label>
+                    <input type="text" id="logradouro" th:field="${usuario.endereco.logradouro}" class="form-control" required>
                     <div class="invalid-feedback">Logradouro não informado</div>
                 </div>
                 <!--Nº-->
                 <div class="col-2 mt-2">
-                    <label for="inputPassword6" class="col-form-label">Nº *</label>
-                    <input type="text" id="numero" th:field="${usuario.endereco.numero}" class="form-control" >
+                    <label for="inputPassword6" class="col-form-label">Nº</label>
+                    <input type="text" id="numero" th:field="${usuario.endereco.numero}" class="form-control" required>
                     <div class="invalid-feedback">Nº não informado</div>
                 </div>
             </div>
@@ -169,20 +187,20 @@
             <div class="row">
                 <!--BAIRRO-->
                 <div class="col m-2">
-                    <label for="inputPassword6" class="col-form-label">Bairro *</label>
-                    <input type="text" id="bairro" th:field="${usuario.endereco.bairro}" class="form-control" >
+                    <label for="inputPassword6" class="col-form-label">Bairro</label>
+                    <input type="text" id="bairro" th:field="${usuario.endereco.bairro}" class="form-control" required>
                     <div class="invalid-feedback">Bairro não informado</div>
                 </div>
                 <!--CIDADE-->
                 <div class="col mt-2">
-                    <label for="inputPassword6" class="col-form-label">Cidade *</label>
-                    <input type="text" id="localidade" th:field="${usuario.endereco.cidade}" class="form-control" >
+                    <label for="inputPassword6" class="col-form-label">Cidade</label>
+                    <input type="text" id="localidade" th:field="${usuario.endereco.cidade}" class="form-control" required>
                     <div class="invalid-feedback">Cidade não informada</div>
                 </div>
                 <!--ESTADO-->
                 <div class="col-2 mt-2">
-                    <label for="inputPassword6" class="col-form-label">UF *</label>
-                    <input type="text" id="uf" th:field="${usuario.endereco.uf}" class="form-control" >
+                    <label for="inputPassword6" class="col-form-label">UF</label>
+                    <input type="text" id="uf" th:field="${usuario.endereco.uf}" class="form-control" required>
                     <div class="invalid-feedback">UF não informada</div>
                 </div>
             </div>
@@ -190,16 +208,18 @@
             <div class="row">
                 <!--PAÍS-->
                 <div class="col-3 m-2">
-                    <label for="inputPassword6" class="col-form-label">País *</label>
-                    <input type="text" id="pais" th:field="${usuario.endereco.pais}" class="form-control" >
+                    <label for="inputPassword6" class="col-form-label">País</label>
+                    <input type="text" id="pais" th:field="${usuario.endereco.pais}" class="form-control" required>
                     <div class="invalid-feedback">País não informado</div>
 
                 </div>
-                <div class="col mt-2 buttons">
-                    <button type="submit" class="btn btn-primary button-cadastro mx-2 mb-4">
-                        <i class="bi bi-cloud-upload p-2"></i>Cadastrar
+                <div class="col mt-2 buttons" th:switch="${usuario.id>0}">
+                    <button type="submit" th:case="${true}" class="btn btn-primary button-cadastro mx-2 mb-4">
+                        <i class="bi bi-cloud-upload p-2">Atualizar</i>
                     </button>
-
+                    <button type="submit" th:case="*" class="btn btn-primary button-cadastro mx-2 mb-4">
+                        <i class="bi bi-cloud-upload p-2"> Cadastrar</i>
+                    </button>
                     <button type="reset" class="btn btn-primary  button-cancelar mb-4">
                         <i class="bi bi-x-lg text-danger p-2"></i>Cancelar
                     </button>
@@ -210,21 +230,21 @@
 </div>
 
 
-    <!-- RODAPÉ-->
-    <footer class="row linha-rodape">
-        <div class="col rodape">
-            <p>Todos os direitos reservados - 2022.</p>
-        </div>
-    </footer>
+<!-- RODAPÉ-->
+<footer class="row linha-rodape">
+    <div class="col rodape">
+        <p>Todos os direitos reservados - 2022.</p>
+    </div>
+</footer>
 
-    <!-- JavaScript Bundle with Popper -->
+<!-- JavaScript Bundle with Popper -->
 <script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/aluno/endereco.js}"></script>
 <script type="text/javascript" th:src="@{/js/aluno/validacao-cpf.js}"></script>
 <script type="text/javascript" th:src="@{/js/aluno/mascaras.js}"></script>
 
 
-    </body>
+</body>
 </html>
 
 
