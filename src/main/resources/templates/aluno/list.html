@@ -85,13 +85,18 @@
                                             <td th:text="${aluno.plano}"/>
     
                                             <!-- opção de excluir aluno -->
-                                        <td><a th:href="@{/aluno/delete/{id}(id=${aluno.id})}">
-                                                <i class="bi bi-dash-circle" title="delete"></i>
-                                        </a></td>
+                                            <td><a th:href="@{/aluno/delete/{id}(id=${aluno.id})}">
+                                                    <i class="bi bi-dash-circle" title="delete"></i>
+                                            </a></td>
     
                                             <!-- opção de editar aluno -->
                                             <td><a th:href="@{/aluno/editar/{id}(id=${aluno.id})}">
                                                 <i class="bi bi-pencil" title="editar"></i>
+                                            </a></td>
+
+                                            <!-- opção de Mostrar Dados de aluno -->
+                                            <td><a th:href="@{/aluno/visualizar/{id}(id=${aluno.id})}">
+                                                <i class="bi bi-eye" title="dados completos"></i>
                                             </a></td>
                                         </tr>
                                         </tbody>

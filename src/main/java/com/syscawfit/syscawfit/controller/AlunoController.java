@@ -148,5 +148,16 @@ public class AlunoController {
 		return "redirect:/aluno/list";
 	}
 
+
+	// Editar aluno
+	@RequestMapping("/visualizar/{id}")
+	public String visualizarDadosAluno(Model model, @PathVariable Long id){
+		Aluno aluno = alunoDao.findById(id).orElse(null);
+
+		model.addAttribute("aluno", aluno);
+		model.addAttribute("planos", TipoPlano.values());
+
+		return "/aluno/visualizar";
+	}
 }
 
