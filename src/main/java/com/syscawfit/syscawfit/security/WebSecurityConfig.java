@@ -1,4 +1,4 @@
-package com.syscawfit.syscawfit.securityweb;
+package com.syscawfit.syscawfit.security;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -31,10 +31,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                     .antMatchers("/css/**", "/js/**", "/img/**").permitAll()
-                    .antMatchers("/login").permitAll()
-                    .antMatchers("/admin/***").hasRole("ADMIN")
-                    .antMatchers("/management/**").hasAnyRole("ADMIN", "MANAGER")
-                    .anyRequest()
+                    .antMatchers("/login", "/redefinirSenha**","/alterarSenha**").permitAll()
+                    .antMatchers("/admin/**", "/admin/usuario/**").hasAnyRole("ADMIN", "MANAGER")
+                    .antMatchers("/management/**").hasRole("MANAGER")
+                .anyRequest()
                     .authenticated()
                 .and()
                 .formLogin()

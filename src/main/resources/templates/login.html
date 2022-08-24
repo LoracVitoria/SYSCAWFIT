@@ -35,7 +35,7 @@
                             <div class="form-group">
                                 <label for="txtUsername">CPF</label>
                                 <input type="text" class="form-control" id="txtUsername" name="txtUsername"
-                                       placeholder="XXX.XXX.XXX-XX" required>
+                                       placeholder="XXX.XXX.XXX-XX" required autofocus>
                             </div>
 
                             <div class="form-group">
@@ -48,9 +48,8 @@
                             <button type="submit" name="button" class="btn login_btn">Login</button>
                             <hr/>
                             <div class="d-flex justify-content-center links">
-                                <a href="#">Esqueceu sua senha?</a>
+                                <a th:href="@{/redefinirSenha}">Redefinir a senha</a>
                             </div>
-
                         </form>
                     </div>
                 </div>

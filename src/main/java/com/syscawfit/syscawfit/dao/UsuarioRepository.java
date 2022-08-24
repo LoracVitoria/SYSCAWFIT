@@ -2,6 +2,8 @@ package com.syscawfit.syscawfit.dao;
 
 import com.syscawfit.syscawfit.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
 
@@ -18,6 +20,9 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long> {
 
     Usuario findByCpf(String username);
 
+    Usuario findByEmail(String userEmail);
+
+    Usuario findByTokenRedefinirSenha(String token);
     //findAll, findById, get, save, delete,
 }
 

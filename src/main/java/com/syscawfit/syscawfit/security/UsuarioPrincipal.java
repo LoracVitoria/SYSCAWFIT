@@ -1,4 +1,4 @@
-package com.syscawfit.syscawfit.securityweb;
+package com.syscawfit.syscawfit.security;
 
 
 import com.syscawfit.syscawfit.model.Usuario;
