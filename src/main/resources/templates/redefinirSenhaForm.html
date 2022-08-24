@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Redefinir Senha</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <!--Jquery-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+</head>
+<body>
+<div class="container h-100">
+    <div class="d-flex justify-content-center h-100">
+        <div class="align-content-center position-relative">
+            <div class="col-md m-auto d-grid">
+                <div class="row div_imagem">
+                    <img th:src="@{/img/imagem-logo.PNG}" alt="logo" class=" imagem logotipo">
+                </div>
+                <div class="user_card">
+
+                    <div class="card-block" style="padding: 24px;">
+                        <h2 class="title text-center">Redefinir a senha</h2>
+                        <hr/>
+                        <form name="f" th:action="@{/redefinirSenha}" method="post">
+                            <!-- Thymeleaf + Spring Security error display -->
+
+                            <div th:if="${error != null}" class="alert alert-danger">
+                                <p class="text-danger">[[${error}]]</p>
+                            </div>
+                            <div th:if="${message  != null}" class="alert alert-info">
+                                <p class="text-info">[[${message}]]</p>
+                            </div>
+
+                            <!-- Login Controls -->
+                            <div class="form-group">
+                                <p>Enviaremos um link para redefinir a sua senha no seu e-mail cadastrado</p>
+                                <label for="email">E-mail</label>
+                                <input type="email" class="form-control" id="email" name="email" required autofocus>
+
+                            </div>
+
+                            <button type="submit" name="button" class="btn login_btn">Enviar</button>
+                            <hr/>
+
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- JavaScript Bundle with Popper -->
+<script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+</html>

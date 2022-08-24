@@ -1,18 +1,13 @@
-package com.syscawfit.syscawfit.securityweb;
+package com.syscawfit.syscawfit.security;
 
 import com.syscawfit.syscawfit.dao.UsuarioRepository;
-import com.syscawfit.syscawfit.model.TipoFuncionario;
 import com.syscawfit.syscawfit.model.Usuario;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
-import java.util.Arrays;
-import java.util.List;
-
 import static com.syscawfit.syscawfit.model.TipoFuncionario.Administracao;
-import static com.syscawfit.syscawfit.model.TipoUsuario.Funcionario;
 import static com.syscawfit.syscawfit.model.TipoUsuario.Mantenedor;
 
 @Service

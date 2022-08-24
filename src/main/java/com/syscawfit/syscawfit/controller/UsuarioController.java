@@ -5,7 +5,10 @@ import com.syscawfit.syscawfit.dao.UsuarioRepository;
 import com.syscawfit.syscawfit.model.TipoFuncionario;
 import com.syscawfit.syscawfit.model.TipoUsuario;
 import com.syscawfit.syscawfit.model.Usuario;
+import com.syscawfit.syscawfit.security.UsuarioPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -68,6 +71,9 @@ public class UsuarioController {
         } else if (usuario.getTipoUsuario() != null && usuario.getTipoUsuario().getTipoUsuario().compareTo("Funcionário") == 0) {
             usuario.setRoles("USER");
         }
+        PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        String senhaCripto = passwordEncoder.encode(usuario.getSenha());
+        usuario.setSenha(senhaCripto);
         daoUsuario.save(usuario);
         return "redirect:/admin/usuario/list";
     }
