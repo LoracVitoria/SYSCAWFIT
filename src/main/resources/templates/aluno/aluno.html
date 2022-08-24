@@ -18,16 +18,34 @@
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 
-
         <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
         <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script> -->
+        
         <script>
             $(document).ready(function(){
                 $(".toast").toast({
                 autohide: false
                 });
                 $(".toast").toast("show");
+
+                // carregar imagem
+                $("#fileImage").change(function(){
+                    showImageThumbnail(this);
+                });
             });
+
+            
+           function showImageThumbnail(fileInput){
+                file = fileInput.files[0];
+                reader = new FileReader();
+
+                reader.onload = function(e){
+                    $("#thumbnail").attr("src", e.target.result);
+                }
+
+                reader.readAsDataURL(file);
+            }
+
         </script>
 
     </head>
@@ -62,11 +80,11 @@
                       </div>
                       <div class="toast-body" th:text="${erro}"></div>
                     </div>
-                  </div>
+                </div>
 
                  <!--Formulário-->
                  
-                <form class="row overflow-auto conteudo mx-2 formulario-aluno" th:object="${aluno}" action="/aluno/save" method="post">
+                <form class="row overflow-auto conteudo mx-2 formulario-aluno" enctype="multipart/form-data" th:object="${aluno}" action="/aluno/save" method="post">
                     
                     <div class="col-9 primeira-coluna">
                         <!--NOME COMPLETO-->
@@ -104,13 +122,10 @@
 
                     <!--Imagem do Aluno-->
                     <div class="col segunda-coluna border">
-                        <label class="picture form-control" for="picture__input" tabindex="0">
-                            <input type="file" accept="image/*" id="picture__input" th:field="${aluno.imagemAluno}">
-                            <span>
-                                <img class="picture__image"  alt="">Selecione uma imagem
-                            
-                            </span>
-                        </label>
+                        <input type="file" name="image" accept="image/*" class="inputFile" id="fileImage">
+                        <span>
+                            <img class="imagem-aluno" id="thumbnail" alt="" >
+                        </span> 
                     </div>
 
                     <div class="row">
