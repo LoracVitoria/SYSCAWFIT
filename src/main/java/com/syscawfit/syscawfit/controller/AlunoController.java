@@ -118,6 +118,7 @@ public class AlunoController {
 		Aluno saveAluno = alunoDao.save(aluno);
 
 		// armazenar arquivo no diretório alunos-imagens/alunoID
+
 		String uploadDir = caminhoImagens + saveAluno.getId();
 
 		FileUploadUtil.saveFile(uploadDir,fileName,multipartFile);
@@ -180,21 +181,26 @@ public class AlunoController {
 
 		aluno.setId(alunoDao.findByCpf(aluno.getCpf()).getId());
 
-		enderecoDao.save(aluno.getEndereco());
-		alunoDao.save(aluno);
-
-		// Deleta imagem anterior
-		FileUtils.deleteDirectory(new File(caminhoImagens + aluno.getId()));
-
 		//obter nome do arquivo que será armazenado no BD no campo ImagemAluno
 		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-		aluno.setImagemAluno(fileName);
-		Aluno saveAluno = alunoDao.save(aluno);
 
-		// armazenar arquivo no diretório alunos-imagens/alunoID
-		String uploadDir = caminhoImagens + saveAluno.getId();
+		// Checar se foto foi alterada
+		if (fileName.isEmpty()) {
+			aluno.setImagemAluno(buscaAluno.getImagemAluno());
+		} else {
+			// Deleta imagem anterior
+			FileUtils.deleteDirectory(new File(caminhoImagens + aluno.getId()));
 
-		FileUploadUtil.saveFile(uploadDir,fileName,multipartFile);
+			aluno.setImagemAluno(fileName);
+
+			// armazenar arquivo no diretório
+			String uploadDir = caminhoImagens + aluno.getId();
+
+			FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+		}
+
+		enderecoDao.save(aluno.getEndereco());
+		alunoDao.save(aluno);
 
 		return "redirect:/aluno/list";
 	}

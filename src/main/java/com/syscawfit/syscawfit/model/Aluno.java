@@ -52,12 +52,4 @@ public class Aluno {
     @OneToOne(cascade = CascadeType.REMOVE)
     private EnderecoAluno endereco;
 
-
-//    @Transient
-//    public String getImagemAluno() {
-//        if(imagemAluno == null || id == null){
-//            return null;
-//        }
-//        return "/alunos-imagem/" + id + "/" + imagemAluno;
-//    }
 }
