@@ -17,6 +17,32 @@
         <!--Jquery-->
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+        <script>
+            $(document).ready(function(){
+                $(".toast").toast({
+                autohide: false
+                });
+                $(".toast").toast("show");
+
+                // carregar imagem
+                $("#fileImage").change(function(){
+                    showImageThumbnail(this);
+                });
+            });
+
+            
+           function showImageThumbnail(fileInput){
+                file = fileInput.files[0];
+                reader = new FileReader();
+
+                reader.onload = function(e){
+                    $("#thumbnail").attr("src", e.target.result);
+                }
+
+                reader.readAsDataURL(file);
+            }
+        </script>
     </head>
 
     <body>
@@ -39,10 +65,24 @@
                     </h1>
                 </div>
 
+                <div class="toast-container end-0 bottom-0 p-3 mb-5">
+                    <div class="toast bg-warning" role="alert" aria-live="assertive" aria-atomic="true" th:each="erro : ${mensagensErro}"  th:if="${mensagensErro}">
+                      <div class="toast-header bg-warning text-dark">
+      
+                        <strong class="me-auto"><i class="bi bi-exclamation-circle-fill"></i> Atenção!</strong>
+                        <small class="text-muted">agora mesmo</small>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                      </div>
+                      <div class="toast-body" th:text="${erro}"></div>
+                    </div>
+                </div>
+
                  <!--Formulário-->
                  
-                <form class="row overflow-auto conteudo mx-2 formulario-aluno" th:object="${aluno}" action="/aluno/update" method="post">
-                    
+                <form class="row overflow-auto conteudo mx-2 formulario-aluno" enctype="multipart/form-data" th:object="${aluno}" action="/aluno/update" method="post">
+                    <div class="mb-3 mt-3">
+                        <input type="number" class="form-control" id="" th:field="${aluno.id}" hidden="true">
+                    </div>
                     <div class="col-9 primeira-coluna">
                         <!--NOME COMPLETO-->
                         <div class="row">
@@ -70,16 +110,10 @@
 
                     <!--Imagem do Aluno-->
                     <div class="col segunda-coluna border">
-                        <label class="picture form-control" for="picture__input" tabindex="0">
-                            <input type="file" accept="image/*" id="picture__input" th:field="${aluno.imagemAluno}">
-                            <span>
-                                <img class="picture__image"  alt="">Selecione uma imagem
-                            
-                            </span>
-                        </label>
-                        <!-- <div class="container-imagem">
-                            <img th:src="@{/img/}" alt="Selecione uma imagem" class="imagem-aluno" id="imgPhoto">
-                        </div> -->
+                        <input type="file" name="image" accept="image/*" class="inputFile" id="fileImage">
+                        <span>
+                            <img class="imagem-aluno" id="thumbnail" alt="" >
+                        </span> 
                     </div>
 
                     <div class="row">

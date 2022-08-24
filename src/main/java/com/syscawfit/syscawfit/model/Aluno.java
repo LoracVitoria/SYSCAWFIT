@@ -5,10 +5,7 @@ import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import javax.persistence.*;
 import javax.validation.Valid;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.util.Date;
 
@@ -32,6 +29,7 @@ public class Aluno {
     @Column(unique = true)
     private String cpf;
 
+    @Size(max=1000)
     private String imagemAluno;
 
     @NotBlank(message = "O campo telefone deve ser preenchido.")
@@ -55,4 +53,11 @@ public class Aluno {
     private EnderecoAluno endereco;
 
 
+//    @Transient
+//    public String getImagemAluno() {
+//        if(imagemAluno == null || id == null){
+//            return null;
+//        }
+//        return "/alunos-imagem/" + id + "/" + imagemAluno;
+//    }
 }

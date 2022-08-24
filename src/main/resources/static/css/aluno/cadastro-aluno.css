@@ -57,12 +57,10 @@
   background: #ccc;
 }
 
-#picture__input {
-  display: none;
-}
 
-.picture__image {
-  max-width: 100%;
+.imagem-aluno {
+  width: 20vh;
+  height: 20vh ;
 }
 
 /* ====== Buttons ===============================================================*/
