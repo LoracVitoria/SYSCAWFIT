@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Alterar a Senha</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <!--Jquery-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+</head>
+<body>
+<div class="container h-100">
+    <div class="d-flex justify-content-center h-100">
+        <div class="align-content-center position-relative">
+            <div class="col-md m-auto d-grid">
+                <div class="row div_imagem">
+                    <img th:src="@{/img/imagem-logo.PNG}" alt="logo" class=" imagem logotipo">
+                </div>
+                <div class="user_card">
+
+                    <div class="card-block" style="padding: 24px;">
+                        <h2 class="title text-center">Alterar a senha</h2>
+                        <hr/>
+                        <form name="f" th:action="@{/alterarSenha}" method="post">
+                            <input type="hidden" name="token" th:value="${token}"/>
+
+                            <div class="form-group">
+                                <label for="txtPassword">Nova senha</label>
+                                <input type="password" class="form-control" id="txtPassword" name="txtPassword"
+                                       placeholder="senha" minlength="6" required autofocus>
+                                <br/>
+                                <label for="txtPasswordConfirm">Confirme a nova senha</label>
+                                <input type="password" class="form-control" id="txtPasswordConfirm" name="txtPasswordConfirm"
+                                       placeholder="senha" minlength="6" required
+                                oninput="verificarSenhasConferem(this)">
+                                <br/>
+                            </div>
+                            <button type="submit" name="button" class="btn login_btn">Salvar</button>
+                            <hr/>
+
+                            <script type="text/javascript">
+                                function verificarSenhasConferem(fieldTxtPasswordConfirm) {
+                                    if(fieldTxtPasswordConfirm.value !== $("#txtPassword").val()){
+                                        fieldTxtPasswordConfirm.setCustomValidity("As senhas não coincidem!")
+                                    }else {
+                                        fieldTxtPasswordConfirm.setCustomValidity("");
+                                    }
+                                }
+                            </script>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- JavaScript Bundle with Popper -->
+<script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+
+</body>
+</html>

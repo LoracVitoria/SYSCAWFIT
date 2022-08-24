@@ -34,6 +34,8 @@ public class Usuario {
     private TipoFuncionario tipoFuncionario;
     private String roles = "";
 
+    private String tokenRedefinirSenha;
+
     public Usuario() {}
 
     public Usuario(String username, String password, String roles, Boolean situacao, TipoUsuario tipoUsuario, TipoFuncionario tipoFuncionario) {
@@ -160,6 +162,14 @@ public class Usuario {
 
     public void setTipoFuncionario(TipoFuncionario tipoFuncionario) {
         this.tipoFuncionario = tipoFuncionario;
+    }
+
+    public String getTokenRedefinirSenha() {
+        return tokenRedefinirSenha;
+    }
+
+    public void setTokenRedefinirSenha(String tokenRedefinirSenha) {
+        this.tokenRedefinirSenha = tokenRedefinirSenha;
     }
 
     @Override
