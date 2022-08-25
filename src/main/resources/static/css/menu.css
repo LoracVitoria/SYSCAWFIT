@@ -1,8 +1,4 @@
-.container-menu {
-    background: #BFBFBF;
-}
-
-.container-menu, .row {
+.coluna-menu, .row {
     padding: 0 !important;
     margin: 0 !important;
 }
@@ -30,17 +26,103 @@
     background-color: #062A40;
 }
 
+/*
+========================================================================
+        NAVBAR SANDWICH
+========================================================================
+*/
+.navbar-sandwich {
+    height: 15vh;
+    background: #062A40;
+}
+
+.navbar-toggler {
+    background-color: #F0F473 !important;
+}
+
+.offcanvas {
+    background: #BFBFBF;
+}
+
+.offcanvas-header {
+    background: #062A40;
+}
+
+/* Responsividade */
 
 @media screen and (min-width:0){
-    .container-menu {
-        /* background: green; */
-        /* width: 30vw; */
+    .navbar-sandwich {
+        display: block;
     }
+
+    .navbar-vertical {
+        display: none;
+    }
+
+    .coluna-menu {
+       background: none;
+       width: 0;
+    }
+
+    .coluna-conteudo {
+        width: 100%;
+        margin-top: 22%;
+    }
+
+    .linha-cabecalho {
+        display: none;
+    }
+
+    .usuario__imagem {
+        margin-left: 4rem;
+    }
+
+    .usuario__nome {
+        margin-right: 3rem;
+    }
+
+    .linha-rodape {
+        display: none;
+    }
+
+    .logotipo {
+        height: 12vh;
+    }
+
 }
 
 @media screen and (min-width:768px){
-    .container-menu {
-        /* background: #BFBFBF; */
-        /* width: 20vw; */
-    }
+   .navbar-sandwich {
+        display: none;
+   }
+
+   .navbar-vertical {
+        display: flex;
+   }
+
+   .coluna-menu {
+        background: #BFBFBF;
+        width: 25%;
+   }
+
+   .coluna-conteudo {
+        width: 75%;
+        margin-top: 0;
+   }
+
+   .linha-cabecalho {
+    display: flex;
+   }
+
+   .linha-rodape {
+    display: flex;
+   }
+
+   .logotipo {
+        height: 15vh
+   }
+
+
+
 }
+
