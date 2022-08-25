@@ -34,13 +34,14 @@
                 <form th:object="${aula}" action="/aulas/save" method="post">
                   <div class="mb-3 mt-3">
                     <label class="form-label fw-bold">Nome *</label>
-                    <input type="text" class="form-control" id="" th:field="${aula.nome}" required>
+                    <input type="text" class="form-control" id="" th:field="${aula.nome}">
                   </div>
   
                   <div class="mb-3">
                     <label class="col-form-label fw-bold">Dia da Semana *</label>
-                    <select class="form-select" th:field="${aula.aulaDiaHora.diaSemana}"aria-label="select example" required>
-                        <option th:each="diaSemana : ${diasSemana}"
+                    <select class="form-select" th:field="${aula.aulaDiaHora.diaSemana}"aria-label="select example" >
+                      <option value=""></option>
+                      <option th:each="diaSemana : ${diasSemana}"
                                 th:value="${diaSemana}"
                                 th:text="${diaSemana}"/>
                     </select>
@@ -49,14 +50,14 @@
 
                   <div class="mb-3 mt-3">
                     <label class="form-label fw-bold">Hora *</label>
-                    <input type="time" class="form-control" id=""  th:field="${aula.aulaDiaHora.hora}" required>
+                    <input type="time" class="form-control" id=""  th:field="${aula.aulaDiaHora.hora}" >
                   </div>
 
                   <div class="mb-3">
                     <label class="col-form-label fw-bold">Professor(a) *</label>
-                    <select class="form-select" th:field="${aula.professor}"aria-label="select example">
+                    <select class="form-select" th:field="${aula.professor}"aria-label="select example" >
                         <option th:each="professor : ${professores}"
-                                th:value="${professor}"
+                                th:value="${professor.id}"
                                 th:text="${professor.nome}"/>
                     </select>
                     <div class="invalid-feedback">Selecione uma opção</div>

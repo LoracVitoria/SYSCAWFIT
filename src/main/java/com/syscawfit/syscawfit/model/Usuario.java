@@ -1,34 +1,60 @@
 package com.syscawfit.syscawfit.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Usuario {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @NotBlank(message="Campo Nome é obrigatório!")
+    @Size(min=2,max=50,message="Nome deve conter {min} até {max} caracteres.")
+    @Column(nullable = false)
     private String nome;
-    private String CPF;
-    private String RG;
-    private String telefone;
-    @OneToOne
-    @JoinColumn(name = "endereco_id")
-    private Endereco endereco;
-    private String email;
-    private Boolean situacao;
-    private Boolean mantenedor;
-    private String senha;
 
+//    @Column(nullable = false)
+//    @NotBlank(message="O campo Senha é obrigatório!")
+//    private String senha;
+//
+//    @Column(nullable = false)
+//    @NotBlank(message = "O campo CPF é obrigatório!")
+//     private String  cpf;
+//
+//    @Column(nullable = false)
+//    @NotBlank(message = "O campo RG é obrigatório!")
+//    private String rg;
+//
+//    @Column(nullable = false)
+//    @NotBlank(message = "O campo telefone é obrigatório!")
+//    private String telefone;
+//
+//    @Column(nullable = false, unique=true)
+//    @NotBlank(message="O campo Email é obrigatório!")
+//    @Email(message = "Email inválido!")
+//    private String email;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "endereco_ID")
+//    private Endereco endereco;
+//
+//    @Column(nullable = false)
+//    @NotBlank(message = "Selecione uma opção!")
+//    private Boolean situacao;
+//
+//    private Boolean tipoUsuario;
+    //onde true para administrador e false para funcionário
 
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }
-
+//    public Endereco getEndereco() {
+//        return endereco;
+//    }
+//    public void setEndereco(Endereco endereco) {
+//        this.endereco = endereco;
+//    }
 
     public Long getId() {
         return id;
@@ -46,59 +72,6 @@ public class Usuario {
         this.nome = nome;
     }
 
-    public String getCPF() {
-        return CPF;
-    }
 
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
-    }
 
-    public String getRG() {
-        return RG;
-    }
-
-    public void setRG(String RG) {
-        this.RG = RG;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Boolean getSituacao() {
-        return situacao;
-    }
-
-    public void setSituacao(Boolean situacao) {
-        this.situacao = situacao;
-    }
-
-    public Boolean getMantenedor() {
-        return mantenedor;
-    }
-
-    public void setMantenedor(Boolean mantenedor) {
-        this.mantenedor = mantenedor;
-    }
-
-    public String getSenha() {
-        return senha;
-    }
-
-    public void setSenha(String senha) {
-        this.senha = senha;
-    }
 }

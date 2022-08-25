@@ -32,38 +32,31 @@
 
 /* ====== Imagem ===============================================================*/
 
-.coluna-imagem {
+.segunda-coluna {
   display: flex;
   justify-content: center;
 }
 
-.picture {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* aspect-ratio: 16/10; */
-  width: 20vh;
-  height: 20vh ;
+.segunda-coluna, .row {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.imagem-aluno {
+  height: 20vh;                  
+  width: 20vh;       
+  object-fit: cover;            
+  background-size: cover;         /* para que as imagens não se repitam */
+  background-position: center;    /* para que as imagens ocupem todo o background */
+  background-repeat: no-repeat;   /* para que as imagens seham centralizadas na caixa */
+  border-radius: 100%;            /* bordas arredondadas */
   background: #ccc;
   color: #aaa;
   border: 2px dashed #aaa;
-  cursor: pointer;
   font-family: sans-serif;
   transition: color 300ms ease-in-out, background 300ms ease-in-out;
 }
 
-.picture:hover {
-  color: #777;
-  background: #ccc;
-}
-
-#picture__input {
-  display: none;
-}
-
-.picture__image {
-  max-width: 100%;
-}
 
 /* ====== Buttons ===============================================================*/
 

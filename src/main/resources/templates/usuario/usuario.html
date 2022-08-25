@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IElist=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SYSCAWFIT</title>
+    <title>SYSCAWFIT</title>l
     <link rel="stylesheet" th:href="@{/csslist/normalize.css}">
     <link rel="stylesheet" th:href="@{/css/reset.css}">
     <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
@@ -22,7 +22,7 @@
 <body>
 <!-- CABEÇALHO-->
 <header th:replace="cabecalho:: cabecalho"/>
-<!-- MENU-->
+<!-- MENU-->list
 <div class="row linha-centro">
     <!-- MENU-->
     <nav class="col-3 border container-menu">
@@ -39,15 +39,36 @@
 
         <!--FORMULÁRIO-->
 
-        <form class="row overflow-auto conteudo mx-2 formulario-usuario" action="">
+        <form th:object="${usuario}" action="/usuario/save" method="post">
+            <div class="mb-3">
+              <label class="form-label">ID</label>
+              <input type="number" class="form-control" th:field="${usuario.id}" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Nome</label>
+              <input type="text" class="form-control" th:field="${usuario.nome}" id="nome">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+
+
+
+
+        <!-- <form class="row overflow-auto conteudo mx-2 formulario-usuario" action="">
 
             <div class="col-md-4">
                 <label for="validationCustom01" class="form-label">Nome:  </label>
                 <input type="text" class="form-control" id="validationCustom01" value="Nome Completo" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
             </div>
             <div class="col-md-4">
                 <label for="validationCustom02" class="form-label">CPF: </label>
                 <input type="text" class="form-control" id="validationCustom02" value="XXX.XXX.XXX-X" required>
+                <div class="valid-feedback">
+                    Looks good!
+                </div>
             </div>
             <br/>
             <div class="col-md-4">
@@ -67,8 +88,8 @@
                     Por favor, insira um telefone!
                 </div>
             </div>
-            <br/>
-            <br/>
+            <br>
+            <br>
             <div class="col-md-3">
                 <label for="validationCustom04" class="form-label">Tipo de Usuário: </label>
                 <select class="form-select" id="validationCustom04" required>
@@ -89,7 +110,7 @@
                 <label for="validationCustom05" class="form-label">Situação: </label>
                 <label class="switch">
                     <input type="checkbox">
-                    <span class="slider round"></span>
+                    <span class="slider round"></spa/etc/apt/sources.listn>
                 </label>
             <br/>
                 </div>
@@ -108,15 +129,15 @@
             <br/>
 
             <!--ENDEREÇO-->
-            <section class="container__endereco">
+            <!-- <section class="container__endereco">
                 <h5 class="titulo-endereco">Endereço</h5>
 
                 <div class="row">
                     <div class="col-md-4">
                         <label for="validationServer03" class="form-label">CEP</label>
-                        <input type="text" class="form-control is-invalid" value="XXXXX-XXX" id="validationServer03" aria-describedby="validationServer03Feedback" required>
+                        <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" required>
                         <div id="validationServer03Feedback" class="invalid-feedback">
-                           Por favor, insira um CEP válido!.
+                            Please provide a valid CEP.
                         </div>
                     </div>
 
@@ -129,7 +150,7 @@
                 <div class="row">
 
                     <div class="col-md-2">
-                        <label for="validationServer03" class="form-label">Nº</label>
+                        <label for="validationServer03" class="form-label">Nº</label>/etc/apt/sources.list
                         <input type="text" class="form-control is-invalid" id="validationServer03" aria-describedby="validationServer03Feedback" required>
                     </div>
 
@@ -141,9 +162,12 @@
                     <div class="col-md-5">
                         <label for="validationServer04" class="form-label">Cidade</label>
                         <select class="form-select is-invalid" id="validationServer04" aria-describedby="validationServer04Feedback" required>
-                            <option selected disabled value="">Selecione</option>
+                            <option selected disabled value="">Choose...</option>
                             <option>...</option>
                         </select>
+                        <div id="validationServer04Feedback" class="invalid-feedback">
+                            Please select a valid state.
+                        </div>
                     </div>
                 </div>
 
@@ -151,21 +175,27 @@
                     <div class="col-md-3">
                         <label for="validationServer04" class="form-label">UF</label>
                         <select class="form-select is-invalid" id="validationServer04" aria-describedby="validationServer04Feedback" required>
-                            <option selected disabled value="">Selecione...</option>
+                            <option selected disabled value="">Choose...</option>
                             <option>...</option>
                         </select>
+                        <div id="validationServer04Feedback" class="invalid-feedback">
+                            Please select a valid state.
+                        </div>
                     </div>
 
                     <div class="col-md-3">
                         <label for="validationServer04" class="form-label">País</label>
                         <select class="form-select is-invalid" id="validationServer04" aria-describedby="validationServer04Feedback" required>
-                            <option selected disabled value="">Selecione...</option>
+                            <option selected disabled value="">Choose...</option>
                             <option>...</option>
                         </select>
+                        <div id="validationServer04Feedback" class="invalid-feedback">
+                            Please select a valid state.
+                        </div>
                     </div>
                 </div>
             </section>
-        </form>
+        </form> -->
     </main>
 </div>
 

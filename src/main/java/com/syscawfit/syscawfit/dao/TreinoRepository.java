@@ -7,4 +7,5 @@ import com.syscawfit.syscawfit.model.Treino;
 
 public interface TreinoRepository extends JpaRepository<Treino, Long>{
 
+	public Treino findTreinoByAlunoCpf(String cpf);
 }

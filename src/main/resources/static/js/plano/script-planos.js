@@ -31,3 +31,6 @@ function valid(field) {
     field.classList.remove("is-valid");
     field.classList.add("is-invalid");
   }
+
+
+  
