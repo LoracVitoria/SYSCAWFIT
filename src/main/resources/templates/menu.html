@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<!-- A vertical navbar -->
-<nav class="navbar" th:fragment="menu">
-
+<nav class="navbar navbar-vertical" th:fragment="menu">
     <!-- Itens do Menu -->
-
     <ul class="navbar-nav lista" >
 
         <li class="nav-item">
@@ -37,6 +33,71 @@
         <li class="nav-item">
             <a class="nav-link" th:href="@{/usuario/new}">Usuários</a>
         </li>
-
     </ul>
+</nav>
+
+
+<nav class="navbar fixed-top navbar-sandwich border" th:fragment="menu">
+    <div class="row container-fluid">
+        <div class="col-6">
+            <!--Menu sandwich-->
+            <button class="navbar-toggler d-flex justify-content-start" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!--vertical-->
+            <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                <div class="offcanvas-header">
+                    <img th:src="@{/img/imagem-logo.PNG}" alt="logo" class=" img-fluid logotipo">
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+                        <!--Itens do Menu-->
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/aluno/list}">Aluno</a>
+                        </li>
+                
+                        <li class="nav-item">
+                            <a class="nav-link"th:href="@{/treino/new}">Treino</a>
+                        </li>
+                
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/tipoexercicio/list}">Tipos de Exericios</a>
+                        </li>
+                
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/equipamentos/list}">Equipamentos</a>
+                        </li>
+                
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/aulas/list}">Aula</a>
+                        </li>
+                
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/planos}">Planos</a>
+                        </li>
+                
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/relatorios/filtro}">Relatórios</a>
+                        </li>
+                
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/usuario/new}">Usuários</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="col-4 coluna-imagem">
+            <img th:src="@{/img/imagem-usuario.jpg}" class="img-fluid usuario__imagem" alt="...">
+        </div>
+
+        <div class="col-2 coluna-texto">
+            <p class="usuario__nome">Usuário</p>
+        </div>
+
+    </div>
 </nav>
