@@ -58,6 +58,17 @@
 }
 
 
+
+.card {
+ background: #D4EEEB; 
+}
+
+.card-view {
+  background: #214054 ;
+  color: #ADC9DB;
+}
+
+
 /* ====== Buttons ===============================================================*/
 
 .buttons {
@@ -101,12 +112,29 @@
     justify-content: center;
   }
 
+  .coluna__dadosPessoais, .subtitulo-endereco {
+    justify-content: center;
+  }
+
+  .card {
+    width: 100%;
+  }
+
 }
 
 @media screen and (min-width:768px){
     .coluna-imagem {
-      display: block;
+      display: flex;
+      justify-content: end;
     }
-}
+  
+    .coluna__dadosPessoais, .subtitulo-endereco {
+      justify-content: start;
+    }
 
+    .card {
+      width: 75%;
+    }
+    
+}
 
