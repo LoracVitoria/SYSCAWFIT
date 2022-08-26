@@ -74,7 +74,32 @@
 }
 
 
+/* Responsividade */
 
+@media screen and (min-width:0){
+    .coluna-pesquisa {
+        display: flex;
+        justify-content: center;
+    }
+
+    .coluna-buttons {
+        display: flex;
+        justify-content: center;
+    }
+  
+  }
+  
+  @media screen and (min-width:768px){
+    .coluna-pesquisa {
+        display: flex;
+        justify-content: end;
+    }
+
+    .coluna-buttons {
+        display: flex;
+        justify-content: start;
+    }
+  }
 
 
 

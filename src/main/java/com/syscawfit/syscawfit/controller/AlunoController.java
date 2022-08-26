@@ -80,6 +80,7 @@ public class AlunoController {
 		Aluno aluno = new Aluno();
 		model.addAttribute("aluno", aluno);
 		model.addAttribute("planos", TipoPlano.values());
+		model.addAttribute("generos", Genero.values());
 
 		return "/aluno/aluno.html";
 	}
@@ -104,6 +105,7 @@ public class AlunoController {
 		if (!errors.isEmpty()) {
 			model.addAttribute("aluno", aluno);
 			model.addAttribute("planos", TipoPlano.values());
+			model.addAttribute("generos", Genero.values());
 			model.addAttribute("mensagensErro", errors);
 
 			return "/aluno/aluno.html";
@@ -149,6 +151,7 @@ public class AlunoController {
 
 		model.addAttribute("aluno", aluno);
 		model.addAttribute("planos", TipoPlano.values());
+		model.addAttribute("generos", Genero.values());
 
 		return "/aluno/editar.html";
 	}
@@ -174,6 +177,7 @@ public class AlunoController {
 		if (!errors.isEmpty()) {
 			model.addAttribute("aluno", aluno);
 			model.addAttribute("planos", TipoPlano.values());
+			model.addAttribute("generos", Genero.values());
 			model.addAttribute("mensagensErro", errors);
 
 			return "/aluno/editar.html";
@@ -213,6 +217,7 @@ public class AlunoController {
 
 		model.addAttribute("aluno", aluno);
 		model.addAttribute("planos", TipoPlano.values());
+		model.addAttribute("generos", Genero.values());
 
 		return "/aluno/visualizar";
 	}
