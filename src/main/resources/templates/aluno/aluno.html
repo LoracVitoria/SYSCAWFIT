@@ -56,192 +56,168 @@
 
         <div class="row linha-centro overflow-auto">
             <!-- MENU-->
-            <nav class="col-3 border coluna-menu">
+            <nav class="col-3 border coluna-menu ">
                 <nav th:replace="menu:: menu"/>    
             </nav>
 
             <!--CONTEÚDO DA PÁGINA-->
             <main class="col-9 coluna-conteudo">
 
+              <div class="toast-container end-0 bottom-0 p-3 mb-5">
+                <div class="toast bg-warning" role="alert" aria-live="assertive" aria-atomic="true" th:each="erro : ${mensagensErro}"  th:if="${mensagensErro}">
+                  <div class="toast-header bg-warning text-dark">
+  
+                    <strong class="me-auto"><i class="bi bi-exclamation-circle-fill"></i> Atenção!</strong>
+                    <small class="text-muted">agora mesmo</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                  </div>
+                  <div class="toast-body" th:text="${erro}"></div>
+                </div>
+              </div>
+                
+              <!--Formulário-->
+              <form class="row g-3 d-flex justify-content-center" enctype="multipart/form-data" th:object="${aluno}" action="/aluno/save" method="post">
+
                 <!--Título-->
-                <h1 class="col header-titulo mt-5 text-center">
-                    <i class="bi bi-person-plus"></i>
-                    Cadastrar
+                <h1 class="col-md-6 header-titulo mt-5 text-center">
+                  <i class="bi bi-person-plus"></i>
+                  Cadastrar
                 </h1>
 
-                <div class="toast-container end-0 bottom-0 p-3 mb-5">
-                    <div class="toast bg-warning" role="alert" aria-live="assertive" aria-atomic="true" th:each="erro : ${mensagensErro}"  th:if="${mensagensErro}">
-                      <div class="toast-header bg-warning text-dark">
-      
-                        <strong class="me-auto"><i class="bi bi-exclamation-circle-fill"></i> Atenção!</strong>
-                        <small class="text-muted">agora mesmo</small>
-                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                      </div>
-                      <div class="toast-body" th:text="${erro}"></div>
-                    </div>
+                <!--Buttons-->
+                <div class="col-md-6 buttons  d-flex align-items-center justify-content-center">
+                  <button type="submit" class="btn btn-primary button-cadastro mx-2 mb-4">
+                      <i class="bi bi-cloud-upload p-2"></i>Cadastrar
+                  </button>
+
+                  <a class="btn button-cancelar mb-4" th:href="@{/aluno/list}" role="button">
+                      <i class="bi bi-x-lg text-danger p-2"></i>Cancelar
+                  </a>
                 </div>
-                
-                <!--Formulário-->
-                <form class="row g-3 needs-validation" novalidate enctype="multipart/form-data" th:object="${aluno}" action="/aluno/save" method="post">
+
+                <div class="card">
+                  <div class="card-body row g-3">
+
+                    <div class="col-md-6 coluna__dadosPessoais d-flex align-items-center">
+                      <h4>Dados Pessoais</h4>
+                    </div>
 
                      <!--Mostrar foto-->
-                     <div class="col-md-6 coluna-imagem">
-                        <span><img class="imagem-aluno mx-2" id="thumbnail"></span>
+                    <div class="col-md-6 coluna-imagem">
+                      <span><img class="imagem-aluno" id="thumbnail"></span>
                     </div>
-
-                    <!--Buttons-->
-                    <div class="col-md-6 buttons  d-flex align-items-center justify-content-center">
-                        <button type="submit" class="btn btn-primary button-cadastro mx-2 mb-4">
-                            <i class="bi bi-cloud-upload p-2"></i>Cadastrar
-                        </button>
-
-                        <a class="btn button-cancelar mb-4" th:href="@{/aluno/list}" role="button">
-                            <i class="bi bi-x-lg text-danger p-2"></i>Cancelar
-                        </a>
-                    </div>
-
+                   
                     <div class="col-md-6">
                       <label for="validationCustom01" class="form-label">Nome</label>
-                      <input type="text" class="form-control" id="validationCustom01" required>
-                      <div class="valid-feedback">
-                        Looks good!
-                      </div>
+                      <input type="text" th:field="${aluno.nome}" class="form-control" id="nome" required>
+                      <div class="invalid-feedback">Nome inválido</div>
                     </div>
                     
                     <div class="col-md-6">
-                        <label for="validationCustom01" class="form-label">CPF</label>
-                        <input type="text" class="form-control" id="validationCustom01" required>
-                        <div class="valid-feedback">
-                          Looks good!
-                        </div>
+                      <label for="validationCustom01" class="form-label">CPF</label>
+                      <input type="text"  th:field="${aluno.cpf}" class="form-control" id="cpf" onblur='validaCPF()' required>
+                      <div class="invalid-feedback">CPF inválido</div>
                     </div>
 
                     <div class="col-md-6">
                       <label for="validationCustom03" class="form-label">Data de Nascimento</label>
-                      <input type="date" class="form-control" id="validationCustom03" required>
-                      <div class="invalid-feedback">
-                        Please provide a valid city.
+                      <input type="date" th:field="${aluno.dataNascimento}" class="form-control" id="dtNascimento" onblur='validarIdade()' required>
+                      <div class="invalid-feedback">Deve ser maior de 18 anos</div>
+                    </div>
+                    
+                    <div class="col-md-6">
+                      <label for="validationCustom03" class="form-label">Telefone</label>
+                      <input type="text" th:field="${aluno.telefone}" class="form-control" id="telefone" placeholder="(00) 00000-0000" required>
+                      <div class="invalid-feedback">Telefone inválido</div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label for="validationCustom03" class="form-label">E-mail</label>
+                      <input type="email" th:field="${aluno.email}" class="form-control" id="email" required>
+                      <div class="invalid-feedback">E-mail inválido</div>
+                    </div>
+
+                    <div class="col-md-6">
+                      <label for="validationCustom03" class="form-label">Anexar foto</label>
+                      <div>
+                        <input class="form-control form-control-sm inputFile" accept="image/*" name="image" id="fileImage" type="file">
                       </div>
                     </div>
-                    
-                    <div class="col-md-6">
-                        <label for="validationCustom03" class="form-label">Telefone</label>
-                        <input type="text" class="form-control" id="validationCustom03" required>
-                        <div class="invalid-feedback">
-                          Please provide a valid city.
-                        </div>
+
+                    <div class="col-md-6 mb-3">
+                      <label for="validationCustom03" class="form-label">Gênero</label>
+                      <select class="form-select" th:field="${aluno.genero}" aria-label="select example" onblur="validaCampo()" >
+                          <option value=""></option>
+                          <option th:each="genero : ${generos}"
+                                  th:value="${genero}"
+                                  th:text="${genero}"/>
+                      </select>
+                      <div class="invalid-feedback">Selecione uma opção</div>
                     </div>
 
-                    <div class="col-md-6">
-                        <label for="validationCustom03" class="form-label">E-mail</label>
-                        <input type="email" class="form-control" id="validationCustom03" required>
-                        <div class="invalid-feedback">
-                          Please provide a valid city.
-                        </div>
+                    <div class="col-md-6 mb-3">
+                      <label for="validationCustom03" class="form-label">Tipo de Plano</label>
+                      <select class="form-select" th:field="${aluno.plano}" aria-label="select example" onblur="validaCampo()" >
+                          <option value=""></option>
+                          <option th:each="plano : ${planos}"
+                                  th:value="${plano}"
+                                  th:text="${plano}"/>
+                      </select>
+                      <div class="invalid-feedback">Selecione uma opção</div>
                     </div>
+                  </div>
+                </div>
 
-                    <div class="col-md-6">
-                        <label for="validationCustom03" class="form-label">Anexar foto</label>
-                        <input type="file" class="form-control" id="validationCustom03" required>
-                        <div class="invalid-feedback">
-                          Please provide a valid city.
-                        </div>
-                    </div>
+                <!--Endereço-->
+                <div class="card">
+                  <div class="card-body row g-3">
 
-                    <div class="col-md-6">
-                        <label for="validationCustom03" class="form-label">Sexo</label>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                              Feminino
-                            </label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                            <label class="form-check-label" for="flexRadioDefault1">
-                              Masculino
-                            </label>
-                        </div>
-                        <div class="invalid-feedback">
-                          Please provide a valid city.
-                        </div>
-                    </div>
-
-                    <div class="col-md-6">
-                        <label for="validationCustom03" class="form-label">Tipo de Plano</label>
-                        <select class="form-select" th:field="${aluno.plano}"aria-label="select example" onblur="validaCampo()" >
-                            <option value=""></option>
-                            <option th:each="plano : ${planos}"
-                                    th:value="${plano}"
-                                    th:text="${plano}"/>
-                        </select>
-                        <div class="invalid-feedback">
-                          Please provide a valid city.
-                        </div>
-                    </div>
-
-                    <!--Endereço-->
-
-                    <h4 class="mt-5">Endereço</h4>
+                    <h4 class="mt-4 subtitulo-endereco d-flex">Endereço</h4>
 
                     <div class="col-md-4">
-                        <label for="validationCustom01" class="form-label">CEP</label>
-                        <input type="text" class="form-control" id="validationCustom01" required>
-                        <div class="valid-feedback">
-                          Looks good!
-                        </div>
+                      <label for="validationCustom01" class="form-label">CEP</label>
+                      <input type="text" th:field="${aluno.endereco.cep}" class="form-control" id="cep" required>
+                      <div class="invalid-feedback">CEP não encontrado</div>
                     </div>
 
                     <div class="col-md-8">
-                        <label for="validationCustom01" class="form-label">Logradouro</label>
-                        <input type="text" class="form-control" id="validationCustom01" required>
-                        <div class="valid-feedback">
-                          Looks good!
-                        </div>
+                      <label for="validationCustom01" class="form-label">Logradouro</label>
+                      <input type="text" th:field="${aluno.endereco.logradouro}" class="form-control" id="logradouro" required>
+                      <div class="invalid-feedback">Logradouro não informado</div>
                     </div>
 
                     <div class="col-md-4">
-                        <label for="validationCustom01" class="form-label">Nº</label>
-                        <input type="text" class="form-control" id="validationCustom01" required>
-                        <div class="valid-feedback">
-                          Looks good!
-                        </div>
+                      <label for="validationCustom01" class="form-label">Nº</label>
+                      <input type="text" th:field="${aluno.endereco.numero}" class="form-control" id="numero" required>
+                      <div class="invalid-feedback">Nº não informado</div>
                     </div>
 
                     <div class="col-md-8">
-                        <label for="validationCustom01" class="form-label">Bairro</label>
-                        <input type="text" class="form-control" id="validationCustom01" required>
-                        <div class="valid-feedback">
-                          Looks good!
-                        </div>
+                      <label for="validationCustom01" class="form-label">Bairro</label>
+                      <input type="text" th:field="${aluno.endereco.bairro}" class="form-control" id="bairro" required>
+                      <div class="invalid-feedback">Bairro não informado</div>
                     </div>
 
-                    <div class="col-md-4">
-                        <label for="validationCustom01" class="form-label">Cidade</label>
-                        <input type="text" class="form-control" id="validationCustom01" required>
-                        <div class="valid-feedback">
-                          Looks good!
-                        </div>
+                    <div class="col-md-4 mb-3">
+                      <label for="validationCustom01" class="form-label">Cidade</label>
+                      <input type="text" th:field="${aluno.endereco.cidade}" class="form-control" id="cidade" required>
+                      <div class="invalid-feedback">Cidade não informada</div>
                     </div>
 
-                    <div class="col-md-3">
-                        <label for="validationCustom01" class="form-label">UF</label>
-                        <input type="text" class="form-control" id="validationCustom01" required>
-                        <div class="valid-feedback">
-                          Looks good!
-                        </div>
+                    <div class="col-md-3 mb-3">
+                      <label for="validationCustom01" class="form-label">UF</label>
+                      <input type="text"  th:field="${aluno.endereco.uf}" class="form-control" id="uf" required>
+                      <div class="invalid-feedback">UF não informada</div>
                     </div>
 
-                    <div class="col-md-5">
-                        <label for="validationCustom01" class="form-label">País</label>
-                        <input type="text" class="form-control" id="validationCustom01" required>
-                        <div class="valid-feedback">
-                          Looks good!
-                        </div>
+                    <div class="col-md-5 mb-3">
+                      <label for="validationCustom01" class="form-label">País</label>
+                      <input type="text" th:field="${aluno.endereco.pais}" class="form-control" id="pais" required>
+                      <div class="invalid-feedback">País não informado</div>
                     </div>
-                    
-                  </form>
-               
+                  </div>
+                </div>
+              </form>
             </main>
         </div>
 

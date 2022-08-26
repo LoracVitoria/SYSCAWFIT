@@ -43,6 +43,9 @@ public class Aluno {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dataNascimento;
 
+    @NotNull(message = "O campo gênero não deve ser vazio.")
+    private Genero genero;
+
     @NotNull (message = "O campo tipo de plano não deve ser vazio.")
     private TipoPlano plano;
 

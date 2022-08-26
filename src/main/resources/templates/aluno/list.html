@@ -31,80 +31,73 @@
 
            <!--CONTEÚDO DA PÁGINA-->
 
-           <main class="col-9 coluna-conteudo" >
-                <form th:object="${aluno}" action="/aluno/list" method="GET">
-                    <!--Header-->
-                    <article class="row linha-header">
-                        <div class="col col-left__input p-3">
-                            <label class="form-label form__label">Aluno</label>
-                            <input type="text" id="cpfBusca" th:field="*{cpf}" class="form-control w-75 h-75 form__input" placeholder="Digite o CPF">
-                        </div>
+           <main class="col-9 coluna-conteudo">
 
-                        <div class="col-auto col-right__buttons p-3">
-                            <div class="col mx-2">
-                                    <button type="submit" class="btn btn-link button-pesquisar">
-                                        <i class="bi bi-search p-2"></i>Pesquisar
-                                    </button>
-                        </div>
+            <form class="row" th:object="${aluno}" action="/aluno/list" method="GET">
+                   
+                <!--Campo de pesquisa por CPF-->
+                <div class="col-md-6 d-flex align-items-center mt-5 coluna-pesquisa">
+                    <label class="form-label form__label">Aluno</label>
+                    <input type="text" id="cpfBusca" th:field="*{cpf}" class="form-control w-75 form__input" placeholder="Digite o CPF">
+                </div>
 
-                            <div class="col-auto">
-                                <a class="link-button" th:href="@{/aluno/new}">
-                                    <button type="button" class="btn btn-link button-novo">
-                                        <i class="bi bi-plus-square p-2"></i>Novo aluno
-                                    </button>
-                                </a>
-                            </div>
-                        </div>
-                    </article>
+                <!--Buttons-->
+                <div class="col-md-6 mt-5 coluna-buttons">
+                    <button type="submit" class="btn btn-link button-pesquisar mx-2">
+                        <i class="bi bi-search p-2"></i>Pesquisar
+                    </button>
 
-                    <!--Tabela de alunos-->
+                    <a class="link-button" th:href="@{/aluno/new}">
+                        <button type="button" class="btn btn-link button-novo p-2">
+                            <i class="bi bi-plus-square p-2"></i>Novo aluno
+                        </button>
+                    </a>
+                </div>
 
-                    <article class="container-fluid overflow-auto conteudo p-3">
+                <!--Tabela de alunos-->
+                <div class="col-md-12">
+                    <div class="table-responsive">
+                        <table class="table table-light table-striped table-bordered table-hover mt-5 text-center">
+                            <thead class="bg-danger">
+                                <tr>
+                                    <th>Cód.</th>
+                                    <th>Nome</th>
+                                    <th>CPF</th>
+                                    <th>Data de Ingresso</th>
+                                    <th>Plano</th>
+                                    <th></th>
+                                    <th></th>
+                                    <th></th>
 
-                        <section class="row aluno-consulta__lista">
-                            <div class="col p-3">
-
-                                <div class="table-responsive">
-                                    <table class="table table-light table-striped table-bordered table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th>Cód.</th>
-                                                <th>Nome</th>
-                                                <th>CPF</th>
-                                                <th>Data de Ingresso</th>
-                                                <th>Plano</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        <!-- usando o thymeleaf para iterar na lista de alunos -->
-                                        <tr th:each="aluno: ${alunos}">
-                                            <td th:text="${aluno.id}"/>
-                                            <td th:text="${aluno.nome}"/>
-                                            <td th:text="${aluno.cpf}"/>
-                                            <td th:text="${aluno.dataIngresso}" />
-                                            <td th:text="${aluno.plano}"/>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <!-- usando o thymeleaf para iterar na lista de alunos -->
+                            <tr th:each="aluno: ${alunos}">
+                                <td th:text="${aluno.id}"/>
+                                <td th:text="${aluno.nome}"/>
+                                <td th:text="${aluno.cpf}"/>
+                                <td th:text="${aluno.dataIngresso}" />
+                                <td th:text="${aluno.plano}"/>
     
-                                            <!-- opção de excluir aluno -->
-                                            <td><a th:href="@{/aluno/delete/{id}(id=${aluno.id})}">
-                                                    <i class="bi bi-dash-circle" title="delete"></i>
-                                            </a></td>
+                                <!-- opção de excluir aluno -->
+                                <td><a th:href="@{/aluno/delete/{id}(id=${aluno.id})}">
+                                        <i class="bi bi-dash-circle" title="delete"></i>
+                                </a></td>
     
-                                            <!-- opção de editar aluno -->
-                                            <td><a th:href="@{/aluno/editar/{id}(id=${aluno.id})}">
-                                                <i class="bi bi-pencil" title="editar"></i>
-                                            </a></td>
-
-                                            <!-- opção de Mostrar Dados de aluno -->
-                                            <td><a th:href="@{/aluno/visualizar/{id}(id=${aluno.id})}">
-                                                <i class="bi bi-eye" title="dados completos"></i>
-                                            </a></td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </section>
-                    </article>
+                                <!-- opção de editar aluno -->
+                                <td><a th:href="@{/aluno/editar/{id}(id=${aluno.id})}">
+                                    <i class="bi bi-pencil" title="editar"></i>
+                                </a></td>
+    
+                                <!-- opção de Mostrar Dados de aluno -->
+                                <td><a th:href="@{/aluno/visualizar/{id}(id=${aluno.id})}">
+                                    <i class="bi bi-eye" title="dados completos"></i>
+                                </a></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                </div>
             </form>
            </main>
        </div>
