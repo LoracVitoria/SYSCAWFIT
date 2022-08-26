@@ -5,8 +5,8 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>SYSCAWFIT</title>
-	<!--link rel="stylesheet" th:href="@{/css/normalize.css}"-->
+	<title>SYSCAWFIT - Cadastrar Treinos</title>
+	<link rel="stylesheet" th:href="@{/css/normalize.css}">
 	<link rel="stylesheet" th:href="@{/css/reset.css}">
 	<link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
@@ -47,13 +47,13 @@
 					</div>
 				</div>
 
-				<div class="conteudo">
+				<div>
 					<section class="conteudoCadastroTreino">
 
 						<!--inicio div cadastrar Exercicio-->
 						<div class="cadastrarExercicio col-12">
 
-							<h3>cadastrar Exercicio</h3>
+							<h3>Cadastrar Exercicio</h3>
 							<form class="row overflow-auto mx-2" enctype="multipart/form-data" th:object="${exercicio}"
 								action="/treino/exercicioSave" method="POST">
 								<input type="hidden" th:field="${exercicio.id}" />
@@ -91,7 +91,7 @@
 											</label>
 											<select th:field="*{tipoExercicio}" class="form-select scroll"
 												id="floatingSelect" aria-label="Floating label select example"
-												name="tipoExercicio" multiple="multiple">
+												name="tipoExercicio" multiple="multiple" required>
 												<option th:each="tipoExercicio : ${tipoExercicioLista}"
 													th:value="${tipoExercicio.id}"
 													th:text="'TipoExercicio: ' + ${tipoExercicio.nome} + ' | Equipamento: ' + ${tipoExercicio.equipamento.nome}"
@@ -128,7 +128,7 @@
 										<label for="floatingSelect" class="form-label">Aluno: *
 										</label>
 										<select th:field="*{aluno}" class="form-select scroll" id="floatingSelect"
-											aria-label="Floating label select example" name="aluno" multiple="multiple">
+											aria-label="Floating label select example" name="aluno" multiple="multiple" required>
 											<option th:each="aluno : ${listaAlunos}" th:value="${aluno.id}"
 												th:text="'Nome: ' + ${aluno.nome} + ' | CPF: ' + ${aluno.cpf}"
 												th:selected="${aluno.id}">
@@ -182,11 +182,11 @@
 
 							<!--LISTA DE EXERCICIOS-->
 							<div class="listaExercicios col">
-								<p>lista de exercicios</p>
+									<h3>Lista de Exercícios</h3>
 								<table class="table table-striped table-bordered table-hover ">
 									<thead>
 										<tr align="center">
-											<th>Exercicio</th>
+											<th>Exercício</th>
 											<th>Ações</th>
 										</tr>
 									</thead>

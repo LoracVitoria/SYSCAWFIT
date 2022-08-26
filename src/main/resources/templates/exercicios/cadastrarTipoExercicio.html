@@ -27,60 +27,77 @@
 
 		<!--CONTEÚDO DA PÁGINA-->
 		<main class="col-9 border">
+			<article class="row linha-header">
+				<div class="col col-left__input p-3">
+					<h1 class=" col m-4">
+						<i class="bi bi-plus-circle"></i>
+						Cadastrar Tipos de Exercícios
+					</h1>
+				</div>
 
-			<div class="col col-left__input p-3">
-				<h1 class=" col m-4">
-					<i class="bi bi-plus-circle"></i>
-					Cadastrar Tipos de Exercícios
-				</h1>
-			</div>
-
-
-
-			<!--Formulário-->
-
-			<form class="row overflow-auto conteudo mx-2 formulario-tipoExercicio" enctype="multipart/form-data"
-				th:object="${tipoExercicio}" action="/tipoexercicio/save" method="POST">
-				<input type="hidden" th:field="${tipoExercicio.id}" />
-
-
-				<div class="mb3">
-					<label for="nome" class="col-form-label">Nome:</label>
-					<input type="text" th:field="*{nome}" th:errorclass="inputError" autocomplete="off"
-						class="form-control" required>
-					<br />
-					<label for="floatingSelect" class="col-form-label">Equipamentos:</label>
-					
-					<select th:field="*{equipamento}" class="form-select" id="floatingSelect"
-						aria-label="Floating label select example" name="equipamentos" multiple="multiple">
-						<option th:each="equipamento : ${equipamentosList}" 
-								th:value="${equipamento.id}"
-								th:text="${equipamento.nome}"
-								th:selected="${equipamento.id}">
-						</option>
-					</select>
-
-					<br />
-					<!--botões-->
-					<div class="col mt-2 buttons">
-
-						<span th:switch="${tipoExercicio.id>0}">
-							<button type="submit" th:case="${true}" class="btn btn-primary button-cadastro"
-								th:text="Atualizar"></button>
-							<button type="submit" th:case="*" class="btn btn-primary button-cadastro"
-								th:text="Cadastrar"></button>
-						</span>
-
-						<buttontype="reset" class="btn btn-primary button-cancelar">
-							<i class="bi bi-x-lg text-danger p-2"></i>Cancelar
+				<div class="col-auto col-right__buttons p-3">
+					<div class="col-auto">
+						<a th:href="@{/tipoexercicio/list}">
+							<button type="button" class="btn equipamentos-btn-link button-consultar">
+								<i class="bi bi-list p-2"></i>Listar Tipos de Exercicios
 							</button>
+						</a>
+					</div>
+				</div>
+
+			</article>
+			<!--Formulário-->
+			<section>
+				<form class="row overflow-auto conteudo mx-2 formulario-tipoExercicio" enctype="multipart/form-data"
+					th:object="${tipoExercicio}" action="/tipoexercicio/save" method="POST">
+					<input type="hidden" th:field="${tipoExercicio.id}" />
+
+
+					<div class="mb3">
+						<div class="row">
+							<div class="col">
+								<label for="nome" class="col-form-label">Nome: *</label>
+								<input type="text" th:field="*{nome}" th:errorclass="inputError" autocomplete="off"
+									class="form-control" required>
+							</div>
+						</div>
+						<br />
+						<div class="row">
+							<div class="col">
+								<label for="floatingSelect" class="col-form-label">Equipamentos: *</label>
+
+								<select th:field="*{equipamento}" class="form-select" id="floatingSelect"
+									aria-label="Floating label select example" name="equipamentos" multiple="multiple"
+									required>
+									<option th:each="equipamento : ${equipamentosList}" th:value="${equipamento.id}"
+										th:text="'- '+ ${equipamento.nome} + '.'" th:selected="${equipamento.id}">
+									</option>
+								</select>
+							</div>
+						</div>
+						<br />
+						<!--botões-->
+						<div class="row">
+						<div class="col buttons">
+
+							<span th:switch="${tipoExercicio.id>0}">
+								<button type="submit" th:case="${true}" class="btn btn-primary button-cadastro"
+									th:text="Atualizar"></button>
+								<button type="submit" th:case="*" class="btn btn-primary button-cadastro"
+									th:text="Cadastrar"></button>
+							</span>
+
+							<buttontype="reset" class="btn btn-primary button-cancelar">
+								<i class="bi bi-x-lg text-danger p-2"></i>Cancelar
+								</button>
+
+						</div>
+						</div>
+						<!--fim cadastrar_buttons-->
 
 					</div>
-					<!--fim cadastrar_buttons-->
-
-				</div>
-			</form>
-
+				</form>
+			</section>
 		</main>
 	</div>
 	<!--fim div row linha_centro-->

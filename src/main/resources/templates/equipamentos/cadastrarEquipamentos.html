@@ -13,8 +13,6 @@
 	<link rel="stylesheet" th:href="@{/css/style.css}">
 	<link rel="stylesheet" th:href="@{/css/menu.css}">
 	<link rel="stylesheet" th:href="@{/css/equipamentos.css}">
-	<!-- UIkit CSS -->
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.15.1/dist/css/uikit.min.css" />
 </head>
 
 <body>
@@ -32,10 +30,23 @@
 
 			<header class="equipamentos-cadastro__header row">
 
-				<h1 class="cadastro-header__titulo col m-4">
-					<i class="bi bi-plus-circle"></i>
-					Cadastrar Equipamentos
-				</h1>
+				<div class="col col-left__input p-3">
+					<h1 class="cadastro-header__titulo col m-4">
+						<i class="bi bi-plus-circle"></i>
+						Cadastrar Equipamentos
+					</h1>
+				</div>
+
+
+				<div class="col-auto col-right__buttons p-3">
+					<div class="col-auto">
+						<a th:href="@{/equipamentos/list}">
+							<button type="button" class="btn equipamentos-btn-link button-consultar">
+								<i class="bi bi-list p-2"></i>Listar Equipamentos
+							</button>
+						</a>
+					</div>
+				</div>
 
 			</header>
 
@@ -44,29 +55,37 @@
 					action="/equipamentos/save" method="POST">
 
 					<input type="hidden" th:field="${equipamentos.id}" />
-					<div class="cadastrar_dados row">
-						<div class="row">
-							<div class="col">
-								<label for="nome">NOME:</label>
-								<br />
-								<input id="inputNome" type="text" th:field="*{nome}" th:errorclass="inputError" autocomplete="off" />
-							</div>
-						</div>
 
-						<div class="row">
-							<div class="col">
-								<label for="descricao">DESCRIÇÃO:</label>
-								<br />
-								<textarea id="textareaDescricao" type="text" th:field="*{descricao}" th:errorclass="inputError"
-									autocomplete="off" />
-							</div>
+					<div class="row">
+						<div class="col-7">
+							<label for="inputNome">Nome: *</label>
+							<br />
+							<input id="inputNome" type="text" th:field="*{nome}" th:errorclass="inputError"
+								placeHolder="Digite no mínimo 2 caracteres e maximo de 255." class="form-control" autocomplete="off"
+								required />
 						</div>
 					</div>
 					<br />
+					
+					<div class="row">
+						<div class="col-7">
+							<label for="descricao">Descrição: *</label>
+							<br />
+							<textarea id="textareaDescricao" type="text" th:field="*{descricao}"
+								placeHolder="Máximo de 2000 caracteres." class="form-control" th:errorclass="inputError"
+								autocomplete="off" required />
+						</div>
+					</div>
+
+
+
 					<div class="row">
 						<div class="col">
+							<label for="file">Selecione uma imagem: *</label>
+							<br />
+
 							<div class="form-group col-md-12">
-								<input type="file" name="file" />
+								<input id="file" type="file" name="file" required />
 							</div>
 						</div>
 					</div>
@@ -80,16 +99,16 @@
 								<div>
 									<p th:switch="${equipamentos.id>0}">
 										<button type="submit" th:case="${true}" class="btn btn-primary btn-cadastro"
-											th:text="Atualizar"></button>
+											th:text="Atualizar"><i class="bi bi-plus-circle"></button>
 										<button type="submit" th:case="*" class="btn btn-primary btn-cadastro"
-											th:text="Cadastrar"></button>
+											th:text="Cadastrar"><i class="bi bi-plus-circle"></button>
 									</p>
 								</div>
 
 								<div>
-									<button type="button" class="btn btn-primary btn-cancelar">
-										<i class="bi bi-x-lg text-danger p-2"></i>Cancelar
-									</button>
+									<a class="btn btn-primary button-cancelar" th:href="@{/equipamentos/new}" role="button">
+											<i class="bi bi-x-lg text-danger p-2"></i>Cancelar
+										</a>
 								</div>
 							</div>
 						</div>
@@ -117,24 +136,6 @@
 	</script-->
 	<script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
 	<script type="text/javascript" th:src="@{/js/equipamentos.js}"></script>
-	<script type="text/javascript" th:src="@{/js/uikit.min.js}"></script>
-	<script type="text/javascript" th:src="@{/js/uikit-icons.min.js}"></script>
-
-	<script>
-
-		$(function () {
-			var settings = {
-				type= 'json',
-				filelimit = 1,
-				allow = '*.(jpg|jpeg|png)'
-			};
-
-			UIkit.uploadSelect($('#upload-select'), settings);
-			UIkit.uploadDrop($('#upload-drop'), settings)
-
-		});;
-
-	</script>
 
 </body>
 

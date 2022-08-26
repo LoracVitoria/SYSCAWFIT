@@ -17,9 +17,10 @@ public class EquipamentosService {
 		
 		try {
 			daoEquipamentos.deleteById(id);
+		
 		} catch (Exception e) {
 			throw new DeleteEquipamentoException(
-					"Este equipamento não pode ser excluido pois esta vinculado a um ou mais Tipos de Exercicios");
+					"Este equipamento não pode ser excluído pois esta vinculado a um ou mais Tipos de Exercicios");
 		}
 		
 	}

@@ -49,6 +49,8 @@
 	padding: 25px;
 	border-radius: 0.3rem;
 	font-size: 20px;
+	overflow-y: scroll;
+	max-height: 440px;
 }
 
 
@@ -179,6 +181,7 @@
 }
 
 /*FORMATAÇÃO DA TABELA DO TREINO*/
+
 .formatando{
 	background-color:#062A40;
 	color: #ECF229;
@@ -186,5 +189,18 @@
 
 #formatandoTh{
 	padding-top: 40px;
+}
+
+.formatandoTabela{
+	background-color:#062A40;
+	color: #ECF229;
+}
+
+.conteudo{
+	overflow-y: scroll;
+	height: 60vh;
+	border: 2px solid #062A40;
+	border-radius: 5px;
+	padding: 5px;
 }
 

@@ -17,8 +17,7 @@
 .cadastro-header__titulo {
     margin-left: 4rem;
     padding-right: 1rem;
-    font-weight: bold;
-    text-transform: uppercase;
+
 }
 
 
@@ -48,6 +47,34 @@
     border: none;
 }
 
+.button-consultar{
+	background: #BFBFBF;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    margin-top: 1.5rem;
+    color: #062A40;
+    margin-right: 10px;
+}
+
+.button-consultar:hover{
+	background: #062A40;
+  	color: white
+}
+
+.button-cancelar {
+    background: #BFBFBF;
+    color:#062A40 ;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+
+} 
+
+.button-cancelar:hover {
+  background: #062A40;
+  color: white
+}
 
 
 /*RESTANTE CADASTRAR EQUIPAMENTOS*/
@@ -67,17 +94,13 @@
 
 #inputNome{
     margin-top: 10px;
-    width: 500px;
-    border-radius: 5px;
-    border: 2px solid #062A40;
+    
 }
 
  #textareaDescricao{
     margin-top: 10px;
-    width: 500px;
     height: 100px;
     border-radius: 5px;
-    border: 2px solid #062A40;
  }
 
  .cadastrar label{
@@ -108,7 +131,7 @@
 	margin-bottom: 50px;
 }
 
-/* BUTTONS HEADER */
+/* HEADER */
 
 .col-right__buttons {
     display: flex;
@@ -146,7 +169,7 @@
 	margin-top: 50px;
 }
 
-/*FORMATAÇÃO DA TABELA DO TREINO*/
+/*FORMATAÇÃO DA TABELA DO EQUIPAMENTO*/
 
 .formatandoEquipamentos{
 	background-color:#062A40;
@@ -157,9 +180,16 @@
 	padding-top: 40px;
 }
 
+#descricao{
+	max-width: 300px;
+}
 
-
-
+.conteudoListaEquipamentos{
+	height: 60vh;
+	border: 2px solid #062A40;
+	border-radius: 5px;
+	padding: 5px;
+}
 
 
 

@@ -9,6 +9,7 @@
 
 .lista {
     width: 100%;
+    margin-top: 50px;
 }   
 
 .nav-item {
@@ -21,12 +22,15 @@
     font-weight: bold;            
     text-transform: uppercase;    
     justify-content: center;
-    
+    text-decoration: none;
 }
 
 .nav-link:hover{
     color: #ECF229;     
     background-color: #062A40;
 }
+
+
+
 
 

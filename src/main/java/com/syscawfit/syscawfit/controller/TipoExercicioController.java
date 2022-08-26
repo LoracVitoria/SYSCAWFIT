@@ -17,8 +17,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.syscawfit.syscawfit.dao.EquipamentosRepository;
 import com.syscawfit.syscawfit.dao.TipoExercicioRepository;
+import com.syscawfit.syscawfit.exceptions.DeleteTipoExercicioException;
 import com.syscawfit.syscawfit.model.Equipamentos;
 import com.syscawfit.syscawfit.model.TipoExercicio;
+import com.syscawfit.syscawfit.services.TipoExerciciosService;
 
 @Controller
 @RequestMapping("/tipoexercicio")
@@ -29,6 +31,9 @@ public class TipoExercicioController {
 
 	@Autowired
 	private EquipamentosRepository daoEquipamento;
+
+	@Autowired
+	private TipoExerciciosService tipoExerciciosService;
 
 	private Optional<TipoExercicio> t1;
 
@@ -80,7 +85,19 @@ public class TipoExercicioController {
 	/* DELETE TIPO_EXERCICIO */
 	@RequestMapping("/delete/{id}")
 	public String delete(Model model, @PathVariable Long id) {
-		daoExercicio.deleteById(id);
+		try {
+			tipoExerciciosService.deleteById(id);
+		} catch (DeleteTipoExercicioException e) {
+			String msg = e.getMessage();
+			List<TipoExercicio> tipoExercicioLista = daoExercicio.findAll();
+			List<String> mensagensErro = new ArrayList<String>();
+			mensagensErro.add(msg);
+			model.addAttribute("mensagensErro", mensagensErro);
+			model.addAttribute("tipoExercicioLista", tipoExercicioLista);
+//			System.out.println(msg);
+			return "/exercicios/listaTipoExercicio.html";
+		}
+
 		return "redirect:/tipoexercicio/list";
 	}
 

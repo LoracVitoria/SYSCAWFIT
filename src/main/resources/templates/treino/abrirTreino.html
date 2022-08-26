@@ -87,8 +87,8 @@
 							<td id="formatandoTh" th:text="${exercicio.carga}"  />
 							<td id="formatandoTh" th:text="${exercicio.tipoExercicio.nome}" />
 							<td id="formatandoTh" th:text="${exercicio.tipoExercicio.equipamento.nome}" />
-							<td><img th:src="@{/equipamentos/mostrarImagem/{imagem}(imagem=${exercicio.tipoExercicio.equipamento.nomeImagem})}"
-									width="70" heigh="0" />
+							<td><img th:src="@{/equipamentos/get-image/{id}/{imagem}(id=${exercicio.tipoExercicio.equipamento.id}, imagem=${exercicio.tipoExercicio.equipamento.nomeImagem})}"
+									id="thumbnail" width="120px" height="120px" /></td>
 							
 						</tr>
 					</tbody>
