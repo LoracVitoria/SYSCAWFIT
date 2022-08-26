@@ -2,8 +2,6 @@ package com.syscawfit.syscawfit.dao;
 
 import com.syscawfit.syscawfit.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Optional;
 
