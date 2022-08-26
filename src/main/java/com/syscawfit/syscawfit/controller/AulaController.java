@@ -2,7 +2,7 @@ package com.syscawfit.syscawfit.controller;
 
 
 import com.syscawfit.syscawfit.dao.AulaRepository;
-import com.syscawfit.syscawfit.dao.UsuarioDao;
+import com.syscawfit.syscawfit.dao.UsuarioRepository;
 import com.syscawfit.syscawfit.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -31,7 +31,7 @@ public class AulaController {
     private AulaRepository aulaDao;
 
     @Autowired
-    private UsuarioDao usuarioDao;
+    private UsuarioRepository usuarioDao;
 
 
     // Retorna página com grade de aulas

@@ -5,16 +5,24 @@ html,body {
     overflow-x: hidden;
 }
 
-/* classes bootstrap sobrescritas*/
-.row {
-    padding: 0 !important;
-    margin: 0 !important;
-}
-
 .linha-cabecalho {
     height: 15vh;
     background: #062A40;
 }
+
+.coluna-imagem {
+    display: flex;
+    justify-content: flex-end;
+    height: 15vh;
+}
+
+.coluna-texto {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 15vh;
+}
+
 
 .linha-centro {
     height: 80vh;
@@ -31,13 +39,22 @@ html,body {
 ========================================================================
 */
 
+.cabecalho {
+    background: #062A40 ;
+    display: flex;                      /* tranforma em Flex Container */
+    justify-content: space-between;     /* item distribuido com espaço no meio */
+    align-items: center;
+    padding: 2%;
+    grid-area: cabecalho;
+}
+
 .logotipo {
     height: 15vh;
 }
 
 .usuario__imagem {
-    height: 11vh;                  /* definir espaço onde as imagens serão exibidas  */
-    width: 11vh;                   /* definir espaço onde as imagens serão exibidas */
+    height: 11vh;
+    width: 11vh;
     background-size: cover;         /* para que as imagens não se repitam */
     background-position: center;    /* para que as imagens ocupem todo o background */
     background-repeat: no-repeat;   /* para que as imagens seham centralizadas na caixa */
@@ -48,10 +65,30 @@ html,body {
 }
 
 .usuario__nome {
-    color: #ECF229;             
-    font-weight: bold; 
-    margin-top: 2.5rem;
-} 
+    color: #ECF229;
+    font-weight: bold;
+    margin-top: 1.3rem;
+    margin-left: 0.5rem;
+}
+
+@media screen and (min-width:0){
+    .coluna-imagem {
+        /* background: green; */
+    }
+    .usuario__nome {
+        font-size: 11px;
+    }
+}
+
+@media screen and (min-width:768px){
+    .coluna-imagem {
+        /* background: gray; */
+    }
+    .usuario__nome {
+        font-size:16px;
+    }
+}
+
 
 /*
 ========================================================================
@@ -63,23 +100,6 @@ html,body {
     height: 70vh;
 }
 
-.principal_imagem {
-	justify-content: center;
-}
-
-.principal_imagem img{
-	margin: 0 auto;
-    animation-name: opacidade;
-    animation-duration: 4s;
-}
-
-  @keyframes opacidade{
-      0% {opacity: 0%;}
-      100% {opacity: 100%;}
-}
-
-
-
 /*
 ========================================================================
         RODAPÉ
@@ -89,6 +109,7 @@ html,body {
 .rodape {
     background: #062A40;
     text-align: center;
+    grid-area: rodape;
 }
 
 .rodape p {
@@ -132,4 +153,3 @@ html,body {
       0% {opacity: 0%;}
       100% {opacity: 100%;}
   }
- 	
