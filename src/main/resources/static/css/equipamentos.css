@@ -1,23 +1,48 @@
-.ativo{
-    color: #ECF229;     
-    background-color: #062A40;
-    /* border: 1px solid red; */
-}
-
-
 /*CADASTRAR EQUIPAMENTOS HEADER*/
 
 .equipamentos-cadastro__header {
     /* border: 1px solid red; */
-    /* margin: 1rem; */
-    display: flex;
-    height: 12%;
+    margin-top: 1rem; 
 }
 
 .cadastro-header__titulo {
-    margin-left: 4rem;
-    padding-right: 1rem;
+    margin-left: 1rem;
+}
 
+.col-right__buttons {
+    display: flex;
+}
+
+.col-left__input {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.col-right__buttons {
+    display: flex;
+}
+
+.equipamentos-btn-link {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #062A40 ;
+    border: none;
+}
+
+.equipamentos-btn-novo {
+    background:  #91B021;
+    color: white;
+}
+
+.equipamentos-btn-novo:hover {
+    background: #062A40;
+    color: #ECF229;
+}
+
+.cadastrar_buttons{
+	margin-top: 50px;
 }
 
 
@@ -83,18 +108,17 @@
 	border: 3px solid #062A40;
     border-radius: 0.5rem;
     margin: 1rem;
-    margin-top: 3rem;
-    padding: 50px;
-    width: auto;
+    margin-top: 2rem;
+    padding: 10px;
+    width: 100%;
     height: 100%;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 700;
+    background-color:#D4E2EB;
 }
-
 
 #inputNome{
     margin-top: 10px;
-    
 }
 
  #textareaDescricao{
@@ -133,41 +157,7 @@
 
 /* HEADER */
 
-.col-right__buttons {
-    display: flex;
-}
 
-.col-left__input {
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-}
-
-.col-right__buttons {
-    display: flex;
-}
-
-.equipamentos-btn-link {
-    text-decoration: none;
-    text-transform: uppercase;
-    font-weight: bold;
-    color: #062A40 ;
-    border: none;
-}
-
-.equipamentos-btn-novo {
-    background:  #91B021;
-    color: white;
-}
-
-.equipamentos-btn-novo:hover {
-    background: #062A40;
-    color: #ECF229;
-}
-
-.cadastrar_buttons{
-	margin-top: 50px;
-}
 
 /*FORMATAÇÃO DA TABELA DO EQUIPAMENTO*/
 
@@ -176,12 +166,9 @@
 	color: #ECF229;
 }
 
-#teste{
-	padding-top: 40px;
-}
-
 #descricao{
 	max-width: 300px;
+	text-align: justify;
 }
 
 .conteudoListaEquipamentos{
@@ -189,6 +176,18 @@
 	border: 2px solid #062A40;
 	border-radius: 5px;
 	padding: 5px;
+}
+
+
+/*teste_cadastrar_equip.html*/
+
+.titulo{
+	margin-top: 1rem;
+	margin-left: 4rem;
+}
+
+.teste{
+	margin-top: 20px;
 }
 
 

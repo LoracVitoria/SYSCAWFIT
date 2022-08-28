@@ -13,6 +13,10 @@
 	<link rel="stylesheet" th:href="@{/css/style.css}">
 	<link rel="stylesheet" th:href="@{/css/menu.css}">
 	<link rel="stylesheet" th:href="@{/css/tipoExercicios.css}">
+	
+	<!--Jquery-->
+	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
 </head>
 
 <body>
@@ -21,12 +25,12 @@
 
 	<div class="row linha-centro">
 		<!-- MENU-->
-		<nav class="col-3 border container-menu">
+		<nav class="col-3 border coluna-menu">
 			<nav th:replace="menu:: menu" />
 		</nav>
 
 		<!--CONTEÚDO DA PÁGINA-->
-		<main class="col-9 border">
+		<main class="col-9 border coluna-conteudo">
 			<article class="row linha-header">
 				<div class="col col-left__input p-3">
 					<h1 class=" col m-4">

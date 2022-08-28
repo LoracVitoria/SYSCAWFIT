@@ -29,9 +29,12 @@
 
 .cadastrarExercicio{
 	border: 2px solid #062A40;
-	padding: 20px;
+	padding: 10px;
 	border-radius: 0.3rem;
 	margin-bottom: 1rem;
+	background-color: #F0F8FF;
+	margin-left: 10px;
+	margin-right: 10px;
 }
 
 
@@ -40,7 +43,8 @@
 	border: 2px solid #062A40;
   	border-radius: 0.3rem;
   	padding: 20px;
-  	margin-right: 10px;
+  	background-color: #D4E2EB;
+  	margin-bottom: 10px;
 }
 
 
@@ -51,12 +55,21 @@
 	font-size: 20px;
 	overflow-y: scroll;
 	max-height: 440px;
+	background-color: #F0F8FF;
+	margin-bottom: 10px;
+	margin-right: 3px;
 }
 
+.listaExercicios td{
+	font-size: 20px;
+	font-weight: normal;
+}
 
-.flex{
+.wrapper{
 	display: flex;
+	flex-wrap: wrap;
 }
+
 
 .margem{
 	margin-bottom: 10px;
@@ -204,3 +217,10 @@
 	padding: 5px;
 }
 
+/*responsividade 320px largura pagina*/
+
+@media only screen and (max-width: 321px) {
+	.wrapper{
+	display: flexbox;
+	}
+}
