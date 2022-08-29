@@ -54,7 +54,7 @@
         <!-- CABEÇALHO-->
         <header th:replace="cabecalho:: cabecalho"/>
 
-        <div class="row linha-centro overflow-auto">
+        <div class="row linha-centro">
             <!-- MENU-->
             <nav class="col-3 border coluna-menu">
                 <nav th:replace="menu:: menu"/>    
@@ -76,7 +76,7 @@
               </div>
                 
               <!--Formulário-->
-              <form class="row g-3 d-flex justify-content-center" enctype="multipart/form-data" th:object="${aluno}" action="/aluno/update" method="post">
+              <form class="row g-3 d-flex justify-content-center overflow-auto conteudo" enctype="multipart/form-data" th:object="${aluno}" action="/aluno/update" method="post">
 
                 <!--Título-->
                 <h1 class="col-md-6 header-titulo mt-5 text-center">
@@ -228,11 +228,11 @@
         </div>
 
         <!-- RODAPÉ-->
-        <!-- <footer class="row linha-rodape">
+        <footer class="row linha-rodape">
             <div class="col rodape">
                 <p>Todos os direitos reservados - 2022.</p>
             </div>
-        </footer> -->
+        </footer>
 
         <!-- JavaScript Bundle with Popper -->
         <script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
