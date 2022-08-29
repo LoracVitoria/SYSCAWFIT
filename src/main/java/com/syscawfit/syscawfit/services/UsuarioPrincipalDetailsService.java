@@ -1,7 +1,9 @@
-package com.syscawfit.syscawfit.security;
+package com.syscawfit.syscawfit.services;
 
 import com.syscawfit.syscawfit.dao.UsuarioRepository;
+import com.syscawfit.syscawfit.exceptions.UsuarioNotFoundException;
 import com.syscawfit.syscawfit.model.Usuario;
+import com.syscawfit.syscawfit.security.UsuarioPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;

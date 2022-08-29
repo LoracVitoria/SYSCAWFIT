@@ -1,9 +1,9 @@
 package com.syscawfit.syscawfit.controller;
 
 import com.syscawfit.syscawfit.model.Usuario;
-import com.syscawfit.syscawfit.security.UsuarioNotFoundException;
-import com.syscawfit.syscawfit.security.UsuarioPrincipalDetailsService;
-import com.syscawfit.syscawfit.security.Utility;
+import com.syscawfit.syscawfit.exceptions.UsuarioNotFoundException;
+import com.syscawfit.syscawfit.services.UsuarioPrincipalDetailsService;
+import com.syscawfit.syscawfit.services.Utility;
 import net.bytebuddy.utility.RandomString;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
