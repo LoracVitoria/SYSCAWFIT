@@ -1,47 +1,64 @@
 package com.syscawfit.syscawfit.controller;
 
+import com.syscawfit.syscawfit.dao.UsuarioRepository;
+import com.syscawfit.syscawfit.exceptions.UsuarioNotFoundException;
+import com.syscawfit.syscawfit.security.UsuarioPrincipal;
+import com.syscawfit.syscawfit.services.UsuarioPrincipalDetailsService;
+import com.syscawfit.syscawfit.services.Utility;
+import net.bytebuddy.utility.RandomString;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
+
+import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 
 @Controller
 public class LoginController {
+//    @Autowired
+//    private UsuarioPrincipalDetailsService daoUser;
 
-    @RequestMapping(value = {"", "/","/profile/home**"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
     public String welcomePage() {
 
         return "index.html";
     }
 
-    @RequestMapping(value = "/admin**", method = RequestMethod.GET)
-    public ModelAndView adminPage() {
-
-        ModelAndView model = new ModelAndView();
-        model.addObject("title", "Spring Security Custom Login Form");
-        model.addObject("message", "This is protected page!");
-        model.setViewName("admin");
-
-        return model;
-    }
 
     //Spring Security see this :
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/login")
     public String login(
             @RequestParam(value = "error", required = false) String error,
-            @RequestParam(value = "logout", required = false) String logout, Model model) {
-
-        if (error != null) {
-            model.addAttribute("error", "Invalid username and password!");
+            @RequestParam(value = "logout", required = false) String logout,
+            Model model,
+            HttpServletRequest request) {
+      if (error != null ) {
+          model.addAttribute("error", "CPF e senha inválidos!");
+          return "login.html";
+      } else  {
+            return "redirect:/";
         }
-        if (logout != null) {
-            model.addAttribute("msg", "You've been logged out successfully.");
-        }
-        return "login.html";
+//            model.addAttribute("error", "CPF ou senha inválidos!");
+////            return "login.html";
+//        if (logout != null) {
+//            model.addAttribute("msg", "You've been logged out successfully.");
+//        }
     }
+
+//    @PostMapping("/login")
+//    public String processarFormLogin(HttpServletRequest request, Model model) {
+////        daoUsuario.findByCpf(request.getParameter("cpf"))
+////        if (daoUsuario.findByCpf(request.getParameter("txtUsername")) == null ) {
+//            model.addAttribute("error", "CPF ou senha inválidos!");
+////            return "login.html";
+////        } else {
+//            return "redirect:/";
+//
+//    }
 
 //    @PostMapping(value = "/logout")
 //    public String logout(@RequestParam(value = "error", required = false) String error, @RequestParam(value = "logout", required = true) String logout, Model model){

@@ -37,6 +37,10 @@
                             <button type="submit" name="button" class="btn login_btn">Salvar</button>
                             <hr/>
 
+                            <div class="d-flex justify-content-center links">
+                                <a th:href="@{/}">Retonar ao Login</a>
+                            </div>
+
                             <script type="text/javascript">
                                 function verificarSenhasConferem(fieldTxtPasswordConfirm) {
                                     if(fieldTxtPasswordConfirm.value !== $("#txtPassword").val()){

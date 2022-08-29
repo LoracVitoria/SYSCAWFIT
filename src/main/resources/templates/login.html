@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Login Page</title>
+    <title>Login </title>
     <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <link rel="stylesheet" th:href="@{/css/login.css}">
     <!--Jquery-->
@@ -21,11 +21,13 @@
                     <div class="card-block" style="padding: 24px;">
                         <h2 class="title text-center">Entrar</h2>
                         <hr/>
-                        <form name="f" th:action="@{/signin}" method="post">
+                        <form name="f" th:action="@{/login}" method="post">
                             <!-- Thymeleaf + Spring Security error display -->
-                            <div th:if="${param.error}" class="alert alert-danger">
-                                Usuário e senha inválidos!
-                            </div>
+<!--                            <div th:if="${param.error}" class="alert alert-danger">-->
+<!--                                Usuário e senha inválidos!-->
+<!--                            </div>-->
+
+                            <div th:if="${param.error != null}" class="alert alert-danger text-danger text-center">[[${error}]]</div>
 
                             <div th:if="${param.logout}" class="alert alert-success">
                                 Você foi desconectado!
@@ -35,13 +37,14 @@
                             <div class="form-group">
                                 <label for="txtUsername">CPF</label>
                                 <input type="text" class="form-control" id="txtUsername" name="txtUsername"
-                                       placeholder="XXX.XXX.XXX-XX" required autofocus>
+                                       placeholder="000.000.000-00" required autofocus onblur="validaCPF()">
+                                <div class="invalid-feedback">CPF inválido</div>
                             </div>
 
                             <div class="form-group">
                                 <label for="txtPassword">Senha</label>
                                 <input type="password" class="form-control" id="txtPassword" name="txtPassword"
-                                       placeholder="senha" minlength="6" required>
+                                       placeholder="******" minlength="6" required>
                                 <br/>
                             </div>
 
@@ -54,11 +57,6 @@
                     </div>
                 </div>
             </div>
-            <footer class="row rodape position-absolute bottom-0 text-center">
-                <!--                <div class="col linha-rodape position-absolute bottom-0">-->
-                <p>Todos os direitos reservados - 2022.</p>
-                <!--                </div>-->
-            </footer>
         </div>
 
     </div>
@@ -69,6 +67,8 @@
 <!-- JavaScript Bundle with Popper -->
 <script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
 <script type="text/javascript" th:src="@{/js/validacao-mascaras/mascaras.js}"></script>
+<script type="text/javascript" th:src="@{/js/usuario/validacao-cpf.js}"></script>
+
 
 </body>
 </html>

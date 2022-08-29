@@ -23,12 +23,8 @@
                         <form name="f" th:action="@{/redefinirSenha}" method="post">
                             <!-- Thymeleaf + Spring Security error display -->
 
-                            <div th:if="${error != null}" class="alert alert-danger">
-                                <p class="text-danger">[[${error}]]</p>
-                            </div>
-                            <div th:if="${message  != null}" class="alert alert-info">
-                                <p class="text-info">[[${message}]]</p>
-                            </div>
+                            <div th:if="${error != null}" class="alert alert-danger text-danger text-center">[[${error}]]</div>
+                            <div th:if="${message  != null}" class="alert alert-info text-info">[[${message}]]</div>
 
                             <!-- Login Controls -->
                             <div class="form-group">
@@ -40,6 +36,9 @@
 
                             <button type="submit" name="button" class="btn login_btn">Enviar</button>
                             <hr/>
+                            <div class="d-flex justify-content-center links">
+                                <a th:href="@{/}">Retonar ao Login</a>
+                            </div>
 
                         </form>
                     </div>

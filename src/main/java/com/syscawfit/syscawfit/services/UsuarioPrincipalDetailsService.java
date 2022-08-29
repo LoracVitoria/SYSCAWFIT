@@ -27,8 +27,8 @@ public class UsuarioPrincipalDetailsService implements UserDetailsService {
         return userPrincipal;
     }
 
-    public Usuario findByEmail(String userEmail) {
-        Usuario user = userRepository.findByEmail(userEmail);
+    public Usuario findByCpf(String userCpf) {
+        Usuario user = userRepository.findByCpf(userCpf);
         return user;
     }
     public void atualizarTokenSenhaRedefinida(String token, String email ) throws UsuarioNotFoundException {
