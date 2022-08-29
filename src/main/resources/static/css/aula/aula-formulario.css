@@ -1,6 +1,4 @@
 .card-formulario {
-    height: 60vh;
-    width: 30vw;
     background: #4F4F4F;
     color: aliceblue;
 }
@@ -35,4 +33,20 @@
 .btn-cancelar:hover {
     background: #FAF8BB;
     color: #A19E0D;
+}
+
+/* Responsividade */
+
+@media screen and (min-width:0){
+    .formulario-aula {
+        width: 75%;
+    }
+
+}
+
+@media screen and (min-width:768px){
+    .formulario-aula {
+        width: 50%;
+    }
+
 }
