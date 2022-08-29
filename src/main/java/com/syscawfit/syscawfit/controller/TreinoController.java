@@ -192,7 +192,7 @@ public class TreinoController {
 	@PostMapping("/exercicioSaveEditar")
 	public String saveExercicioEditar(@Valid Exercicio exercicio, BindingResult result, Model model) {
 		if (result.hasErrors()) {
-			return "redirect:/treino/EditarTreino.html";
+			return "redirect:/treino/editarTreino.html";
 		}
 		
 		exerciciosLista.add(exercicio);

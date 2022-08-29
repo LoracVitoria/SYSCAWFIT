@@ -86,9 +86,10 @@
     border-radius: 0.5rem;
     padding: 50px;
     width: auto;
-    height: 60vh;
+    height: 40vh;
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 700;
+    background-color: #D4E2EB;
 }
 
 

@@ -42,7 +42,7 @@ public class EquipamentosController {
 
 	@Autowired
 	private EquipamentosService equipamentosService;
-	
+
 	private String separator;
 
 	private String caminhoImagens;
@@ -58,19 +58,9 @@ public class EquipamentosController {
 			separator = "/";
 		}
 
-		caminhoImagens = "src" + separator + "main" + separator + "resources" + separator + "static" + separator +
-						 "img" + separator + "equipamentosImagens" + separator;
+		caminhoImagens = "src" + separator + "main" + separator + "resources" + separator + "static" + separator + "img"
+				+ separator + "equipamentosImagens" + separator;
 	}
-	
-	//file separator
-//	private String caminhoImagens = "src" + File.separator + "main" + File.separator + "resources" + File.separator + "static" + File.separator +
-//			 "img" + File.separator + "equipamentosImagens" + File.separator;
-
-	// caminho windows:
-//	public static String caminhoImagens = "..\\SYSCAWFIT\\src\\main\\resources\\static\\img\\equipamentosImagens\\";
-
-//	caminho linux e MacOs
-//	public static String caminhoImagens = "../SYSCAWFIT/src/main/resources/static/img/equipamentosImagens/";
 
 	// NOVO EQUIPAMENTO
 	@RequestMapping("/new")
@@ -91,28 +81,14 @@ public class EquipamentosController {
 
 		daoEquipamentos.save(equipamento);
 
-//		try {
-//			if (!file.isEmpty()) {
-//				byte[] bytes = file.getBytes();
-//				Path caminho = Paths
-//						.get(caminhoImagens + String.valueOf(equipamento.getId()) + file.getOriginalFilename());
-//				Files.write(caminho, bytes);
-//
-//				equipamento.setNomeImagem(String.valueOf(equipamento.getId()) + file.getOriginalFilename());
-//				daoEquipamentos.save(equipamento);
-//			}
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-		
 		String fileName = StringUtils.cleanPath(file.getOriginalFilename());
 		equipamento.setNomeImagem(fileName);
 		Equipamentos saveEquipamento = daoEquipamentos.save(equipamento);
-		
+
 		String uploadDir = caminhoImagens + saveEquipamento.getId();
-		
+
 		FileUploadUtil.saveFile(uploadDir, fileName, file);
-		
+
 		return "redirect:/equipamentos/list";
 	}
 
@@ -125,14 +101,15 @@ public class EquipamentosController {
 		}
 		model.addAttribute("equipamentos", equipamentosOpt.get());
 		return "/equipamentos/cadastrarEquipamentos.html";
+
 	}
 
 	/* DELETE EQUIPAMENTOS */
 	@RequestMapping("/delete/{id}")
 	public String delete(Model model, @PathVariable Long id) throws IOException {
-		
+
 		Equipamentos equipamento = daoEquipamentos.findById(id).orElse(null);
-		
+
 		try {
 			equipamentosService.deleteById(id);
 			FileUtils.deleteDirectory(new File(caminhoImagens + equipamento.getId()));
@@ -159,21 +136,10 @@ public class EquipamentosController {
 		return "/equipamentos/listarEquipamentos.html";
 	}
 
-//	@GetMapping("/mostrarImagem/{imagem}")
-//	@ResponseBody
-//	public byte[] retornarImagem(Model model, @PathVariable("imagem") String imagem) throws IOException {
-//		File imagemArquivo = new File(caminhoImagens + imagem);
-//		if (imagem != null || imagem.trim().length() > 0) {
-//			return Files.readAllBytes(imagemArquivo.toPath());
-//
-//		}
-//
-//		return null;
-//	}
-	
 	@GetMapping("/get-image/{id}/{imagem}")
 	@ResponseBody
-	public byte[] retornarImagem(Model model, @PathVariable("id") Long id, @PathVariable("imagem") String imagem) throws IOException {
+	public byte[] retornarImagem(Model model, @PathVariable("id") Long id, @PathVariable("imagem") String imagem)
+			throws IOException {
 		File imagemArquivo = new File(caminhoImagens + id + separator + imagem);
 		if (imagem != null || imagem.trim().length() > 0) {
 			return Files.readAllBytes(imagemArquivo.toPath());

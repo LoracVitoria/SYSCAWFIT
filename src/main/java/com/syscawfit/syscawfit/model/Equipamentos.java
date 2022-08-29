@@ -31,9 +31,15 @@ public class Equipamentos {
 
 	public Equipamentos() {}
 	
-	public Equipamentos(String nome, String descricao) {
+
+	public Equipamentos(Long id,
+			@NotNull @NotBlank(message = "campo obrigatório") @Size(min = 2, max = 100, message = "Campo deve conter entre {min} e {max} carácteres") String nome,
+			@Size(max = 1000) String descricao, @Size(max = 1000) String nomeImagem) {
+		super();
+		this.id = id;
 		this.nome = nome;
 		this.descricao = descricao;
+		this.nomeImagem = nomeImagem;
 	}
 
 	public Long getId() {
