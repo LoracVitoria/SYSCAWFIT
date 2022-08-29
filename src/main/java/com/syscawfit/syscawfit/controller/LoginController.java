@@ -19,8 +19,8 @@ import java.io.UnsupportedEncodingException;
 
 @Controller
 public class LoginController {
-//    @Autowired
-//    private UsuarioPrincipalDetailsService daoUser;
+    @Autowired
+    private UsuarioPrincipalDetailsService daoUser;
 
     @RequestMapping(value = {"", "/"}, method = RequestMethod.GET)
     public String welcomePage() {
@@ -36,7 +36,7 @@ public class LoginController {
             @RequestParam(value = "logout", required = false) String logout,
             Model model,
             HttpServletRequest request) {
-      if (error != null ) {
+      if (error != null || (daoUser.findByCpf(request.getParameter("txtUsername")) == null )) {
           model.addAttribute("error", "CPF e senha inválidos!");
           return "login.html";
       } else  {
