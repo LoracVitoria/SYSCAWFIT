@@ -22,6 +22,10 @@ public class UsuarioPrincipalDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
         Usuario user = this.userRepository.findByCpf(s);
+
+        if(user == null){
+            throw new UsernameNotFoundException("Usuário não encontrado!");
+        }
         UsuarioPrincipal userPrincipal = new UsuarioPrincipal(user);
 
         return userPrincipal;

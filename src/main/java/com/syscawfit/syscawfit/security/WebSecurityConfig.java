@@ -39,13 +39,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .authenticated()
                 .and()
                 .formLogin()
-                    .loginProcessingUrl("/login")
+                    .loginProcessingUrl("/signin")
                     .loginPage("/login").permitAll()
+                    .failureUrl("/login?error")
+                    .defaultSuccessUrl("/")
                     .usernameParameter("txtUsername")
                     .passwordParameter("txtPassword")
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                    .logoutSuccessUrl("/login")
+                    .logoutSuccessUrl("/login?logout")
                     .invalidateHttpSession(true)
                     .deleteCookies("JSESSIONID");
         //                .rememberMe().tokenValiditySeconds(2592000).key("mySecret!").rememberMeParameter("checkRememberMe");

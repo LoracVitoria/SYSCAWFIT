@@ -21,23 +21,17 @@
                     <div class="card-block" style="padding: 24px;">
                         <h2 class="title text-center">Entrar</h2>
                         <hr/>
-                        <form name="f" th:action="@{/login}" method="post">
+                        <form name="f" th:action="@{/signin}" method="post">
                             <!-- Thymeleaf + Spring Security error display -->
-<!--                            <div th:if="${param.error}" class="alert alert-danger">-->
-<!--                                Usuário e senha inválidos!-->
-<!--                            </div>-->
-
-                            <div th:if="${param.error != null}" class="alert alert-danger text-danger text-center">[[${error}]]</div>
-
-                            <div th:if="${param.logout}" class="alert alert-success">
-                                Você foi desconectado!
-                            </div>
+                            <div th:if="${param.error != null}" class="alert alert-danger text-center">CPF e senha inválidos!</div>
+                            <div th:if="${param.logout != null}" class="alert alert-info text-center">Você foi desconectado!</div>
 
                             <!-- Login Controls -->
                             <div class="form-group">
                                 <label for="txtUsername">CPF</label>
                                 <input type="text" class="form-control" id="txtUsername" name="txtUsername"
-                                       placeholder="000.000.000-00" required autofocus onblur="validaCPF()">
+                                       placeholder="000.000.000-00" minlength="13" required autofocus
+                                       onblur="validaCPF()">
                                 <div class="invalid-feedback">CPF inválido</div>
                             </div>
 
@@ -45,7 +39,6 @@
                                 <label for="txtPassword">Senha</label>
                                 <input type="password" class="form-control" id="txtPassword" name="txtPassword"
                                        placeholder="******" minlength="6" required>
-                                <br/>
                             </div>
 
                             <button type="submit" name="button" class="btn login_btn">Login</button>
