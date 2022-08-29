@@ -36,8 +36,9 @@
                 <form th:object="${usuario}" action="/admin/usuario/list" method="GET">
                     <!--Header-->
                     <article class="row linha-header">
-                        <div class="col col-left__input p-3">
-                            <label class="form-label form__label" for="cpf">Usuário</label>
+                        <div class="col col-left__input">
+                            <h2 class= "header-titulo m-3">
+                                <i class="bi bi-list"></i>Usuário</h2>
                             <input type="text" id="cpf" name="cpf" class="form-control w-75 h-75 form__input" placeholder="Digite o CPF" autofocus>
                         </div>
 
@@ -51,7 +52,7 @@
                             <div class="col-auto">
                                 <a class="link-button" th:href="@{/admin/usuario/new}">
                                     <button type="button" class="btn btn-link button-novo">
-                                        <i class="bi bi-plus-square p-2"></i>Novo usuário
+                                        <i class="bi bi-plus-square p-2"></i>Novo
                                     </button>
                                 </a>
                             </div>

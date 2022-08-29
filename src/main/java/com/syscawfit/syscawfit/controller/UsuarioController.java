@@ -1,19 +1,23 @@
 package com.syscawfit.syscawfit.controller;
 
+import com.syscawfit.syscawfit.dao.AlunoRepository;
+import com.syscawfit.syscawfit.dao.EnderecoAlunoRepository;
 import com.syscawfit.syscawfit.dao.EnderecoUsuarioRepository;
 import com.syscawfit.syscawfit.dao.UsuarioRepository;
-import com.syscawfit.syscawfit.model.TipoFuncionario;
-import com.syscawfit.syscawfit.model.TipoUsuario;
-import com.syscawfit.syscawfit.model.Usuario;
+import com.syscawfit.syscawfit.model.*;
 import com.syscawfit.syscawfit.security.UsuarioPrincipal;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -26,6 +30,23 @@ public class UsuarioController {
     private UsuarioRepository daoUsuario;
     @Autowired
     private EnderecoUsuarioRepository daoEndereco;
+    private String separator;
+    private String caminhoImagens;
+
+    public UsuarioController(UsuarioRepository daoUsuario, EnderecoUsuarioRepository daoEndereco) {
+        this.daoUsuario = daoUsuario;
+        this.daoEndereco = daoEndereco;
+
+        if (System.getProperty("os.name").contains("Windows")) {
+            separator = "\\";
+        } else {
+            separator = "/";
+        }
+
+        caminhoImagens = "src" + separator + "main" + separator + "resources" + separator + "static" + separator +
+                "img" + separator + "alunosImagens" + separator;
+
+    }
 
     //CONSULTAR USUARIO
     @GetMapping("/list")
@@ -62,10 +83,39 @@ public class UsuarioController {
     }
 
     @PostMapping("/save")
-    public String save(@Valid Usuario usuario) {
+    public String save(@Valid Usuario usuario, BindingResult result, Model model, @RequestParam("image") MultipartFile multipartFile) throws IOException {
+
+        List<String> errors = new ArrayList<>();
+
+        if (result.hasErrors()) {
+            result.getAllErrors().forEach(error -> {
+                errors.add(error.getDefaultMessage());
+            });
+        }
+
+        if (daoUsuario.findByCpf(usuario.getCpf()) != null) {
+            errors.add("CPF já cadastrado!");
+        }
         if (usuario.getEndereco() != null) {
             daoEndereco.save(usuario.getEndereco());
         }
+
+        if (!errors.isEmpty()) {
+            model.addAttribute("usuario", usuario);
+            model.addAttribute("mensagensErro", errors);
+
+            return "/usuario/cadastro.html";
+        }
+
+        //obter nome do arquivo que será armazenado no BD no campo ImagemAluno
+        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        usuario.setImagemUsuario(fileName);
+
+        // armazenar arquivo no diretório alunos-imagens/alunoID
+        String uploadDir = caminhoImagens + usuario.getId();
+        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+
+
         if (usuario.getTipoUsuario() != null && usuario.getTipoUsuario().getTipoUsuario().compareTo("Mantenedor") == 0) {
             usuario.setRoles("ADMIN");
         } else if (usuario.getTipoUsuario() != null && usuario.getTipoUsuario().getTipoUsuario().compareTo("Funcionário") == 0) {
@@ -74,6 +124,7 @@ public class UsuarioController {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String senhaCripto = passwordEncoder.encode(usuario.getSenha());
         usuario.setSenha(senhaCripto);
+
         daoUsuario.save(usuario);
         return "redirect:/admin/usuario/list";
     }

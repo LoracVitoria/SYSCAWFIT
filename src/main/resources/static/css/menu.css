@@ -5,12 +5,12 @@
 
 .lista {
     width: 100%;
-    margin-top: 50px;
+    margin-top: 20px;
 }
 
 .nav-item {
     text-align: center;
-    padding-bottom: 1rem;        
+    padding-bottom: 0.9rem;
 }
 
 .nav-link {
@@ -86,7 +86,7 @@
     }
 
     .logotipo {
-        height: 12vh;
+        height: 7vh;
     }
 
 }
@@ -118,10 +118,11 @@
     display: flex;
    }
 
-   .logotipo {
-        height: 15vh
-   }
 
+    .logotipo {
+        margin-top: 1rem;
+        height: 11vh;
+    }
 
 
 }

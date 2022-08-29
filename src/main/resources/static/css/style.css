@@ -13,7 +13,7 @@ html,body {
 .coluna-imagem {
     display: flex;
     justify-content: flex-end;
-    height: 15vh;
+    height: 100px;
 }
 
 .coluna-texto {
@@ -48,9 +48,7 @@ html,body {
     grid-area: cabecalho;
 }
 
-.logotipo {
-    height: 15vh;
-}
+
 
 .usuario__imagem {
     height: 11vh;
@@ -113,7 +111,7 @@ html,body {
 }
 
 .rodape p {
-    padding-top: 0.5rem;
+    padding-top: 0.3rem;
     color: white;
 }
 

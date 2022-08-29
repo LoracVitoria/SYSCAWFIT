@@ -3,7 +3,9 @@ package com.syscawfit.syscawfit.model;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,17 +17,22 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @NotNull
     private String nome;
     @NotNull
+    @Column(unique = true)
     private String cpf;
     private String rg;
     private String telefone;
+    @Size(max=1000)
+    private String imagemUsuario;
     private String email;
+    @NotNull
     private Boolean situacao;
     @NotNull
     private String senha;
 //    private String imagemUsuario;
-
+    @Valid
     @OneToOne(cascade = CascadeType.REMOVE)
     private EnderecoUsuario endereco;
     @Enumerated(EnumType.STRING)
@@ -36,31 +43,18 @@ public class Usuario {
 
     private String tokenRedefinirSenha;
 
-    public Usuario() {}
-
-    public Usuario(String username, String password, String roles, Boolean situacao, TipoUsuario tipoUsuario, TipoFuncionario tipoFuncionario) {
-        this.cpf = username;
-        this.senha = password;
-        this.situacao = situacao;
-        this.tipoUsuario = tipoUsuario;
-        this.tipoFuncionario =tipoFuncionario;
-        this.roles = roles;
+    public Usuario() {
     }
 
-//
-//    public Usuario(String nome, String cpf, String rg, String telefone, String email, Boolean situacao, String senha, EnderecoUsuario endereco, TipoUsuario tipoUsuario, TipoFuncionario tipoFuncionario, String roles) {
-//        this.nome = nome;
-//        this.cpf = cpf;
-//        this.rg = rg;
-//        this.telefone = telefone;
-//        this.email = email;
-//        this.situacao = situacao;
-//        this.senha = senha;
-//        this.endereco = endereco;
-//        this.tipoUsuario = tipoUsuario;
-//        this.tipoFuncionario = tipoFuncionario;
-//        this.roles = roles;
-//    }
+    public Usuario(String username, String password, String nome, String roles, Boolean situacao, TipoUsuario tipoUsuario, TipoFuncionario tipoFuncionario) {
+        this.cpf = username;
+        this.senha = password;
+        this.nome = nome;
+        this.situacao = situacao;
+        this.tipoUsuario = tipoUsuario;
+        this.tipoFuncionario = tipoFuncionario;
+        this.roles = roles;
+    }
 
     public String getRoles() {
         return roles;
@@ -69,6 +63,7 @@ public class Usuario {
     public void setRoles(String roles) {
         this.roles = roles;
     }
+
     public List<String> getRoleList() {
         if (this.roles.length() > 0) {
             return Arrays.asList(this.roles.split(","));
@@ -195,7 +190,7 @@ public class Usuario {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Usuario usuario = (Usuario) o;
-        return  Objects.equals(id, usuario.id) && Objects.equals(nome, usuario.nome) && Objects.equals(cpf, usuario.cpf) && Objects.equals(rg, usuario.rg) && Objects.equals(telefone, usuario.telefone) && Objects.equals(email, usuario.email) && Objects.equals(situacao, usuario.situacao) && Objects.equals(senha, usuario.senha) && Objects.equals(endereco, usuario.endereco) && tipoUsuario == usuario.tipoUsuario && tipoFuncionario == usuario.tipoFuncionario && Objects.equals(roles, usuario.roles);
+        return Objects.equals(id, usuario.id) && Objects.equals(nome, usuario.nome) && Objects.equals(cpf, usuario.cpf) && Objects.equals(rg, usuario.rg) && Objects.equals(telefone, usuario.telefone) && Objects.equals(email, usuario.email) && Objects.equals(situacao, usuario.situacao) && Objects.equals(senha, usuario.senha) && Objects.equals(endereco, usuario.endereco) && tipoUsuario == usuario.tipoUsuario && tipoFuncionario == usuario.tipoFuncionario && Objects.equals(roles, usuario.roles);
     }
 
     @Override
@@ -204,4 +199,7 @@ public class Usuario {
     }
 
 
+    public void setImagemUsuario(String fileName) {
+        this.imagemUsuario = fileName;
+    }
 }

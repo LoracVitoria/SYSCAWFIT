@@ -35,10 +35,9 @@ public class UsuarioPrincipal implements UserDetails {
     public String getPassword() {
         return this.user.getSenha();
     }
-
     @Override
     public String getUsername() {
-        return this.user.getCpf();
+        return this.user.getNome();
     }
 
     @Override

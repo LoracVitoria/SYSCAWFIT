@@ -13,6 +13,10 @@ h2,hr{
 p{
     text-align: center;
 }
+
+a{
+    color: cornflowerblue;
+}
 .user_card {
     height: 445px;
     width: 350px;
@@ -77,24 +81,13 @@ p{
     background-color: #bcbebf !important;
 }
 
-.rodape {
-    background: #062A40;
-    text-align: center;
-    grid-area: rodape;
-}
-
-.rodape p {
-    padding-top: 0.5rem;
-    color: white;
-}
 
 .div_imagem{
-    width: 370px;
+    width: 375px;
     height: 170px;
-    alignment: center;
 }
 .imagem{
-    width: 370px;
+    width: 375px;
     height: 170px;
     object-fit: contain;
 }
