@@ -117,7 +117,7 @@
                             <div class="input-group-prepend">
                               <span class="input-group-text">R$</span>
                             </div>
-                            <input type="number" min="10" class="form-control" th:field="${plano.valor}" id="valor" onblur='validaCampoValor()' required>
+                            <input type="number" min="10" step="any" placeholder="digite um valor" class="form-control" th:field="${plano.valor}" id="valor" onblur='validaCampoValor()' required>
                             <div class="invalid-feedback">Informe um valor</div>
                           </div>
         

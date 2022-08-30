@@ -55,49 +55,47 @@
                 </div>
 
                 <!--Tabela de alunos-->
-                <div class="col-md-12">
-                    <div class="table-responsive">
-                        <table class="table table-light table-striped table-bordered table-hover mt-5 text-center">
-                            <thead class="bg-danger">
-                                <tr>
-                                    <th>Cód.</th>
-                                    <th>Nome</th>
-                                    <th>CPF</th>
-                                    <th>Data de Ingresso</th>
-                                    <th>Plano</th>
-                                    <th></th>
-                                    <th></th>
-                                    <th></th>
+                <div class="table-responsive">
+                    <table class="table table-light table-striped table-bordered table-hover mt-5 text-center">
+                        <thead class="bg-danger">
+                            <tr>
+                                <th>Cód.</th>
+                                <th>Nome</th>
+                                <th>CPF</th>
+                                <th>Data de Ingresso</th>
+                                <th>Plano</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
 
-                                </tr>
-                            </thead>
-                            <tbody>
-                            <!-- usando o thymeleaf para iterar na lista de alunos -->
-                            <tr th:each="aluno: ${alunos}">
-                                <td th:text="${aluno.id}"/>
-                                <td th:text="${aluno.nome}"/>
-                                <td th:text="${aluno.cpf}"/>
-                                <td th:text="${aluno.dataIngresso}" />
-                                <td th:text="${aluno.plano}"/>
-    
-                                <!-- opção de excluir aluno -->
-                                <td><a th:href="@{/aluno/delete/{id}(id=${aluno.id})}">
-                                        <i class="bi bi-dash-circle" title="delete"></i>
-                                </a></td>
-    
-                                <!-- opção de editar aluno -->
-                                <td><a th:href="@{/aluno/editar/{id}(id=${aluno.id})}">
-                                    <i class="bi bi-pencil" title="editar"></i>
-                                </a></td>
-    
-                                <!-- opção de Mostrar Dados de aluno -->
-                                <td><a th:href="@{/aluno/visualizar/{id}(id=${aluno.id})}">
-                                    <i class="bi bi-eye" title="dados completos"></i>
-                                </a></td>
                             </tr>
-                            </tbody>
-                        </table>
-                </div>
+                        </thead>
+                        <tbody>
+                        <!-- usando o thymeleaf para iterar na lista de alunos -->
+                        <tr th:each="aluno: ${alunos}">
+                            <td th:text="${aluno.id}"/>
+                            <td th:text="${aluno.nome}"/>
+                            <td th:text="${aluno.cpf}"/>
+                            <td th:text="${aluno.dataIngresso}" />
+                            <td th:text="${aluno.plano}"/>
+
+                            <!-- opção de excluir aluno -->
+                            <td><a th:href="@{/aluno/delete/{id}(id=${aluno.id})}">
+                                    <i class="bi bi-dash-circle" title="delete"></i>
+                            </a></td>
+
+                            <!-- opção de editar aluno -->
+                            <td><a th:href="@{/aluno/editar/{id}(id=${aluno.id})}">
+                                <i class="bi bi-pencil" title="editar"></i>
+                            </a></td>
+
+                            <!-- opção de Mostrar Dados de aluno -->
+                            <td><a th:href="@{/aluno/visualizar/{id}(id=${aluno.id})}">
+                                <i class="bi bi-eye" title="dados completos"></i>
+                            </a></td>
+                        </tr>
+                        </tbody>
+                    </table>
             </form>
            </main>
        </div>
