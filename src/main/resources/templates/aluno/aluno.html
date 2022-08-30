@@ -84,17 +84,6 @@
                   Cadastrar
                 </h1>
 
-                <!--Buttons-->
-                <div class="col-md-6 buttons  d-flex align-items-center justify-content-center">
-                  <button type="submit" class="btn btn-primary button-cadastro mx-2 mb-4">
-                      <i class="bi bi-cloud-upload p-2"></i>Cadastrar
-                  </button>
-
-                  <a class="btn button-cancelar mb-4" th:href="@{/aluno/list}" role="button">
-                      <i class="bi bi-x-lg text-danger p-2"></i>Cancelar
-                  </a>
-                </div>
-
                 <div class="card">
                   <div class="card-body row g-3">
 
@@ -200,7 +189,7 @@
 
                     <div class="col-md-4 mb-3">
                       <label for="validationCustom01" class="form-label">Cidade</label>
-                      <input type="text" th:field="${aluno.endereco.cidade}" class="form-control" id="cidade" required>
+                      <input type="text" th:field="${aluno.endereco.cidade}" class="form-control" id="localidade" required>
                       <div class="invalid-feedback">Cidade não informada</div>
                     </div>
 
@@ -214,6 +203,17 @@
                       <label for="validationCustom01" class="form-label">País</label>
                       <input type="text" th:field="${aluno.endereco.pais}" class="form-control" id="pais" required>
                       <div class="invalid-feedback">País não informado</div>
+                    </div>
+
+                    <!--Buttons-->
+                    <div class="col-md-12 buttons  d-flex align-items-center justify-content-center">
+                      <button type="submit" class="btn btn-primary button-cadastro mx-2 mb-4">
+                          <i class="bi bi-cloud-upload p-2"></i>Cadastrar
+                      </button>
+
+                      <a class="btn button-cancelar mb-4" th:href="@{/aluno/list}" role="button">
+                          <i class="bi bi-x-lg text-danger p-2"></i>Cancelar
+                      </a>
                     </div>
                   </div>
                 </div>
