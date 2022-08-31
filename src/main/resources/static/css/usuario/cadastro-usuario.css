@@ -1,7 +1,11 @@
-.formulario-usuario {
+input[type="checkbox"]:checked{
+color: limegreen;
+}
+
+.formulario-usuario{
     border: 3px solid #062A40;
     border-radius: 0.3rem;
-    height: 65vh;
+    height: 60vh;
 }
 
 .formulario-usuario, .row {
@@ -13,8 +17,8 @@
     width: 15px;
 }
 
-.formulario-aluno::-webkit-scrollbar-track {
-    background-color: #e4e4e4;
+.formulario-usuario::-webkit-scrollbar-track {
+    background-color: #60a3bc;
     border-radius: 0.3rem;
 }
 
@@ -32,37 +36,42 @@
 
 /* ====== Imagem ===============================================================*/
 
-.coluna-imagem {
+.segunda-coluna {
     display: flex;
     justify-content: center;
 }
 
-.picture {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    aspect-ratio: 16/9;
-    width: 200px;
+.segunda-coluna, .row {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.imagem-usuario{
+    height: 18vh;
+    width: 18vh;
+    object-fit: cover;
+    background-size: cover;         /* para que as imagens não se repitam */
+    background-position: center;    /* para que as imagens ocupem todo o background */
+    background-repeat: no-repeat;   /* para que as imagens seham centralizadas na caixa */
+    border-radius: 100%;            /* bordas arredondadas */
     background: #ccc;
     color: #aaa;
     border: 2px dashed #aaa;
-    cursor: pointer;
     font-family: sans-serif;
     transition: color 300ms ease-in-out, background 300ms ease-in-out;
 }
 
-.picture:hover {
-    color: #777;
-    background: #ccc;
+
+
+.card {
+    background: #8cabc2;
 }
 
-#picture__input {
-    display: none;
+.card-view {
+    background: #214054 ;
+    color: #ADC9DB;
 }
 
-.picture__image {
-    max-width: 100%;
-}
 
 /* ====== Buttons ===============================================================*/
 
@@ -98,140 +107,39 @@
     color: white
 }
 
-/*CADASTRAR TIPOS EXERCICIOS HEADER*/
 
-/*botoes*/
-.col-right__buttons {
-    display: flex;
+/* Responsividade */
+
+@media screen and (min-width:0){
+    .coluna-imagem {
+        display: flex;
+        justify-content: center;
+    }
+
+    .coluna__dadosPessoais, .subtitulo-endereco {
+        justify-content: center;
+    }
+
+    .card {
+        width: 100%;
+    }
+
 }
 
+@media screen and (min-width:768px){
+    .coluna-imagem {
+        display: flex;
+        justify-content: end;
+    }
 
-/* Coluna direita */
+    .coluna__dadosPessoais, .subtitulo-endereco {
+        justify-content: start;
+    }
 
-.container-buttons {
-    display: flex;
-    justify-content: flex-start;
+    .card {
+        width: 75%;
+    }
+
+
 }
-
-.box-button {
-    padding-right: 0.5rem;
-}
-
-.btn-link {
-    text-decoration: none;
-    text-transform: uppercase;
-    font-weight: bold;
-    color: #062A40 ;
-    border: none;
-}
-
-
-.button-novo {
-    background: #91B021;
-    color: white;
-}
-
-.button-novo:hover {
-    background: #062A40;
-    color: #ECF229;
-}
-
-/*formulário*/
-
-.formulario-tipoExercicio{
-    padding: 40px;
-    border: 3px solid #062A40;
-    border-radius: 0.3rem;
-    height: 60vh;
-}
-
-
-.buttons span {
-    margin-right: 10px;
-}
-
-.button-cadastro {
-    background: #91B021;
-    text-transform: uppercase;
-    font-weight: bold;
-    border: none;
-    margin-top: 2.5rem;
-    color: white;
-}
-
-.button-cadastro:hover {
-    background: #062A40;
-    color: #ECF229;
-}
-
-.button-cancelar {
-    background: #BFBFBF;
-    color:#062A40 ;
-    text-transform: uppercase;
-    font-weight: bold;
-    border: none;
-    margin-top: 2.5rem;
-}
-
-.button-cancelar:hover {
-    background: #062A40;
-    color: white
-}
-
-.switch {
-    display: inline-block;
-    height: 34px;
-    position: relative;
-    width: 60px;
-}
-
-.switch input {
-    display:none;
-}
-
-.slider {
-    background-color: #ccc;
-    bottom: 0;
-    cursor: pointer;
-    left: 0;
-    position: absolute;
-    right: 0;
-    top: 0;
-    transition: .4s;
-}
-
-.slider:before {
-    background-color: #fff;
-    bottom: 4px;
-    content: "";
-    height: 26px;
-    left: 4px;
-    position: absolute;
-    transition: .4s;
-    width: 26px;
-}
-
-input:checked + .slider {
-    background-color: #66bb6a;
-}
-
-input:checked + .slider:before {
-    transform: translateX(26px);
-}
-
-.slider.round {
-    border-radius: 34px;
-}
-
-.slider.round:before {
-    border-radius: 50%;
-}
-.button-padrao{
-    color:#062A40;
-}
-
-
-
-
-
 

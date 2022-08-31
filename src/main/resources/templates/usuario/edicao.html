@@ -78,12 +78,12 @@
 
         <!--Formulário-->
         <form class="row g-3 d-flex justify-content-center conteudo" enctype="multipart/form-data"
-              th:object="${usuario}" action="/admin/usuario/save" method="post">
+              th:object="${usuario}" action="/admin/usuario/update" method="post">
 
             <!--Título-->
             <h1 class="col-md-9 header-titulo mt-4 text-sm-start">
-                <i class="bi bi-person-plus-fill"></i>
-                &nbsp;Cadastrar Usuário
+                <i class="bi bi-pencil-fill"></i>
+                &nbsp;Editar Usuário
             </h1>
 
 
@@ -96,7 +96,7 @@
 
                     <!--Mostrar foto-->
                     <div class="col-md-6 coluna-imagem">
-                        <span><img class="imagem-usuario" id="thumbnail"></span>
+                        <span><img th:src="@{/usuario/get-image/{id}/{imagem}(id=${usuario.id}, imagem=${usuario.imagemUsuario})}" class="imagem-usuario" id="thumbnail"></span>
                     </div>
 
                     <div class="col-md-6">
@@ -161,7 +161,7 @@
                                 aria-label="select example" onblur="validaCampo()">
                             <option th:each="tipoFuncionario : ${T(com.syscawfit.syscawfit.model.TipoFuncionario).values()}"
                                     th:value="${tipoFuncionario}"
-                                    th:text="${tipoFuncionario.tipoFuncionario}"/>
+                                    th:text="${tipoFuncionario.tipoFuncionario}" />
                         </select>
                         <div class="invalid-feedback">Selecione uma opção!</div>
                     </div>
@@ -225,7 +225,7 @@
             <!--Buttons-->
             <div class="col-md-6 buttons  d-flex align-items-center justify-content-center">
                 <button type="submit" class="btn btn-primary button-cadastro mx-2 mb-4">
-                    <i class="bi bi-cloud-upload p-2"></i>Cadastrar
+                    <i class="bi bi-cloud-upload p-2"></i>Alterar
                 </button>
 
                 <a class="btn button-cancelar mb-4" th:href="@{/admin/usuario/list}" role="button">
@@ -235,18 +235,18 @@
         </form>
     </main>
 </div>
-    <!-- RODAPÉ-->
-    <footer class="row linha-rodape">
-        <div class="col rodape">
-            <p>Todos os direitos reservados - 2022.</p>
-        </div>
-    </footer>
+<!-- RODAPÉ-->
+<footer class="row linha-rodape">
+    <div class="col rodape">
+        <p>Todos os direitos reservados - 2022.</p>
+    </div>
+</footer>
 
-    <!-- JavaScript Bundle with Popper -->
-    <script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
-    <script type="text/javascript" th:src="@{/js/validacao-mascaras/endereco.js}"></script>
-    <script type="text/javascript" th:src="@{/js/validacao-mascaras/validacao-cpf.js}"></script>
-    <script type="text/javascript" th:src="@{/js/validacao-mascaras/mascaras.js}"></script>
+<!-- JavaScript Bundle with Popper -->
+<script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/validacao-mascaras/endereco.js}"></script>
+<script type="text/javascript" th:src="@{/js/validacao-mascaras/validacao-cpf.js}"></script>
+<script type="text/javascript" th:src="@{/js/validacao-mascaras/mascaras.js}"></script>
 
 </body>
 </html>

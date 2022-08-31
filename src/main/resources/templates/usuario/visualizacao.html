@@ -78,16 +78,22 @@
 
         <!--Formulário-->
         <form class="row g-3 d-flex justify-content-center conteudo" enctype="multipart/form-data"
-              th:object="${usuario}" action="/admin/usuario/save" method="post">
+              th:object="${usuario}" action="/admin/usuario/list" method="post">
 
             <!--Título-->
-            <h1 class="col-md-9 header-titulo mt-4 text-sm-start">
-                <i class="bi bi-person-plus-fill"></i>
-                &nbsp;Cadastrar Usuário
+            <h1 class="col-md-7 header-titulo mt-5 text-center">
+                <i class="bi bi-eye-fill"></i>
+                &nbsp;Visualizar Usuário
             </h1>
 
+            <!--Buttons-->
+            <div class="col-md-4 buttons  d-flex align-items-center justify-content-center">
+                <a class="btn button-cancelar mb-5" th:href="@{/admin/usuario/list}" role="button">
+                    <i class="bi bi-arrow-return-left m-2"></i>Voltar
+                </a>
+            </div>
 
-            <div class="card">
+            <div class="card card-view">
                 <div class="card-body row g-3">
 
                     <div class="col-md-6 coluna__dadosPessoais d-flex align-items-center">
@@ -96,43 +102,43 @@
 
                     <!--Mostrar foto-->
                     <div class="col-md-6 coluna-imagem">
-                        <span><img class="imagem-usuario" id="thumbnail"></span>
+                        <span><img th:src="@{/usuario/get-image/{id}/{imagem}(id=${usuario.id}, imagem=${usuario.imagemUsuario})}" class="imagem-usuario" id="thumbnail"></span>
                     </div>
 
                     <div class="col-md-6">
                         <label for="nome" class="form-label">Nome</label>
-                        <input type="text" th:field="${usuario.nome}" class="form-control" id="nome" required autofocus>
+                        <input type="text" th:field="${usuario.nome}" class="form-control" id="nome" disabled>
                         <div class="invalid-feedback">Nome inválido!</div>
                     </div>
 
                     <div class="col-md-6">
                         <label for="cpf" class="form-label">CPF</label>
                         <input type="text" th:field="${usuario.cpf}" class="form-control" id="cpf" onblur='validaCPF()'
-                               required>
+                               disabled>
                         <div class="invalid-feedback">CPF inválido!</div>
                     </div>
 
                     <div class="col-md-4">
                         <label for="rg" class="form-label">RG</label>
-                        <input type="text" th:field="${usuario.rg}" class="form-control" id="rg" required>
+                        <input type="text" th:field="${usuario.rg}" class="form-control" id="rg" disabled>
                         <div class="invalid-feedback">RG inválido!</div>
                     </div>
 
                     <div class="col-md-4">
                         <label for="telefone" class="form-label">Telefone</label>
                         <input type="text" th:field="${usuario.telefone}" class="form-control" id="telefone"
-                               placeholder="(00) 00000-0000" required>
+                               placeholder="(00) 00000-0000" disabled>
                         <div class="invalid-feedback">Telefone inválido!</div>
                     </div>
                     <div class="col-md-4 pt-1 form-check form-switch">
                         <label class="form-check-label" for="flexSwitchCheckChecked">Situação</label>
-                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
-                               checked th:field="${usuario.situacao}" required>
+                        <input class="form-check-input"  type="checkbox" role="switch" id="flexSwitchCheckChecked"
+                               checked th:field="${usuario.situacao}" disabled>
                     </div>
 
                     <div class="col-md-6">
                         <label for="email" class="form-label">E-mail</label>
-                        <input type="email" th:field="${usuario.email}" class="form-control" id="email" required>
+                        <input type="email" th:field="${usuario.email}" class="form-control" id="email" disabled>
                         <div class="invalid-feedback">E-mail inválido!</div>
                     </div>
 
@@ -140,7 +146,7 @@
                         <label for="fileImage" class="form-label">Anexar foto</label>
                         <div>
                             <input class="form-control form-control-sm inputFile" accept="image/*" name="image"
-                                   id="fileImage" type="file" required>
+                                   id="fileImage" type="file" disabled>
                         </div>
                     </div>
 
@@ -148,89 +154,83 @@
                         <label for="tipo-usuario" class="form-label">Tipo de Usuário</label>
                         <select class="form-select" id="tipo-usuario" th:field="${usuario.tipoUsuario}"
                                 aria-label="select example" onblur="validaCampo()">
-                            <option th:each="tipoUsuario : ${T(com.syscawfit.syscawfit.model.TipoUsuario).values()}"
+                            <option disabled th:each="tipoUsuario : ${T(com.syscawfit.syscawfit.model.TipoUsuario).values()}"
                                     th:value="${tipoUsuario}"
                                     th:text="${tipoUsuario.tipoUsuario}"/>
                         </select>
-                        <div class="invalid-feedback">Selecione uma opção!</div>
+<!--                        <div class="invalid-feedback">Selecione uma opção!</div>-->
                     </div>
 
                     <div class="col-md-6 mb-3">
                         <label for="tipo-funcionario" class="form-label">Tipo de Funcionário</label>
                         <select class="form-select" id="tipo-funcionario" th:field="${usuario.tipoFuncionario}"
                                 aria-label="select example" onblur="validaCampo()">
-                            <option th:each="tipoFuncionario : ${T(com.syscawfit.syscawfit.model.TipoFuncionario).values()}"
+                            <option disabled th:each="tipoFuncionario : ${T(com.syscawfit.syscawfit.model.TipoFuncionario).values()}"
                                     th:value="${tipoFuncionario}"
                                     th:text="${tipoFuncionario.tipoFuncionario}"/>
                         </select>
-                        <div class="invalid-feedback">Selecione uma opção!</div>
+<!--                        <div class="invalid-feedback">Selecione uma opção!</div>-->
                     </div>
                 </div>
             </div>
 
 
             <!--Endereço-->
-            <div class="card">
+            <div class="card card-view">
                 <div class="card-body row g-3">
 
                     <h4 class="mt-4 subtitulo-endereco d-flex">Endereço</h4>
 
                     <div class="col-md-4">
                         <label for="cep" class="form-label">CEP</label>
-                        <input type="text" th:field="${usuario.endereco.cep}" class="form-control" id="cep" required>
+                        <input type="text" th:field="${usuario.endereco.cep}" class="form-control" id="cep" disabled>
                         <div class="invalid-feedback">CEP não encontrado!</div>
                     </div>
 
                     <div class="col-md-8">
                         <label for="logradouro" class="form-label">Logradouro</label>
                         <input type="text" th:field="${usuario.endereco.logradouro}" class="form-control"
-                               id="logradouro" required>
+                               id="logradouro" disabled>
                         <div class="invalid-feedback">Logradouro não informado!</div>
                     </div>
 
                     <div class="col-md-4">
                         <label for="numero" class="form-label">Nº</label>
                         <input type="text" th:field="${usuario.endereco.numero}" class="form-control" id="numero"
-                               required>
+                               disabled>
                         <div class="invalid-feedback">Nº não informado!</div>
                     </div>
 
                     <div class="col-md-8">
                         <label for="bairro" class="form-label">Bairro</label>
                         <input type="text" th:field="${usuario.endereco.bairro}" class="form-control" id="bairro"
-                               required>
+                               disabled>
                         <div class="invalid-feedback">Bairro não informado!</div>
                     </div>
 
                     <div class="col-md-4 mb-3">
                         <label for="localidade" class="form-label">Cidade</label>
                         <input type="text" th:field="${usuario.endereco.cidade}" class="form-control" id="localidade"
-                               required>
+                               disabled>
                         <div class="invalid-feedback">Cidade não informada!</div>
                     </div>
 
                     <div class="col-md-3 mb-3">
                         <label for="uf" class="form-label">UF</label>
-                        <input type="text" th:field="${usuario.endereco.uf}" class="form-control" id="uf" required>
+                        <input type="text" th:field="${usuario.endereco.uf}" class="form-control" id="uf" disabled>
                         <div class="invalid-feedback">UF não informada!</div>
                     </div>
 
                     <div class="col-md-5 mb-3">
                         <label for="pais" class="form-label">País</label>
-                        <input type="text" th:field="${usuario.endereco.pais}" class="form-control" id="pais" required>
+                        <input type="text" th:field="${usuario.endereco.pais}" class="form-control" id="pais" disabled>
                         <div class="invalid-feedback">País não informado!</div>
                     </div>
                 </div>
             </div>
-            <!--Buttons-->
-            <div class="col-md-6 buttons  d-flex align-items-center justify-content-center">
-                <button type="submit" class="btn btn-primary button-cadastro mx-2 mb-4">
-                    <i class="bi bi-cloud-upload p-2"></i>Cadastrar
-                </button>
 
-                <a class="btn button-cancelar mb-4" th:href="@{/admin/usuario/list}" role="button">
-                    <i class="bi bi-x-lg text-danger p-2"></i>Cancelar
-                </a>
+            <div>
+                <br/>
             </div>
         </form>
     </main>

@@ -1,11 +1,10 @@
 package com.syscawfit.syscawfit.controller;
 
-import com.syscawfit.syscawfit.dao.AlunoRepository;
-import com.syscawfit.syscawfit.dao.EnderecoAlunoRepository;
 import com.syscawfit.syscawfit.dao.EnderecoUsuarioRepository;
 import com.syscawfit.syscawfit.dao.UsuarioRepository;
 import com.syscawfit.syscawfit.model.*;
 import com.syscawfit.syscawfit.security.UsuarioPrincipal;
+import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,7 +16,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -44,7 +45,7 @@ public class UsuarioController {
         }
 
         caminhoImagens = "src" + separator + "main" + separator + "resources" + separator + "static" + separator +
-                "img" + separator + "alunosImagens" + separator;
+                "img" + separator + "usuariosImagens" + separator;
 
     }
 
@@ -75,7 +76,6 @@ public class UsuarioController {
     public String create(Model model) {
         Usuario usuario = new Usuario();
         model.addAttribute("usuario", usuario);
-        //configurar aqui
         model.addAttribute("tipoFuncionario", TipoFuncionario.values());
         model.addAttribute("tipoUsuario", TipoUsuario.values());
 
@@ -83,7 +83,8 @@ public class UsuarioController {
     }
 
     @PostMapping("/save")
-    public String save(@Valid Usuario usuario, BindingResult result, Model model, @RequestParam("image") MultipartFile multipartFile) throws IOException {
+    public String salvarAluno(@Valid Usuario usuario, BindingResult result, Model model,
+                              @RequestParam("image") MultipartFile multipartFile) throws IOException {
 
         List<String> errors = new ArrayList<>();
 
@@ -96,26 +97,18 @@ public class UsuarioController {
         if (daoUsuario.findByCpf(usuario.getCpf()) != null) {
             errors.add("CPF já cadastrado!");
         }
-        if (usuario.getEndereco() != null) {
-            daoEndereco.save(usuario.getEndereco());
-        }
 
         if (!errors.isEmpty()) {
             model.addAttribute("usuario", usuario);
-            model.addAttribute("mensagensErro", errors);
+            model.addAttribute("planos", TipoUsuario.values());
+            model.addAttribute("generos", TipoFuncionario.values());
+            model.addAttribute("mensagemErro", errors);
 
             return "/usuario/cadastro.html";
         }
-
-        //obter nome do arquivo que será armazenado no BD no campo ImagemAluno
-        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-        usuario.setImagemUsuario(fileName);
-
-        // armazenar arquivo no diretório alunos-imagens/alunoID
-        String uploadDir = caminhoImagens + usuario.getId();
-        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
-
-
+        if (usuario.getEndereco() != null) {
+            daoEndereco.save(usuario.getEndereco());
+        }
         if (usuario.getTipoUsuario() != null && usuario.getTipoUsuario().getTipoUsuario().compareTo("Mantenedor") == 0) {
             usuario.setRoles("ADMIN");
         } else if (usuario.getTipoUsuario() != null && usuario.getTipoUsuario().getTipoUsuario().compareTo("Funcionário") == 0) {
@@ -124,32 +117,120 @@ public class UsuarioController {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         String senhaCripto = passwordEncoder.encode(usuario.getSenha());
         usuario.setSenha(senhaCripto);
-
         daoUsuario.save(usuario);
+
+        //obter nome do arquivo que será armazenado no BD no campo ImagemAluno
+        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+        usuario.setImagemUsuario(fileName);
+        Usuario saveUsuario = daoUsuario.save(usuario);
+
+        // armazenar arquivo no diretório alunos-imagens/alunoID
+
+        String uploadDir = caminhoImagens + saveUsuario.getId();
+
+        FileUploadUtil.saveFile(uploadDir,fileName,multipartFile);
+
         return "redirect:/admin/usuario/list";
+
     }
 
     // REMOVE USUARIO
     @RequestMapping("/delete/{id}")
     public String delete(@PathVariable Long id) throws IllegalAccessException {
-        if (daoUsuario.findById(id).get().getRoles().compareTo("MANAGER") != 0) {
+        Optional<Usuario> usuario = daoUsuario.findById(id);
+        if (usuario.isPresent() && usuario.get().getRoles().compareTo("MANAGER") != 0) {
             daoUsuario.deleteById(id);
         } else {
             throw new IllegalAccessException("Este usuário não pode ser excluído!");
         }
-
         return "redirect:/admin/usuario/list";
     }
 
     // ATUALIZA USUARIO
-    @GetMapping("/update/{id}")
-    public String update(Model model, @PathVariable("id") Long id) {
+    @RequestMapping("/edit/{id}")
+    public String edit(Model model, @PathVariable("id") Long id) {
         Optional<Usuario> usuarioOptional = daoUsuario.findById(id);
         model.addAttribute("usuario", usuarioOptional.get());
+        model.addAttribute("tipoFuncionario", TipoFuncionario.values());
+        model.addAttribute("tipoUsuario", TipoUsuario.values());
         if (usuarioOptional.isEmpty()) {
             throw new IllegalArgumentException("Usuário não encontrado!");
         }
-        return "/usuario/cadastro.html";
+        return "/usuario/edicao.html";
+    }
+
+    @PostMapping("/update")
+    public String update(@Valid Usuario usuario, BindingResult result, Model model,
+                         @RequestParam("image") MultipartFile multipartFile) throws IOException {
+
+        List<String> errors = new ArrayList<>();
+
+        if (result.hasErrors()) {
+            result.getAllErrors().forEach(error -> {
+                errors.add(error.getDefaultMessage());
+            });
+        }
+
+        Usuario usuarioFind = daoUsuario.findByCpf(usuario.getCpf());
+
+        if (usuarioFind != null && usuarioFind.getId() != usuario.getId()) {
+            errors.add("CPF já cadastrado!");
+        }
+
+        if (!errors.isEmpty()) {
+            model.addAttribute("usuario", usuario);
+            model.addAttribute("tipoUsuario", TipoUsuario.values());
+            model.addAttribute("tipoFuncionario", TipoFuncionario.values());
+            model.addAttribute("mensagemErro", errors);
+
+            return "/usuario/edicao.html";
+        }
+
+        usuario.setId(daoUsuario.findByCpf(usuario.getCpf()).getId());
+
+        //obter nome do arquivo que será armazenado no BD no campo ImagemAluno
+        String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
+
+        // Checar se foto foi alterada
+        if (fileName.isEmpty()) {
+            usuario.setImagemUsuario(usuarioFind.getImagemUsuario());
+        } else {
+            // Deleta imagem anterior
+            FileUtils.deleteDirectory(new File(caminhoImagens + usuario.getId()));
+
+            usuario.setImagemUsuario(fileName);
+
+            // armazenar arquivo no diretório
+            String uploadDir = caminhoImagens + usuario.getId();
+
+            FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+        }
+
+        daoEndereco.save(usuario.getEndereco());
+        daoUsuario.save(usuario);
+
+        return "redirect:/admin/usuario/list";
+    }
+
+    @RequestMapping("/view/{id}")
+    public String visualizarDados(Model model, @PathVariable Long id) {
+        Usuario usuario = daoUsuario.findById(id).orElse(null);
+
+        model.addAttribute("usuario", usuario);
+        model.addAttribute("tipoUsuario", TipoUsuario.values());
+        model.addAttribute("tipoFuncionario", TipoFuncionario.values());
+
+        return "/usuario/visualizacao";
+    }
+
+    @GetMapping("/get-image/{id}/{imagem}")
+    @ResponseBody
+    public byte[] retornarImagem(Model model, @PathVariable("id") Long id, @PathVariable("imagem") String imagem) throws IOException {
+        File imagemArquivo = new File(caminhoImagens + id + separator + imagem);
+        if (imagem != null || imagem.trim().length() > 0) {
+            return Files.readAllBytes(imagemArquivo.toPath());
+        }
+        return null;
     }
 
 }

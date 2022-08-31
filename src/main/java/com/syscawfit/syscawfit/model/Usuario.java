@@ -1,7 +1,5 @@
 package com.syscawfit.syscawfit.model;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
@@ -167,6 +165,26 @@ public class Usuario {
         this.tokenRedefinirSenha = tokenRedefinirSenha;
     }
 
+    public String getImagemUsuario() {
+        return imagemUsuario;
+    }
+    public void setImagemUsuario(String fileName) {
+        this.imagemUsuario = fileName;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Usuario usuario = (Usuario) o;
+        return Objects.equals(id, usuario.id) && Objects.equals(nome, usuario.nome) && Objects.equals(cpf, usuario.cpf) && Objects.equals(rg, usuario.rg) && Objects.equals(telefone, usuario.telefone) && Objects.equals(imagemUsuario, usuario.imagemUsuario) && Objects.equals(email, usuario.email) && Objects.equals(situacao, usuario.situacao) && Objects.equals(senha, usuario.senha) && Objects.equals(endereco, usuario.endereco) && tipoUsuario == usuario.tipoUsuario && tipoFuncionario == usuario.tipoFuncionario && Objects.equals(roles, usuario.roles) && Objects.equals(tokenRedefinirSenha, usuario.tokenRedefinirSenha);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, nome, cpf, rg, telefone, imagemUsuario, email, situacao, senha, endereco, tipoUsuario, tipoFuncionario, roles, tokenRedefinirSenha);
+    }
+
     @Override
     public String toString() {
         return "Usuario{" +
@@ -175,6 +193,7 @@ public class Usuario {
                 ", cpf='" + cpf + '\'' +
                 ", rg='" + rg + '\'' +
                 ", telefone='" + telefone + '\'' +
+                ", imagemUsuario='" + imagemUsuario + '\'' +
                 ", email='" + email + '\'' +
                 ", situacao=" + situacao +
                 ", senha='" + senha + '\'' +
@@ -182,24 +201,8 @@ public class Usuario {
                 ", tipoUsuario=" + tipoUsuario +
                 ", tipoFuncionario=" + tipoFuncionario +
                 ", roles='" + roles + '\'' +
+                ", tokenRedefinirSenha='" + tokenRedefinirSenha + '\'' +
                 '}';
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Usuario usuario = (Usuario) o;
-        return Objects.equals(id, usuario.id) && Objects.equals(nome, usuario.nome) && Objects.equals(cpf, usuario.cpf) && Objects.equals(rg, usuario.rg) && Objects.equals(telefone, usuario.telefone) && Objects.equals(email, usuario.email) && Objects.equals(situacao, usuario.situacao) && Objects.equals(senha, usuario.senha) && Objects.equals(endereco, usuario.endereco) && tipoUsuario == usuario.tipoUsuario && tipoFuncionario == usuario.tipoFuncionario && Objects.equals(roles, usuario.roles);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, nome, cpf, rg, telefone, email, situacao, senha, endereco, tipoUsuario, tipoFuncionario, roles);
-    }
-
-
-    public void setImagemUsuario(String fileName) {
-        this.imagemUsuario = fileName;
-    }
 }

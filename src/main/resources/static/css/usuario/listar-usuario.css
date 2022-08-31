@@ -1,27 +1,3 @@
-.button-pesquisar{
-    background: #BFBFBF;
-    text-transform: uppercase;
-    font-weight: bold;
-    border: none;
-    color: #062A40;
-    margin-right: 10px;
-}
-
-.button-pesquisar:hover {
-    background: #062A40;
-    color: white;
-}
-
-.button-novo {
-    background: #91B021;
-    color: white;
-}
-
-.button-novo:hover {
-    background: #062A40;
-    color: #ECF229;
-}
-
 .col-left__input {
     display: flex;
     align-items: center;
@@ -97,13 +73,32 @@
     color:#062A40;
 }
 
-.button-padrao{
-    color:#062A40;
+
+/* Responsividade */
+
+@media screen and (min-width:0){
+    .coluna-pesquisa {
+        display: flex;
+        justify-content: center;
+    }
+
+    .coluna-buttons {
+        display: flex;
+        justify-content: center;
+    }
+
 }
 
-.table_div{
-    max-width: 100%;
-    overflow: scroll
+@media screen and (min-width:768px){
+    .coluna-pesquisa {
+        display: flex;
+        justify-content: end;
+    }
+
+    .coluna-buttons {
+        display: flex;
+        justify-content: start;
+    }
 }
 
 

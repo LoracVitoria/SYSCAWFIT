@@ -15,7 +15,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long> {
     @Override
     Usuario getById(Long aLong);
 
-
     Usuario findByCpf(String username);
 
     Usuario findByEmail(String userEmail);
