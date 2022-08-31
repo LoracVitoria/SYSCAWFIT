@@ -14,6 +14,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 //import javax.persistence.ManyToMany;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -28,18 +29,17 @@ public class Treino {
 	
 	@NotNull
 	@NotBlank(message = "campo obrigatório")
-	@Size(min = 3, max = 50, message = "Campo deve conter entre {min} e {max} carácteres")
+	@Size(min = 2, max = 50, message = "Campo deve conter entre {min} e {max} carácteres")
 	private String nome;
 	
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate dataInicioTreino;
 	
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate datafimTreino;
 	
-//	@ManyToMany
-//	private Usuario responsavelTreino;
-//	pegar lista de usuarios.
 	
 	@OneToMany(mappedBy = "treino", cascade = CascadeType.REMOVE)
 	private List<Exercicio> listaExercicios;
