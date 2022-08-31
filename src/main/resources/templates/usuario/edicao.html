@@ -17,6 +17,7 @@
     <!--Jquery-->
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
     <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script> -->
@@ -96,7 +97,7 @@
 
                     <!--Mostrar foto-->
                     <div class="col-md-6 coluna-imagem">
-                        <span><img th:src="@{/usuario/get-image/{id}/{imagem}(id=${usuario.id}, imagem=${usuario.imagemUsuario})}" class="imagem-usuario" id="thumbnail"></span>
+                        <span><img th:src="@{/admin/usuario/get-image/{id}/{imagem}(id=${usuario.id}, imagem=${usuario.imagemUsuario})}" class="imagem-usuario" id="thumbnail"></span>
                     </div>
 
                     <div class="col-md-6">
@@ -112,22 +113,31 @@
                         <div class="invalid-feedback">CPF inválido!</div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-6 form-group">
+                        <label for="senha" class="form-label">Senha</label>
+                        <input type="password" th:field="${usuario.senha}" value="password" class="form-control" id="senha" minlength="6">
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <br/>
+                        <i id="olho" class=" bi bi-eye eye"></i>
+                    </div>
+                    <div class="col-md-4 pt-1 form-check form-switch">
+                        <br/>
+                        <label class="form-check-label" for="flexSwitchCheckChecked">Situação</label>
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
+                               checked th:field="${usuario.situacao}" required>
+                    </div>
+                    <div class="col-md-6">
                         <label for="rg" class="form-label">RG</label>
                         <input type="text" th:field="${usuario.rg}" class="form-control" id="rg" required>
                         <div class="invalid-feedback">RG inválido!</div>
                     </div>
 
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <label for="telefone" class="form-label">Telefone</label>
                         <input type="text" th:field="${usuario.telefone}" class="form-control" id="telefone"
                                placeholder="(00) 00000-0000" required>
                         <div class="invalid-feedback">Telefone inválido!</div>
-                    </div>
-                    <div class="col-md-4 pt-1 form-check form-switch">
-                        <label class="form-check-label" for="flexSwitchCheckChecked">Situação</label>
-                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
-                               checked th:field="${usuario.situacao}" required>
                     </div>
 
                     <div class="col-md-6">
@@ -140,7 +150,7 @@
                         <label for="fileImage" class="form-label">Anexar foto</label>
                         <div>
                             <input class="form-control form-control-sm inputFile" accept="image/*" name="image"
-                                   id="fileImage" type="file" required>
+                                   id="fileImage" type="file">
                         </div>
                     </div>
 
@@ -244,6 +254,7 @@
 
 <!-- JavaScript Bundle with Popper -->
 <script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/usuario/mostrar-senha.js}"></script>
 <script type="text/javascript" th:src="@{/js/validacao-mascaras/endereco.js}"></script>
 <script type="text/javascript" th:src="@{/js/validacao-mascaras/validacao-cpf.js}"></script>
 <script type="text/javascript" th:src="@{/js/validacao-mascaras/mascaras.js}"></script>

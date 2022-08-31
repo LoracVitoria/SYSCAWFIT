@@ -8,6 +8,7 @@ color: limegreen;
     height: 60vh;
 }
 
+
 .formulario-usuario, .row {
     padding: 0 !important;
     margin: 0 !important;
@@ -139,7 +140,12 @@ color: limegreen;
     .card {
         width: 75%;
     }
-
+    .form-group .eye{
+        pointer-events: auto;
+    }
+    .form-group .eye:hover {
+        cursor: pointer;
+    }
 
 }
 

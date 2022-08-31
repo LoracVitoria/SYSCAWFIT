@@ -5,7 +5,7 @@
     <div class="col-3">
         <div class="row">
             <div class="col-5 coluna-imagem">
-                <img th:src="@{/img/imagem-usuario.jpg}" class="img-fluid usuario__imagem" alt="...">
+<!--                <img th:scr="${#authentication.getDetails().nomeImagemUsuario}" class="img-fluid usuario__imagem" alt="...">-->
             </div>
             <div class="col-7 coluna-texto">
                 <p class="usuario__nome" th:text="${#authentication.name}"></p>

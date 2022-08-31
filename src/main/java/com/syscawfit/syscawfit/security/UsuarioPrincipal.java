@@ -6,12 +6,14 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
 public class UsuarioPrincipal implements UserDetails {
     private Usuario user;
+
 
     public UsuarioPrincipal(Usuario user) {
         this.user = user;
@@ -58,7 +60,7 @@ public class UsuarioPrincipal implements UserDetails {
     @Override
     public boolean isEnabled() {
         return this.user.getSituacao();
-//        return true;
     }
+
 }
 

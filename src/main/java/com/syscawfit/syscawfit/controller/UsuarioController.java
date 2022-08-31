@@ -136,12 +136,13 @@ public class UsuarioController {
 
     // REMOVE USUARIO
     @RequestMapping("/delete/{id}")
-    public String delete(@PathVariable Long id) throws IllegalAccessException {
+    public String delete(@PathVariable Long id, Model model) throws IllegalAccessException {
         Optional<Usuario> usuario = daoUsuario.findById(id);
         if (usuario.isPresent() && usuario.get().getRoles().compareTo("MANAGER") != 0) {
             daoUsuario.deleteById(id);
         } else {
-            throw new IllegalAccessException("Este usuário não pode ser excluído!");
+            model.addAttribute("mensagemErro","Este usuário não pode ser excluído!");
+            return "/admin/usuario/list";
         }
         return "redirect:/admin/usuario/list";
     }
@@ -173,9 +174,6 @@ public class UsuarioController {
 
         Usuario usuarioFind = daoUsuario.findByCpf(usuario.getCpf());
 
-        if (usuarioFind != null && usuarioFind.getId() != usuario.getId()) {
-            errors.add("CPF já cadastrado!");
-        }
 
         if (!errors.isEmpty()) {
             model.addAttribute("usuario", usuario);
@@ -205,8 +203,24 @@ public class UsuarioController {
 
             FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
         }
-
-        daoEndereco.save(usuario.getEndereco());
+        if (usuario.getEndereco() != null) {
+            daoEndereco.save(usuario.getEndereco());
+        }
+        if (usuario.getTipoUsuario() != null && usuario.getTipoUsuario().getTipoUsuario().compareTo("Mantenedor") == 0) {
+            usuario.setRoles("ADMIN");
+        } else if (usuario.getTipoUsuario() != null && usuario.getTipoUsuario().getTipoUsuario().compareTo("Funcionário") == 0) {
+            usuario.setRoles("USER");
+        }
+        if(!usuario.getSenha().isEmpty()) {
+            PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+            String senhaCripto = passwordEncoder.encode(usuario.getSenha());
+            usuario.setSenha(senhaCripto);
+        }
+        //configurar melhor isso aqui
+        if (usuario.getRoles().compareTo("MANAGER") == 0) {
+            model.addAttribute("mensagemErro","Este usuário não pode ter o seu tipo de usuário alterado!");
+            return "/admin/usuario/list";
+        }
         daoUsuario.save(usuario);
 
         return "redirect:/admin/usuario/list";
