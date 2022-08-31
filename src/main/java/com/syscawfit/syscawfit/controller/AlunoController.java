@@ -116,14 +116,18 @@ public class AlunoController {
 
 		//obter nome do arquivo que será armazenado no BD no campo ImagemAluno
 		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-		aluno.setImagemAluno(fileName);
-		Aluno saveAluno = alunoDao.save(aluno);
 
-		// armazenar arquivo no diretório alunos-imagens/alunoID
+		// verificar se foi enviado algum arquivo
+		if (!fileName.isEmpty()) {
+			aluno.setImagemAluno(fileName);
+			Aluno saveAluno = alunoDao.save(aluno);
 
-		String uploadDir = caminhoImagens + saveAluno.getId();
+			// armazenar arquivo no diretório alunos-imagens/alunoID
 
-		FileUploadUtil.saveFile(uploadDir,fileName,multipartFile);
+			String uploadDir = caminhoImagens + saveAluno.getId();
+
+			FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+		}
 
 		return "redirect:/aluno/list";
 
@@ -170,7 +174,7 @@ public class AlunoController {
 
 		Aluno buscaAluno = alunoDao.findByCpf(aluno.getCpf());
 
-		if (buscaAluno.getId() != aluno.getId() && buscaAluno != null) {
+		if (buscaAluno != null && buscaAluno.getId() != aluno.getId()) {
 			errors.add("CPF já cadastrado!");
 		}
 
@@ -183,14 +187,12 @@ public class AlunoController {
 			return "/aluno/editar.html";
 		}
 
-		aluno.setId(alunoDao.findByCpf(aluno.getCpf()).getId());
-
 		//obter nome do arquivo que será armazenado no BD no campo ImagemAluno
 		String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 
 		// Checar se foto foi alterada
 		if (fileName.isEmpty()) {
-			aluno.setImagemAluno(buscaAluno.getImagemAluno());
+			aluno.setImagemAluno(aluno.getImagemAluno());
 		} else {
 			// Deleta imagem anterior
 			FileUtils.deleteDirectory(new File(caminhoImagens + aluno.getId()));
