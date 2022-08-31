@@ -94,7 +94,9 @@
                      <!--Mostrar foto-->
                     <div class="col-md-6 coluna-imagem">
                       <span>
-                        <img th:src="@{/aluno/get-image/{id}/{imagem}(id=${aluno.id}, imagem=${aluno.imagemAluno})}" class="imagem-aluno border-0" id="thumbnail" width="100%" height="100%">
+                        <img th:if="${aluno.imagemAluno != null}" th:src="@{/aluno/get-image/{id}/{imagem}(id=${aluno.id}, imagem=${aluno.imagemAluno})}" class="imagem-aluno border-0" id="thumbnail" width="100%" height="100%">
+                        <img th:if="${aluno.imagemAluno == null}" th:src="@{/img/profile-picture.jpg}" class="imagem-aluno border-0" id="thumbnail" width="100%" height="100%">
+
                       </span>
                     </div>
 
@@ -141,7 +143,7 @@
 
                     <div class="col-md-6 mb-3">
                       <label for="validationCustom03" class="form-label">Gênero</label>
-                      <select class="form-select" th:field="${aluno.genero}" aria-label="select example" onblur="validaCampo()" >
+                      <select class="form-select" th:field="${aluno.genero}" aria-label="select example" onblur="validaCampo()" required>
                           <option value=""></option>
                           <option th:each="genero : ${generos}"
                                   th:value="${genero}"
@@ -152,7 +154,7 @@
 
                     <div class="col-md-6 mb-3">
                       <label for="validationCustom03" class="form-label">Tipo de Plano</label>
-                      <select class="form-select" th:field="${aluno.plano}" aria-label="select example" onblur="validaCampo()" >
+                      <select class="form-select" th:field="${aluno.plano}" aria-label="select example" onblur="validaCampo()" required>
                           <option value=""></option>
                           <option th:each="plano : ${planos}"
                                   th:value="${plano}"
