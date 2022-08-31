@@ -4,7 +4,7 @@ function getCPF(){
     let cpfStr = document.getElementById('cpf').value;
     // remover caracteres e manter só numeros
     cpfStr = cpfStr.replace(/\.|-/g,"");
-    
+
     let cpf = [];
 
     for(let i=0; i < cpfStr.length; i++){
@@ -15,7 +15,7 @@ function getCPF(){
 
 function validaCPF(){
 
-    const field = document.getElementById('cpf');
+    const field = document.getElementById('cpf' );
     const cpf = getCPF();
 
     // Verificar qtd.mínima e máxima de digitos
@@ -45,7 +45,7 @@ function validaCPF(){
     valid(field);
 }
 
-    
+
 function verificaRepetidos(cpf){
 
     let primeiro = cpf[0];
@@ -60,13 +60,13 @@ function verificaRepetidos(cpf){
 
 
 function verificaPrimeiroDigito(cpf){
-   let mult = 0;
-   let primeiroDigito;
+    let mult = 0;
+    let primeiroDigito;
 
     for(let i=0,j=10; i < 9 && j >= 2; i++, j--){
         mult += cpf[i] * j;
     }
-    
+
     let resto = mult % 11;
 
     if(resto == 0 || resto == 1){
@@ -100,7 +100,7 @@ function verificaSegundoDigito(cpf){
 
     if(segundoDigito == cpf[10]){
         return true;
-        
+
     } else {
         return false;
     }
@@ -109,12 +109,12 @@ function verificaSegundoDigito(cpf){
 function valid(field) {
     field.classList.remove("is-invalid");
     field.classList.add("is-valid");
-  }
-  
-  function invalid(field) {
+}
+
+function invalid(field) {
     field.classList.remove("is-valid");
     field.classList.add("is-invalid");
-  }
+}
  
 
 

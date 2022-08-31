@@ -100,8 +100,8 @@ public class UsuarioController {
 
         if (!errors.isEmpty()) {
             model.addAttribute("usuario", usuario);
-            model.addAttribute("planos", TipoUsuario.values());
-            model.addAttribute("generos", TipoFuncionario.values());
+            model.addAttribute("tipoUsuario", TipoUsuario.values());
+            model.addAttribute("tipoFuncionario", TipoFuncionario.values());
             model.addAttribute("mensagemErro", errors);
 
             return "/usuario/cadastro.html";
@@ -128,21 +128,27 @@ public class UsuarioController {
 
         String uploadDir = caminhoImagens + saveUsuario.getId();
 
-        FileUploadUtil.saveFile(uploadDir,fileName,multipartFile);
+        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
 
         return "redirect:/admin/usuario/list";
-
     }
 
     // REMOVE USUARIO
     @RequestMapping("/delete/{id}")
-    public String delete(@PathVariable Long id, Model model) throws IllegalAccessException {
+    public String delete(@PathVariable Long id, Model model) {
+        List<String> errors = new ArrayList<>();
+
         Optional<Usuario> usuario = daoUsuario.findById(id);
         if (usuario.isPresent() && usuario.get().getRoles().compareTo("MANAGER") != 0) {
             daoUsuario.deleteById(id);
         } else {
-            model.addAttribute("mensagemErro","Este usuário não pode ser excluído!");
-            return "/admin/usuario/list";
+            errors.add("Este usuário não pode ser excluído!");
+            List<Usuario> usuarios = new ArrayList<>(daoUsuario.findAll());
+            model.addAttribute("usuarios", usuarios);
+            model.addAttribute("tipoUsuario", TipoUsuario.values());
+            model.addAttribute("tipoFuncionario", TipoFuncionario.values());
+            model.addAttribute("mensagemErro", errors);
+            return "/usuario/list.html";
         }
         return "redirect:/admin/usuario/list";
     }
@@ -150,13 +156,27 @@ public class UsuarioController {
     // ATUALIZA USUARIO
     @RequestMapping("/edit/{id}")
     public String edit(Model model, @PathVariable("id") Long id) {
+        List<String> errors = new ArrayList<>();
         Optional<Usuario> usuarioOptional = daoUsuario.findById(id);
-        model.addAttribute("usuario", usuarioOptional.get());
-        model.addAttribute("tipoFuncionario", TipoFuncionario.values());
-        model.addAttribute("tipoUsuario", TipoUsuario.values());
-        if (usuarioOptional.isEmpty()) {
-            throw new IllegalArgumentException("Usuário não encontrado!");
+
+        if (usuarioOptional.isEmpty() || !usuarioOptional.isPresent()){
+            errors.add("Usuario não encontrado!");
         }
+        if(usuarioOptional.isPresent() && usuarioOptional.get().getRoles().compareTo("MANAGER") == 0){
+            errors.add("Este usuário não pode ser editado!");
+        }
+        if(!errors.isEmpty()){
+            List<Usuario> usuarios = new ArrayList<>(daoUsuario.findAll());
+            model.addAttribute("usuarios", usuarios);
+            model.addAttribute("tipoUsuario", TipoUsuario.values());
+            model.addAttribute("tipoFuncionario", TipoFuncionario.values());
+            model.addAttribute("mensagemErro", errors);
+            return "/usuario/list.html";
+        }
+        model.addAttribute("usuario", usuarioOptional.get());
+        model.addAttribute("tipoUsuario", TipoUsuario.values());
+        model.addAttribute("tipoFuncionario", TipoFuncionario.values());
+
         return "/usuario/edicao.html";
     }
 
@@ -172,8 +192,15 @@ public class UsuarioController {
             });
         }
 
+
         Usuario usuarioFind = daoUsuario.findByCpf(usuario.getCpf());
 
+
+        if (usuario.getTipoUsuario() != null && usuario.getTipoUsuario().getTipoUsuario().compareTo("Mantenedor") == 0) {
+            usuario.setRoles("ADMIN");
+        } else if (usuario.getTipoUsuario() != null && usuario.getTipoUsuario().getTipoUsuario().compareTo("Funcionário") == 0) {
+            usuario.setRoles("USER");
+        }
 
         if (!errors.isEmpty()) {
             model.addAttribute("usuario", usuario);
@@ -195,32 +222,24 @@ public class UsuarioController {
         } else {
             // Deleta imagem anterior
             FileUtils.deleteDirectory(new File(caminhoImagens + usuario.getId()));
-
             usuario.setImagemUsuario(fileName);
-
             // armazenar arquivo no diretório
             String uploadDir = caminhoImagens + usuario.getId();
-
             FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
         }
         if (usuario.getEndereco() != null) {
             daoEndereco.save(usuario.getEndereco());
         }
-        if (usuario.getTipoUsuario() != null && usuario.getTipoUsuario().getTipoUsuario().compareTo("Mantenedor") == 0) {
-            usuario.setRoles("ADMIN");
-        } else if (usuario.getTipoUsuario() != null && usuario.getTipoUsuario().getTipoUsuario().compareTo("Funcionário") == 0) {
-            usuario.setRoles("USER");
-        }
-        if(!usuario.getSenha().isEmpty()) {
+
+        if (!usuario.getSenha().isEmpty() || usuario.getSenha() != null) {
             PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
             String senhaCripto = passwordEncoder.encode(usuario.getSenha());
             usuario.setSenha(senhaCripto);
+        }else{
+            usuario.setSenha(usuarioFind.getSenha());
         }
         //configurar melhor isso aqui
-        if (usuario.getRoles().compareTo("MANAGER") == 0) {
-            model.addAttribute("mensagemErro","Este usuário não pode ter o seu tipo de usuário alterado!");
-            return "/admin/usuario/list";
-        }
+
         daoUsuario.save(usuario);
 
         return "redirect:/admin/usuario/list";

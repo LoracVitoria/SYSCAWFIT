@@ -66,7 +66,7 @@
 
         <div class="toast-container end-0 bottom-0 p-3 mb-5">
             <div class="toast bg-warning" role="alert" aria-live="assertive" aria-atomic="true"
-                 th:each="errors : ${mensagemErro}" th:if="${mensagemErro}">
+                 th:each="errors:${mensagemErro}" th:if="${mensagemErro}">
                 <div class="toast-header bg-warning text-dark">
 
                     <strong class="me-auto"><i class="bi bi-exclamation-circle-fill"></i> Atenção!</strong>
@@ -116,6 +116,7 @@
                     <div class="col-md-6 form-group">
                         <label for="senha" class="form-label">Senha</label>
                         <input type="password" th:field="${usuario.senha}" value="password" class="form-control" id="senha" minlength="6">
+
                     </div>
                     <div class="col-md-2 form-group">
                         <br/>
@@ -158,10 +159,14 @@
                         <label for="tipo-usuario" class="form-label">Tipo de Usuário</label>
                         <select class="form-select" id="tipo-usuario" th:field="${usuario.tipoUsuario}"
                                 aria-label="select example" onblur="validaCampo()">
-                            <option th:each="tipoUsuario : ${T(com.syscawfit.syscawfit.model.TipoUsuario).values()}"
+                            <option th:if="${usuario.roles == 'MANAGER' }" disabled th:each="tipoUsuario : ${T(com.syscawfit.syscawfit.model.TipoUsuario).values()}"
+                                    th:value="${tipoUsuario}"
+                                    th:text="${tipoUsuario.tipoUsuario}"/>
+                            <option th:unless="${usuario.roles == 'MANAGER' }"  th:each="tipoUsuario : ${T(com.syscawfit.syscawfit.model.TipoUsuario).values()}"
                                     th:value="${tipoUsuario}"
                                     th:text="${tipoUsuario.tipoUsuario}"/>
                         </select>
+
                         <div class="invalid-feedback">Selecione uma opção!</div>
                     </div>
 

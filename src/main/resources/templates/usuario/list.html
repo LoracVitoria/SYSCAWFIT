@@ -17,6 +17,28 @@
          <!--Jquery-->
          <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
          <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+
+        <script>
+            $(document).ready(function () {
+                $(".toast").toast({
+                    autohide: false
+                });
+                $(".toast").toast("show");
+                // carregar imagem
+                $("#fileImage").change(function () {
+                    showImageThumbnail(this);
+                });
+            });
+            function showImageThumbnail(fileInput) {
+                file = fileInput.files[0];
+                reader = new FileReader();
+                reader.onload = function (e) {
+                    $("#thumbnail").attr("src", e.target.result);
+                }
+                reader.readAsDataURL(file);
+            }
+        </script>
+
     </head>
 
     <body>
@@ -32,13 +54,25 @@
            <!--CONTEÚDO DA PÁGINA-->
 
            <main class="col-9 coluna-conteudo">
+               <div class="toast-container end-0 bottom-0 p-3 mb-5">
+                   <div class="toast bg-warning" role="alert" aria-live="assertive" aria-atomic="true"
+                        th:each="errors:${mensagemErro}" th:if="${mensagemErro}">
+                       <div class="toast-header bg-warning text-dark">
+
+                           <strong class="me-auto"><i class="bi bi-exclamation-circle-fill"></i> Atenção!</strong>
+                           <small class="text-muted">agora mesmo</small>
+                           <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                       </div>
+                       <div class="toast-body" th:text="${errors}"></div>
+                   </div>
+               </div>
 
             <form class="row" th:object="${usuario}" action="/admin/usuario/list" method="GET">
                    
                 <!--Campo de pesquisa por CPF-->
                 <div class="col-md-6 d-flex align-items-center mt-5 coluna-pesquisa">
                     <label class="form-label form__label">Usuário</label>
-                    <input type="text" id="cpfBusca" th:field="*{cpf}" class="form-control w-75 form__input" placeholder="Digite o CPF">
+                    <input type="text" id="cpf" name="cpf" class="form-control w-75 h-75 form__input" placeholder="Digite o CPF" autofocus>
                 </div>
 
                 <!--Buttons-->
