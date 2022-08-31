@@ -97,7 +97,7 @@ public class PlanoController {
         Plano plano = planoDao.findById(id).orElse(null);
         planoDao.delete(plano);
 
-        return "redirect:/planos";
+        return "redirect:/admin/planos";
     }
 
 

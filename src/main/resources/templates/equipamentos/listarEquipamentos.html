@@ -70,7 +70,7 @@
 					</div>
 
 					<div class="col-md-4 offset-md-4 p-4">
-						<a th:href="@{/equipamentos/new}">
+						<a th:href="@{/admin/equipamentos/new}">
 							<button type="button" class="btn equipamentos-btn-link equipamentos-btn-novo">
 								<i class="bi bi-plus-square p-2"></i>Novo Equipamento
 							</button>
@@ -96,7 +96,7 @@
 					<table class="table table-striped table-bordered table-hover table-responsive">
 						<thead>
 							<tr class="formatandoEquipamentos" align="center">
-								<th>Id</th>
+								<th>Cód.</th>
 								<th>Nome</th>
 								<th>Descricao</th>
 								<th>Imagem</th>
@@ -109,14 +109,14 @@
 								<td style="padding-top: 50px" th:text="${equipamentos.id}" />
 								<td style="padding-top: 50px" th:text="${equipamentos.nome}" />
 								<td id="descricao" th:text="${equipamentos.descricao}" />
-								<td><img th:src="@{/equipamentos/get-image/{id}/{imagem}(id=${equipamentos.id}, imagem=${equipamentos.nomeImagem})}"
+								<td><img th:src="@{/admin/equipamentos/get-image/{id}/{imagem}(id=${equipamentos.id}, imagem=${equipamentos.nomeImagem})}"
 										id="thumbnail" width="120px" height="120px" /></td>
 								<td style="padding-top: 50px">
 									<a style="margin-right: 10px;"
-										th:href="@{/equipamentos/delete/{id}(id=${equipamentos.id})}">
+										th:href="@{/admin/equipamentos/delete/{id}(id=${equipamentos.id})}">
 										<i class="btn btn-danger">Excluir</i>
 									</a>
-									<a th:href="@{/equipamentos/update/{id}(id=${equipamentos.id})}">
+									<a th:href="@{/admin/equipamentos/update/{id}(id=${equipamentos.id})}">
 										<i class="btn btn-light">Editar</i>
 									</a>
 								</td>

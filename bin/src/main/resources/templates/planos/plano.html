@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYSCAWFIT</title>
+    <link rel="stylesheet" th:href="@{/css/normalize.css}">
+    <link rel="stylesheet" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+    <link rel="stylesheet" th:href="@{/css/plano/plano-formulario.css}">
+
+  </head>
+
+  <body>
+    
+      <!-- CABEÇALHO-->
+      <header th:replace="cabecalho:: cabecalho"/>
+
+      <div class="row linha-centro">
+          <!-- MENU-->
+          <nav class="col-3 border coluna-menu">
+              <nav th:replace="menu:: menu"/>    
+          </nav>
+
+          <!--CONTEÚDO DA PÁGINA-->
+          <main class="col-9 coluna-conteudo container-main overflow-auto" >
+            
+            <div class="container-fluid conteudo">
+              <div class="row">
+                
+                <!--Mensal-->
+                <div class="col-md-3">
+                  <div class="card mt-3 ">
+                    <h5 class="card-header text-center">Mensal
+                      <td><a th:href="@{/planos/delete/{id}(id=${planoMensal.id})}">
+                        <i th:if="${planoMensal.valor}" class="bi bi-x" title="excluir"></i>
+                      </a></td>
+                    </h5>
+                    <div class="card-body card-plano">
+                      <h5 th:if="${planoMensal.valor}" th:text="${'R$ ' + planoMensal.valor}" class="text-center"></h5>
+                      <h5 th:unless="${planoMensal.valor}" class="text-center">-</h5>
+                    </div>
+                  </div>
+                </div>
+
+                <!--Trimestral-->
+                <div class="col-md-3">
+                  <div class="card mt-3">
+                    <h5 class="card-header text-center">Trimestral
+                      <td><a th:href="@{/planos/delete/{id}(id=${planoTrimestral.id})}">
+                        <i th:if="${planoTrimestral.valor}" class="bi bi-x" title="excluir"></i>
+                      </a></td>
+                    </h5>
+                    <div class="card-body card-plano">
+                      <h5 th:if="${planoTrimestral.valor}" th:text="${'R$ ' + planoTrimestral.valor}" class="text-center"></h5>
+                      <h5 th:unless="${planoTrimestral.valor}" class="text-center">-</h5>
+                    </div>
+                  </div>
+                </div>
+
+                <!--Semestral-->
+                <div class="col-md-3">
+                  <div class="card mt-3">
+                    <h5 class="card-header text-center">Semestral
+                      <td><a th:href="@{/planos/delete/{id}(id=${planoSemestral.id})}">
+                        <i th:if="${planoSemestral.valor}" class="bi bi-x" title="excluir"></i>
+                      </a></td>
+                    </h5>
+                    <div class="card-body card-plano">
+                      <h5 th:if="${planoSemestral.valor}" th:text="${'R$ ' + planoSemestral.valor}" class="text-center"></h5>
+                      <h5 th:unless="${planoSemestral.valor}" class="text-center">-</h5>
+                    </div>
+                  </div>
+                </div>
+
+                <!--Anual-->
+                <div class="col-md-3">
+                  <div class="card mt-3">
+                    <h5 class="card-header text-center">Anual
+                      <td><a th:href="@{/planos/delete/{id}(id=${planoAnual.id})}">
+                        <i th:if="${planoAnual.valor}" class="bi bi-x" title="excluir"></i>
+                      </a></td>
+                    </h5>
+                    <div class="card-body card-plano">
+                      <h5 th:if="${planoAnual.valor}" th:text="${'R$ ' + planoAnual.valor}" class="text-center"></h5>
+                      <h5 th:unless="${planoAnual.valor}" class="text-center">-</h5>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+
+                <div class="col d-flex mt-3 mb-3 justify-content-center">
+
+                  <div class="card card-formulario ">
+                    <div class="card-body">
+                      
+                      <form th:object="${plano}" action="/planos/save" method="post" id="form-plano">
+
+                        <div class="row g-3 align-items-center">
+                            <label class="form-label fw-bold">Tipo de Plano</label>
+                            <select class="form-select mt-2" th:field="${plano.tipo}" id="plano" onblur='validaCampoPlano()' required >
+                              <option value=""></option>
+                              <option th:each="tipo : ${tiposPlanos}"
+                                      th:value="${tipo}"
+                                      th:text="${tipo}"/>
+                            </select>                      
+                            <div class="invalid-feedback">Selecione uma opção</div>
+        
+                          <label class="form-label fw-bold">Valor</label>
+                          <div class="input-group mb-3 mt-2">
+                            <div class="input-group-prepend">
+                              <span class="input-group-text">R$</span>
+                            </div>
+                            <input type="number" min="10" step="any" placeholder="digite um valor" class="form-control" th:field="${plano.valor}" id="valor" onblur='validaCampoValor()' required>
+                            <div class="invalid-feedback">Informe um valor</div>
+                          </div>
+        
+                          <button type="submit" class="btn btn-salvar">
+                            <i class="bi bi-plus-square p-2"></i>Salvar
+                          </button>
+                          </div>
+                        </div>
+                      </form>
+                    </div>
+                  </div>    
+              </div>
+              </div>
+            </div>
+          </main>
+      </div>
+
+        <!-- RODAPÉ-->
+      <footer class="row linha-rodape">
+          <div class="col rodape">
+              <p>Todos os direitos reservados - 2022.</p>
+          </div>
+      </footer>
+
+      <script type="text/javascript" th:src="@{/js/plano/script-planos.js}"></script>
+      <!-- JavaScript Bundle with Popper -->
+      <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script> -->
+        <script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+  </body>
+</html>

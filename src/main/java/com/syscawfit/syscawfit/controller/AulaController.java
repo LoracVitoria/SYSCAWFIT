@@ -23,7 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 
 @Controller
-@RequestMapping("/aulas")
+@RequestMapping("/admin/aulas")
 public class AulaController {
 
 
@@ -89,10 +89,10 @@ public class AulaController {
 
         try {
             aulaDao.save(aula);
-            return "redirect:/aulas/list";
+            return "redirect:/admin/aulas/list";
 
         } catch (ConstraintViolationException e) {
-            return "redirect:/aulas/list";
+            return "redirect:/admin/aulas/list";
         }
     }
 
@@ -102,7 +102,7 @@ public class AulaController {
         Aula aula = aulaDao.findById(id).orElse(null);
         aulaDao.delete(aula);
 
-        return "redirect:/aulas/list";
+        return "redirect:/admin/aulas/list";
     }
 
     // Atualizar aula
@@ -146,10 +146,10 @@ public class AulaController {
 
         try {
             aulaDao.save(aula);
-            return "redirect:/aulas/list";
+            return "redirect:/admin/aulas/list";
 
         } catch (ConstraintViolationException e) {
-            return "redirect:/aulas/list";
+            return "redirect:/admin/aulas/list";
         }
     }
 }

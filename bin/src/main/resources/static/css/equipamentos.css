@@ -1,0 +1,195 @@
+/*CADASTRAR EQUIPAMENTOS HEADER*/
+
+.equipamentos-cadastro__header {
+    /* border: 1px solid red; */
+    margin-top: 1rem; 
+}
+
+.cadastro-header__titulo {
+    margin-left: 1rem;
+}
+
+.col-right__buttons {
+    display: flex;
+}
+
+.col-left__input {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.col-right__buttons {
+    display: flex;
+}
+
+.equipamentos-btn-link {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #062A40 ;
+    border: none;
+}
+
+.equipamentos-btn-novo {
+    background:  #91B021;
+    color: white;
+}
+
+.equipamentos-btn-novo:hover {
+    background: #062A40;
+    color: #ECF229;
+}
+
+.cadastrar_buttons{
+	margin-top: 50px;
+}
+
+
+/*FORM CADASTRAR EQUIPAMENTOS*/
+
+
+.cadastrar_buttons{
+	display: flex;
+	margin-top: 20px;
+}
+
+
+.btn-cadastro {
+    background: #91B021;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    margin-right: 20px;
+    padding: 6px;
+}
+
+.btn-cancelar {
+    background: #BFBFBF;
+    color:#062A40 ;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+}
+
+.button-consultar{
+	background: #BFBFBF;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    margin-top: 1.5rem;
+    color: #062A40;
+    margin-right: 10px;
+}
+
+.button-consultar:hover{
+	background: #062A40;
+  	color: white
+}
+
+.button-cancelar {
+    background: #BFBFBF;
+    color:#062A40 ;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+
+} 
+
+.button-cancelar:hover {
+  background: #062A40;
+  color: white
+}
+
+
+/*RESTANTE CADASTRAR EQUIPAMENTOS*/
+
+.cadastrar{
+	border: 3px solid #062A40;
+    border-radius: 0.5rem;
+    margin: 1rem;
+    margin-top: 2rem;
+    padding: 10px;
+    width: 100%;
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    background-color:#D4E2EB;
+}
+
+#inputNome{
+    margin-top: 10px;
+}
+
+ #textareaDescricao{
+    margin-top: 10px;
+    height: 100px;
+    border-radius: 5px;
+ }
+
+ .cadastrar label{
+    margin-top: 10px;
+ }
+
+ .imgEquipamento{
+     border: 1px solid black;
+     float: right;
+     width: 50%;
+     height: 50%;
+     border-radius: 10px;
+ }
+
+ /* LISTAR EQUIPAMENTOS */
+
+
+ .consultar{
+    padding: 50px;
+    width: auto;
+    height: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    text-align: center;
+ }
+ 
+ .consultar h1{
+	margin-bottom: 50px;
+}
+
+/* HEADER */
+
+
+
+/*FORMATAÇÃO DA TABELA DO EQUIPAMENTO*/
+
+.formatandoEquipamentos{
+	background-color:#062A40;
+	color: #ECF229;
+}
+
+#descricao{
+	max-width: 300px;
+	text-align: justify;
+}
+
+.conteudoListaEquipamentos{
+	height: 60vh;
+	border: 2px solid #062A40;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+
+/*teste_cadastrar_equip.html*/
+
+.titulo{
+	margin-top: 1rem;
+	margin-left: 4rem;
+}
+
+.teste{
+	margin-top: 20px;
+}
+
+
+
+

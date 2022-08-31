@@ -32,7 +32,7 @@ import org.apache.tomcat.util.http.fileupload.FileUpload;
 import org.apache.tomcat.util.http.fileupload.FileUtils;
 
 @Controller
-@RequestMapping("/equipamentos")
+@RequestMapping("/admin/equipamentos")
 public class EquipamentosController {
 
 	private static final String String = null;
@@ -76,7 +76,7 @@ public class EquipamentosController {
 	public String save(@Valid Equipamentos equipamento, BindingResult result, Model model,
 			@RequestParam("file") MultipartFile file) throws IOException {
 		if (result.hasErrors()) {
-			return "redirect:/equipamentos/cadastrarEquipamentos.html";
+			return "redirect:/admin/equipamentos/cadastrarEquipamentos.html";
 		}
 
 		daoEquipamentos.save(equipamento);
@@ -89,7 +89,7 @@ public class EquipamentosController {
 
 		FileUploadUtil.saveFile(uploadDir, fileName, file);
 
-		return "redirect:/equipamentos/list";
+		return "redirect:/admin/equipamentos/list";
 	}
 
 	/* EDITAR EQUIPAMENTOS */
@@ -119,12 +119,11 @@ public class EquipamentosController {
 			List<String> mensagensErro = new ArrayList<String>();
 			mensagensErro.add(msg);
 			model.addAttribute("mensagensErro", mensagensErro);
-			System.out.println(msg);
 			List<Equipamentos> equipamentosList = daoEquipamentos.findAll();
 			model.addAttribute("equipamentosList", equipamentosList);
 			return "/equipamentos/listarEquipamentos.html";
 		}
-		return "redirect:/equipamentos/list";
+		return "redirect:/admin/equipamentos/list";
 	}
 
 	// LISTA TODOS EQUIPAMENTOS

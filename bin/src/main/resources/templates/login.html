@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login </title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+    <!--Jquery-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+</head>
+<body>
+<div class="container h-100">
+    <div class="d-flex justify-content-center h-100">
+        <div class="align-content-center position-relative">
+            <div class="col-md m-auto d-grid">
+                <div class="row div_imagem">
+                    <img th:src="@{/img/logo-syscawfit.png}" alt="logo" class=" imagem logotipo">
+                </div>
+                <div class="user_card">
+
+                    <div class="card-block" style="padding: 24px;">
+                        <h2 class="title text-center">Entrar</h2>
+                        <hr/>
+                        <form name="f" th:action="@{/signin}" method="post">
+                            <!-- Thymeleaf + Spring Security error display -->
+                            <div th:if="${param.error != null}" class="alert alert-danger text-center">CPF e senha inválidos!</div>
+                            <div th:if="${param.logout != null}" class="alert alert-info text-center">Você foi desconectado!</div>
+
+                            <!-- Login Controls -->
+                            <div class="form-group">
+                                <label for="txtUsername">CPF</label>
+                                <input type="text" class="form-control" id="txtUsername" name="txtUsername"
+                                       placeholder="000.000.000-00" minlength="13" required autofocus
+                                       onblur="validaCPF()">
+                                <div class="invalid-feedback">CPF inválido</div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="txtPassword">Senha</label>
+                                <input type="password" class="form-control" id="txtPassword" name="txtPassword"
+                                       placeholder="******" minlength="6" required>
+                            </div>
+
+                            <button type="submit" name="button" class="btn login_btn">Login</button>
+                            <hr/>
+                            <div class="d-flex justify-content-center links">
+                                <a th:href="@{/redefinirSenha}">Redefinir a senha</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- JavaScript Bundle with Popper -->
+<script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/validacao-mascaras/mascaras.js}"></script>
+<script type="text/javascript" th:src="@{/js/usuario/validacao-cpf.js}"></script>
+
+
+</body>
+</html>

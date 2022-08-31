@@ -1,5 +1,6 @@
 package com.syscawfit.syscawfit.controller;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -46,8 +47,6 @@ public class TreinoController {
 
 	private List<Exercicio> exerciciosLista = new ArrayList<Exercicio>();
 
-	List<Treino> listaTreinoPorAluno = new ArrayList<Treino>();
-
 	// NOVO TREINO
 	@RequestMapping("/new")
 	public String newForm(Model model) {
@@ -67,11 +66,47 @@ public class TreinoController {
 	/* SAVE TREINO */
 	@PostMapping("/saveTreino")
 	public String save(@Valid Treino treino, BindingResult result, Model model) {
-
+		List<String> mensagensErro = new ArrayList<String>();
+		Exercicio exercicio = new Exercicio();
+		List<TipoExercicio> tipoExercicioLista = daoTipoExercicio.findAll();
+		List<Aluno> listaAlunos = daoAluno.findAll();
+		
 		if (result.hasErrors()) {
-			return "redirect:/treino/cadastrarTreino.html";
+			String msg2 = "verifique os campos!";
+			mensagensErro.add(msg2);
+			model.addAttribute("mensagensErro", mensagensErro);
+			model.addAttribute("treino", treino);
+			model.addAttribute("exerciciosLista", exerciciosLista);
+			model.addAttribute("exercicio", exercicio);
+			model.addAttribute("tipoExercicioLista", tipoExercicioLista);
+			model.addAttribute("listaAlunos", listaAlunos);
+			return "/treino/cadastrarTreino.html";
 		}
-
+		
+		if(treino.getDatafimTreino().getDayOfYear() < treino.getDataInicioTreino().getDayOfYear())  {
+			String msg = "A data final do treino não pode ser menor que a data de início!";
+			mensagensErro.add(msg);
+			model.addAttribute("mensagensErro", mensagensErro);
+			model.addAttribute("treino", treino);
+			model.addAttribute("exerciciosLista", exerciciosLista);
+			model.addAttribute("exercicio", exercicio);
+			model.addAttribute("tipoExercicioLista", tipoExercicioLista);
+			model.addAttribute("listaAlunos", listaAlunos);
+			return "/treino/cadastrarTreino.html";
+		}
+		
+		if(exerciciosLista.isEmpty()) {
+			String msg = "O treino não pode ser cadastrado sem pelo menos um exercicio listado!";
+			mensagensErro.add(msg);
+			model.addAttribute("mensagensErro", mensagensErro);
+			model.addAttribute("treino", treino);
+			model.addAttribute("exerciciosLista", exerciciosLista);
+			model.addAttribute("exercicio", exercicio);
+			model.addAttribute("tipoExercicioLista", tipoExercicioLista);
+			model.addAttribute("listaAlunos", listaAlunos);
+			return "/treino/cadastrarTreino.html";
+		}
+		
 		daoTreino.save(treino);
 
 		for (Exercicio e : exerciciosLista) {
@@ -83,7 +118,6 @@ public class TreinoController {
 
 		daoTreino.save(treino);
 
-		exerciciosLista.clear();
 
 		return "redirect:/treino/listTreinos";
 	}
@@ -91,22 +125,24 @@ public class TreinoController {
 	// listar treino por aluno
 	@GetMapping("/listTreinos")
 	public String listaTreinoAluno(Model model, String cpf) {
-		listaTreinoPorAluno.clear();
-		List<Treino> t1 = daoTreino.findAll();
-
-		for (int i = 0; i < t1.size(); i++) {
+		List<Treino> t1 = new ArrayList<Treino>();
+		
 			if (cpf == "") {
 				return "redirect:/treino/listTreinos";
 			} else if(cpf == null) {
-				listaTreinoPorAluno = daoTreino.findAll();
-				
+				t1 = daoTreino.findAll();
 			}
-			else if (t1.get(i).getAluno().getCpf().equals(cpf)) {
-				listaTreinoPorAluno.add(t1.get(i));
+			else {
+				t1 = daoTreino.findTreinosByAlunoCpf(cpf);
+				if(t1.isEmpty()) {
+					String msg = "Não existem treinos cadastrados para este CPF!";
+					model.addAttribute("mensagensErro", msg);
+					t1 = daoTreino.findAll(); 
+				}
 			}
-		}
+		
 
-		model.addAttribute("listaAlunosCpf", listaTreinoPorAluno);
+		model.addAttribute("listaAlunosCpf", t1);
 
 		return "/treino/listarTreinos.html";
 	}
@@ -122,7 +158,7 @@ public class TreinoController {
 				listaExercicio = t1.get(i).getListaExercicios();
 			}
 		}
-
+		
 		model.addAttribute("treinoListAbrir", treinoListAbrir);
 		model.addAttribute("listaExercicios", listaExercicio);
 		return "/treino/abrirTreino.html";
@@ -156,20 +192,10 @@ public class TreinoController {
 		return "/treino/editarTreino.html";
 	}
 
-	/* UPDATE TREINO */
-	@PostMapping("/updateTreino")
-	public String update(Treino treino, Model model) {
-		daoTreino.save(treino);
-		return "redirect:/treino/list";
-	}
-
 	/* DELETE TREINO */
 	@RequestMapping("/deleteTreino/{id}")
 	public String delete(Model model, @PathVariable Long id) {
-		for (Exercicio e : exerciciosLista) {
-			daoExercicio.deleteById(e.getId());
-			exerciciosLista.remove(e);
-		}
+
 		daoTreino.deleteById(id);
 		return "redirect:/treino/listTreinos";
 	}
@@ -189,6 +215,8 @@ public class TreinoController {
 
 		return "redirect:/treino/exercicioList";
 	}
+	
+	
 	@PostMapping("/exercicioSaveEditar")
 	public String saveExercicioEditar(@Valid Exercicio exercicio, BindingResult result, Model model) {
 		if (result.hasErrors()) {
@@ -203,7 +231,6 @@ public class TreinoController {
 //	 LISTAR TODOS OS EXERCICIOS
 	@RequestMapping("/exercicioList")
 	public String listExercicios(Model model) {
-
 		Exercicio exercicio = new Exercicio();
 		List<TipoExercicio> tipoExercicioLista = daoTipoExercicio.findAll();
 		List<Aluno> listaAlunos = daoAluno.findAll();
@@ -211,25 +238,22 @@ public class TreinoController {
 		model.addAttribute("treino", t1);
 		model.addAttribute("exercicio", exercicio);
 		model.addAttribute("tipoExercicioLista", tipoExercicioLista);
-		model.addAttribute("exerciciosLista", exerciciosLista);
 		model.addAttribute("listaAlunos", listaAlunos);
-		System.out.println(exerciciosLista);
+		model.addAttribute("exerciciosLista", exerciciosLista);
 		return "/treino/cadastrarTreino.html";
 	}
 	
 //	 LISTAR TODOS OS EXERCICIOS
 	@RequestMapping("/exercicioListEditarTreino")
 	public String listaDeExercicios(Model model) {
-
 		Exercicio exercicio = new Exercicio();
 		List<TipoExercicio> tipoExercicioLista = daoTipoExercicio.findAll();
 		List<Aluno> listaAlunos = daoAluno.findAll();
 		model.addAttribute("treino", treino);
 		model.addAttribute("exercicio", exercicio);
 		model.addAttribute("tipoExercicioLista", tipoExercicioLista);
-		model.addAttribute("exerciciosLista", exerciciosLista);
 		model.addAttribute("listaAlunos", listaAlunos);
-		System.out.println(exerciciosLista);
+		model.addAttribute("exerciciosLista", exerciciosLista);
 		return "/treino/editarTreino.html";
 	}
 

@@ -23,7 +23,7 @@ import com.syscawfit.syscawfit.model.TipoExercicio;
 import com.syscawfit.syscawfit.services.TipoExerciciosService;
 
 @Controller
-@RequestMapping("/tipoexercicio")
+@RequestMapping("/admin/tipoexercicio")
 public class TipoExercicioController {
 
 	@Autowired
@@ -52,19 +52,19 @@ public class TipoExercicioController {
 	@PostMapping("/save")
 	public String save(@Valid TipoExercicio tipoExercicio, BindingResult result, Model model) {
 		if (result.hasErrors()) {
-			return "redirect:/exercicios/cadastrarTipoExercicio.html";
+			return "redirect:/admin/exercicios/cadastrarTipoExercicio.html";
 		}
 
 		daoExercicio.save(tipoExercicio);
 
-		return "redirect:/tipoexercicio/list";
+		return "redirect:/admin/tipoexercicio/list";
 	}
 
 	/* UPDATE TIPO_EXERCICIO */
 	@PostMapping("/update")
 	public String update(TipoExercicio tipoExercicio, Model model) {
 		daoExercicio.save(tipoExercicio);
-		return "redirect:/tipoexercicio/list";
+		return "redirect:/admin/tipoexercicio/list";
 	}
 
 	// ENVIAR DADOS DA BUSCA POR ID PARA A PAGINA cadastrarTipoExercicio.html
@@ -98,7 +98,7 @@ public class TipoExercicioController {
 			return "/exercicios/listaTipoExercicio.html";
 		}
 
-		return "redirect:/tipoexercicio/list";
+		return "redirect:/admin/tipoexercicio/list";
 	}
 
 	/* LISTA TODOS EQUIPAMENTOS */

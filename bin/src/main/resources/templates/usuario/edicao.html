@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SYSCAWFIT</title>
+    <link rel="stylesheet" th:href="@{/css/normalize.css}">
+    <link rel="stylesheet" th:href="@{/css/reset.css}">
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/menu.css}">
+    <link rel="stylesheet" th:href="@{/css/usuario/cadastro-usuario.css}">
+
+    <!--Jquery-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script> -->
+
+    <script>
+        $(document).ready(function () {
+            $(".toast").toast({
+                autohide: false
+            });
+            $(".toast").toast("show");
+
+            // carregar imagem
+            $("#fileImage").change(function () {
+                showImageThumbnail(this);
+            });
+        });
+
+
+        function showImageThumbnail(fileInput) {
+            file = fileInput.files[0];
+            reader = new FileReader();
+
+            reader.onload = function (e) {
+                $("#thumbnail").attr("src", e.target.result);
+            }
+
+            reader.readAsDataURL(file);
+        }
+
+    </script>
+
+</head>
+
+<body>
+<!-- CABEÇALHO-->
+<header th:replace="cabecalho:: cabecalho"/>
+
+<div class="row linha-centro">
+    <!-- MENU-->
+    <nav class="col-3 border coluna-menu ">
+        <nav th:replace="menu:: menu"/>
+    </nav>
+
+    <!--CONTEÚDO DA PÁGINA-->
+    <main class="col-9 coluna-conteudo overflow-auto">
+
+        <div class="toast-container end-0 bottom-0 p-3 mb-5">
+            <div class="toast bg-warning" role="alert" aria-live="assertive" aria-atomic="true"
+                 th:each="errors : ${mensagemErro}" th:if="${mensagemErro}">
+                <div class="toast-header bg-warning text-dark">
+
+                    <strong class="me-auto"><i class="bi bi-exclamation-circle-fill"></i> Atenção!</strong>
+                    <small class="text-muted">agora mesmo</small>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+                <div class="toast-body" th:text="${errors}"></div>
+            </div>
+        </div>
+
+        <!--Formulário-->
+        <form class="row g-3 d-flex justify-content-center conteudo" enctype="multipart/form-data"
+              th:object="${usuario}" action="/admin/usuario/update" method="post">
+
+            <!--Título-->
+            <h1 class="col-md-9 header-titulo mt-4 text-sm-start">
+                <i class="bi bi-pencil-fill"></i>
+                &nbsp;Editar Usuário
+            </h1>
+
+
+            <div class="card">
+                <div class="card-body row g-3">
+
+                    <div class="col-md-6 coluna__dadosPessoais d-flex align-items-center">
+                        <h4>Dados Pessoais</h4>
+                    </div>
+
+                    <!--Mostrar foto-->
+                    <div class="col-md-6 coluna-imagem">
+                        <span><img th:src="@{/admin/usuario/get-image/{id}/{imagem}(id=${usuario.id}, imagem=${usuario.imagemUsuario})}" class="imagem-usuario" id="thumbnail"></span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="nome" class="form-label">Nome</label>
+                        <input type="text" th:field="${usuario.nome}" class="form-control" id="nome" required autofocus>
+                        <div class="invalid-feedback">Nome inválido!</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="cpf" class="form-label">CPF</label>
+                        <input type="text" th:field="${usuario.cpf}" class="form-control" id="cpf" onblur='validaCPF()'
+                               required>
+                        <div class="invalid-feedback">CPF inválido!</div>
+                    </div>
+
+                    <div class="col-md-6 form-group">
+                        <label for="senha" class="form-label">Senha</label>
+                        <input type="password" th:field="${usuario.senha}" value="password" class="form-control" id="senha" minlength="6">
+                    </div>
+                    <div class="col-md-2 form-group">
+                        <br/>
+                        <i id="olho" class=" bi bi-eye eye"></i>
+                    </div>
+                    <div class="col-md-4 pt-1 form-check form-switch">
+                        <br/>
+                        <label class="form-check-label" for="flexSwitchCheckChecked">Situação</label>
+                        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckChecked"
+                               checked th:field="${usuario.situacao}" required>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="rg" class="form-label">RG</label>
+                        <input type="text" th:field="${usuario.rg}" class="form-control" id="rg" required>
+                        <div class="invalid-feedback">RG inválido!</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="telefone" class="form-label">Telefone</label>
+                        <input type="text" th:field="${usuario.telefone}" class="form-control" id="telefone"
+                               placeholder="(00) 00000-0000" required>
+                        <div class="invalid-feedback">Telefone inválido!</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="email" class="form-label">E-mail</label>
+                        <input type="email" th:field="${usuario.email}" class="form-control" id="email" required>
+                        <div class="invalid-feedback">E-mail inválido!</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="fileImage" class="form-label">Anexar foto</label>
+                        <div>
+                            <input class="form-control form-control-sm inputFile" accept="image/*" name="image"
+                                   id="fileImage" type="file">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="tipo-usuario" class="form-label">Tipo de Usuário</label>
+                        <select class="form-select" id="tipo-usuario" th:field="${usuario.tipoUsuario}"
+                                aria-label="select example" onblur="validaCampo()">
+                            <option th:each="tipoUsuario : ${T(com.syscawfit.syscawfit.model.TipoUsuario).values()}"
+                                    th:value="${tipoUsuario}"
+                                    th:text="${tipoUsuario.tipoUsuario}"/>
+                        </select>
+                        <div class="invalid-feedback">Selecione uma opção!</div>
+                    </div>
+
+                    <div class="col-md-6 mb-3">
+                        <label for="tipo-funcionario" class="form-label">Tipo de Funcionário</label>
+                        <select class="form-select" id="tipo-funcionario" th:field="${usuario.tipoFuncionario}"
+                                aria-label="select example" onblur="validaCampo()">
+                            <option th:each="tipoFuncionario : ${T(com.syscawfit.syscawfit.model.TipoFuncionario).values()}"
+                                    th:value="${tipoFuncionario}"
+                                    th:text="${tipoFuncionario.tipoFuncionario}" />
+                        </select>
+                        <div class="invalid-feedback">Selecione uma opção!</div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!--Endereço-->
+            <div class="card">
+                <div class="card-body row g-3">
+
+                    <h4 class="mt-4 subtitulo-endereco d-flex">Endereço</h4>
+
+                    <div class="col-md-4">
+                        <label for="cep" class="form-label">CEP</label>
+                        <input type="text" th:field="${usuario.endereco.cep}" class="form-control" id="cep" required>
+                        <div class="invalid-feedback">CEP não encontrado!</div>
+                    </div>
+
+                    <div class="col-md-8">
+                        <label for="logradouro" class="form-label">Logradouro</label>
+                        <input type="text" th:field="${usuario.endereco.logradouro}" class="form-control"
+                               id="logradouro" required>
+                        <div class="invalid-feedback">Logradouro não informado!</div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="numero" class="form-label">Nº</label>
+                        <input type="text" th:field="${usuario.endereco.numero}" class="form-control" id="numero"
+                               required>
+                        <div class="invalid-feedback">Nº não informado!</div>
+                    </div>
+
+                    <div class="col-md-8">
+                        <label for="bairro" class="form-label">Bairro</label>
+                        <input type="text" th:field="${usuario.endereco.bairro}" class="form-control" id="bairro"
+                               required>
+                        <div class="invalid-feedback">Bairro não informado!</div>
+                    </div>
+
+                    <div class="col-md-4 mb-3">
+                        <label for="localidade" class="form-label">Cidade</label>
+                        <input type="text" th:field="${usuario.endereco.cidade}" class="form-control" id="localidade"
+                               required>
+                        <div class="invalid-feedback">Cidade não informada!</div>
+                    </div>
+
+                    <div class="col-md-3 mb-3">
+                        <label for="uf" class="form-label">UF</label>
+                        <input type="text" th:field="${usuario.endereco.uf}" class="form-control" id="uf" required>
+                        <div class="invalid-feedback">UF não informada!</div>
+                    </div>
+
+                    <div class="col-md-5 mb-3">
+                        <label for="pais" class="form-label">País</label>
+                        <input type="text" th:field="${usuario.endereco.pais}" class="form-control" id="pais" required>
+                        <div class="invalid-feedback">País não informado!</div>
+                    </div>
+                </div>
+            </div>
+            <!--Buttons-->
+            <div class="col-md-6 buttons  d-flex align-items-center justify-content-center">
+                <button type="submit" class="btn btn-primary button-cadastro mx-2 mb-4">
+                    <i class="bi bi-cloud-upload p-2"></i>Alterar
+                </button>
+
+                <a class="btn button-cancelar mb-4" th:href="@{/admin/usuario/list}" role="button">
+                    <i class="bi bi-x-lg text-danger p-2"></i>Cancelar
+                </a>
+            </div>
+        </form>
+    </main>
+</div>
+<!-- RODAPÉ-->
+<footer class="row linha-rodape">
+    <div class="col rodape">
+        <p>Todos os direitos reservados - 2022.</p>
+    </div>
+</footer>
+
+<!-- JavaScript Bundle with Popper -->
+<script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/usuario/mostrar-senha.js}"></script>
+<script type="text/javascript" th:src="@{/js/validacao-mascaras/endereco.js}"></script>
+<script type="text/javascript" th:src="@{/js/validacao-mascaras/validacao-cpf.js}"></script>
+<script type="text/javascript" th:src="@{/js/validacao-mascaras/mascaras.js}"></script>
+
+</body>
+</html>
