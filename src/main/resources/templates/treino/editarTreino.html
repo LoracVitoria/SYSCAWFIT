@@ -147,16 +147,14 @@
 							<h3 style="text-align: center; font-weight: bold;">Atualizar Treino</h3>
 							<div class="row">
 								<div class="col">
-									<label for="floatingSelect" class="form-label">Aluno: *
-									</label>
-									<select th:field="*{aluno}" class="form-select scroll" id="floatingSelect"
+									<label for="alunoFilter" class="form-label">Aluno: *</label>
+									<input type="text" id="alunoFilter" class="form-label" onkeyup="filtrar()" placeholder="digite nome ou CPF">
+									<select th:field="*{aluno}" class="form-select scroll" id="selecionaAluno"
 										aria-label="Floating label select example" name="aluno" multiple="multiple"
 										required>
-										<option th:each="aluno : ${listaAlunos}" th:value="${aluno.id}"
-											th:text="'Nome: ' + ${aluno.nome} + ' | cpf: ' + ${aluno.cpf}"
-											th:selected="${aluno.id}">
-										</option>
+
 									</select>
+								</div>
 								</div>
 							</div>
 
@@ -224,6 +222,52 @@
 	<script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
 	<script type="text/javascript" th:src="@{/js/principal.js}"></script>
 	<script type="text/javascript" th:src="@{/js/treino/treino.js}"></script>
+	<script th:inline="javascript">
+
+			popularLista([[${listaAlunos}]]);
+
+			function popularLista(listaAlunos) {
+				
+				let selecao = document.getElementById('selecionaAluno');
+				
+
+				while(selecao.firstChild){
+					selecao.removeChild(selecao.lastChild);
+				}
+
+				listaAlunos.forEach(aluno => {
+					let item = document.createElement('option');
+					
+					item.value = aluno.id;
+					item.text = 'Nome: ' + aluno.nome + ' | CPF: ' + aluno.cpf;
+
+
+					selecao.appendChild(item)
+				});
+
+
+
+			}
+
+			function filtrar(){
+				// capturar dado do input
+				let input = document.getElementById("alunoFilter");
+				
+				let filter = input.value;
+
+				// salvar lista de alunos
+				let lista_alunos = [[${listaAlunos}]];
+				
+
+				let resultadoBusca = lista_alunos.filter(function (aluno) {
+					return aluno.nome.toUpperCase().includes(filter.toUpperCase()) || aluno.cpf.includes(filter)
+				})
+				
+				popularLista(resultadoBusca);
+				
+				
+			}
+		</script>
 </body>
 
 </html>
