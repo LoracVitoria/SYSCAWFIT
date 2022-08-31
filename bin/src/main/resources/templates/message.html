@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<!-- Fragment #1 : Header files contains css and js references -->
+<head th:fragment="headerfiles">
+  <title>Introduction to SpringBoot Security</title>
+  <meta charset="UTF-8"/>
+  <link th:href="@{~/bootstrap.min.css}" rel="stylesheet">
+</head>
+<body style="background-color: cadetblue">
+<div class="container-fluid">
+  <div class="text-center justify-content-center d-flex">
+    <h2>[[${title}]]</h2>
+    <h4>[[${message}]]</h4>
+  </div>
+</div>
+</body>
+</html>

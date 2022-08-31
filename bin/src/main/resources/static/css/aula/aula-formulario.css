@@ -1,0 +1,52 @@
+.card-formulario {
+    background: #4F4F4F;
+    color: aliceblue;
+}
+
+.form-control {
+    background: #DCDCDC;
+}
+
+.form-select {
+    background: #DCDCDC;
+}
+
+
+.btn-enviar {
+    background: #48B5FA;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.btn-enviar:hover {
+    background: #94E0F8;
+    color: #1098C2;
+}
+
+
+.btn-cancelar {
+    background: #FAF866;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.btn-cancelar:hover {
+    background: #FAF8BB;
+    color: #A19E0D;
+}
+
+/* Responsividade */
+
+@media screen and (min-width:0){
+    .formulario-aula {
+        width: 75%;
+    }
+
+}
+
+@media screen and (min-width:768px){
+    .formulario-aula {
+        width: 50%;
+    }
+
+}

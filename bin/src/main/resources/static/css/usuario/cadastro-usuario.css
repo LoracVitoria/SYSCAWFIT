@@ -1,0 +1,151 @@
+input[type="checkbox"]:checked{
+color: limegreen;
+}
+
+.formulario-usuario{
+    border: 3px solid #062A40;
+    border-radius: 0.3rem;
+    height: 60vh;
+}
+
+
+.formulario-usuario, .row {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.formulario-usuario::-webkit-scrollbar {
+    width: 15px;
+}
+
+.formulario-usuario::-webkit-scrollbar-track {
+    background-color: #60a3bc;
+    border-radius: 0.3rem;
+}
+
+.formulario-usuario::-webkit-scrollbar-thumb {
+    border-radius: 0.3rem;
+    border: 5px solid transparent;
+    background-clip: content-box;
+    background-color: #062A40;
+}
+
+.primeira-coluna, .row {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+/* ====== Imagem ===============================================================*/
+
+.segunda-coluna {
+    display: flex;
+    justify-content: center;
+}
+
+.segunda-coluna, .row {
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
+.imagem-usuario{
+    height: 18vh;
+    width: 18vh;
+    object-fit: cover;
+    background-size: cover;         /* para que as imagens não se repitam */
+    background-position: center;    /* para que as imagens ocupem todo o background */
+    background-repeat: no-repeat;   /* para que as imagens seham centralizadas na caixa */
+    border-radius: 100%;            /* bordas arredondadas */
+    background: #ccc;
+    color: #aaa;
+    border: 2px dashed #aaa;
+    font-family: sans-serif;
+    transition: color 300ms ease-in-out, background 300ms ease-in-out;
+}
+
+
+
+.card {
+    background: #8cabc2;
+}
+
+.card-view {
+    background: #214054 ;
+    color: #ADC9DB;
+}
+
+
+/* ====== Buttons ===============================================================*/
+
+.buttons {
+    text-align: right;
+}
+
+.button-cadastro {
+    background: #91B021;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    margin-top: 2.5rem;
+    color: white;
+}
+
+.button-cadastro:hover {
+    background: #062A40;
+    color: #ECF229;
+}
+
+.button-cancelar {
+    background: #BFBFBF;
+    color:#062A40 ;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    margin-top: 2.5rem;
+}
+
+.button-cancelar:hover {
+    background: #062A40;
+    color: white
+}
+
+
+/* Responsividade */
+
+@media screen and (min-width:0){
+    .coluna-imagem {
+        display: flex;
+        justify-content: center;
+    }
+
+    .coluna__dadosPessoais, .subtitulo-endereco {
+        justify-content: center;
+    }
+
+    .card {
+        width: 100%;
+    }
+
+}
+
+@media screen and (min-width:768px){
+    .coluna-imagem {
+        display: flex;
+        justify-content: end;
+    }
+
+    .coluna__dadosPessoais, .subtitulo-endereco {
+        justify-content: start;
+    }
+
+    .card {
+        width: 75%;
+    }
+    .form-group .eye{
+        pointer-events: auto;
+    }
+    .form-group .eye:hover {
+        cursor: pointer;
+    }
+
+}
+

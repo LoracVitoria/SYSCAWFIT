@@ -1,0 +1,15 @@
+<header class=" row linha-cabecalho" th:fragment="cabecalho" >
+    <div class="col-9 logo-div">
+        <a href="/"><img th:src="@{/img/logo-syscawfit.png}" alt="logo" class=" img-fluid logotipo mx-5"></a>
+    </div>
+    <div class="col-3">
+        <div class="row">
+            <div class="col-5 coluna-imagem">
+<!--                <img th:scr="${#authentication.getDetails().nomeImagemUsuario}" class="img-fluid usuario__imagem" alt="...">-->
+            </div>
+            <div class="col-7 coluna-texto">
+                <p class="usuario__nome" th:text="${#authentication.name}"></p>
+            </div>
+        </div>
+    </div>
+</header>

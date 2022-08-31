@@ -37,7 +37,7 @@
 						</h2>
 					</div>
 					<div class="col-md-4 offset-md-4 p-3">
-						<a th:href="@{/equipamentos/list}">
+						<a th:href="@{/admin/equipamentos/list}">
 							<button type="button" class="btn equipamentos-btn-link button-consultar">
 								<i class="bi bi-list p-2"></i>Listar Equipamentos
 							</button>
@@ -48,7 +48,7 @@
 
 			<section class="container">
 				<form class="cadastrar" enctype="multipart/form-data" th:object="${equipamentos}"
-					action="/equipamentos/save" method="POST">
+					action="/admin/equipamentos/save" method="POST">
 
 					<input type="hidden" th:field="${equipamentos.id}" />
 
@@ -102,7 +102,7 @@
 								</div>
 
 								<div>
-									<a class="btn btn-primary button-cancelar" th:href="@{/equipamentos/new}"
+									<a class="btn btn-primary button-cancelar" th:href="@{/admin/equipamentos/new}"
 										role="button">
 										<i class="bi bi-x-lg text-danger p-2"></i>Cancelar
 									</a>

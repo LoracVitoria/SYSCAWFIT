@@ -1,0 +1,235 @@
+.conteudoCadastroTreino{
+	border: 3px solid #062A40;
+    border-radius: 0.5rem;
+    margin: 1rem;
+    padding: 10px;
+    width: 0 auto;
+    height: 68vh;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    overflow: hidden;
+    overflow-y: scroll;
+}
+
+.conteudoCadastroTreino::-webkit-scrollbar {
+  width: 15px;
+}
+
+.conteudoCadastroTreino::-webkit-scrollbar-track {
+  background-color: #e4e4e4;
+  border-radius: 0.3rem;
+}
+
+.conteudoCadastroTreino::-webkit-scrollbar-thumb {
+  border-radius: 0.3rem;
+  border: 5px solid transparent;
+  background-clip: content-box;
+  background-color: #062A40;
+}
+
+.cadastrarExercicio{
+	border: 2px solid #062A40;
+	padding: 10px;
+	border-radius: 0.3rem;
+	margin-bottom: 1rem;
+	background-color: #F0F8FF;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+
+.cadastrarTreino {
+	padding: 80px;
+	border: 2px solid #062A40;
+  	border-radius: 0.3rem;
+  	padding: 20px;
+  	background-color: #D4E2EB;
+  	margin-bottom: 10px;
+}
+
+
+.listaExercicios{
+	border: 2px solid #062A40;
+	padding: 25px;
+	border-radius: 0.3rem;
+	font-size: 20px;
+	overflow-y: scroll;
+	max-height: 440px;
+	background-color: #F0F8FF;
+	margin-bottom: 10px;
+	margin-right: 3px;
+}
+
+.listaExercicios td{
+	font-size: 20px;
+	font-weight: normal;
+}
+
+.wrapper{
+	display: flex;
+	flex-wrap: wrap;
+}
+
+
+.margem{
+	margin-bottom: 10px;
+}
+
+.scroll{
+	overflow: auto;
+}
+
+.tipoexercicioSelect option{	
+	margin: 3px;
+	text-align: center;
+	border-radius: 5px;
+	background-color: rgb(192, 192, 192);
+	font-family: Arial, Helvetica, sans-serif;
+
+	text-decoration:  #062A40;
+}
+
+.tipoexercicioSelect option:hover{
+	background: #062A40;
+  	color: #ECF229;
+}
+
+/*BOTÕES*/
+
+
+.buttons span {
+  margin-right: 10px;
+}
+
+.button-cadastro {
+    background: #91B021;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    margin-top: 1.5rem;
+    color: white;
+    margin-right: 10px;
+}
+
+.button-cadastro:hover {
+  background: #062A40;
+  color: #ECF229;
+}
+
+.button-cancelar {
+    background: #BFBFBF;
+    color:#062A40 ;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    margin-top: 1.5rem;
+} 
+
+.button-cancelar:hover {
+  background: #062A40;
+  color: white
+}
+
+.botoesCadastroExercicio{
+	 display: flex;
+	 right: 0px;
+}
+
+
+.btn-link{
+	text-decoration: none;
+}
+
+.button-consultar{
+	background: #BFBFBF;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    margin-top: 1.5rem;
+    color: #062A40;
+    margin-right: 10px;
+}
+
+.button-consultar:hover{
+	background: #062A40;
+  	color: white
+}
+
+ .col-left__input {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.col-right__buttons {
+    display: flex;
+}
+
+.button-pesquisar{
+	background: #BFBFBF;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    color: #062A40;
+    margin-right: 10px;
+}
+
+.button-pesquisar:hover{
+	background: #062A40;
+  	color: white;
+}
+
+.button-novo{
+	background: #91B021;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    color: white;
+    margin-right: 10px;
+}
+
+.button-novo:hover{
+	background: #062A40;
+ 	color: white
+}
+
+/*FORMATAÇÃO DA TABELA DO TREINO*/
+
+.formatando{
+	background-color:#062A40;
+	color: #ECF229;
+}
+
+#formatandoTh{
+	padding-top: 40px;
+}
+
+.formatandoTabela{
+	background-color:#062A40;
+	color: #ECF229;
+}
+
+.conteudo{
+	overflow-y: scroll;
+	height: 60vh;
+	border: 2px solid #062A40;
+	border-radius: 5px;
+	padding: 5px;
+}
+
+.form-aluno{
+	display: flex;
+}
+
+.inputAluno{
+	margin-right: 10px;
+}
+
+/*responsividade 320px largura pagina*/
+
+@media only screen and (max-width: 321px) {
+	.wrapper{
+	display: flexbox;
+	}
+}
+

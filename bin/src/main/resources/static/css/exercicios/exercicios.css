@@ -1,0 +1,80 @@
+/*CADASTRAR TIPOS EXERCICIOS HEADER*/
+
+/*botoes*/
+.col-right__buttons {
+    display: flex;
+}
+
+
+/* Coluna direita */
+
+.container-buttons {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.box-button {
+    padding-right: 0.5rem;
+}
+
+.btn-link {
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #062A40 ;
+    border: none;
+}
+
+
+.button-novo {
+    background: #91B021;
+    color: white;
+}
+
+.button-novo:hover {
+    background: #062A40;
+    color: #ECF229;
+}
+
+/*formulário*/
+
+.formulario-tipoExercicio{
+	padding: 40px;
+	border: 3px solid #062A40;
+  	border-radius: 0.3rem;
+  	height: 60vh;
+}
+
+
+.buttons span {
+  margin-right: 10px;
+}
+
+.button-cadastro {
+    background: #91B021;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    margin-top: 2.5rem;
+    color: white;
+}
+
+.button-cadastro:hover {
+  background: #062A40;
+  color: #ECF229;
+}
+
+.button-cancelar {
+    background: #BFBFBF;
+    color:#062A40 ;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    margin-top: 2.5rem;
+} 
+
+.button-cancelar:hover {
+  background: #062A40;
+  color: white
+}
+

@@ -13,7 +13,7 @@
 	<link rel="stylesheet" th:href="@{/css/style.css}">
 	<link rel="stylesheet" th:href="@{/css/menu.css}">
 	<link rel="stylesheet" th:href="@{/css/tipoExercicios.css}">
-	
+
 	<!--Jquery-->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.min.js"></script>
@@ -41,7 +41,7 @@
 
 				<div class="col-auto col-right__buttons p-3">
 					<div class="col-auto">
-						<a th:href="@{/tipoexercicio/list}">
+						<a th:href="@{/admin/tipoexercicio/list}">
 							<button type="button" class="btn equipamentos-btn-link button-consultar">
 								<i class="bi bi-list p-2"></i>Listar Tipos de Exercicios
 							</button>
@@ -53,7 +53,7 @@
 			<!--Formulário-->
 			<section>
 				<form class="row overflow-auto conteudo mx-2 formulario-tipoExercicio" enctype="multipart/form-data"
-					th:object="${tipoExercicio}" action="/tipoexercicio/save" method="POST">
+					th:object="${tipoExercicio}" action="/admin/tipoexercicio/save" method="POST">
 					<input type="hidden" th:field="${tipoExercicio.id}" />
 
 
@@ -82,20 +82,21 @@
 						<br />
 						<!--botões-->
 						<div class="row">
-						<div class="col buttons">
+							<div class="col buttons">
 
-							<span th:switch="${tipoExercicio.id>0}">
-								<button type="submit" th:case="${true}" class="btn btn-primary button-cadastro"
-									th:text="Atualizar"></button>
-								<button type="submit" th:case="*" class="btn btn-primary button-cadastro"
-									th:text="Cadastrar"></button>
-							</span>
+								<span th:switch="${tipoExercicio.id>0}">
+									<button type="submit" th:case="${true}" class="btn btn-primary button-cadastro"
+										th:text="Atualizar"></button>
+									<button type="submit" th:case="*" class="btn btn-primary button-cadastro"
+										th:text="Cadastrar"></button>
+								</span>
 
-							<buttontype="reset" class="btn btn-primary button-cancelar">
-								<i class="bi bi-x-lg text-danger p-2"></i>Cancelar
-								</button>
+								<a class="btn btn-primary button-cancelar" th:href="@{/admin/tipoexercicio/new}"
+									role="button">
+									<i class="bi bi-x-lg text-danger p-2"></i>Cancelar
+								</a>
 
-						</div>
+							</div>
 						</div>
 						<!--fim cadastrar_buttons-->
 

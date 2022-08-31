@@ -53,7 +53,7 @@
 
 					<div class="col-auto col-right__buttons p-5">
 						<div class="col-auto">
-							<a class="link-button" th:href="@{/tipoexercicio/new}">
+							<a class="link-button" th:href="@{/admin/tipoexercicio/new}">
 								<button type="button" class="btn btn-link button-novo">
 									<i class="bi bi-plus-square p-2"></i>Novo Tipo de Exercicio
 								</button>
@@ -95,11 +95,11 @@
 							<td th:text="${tipoExercicio.equipamento.nome}" />
 							<td>
 								<!--verificar equipamento.nome pq não funciona-->
-								<a th:href="@{/tipoexercicio/delete/{id}(id=${tipoExercicio.id})}">
+								<a th:href="@{/admin/tipoexercicio/delete/{id}(id=${tipoExercicio.id})}">
 									<i class="btn btn-danger" title="delete">Excluir</i>
 								</a>
 
-								<a th:href="@{/tipoexercicio/update/{id}(id=${tipoExercicio.id})}">
+								<a th:href="@{/admin/tipoexercicio/update/{id}(id=${tipoExercicio.id})}">
 									<i class="btn btn-light" title="update">Editar</i>
 								</a>
 							</td>
