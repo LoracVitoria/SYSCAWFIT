@@ -149,13 +149,15 @@
 								<div class="col">
 									<label for="floatingSelect" class="form-label">Aluno: *
 									</label>
-									<select th:field="*{aluno}" class="form-select scroll" id="floatingSelect"
+									<input type="text" id="alunoFilter" class="form-label" onkeyup="filtrar()" placeholder="digite nome ou CPF">
+
+									<select th:field="*{aluno}" class="form-select scroll" id="selecionaAluno"
 										aria-label="Floating label select example" name="aluno" multiple="multiple"
 										required>
-										<option th:each="aluno : ${listaAlunos}" th:value="${aluno.id}"
+										<!-- <option th:each="aluno : ${listaAlunos}" th:value="${aluno.id}"
 											th:text="'Nome: ' + ${aluno.nome} + ' | CPF: ' + ${aluno.cpf}"
 											th:selected="${aluno.id}">
-										</option>
+										</option> -->
 									</select>
 								</div>
 							</div>
@@ -216,6 +218,47 @@
 				<p>Todos os direitos reservados - 2022.</p>
 			</div>
 		</footer>
+
+		<script th:inline="javascript">
+
+			popularLista([[${listaAlunos}]]);
+
+			function popularLista(listaAlunos) {
+				
+				let selecao = document.getElementById('selecionaAluno');
+
+				while(selecao.firstChild){
+					selecao.removeChild(selecao.lastChild);
+				}
+
+				listaAlunos.forEach(aluno => {
+					let item = document.createElement('option');
+					item.value = aluno.id;
+					item.text = 'Nome: ' + aluno.nome + ' | CPF: ' + aluno.cpf;
+					selecao.appendChild(item)
+				});
+
+			}
+
+			function filtrar(){
+				// capturar dado do input
+				let input = document.getElementById("alunoFilter");
+				
+				let filter = input.value;
+
+				// salvar lista de alunos
+				let lista_alunos = [[${listaAlunos}]];
+				
+				// filtrar lista de alunos
+				let resultadoBusca = lista_alunos.filter(function (aluno) {
+					return aluno.nome.toUpperCase().includes(filter.toUpperCase()) || aluno.cpf.includes(filter)
+				})
+				popularLista(resultadoBusca);
+				
+			}
+		</script>
+
+
 
 		<!-- JavaScript Bundle with Popper -->
 

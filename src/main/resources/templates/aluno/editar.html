@@ -54,7 +54,7 @@
         <!-- CABEÇALHO-->
         <header th:replace="cabecalho:: cabecalho"/>
 
-        <div class="row linha-centro overflow-auto">
+        <div class="row linha-centro">
             <!-- MENU-->
             <nav class="col-3 border coluna-menu">
                 <nav th:replace="menu:: menu"/>    
@@ -76,24 +76,13 @@
               </div>
                 
               <!--Formulário-->
-              <form class="row g-3 d-flex justify-content-center" enctype="multipart/form-data" th:object="${aluno}" action="/aluno/update" method="post">
+              <form class="row g-3 d-flex justify-content-center overflow-auto conteudo" enctype="multipart/form-data" th:object="${aluno}" action="/aluno/update" method="post">
 
                 <!--Título-->
                 <h1 class="col-md-6 header-titulo mt-5 text-center">
                   <i class="bi bi-person-plus"></i>
                   Cadastrar
                 </h1>
-
-                <!--Buttons-->
-                <div class="col-md-6 buttons  d-flex align-items-center justify-content-center">
-                  <button type="submit" class="btn btn-primary button-cadastro mx-2 mb-4">
-                      <i class="bi bi-cloud-upload p-2"></i>Alterar
-                  </button>
-
-                  <a class="btn button-cancelar mb-4" th:href="@{/aluno/list}" role="button">
-                      <i class="bi bi-x-lg text-danger p-2"></i>Cancelar
-                  </a>
-                </div>
 
                 <div class="card">
                   <div class="card-body row g-3">
@@ -105,7 +94,9 @@
                      <!--Mostrar foto-->
                     <div class="col-md-6 coluna-imagem">
                       <span>
-                        <img th:src="@{/aluno/get-image/{id}/{imagem}(id=${aluno.id}, imagem=${aluno.imagemAluno})}" class="imagem-aluno border-0" id="thumbnail" width="100%" height="100%">
+                        <img th:if="${aluno.imagemAluno != null}" th:src="@{/aluno/get-image/{id}/{imagem}(id=${aluno.id}, imagem=${aluno.imagemAluno})}" class="imagem-aluno border-0" id="thumbnail" width="100%" height="100%">
+                        <img th:if="${aluno.imagemAluno == null}" th:src="@{/img/profile-picture.jpg}" class="imagem-aluno border-0" id="thumbnail" width="100%" height="100%">
+
                       </span>
                     </div>
 
@@ -152,7 +143,7 @@
 
                     <div class="col-md-6 mb-3">
                       <label for="validationCustom03" class="form-label">Gênero</label>
-                      <select class="form-select" th:field="${aluno.genero}" aria-label="select example" onblur="validaCampo()" >
+                      <select class="form-select" th:field="${aluno.genero}" aria-label="select example" onblur="validaCampo()" required>
                           <option value=""></option>
                           <option th:each="genero : ${generos}"
                                   th:value="${genero}"
@@ -163,7 +154,7 @@
 
                     <div class="col-md-6 mb-3">
                       <label for="validationCustom03" class="form-label">Tipo de Plano</label>
-                      <select class="form-select" th:field="${aluno.plano}" aria-label="select example" onblur="validaCampo()" >
+                      <select class="form-select" th:field="${aluno.plano}" aria-label="select example" onblur="validaCampo()" required>
                           <option value=""></option>
                           <option th:each="plano : ${planos}"
                                   th:value="${plano}"
@@ -221,6 +212,17 @@
                       <input type="text" th:field="${aluno.endereco.pais}" class="form-control" id="pais" required>
                       <div class="invalid-feedback">País não informado</div>
                     </div>
+
+                    <!--Buttons-->
+                    <div class="col-md-12 buttons  d-flex align-items-center justify-content-center">
+                      <button type="submit" class="btn btn-primary button-cadastro mx-2 mb-4">
+                          <i class="bi bi-cloud-upload p-2"></i>Alterar
+                      </button>
+
+                      <a class="btn button-cancelar mb-4" th:href="@{/aluno/list}" role="button">
+                          <i class="bi bi-x-lg text-danger p-2"></i>Cancelar
+                      </a>
+                    </div>
                   </div>
                 </div>
               </form>
@@ -228,11 +230,11 @@
         </div>
 
         <!-- RODAPÉ-->
-        <!-- <footer class="row linha-rodape">
+        <footer class="row linha-rodape">
             <div class="col rodape">
                 <p>Todos os direitos reservados - 2022.</p>
             </div>
-        </footer> -->
+        </footer>
 
         <!-- JavaScript Bundle with Popper -->
         <script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>

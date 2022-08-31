@@ -3,7 +3,9 @@ package com.syscawfit.syscawfit.model;
 import lombok.*;
 
 import javax.persistence.*;
+import javax.validation.Valid;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Getter
@@ -19,7 +21,7 @@ public class Aula {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-//    @NotBlank(message = "O campo deve se preenchido.")
+    @Valid
     @Embedded
     private AulaDiaHora aulaDiaHora;
 

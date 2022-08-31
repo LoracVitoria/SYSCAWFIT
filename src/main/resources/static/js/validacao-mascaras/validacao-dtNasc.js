@@ -1,6 +1,5 @@
 
 function validarIdade(data){
- 
   let dataAtual = new Date();
   let dia = dataAtual.getDate();
   let mes = dataAtual.getMonth();
