@@ -105,6 +105,10 @@
                         <img th:if="${aluno.imagemAluno == null}" th:src="@{/img/profile-picture.jpg}" class="imagem-aluno border-0" id="thumbnail" width="100%" height="100%">
                       </span>
                     </div>
+
+                    <div class="mb-3">
+                      <input type="number" class="form-control" id="" th:field="${aluno.id}" hidden="true">
+                    </div>
                    
                     <div class="col-md-6">
                       <label for="validationCustom01" class="form-label">Nome</label>
