@@ -18,7 +18,7 @@ import java.util.List;
 
 
 @Controller
-@RequestMapping("/planos")
+@RequestMapping("/admin/planos")
 public class PlanoController {
 
     @Autowired
@@ -88,7 +88,7 @@ public class PlanoController {
         // salvar caso planoExistente seja null
         planoDao.save(plano);
 
-        return "redirect:/planos";
+        return "redirect:/admin/planos";
     }
 
     // Deletar plano
@@ -97,7 +97,7 @@ public class PlanoController {
         Plano plano = planoDao.findById(id).orElse(null);
         planoDao.delete(plano);
 
-        return "redirect:/planos";
+        return "redirect:/admin/planos";
     }
 
 

@@ -36,13 +36,13 @@
               </div>
 
               <div class="col button-cadastrar">
-                <a th:href="@{/aulas/new}" class="btn m-4 button-cadastrar__aula">Nova aula</a>
+                <a th:href="@{/admin/aulas/new}" class="btn m-4 button-cadastrar__aula">Nova aula</a>
               </div>
             </div>
            
             <div class="row">
               <div class="col">
-                  <form th:object="${aula}" action="/aula/list" method="GET">
+                  <form th:object="${aula}" action="/admin/aula/list" method="GET">
                     <table class="table mt-4">
                         <thead>
                           <tr>
@@ -62,12 +62,12 @@
                             <td th:text="${aula.aulaDiaHora.hora}"/>
                         
                             <!-- opção de excluir aluno -->
-                            <td><a th:href="@{/aulas/delete/{id}(id=${aula.id})}">
+                            <td><a th:href="@{/admin/aulas/delete/{id}(id=${aula.id})}">
                                 <i class="bi bi-trash" title="excluir"></i>
                             </a></td>
         
                             <!-- opção de editar aluno -->
-                            <td><a th:href="@{/aulas/editar/{id}(id=${aula.id})}">
+                            <td><a th:href="@{/admin/aulas/editar/{id}(id=${aula.id})}">
                                 <i class="bi bi-pencil" title="atualizar"></i>
                             </a></td>
                         </tr>

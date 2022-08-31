@@ -36,7 +36,7 @@
                 <div class="col-md-3">
                   <div class="card mt-3 ">
                     <h5 class="card-header text-center">Mensal
-                      <td><a th:href="@{/planos/delete/{id}(id=${planoMensal.id})}">
+                      <td><a th:href="@{/admin/planos/delete/{id}(id=${planoMensal.id})}">
                         <i th:if="${planoMensal.valor}" class="bi bi-x" title="excluir"></i>
                       </a></td>
                     </h5>
@@ -51,7 +51,7 @@
                 <div class="col-md-3">
                   <div class="card mt-3">
                     <h5 class="card-header text-center">Trimestral
-                      <td><a th:href="@{/planos/delete/{id}(id=${planoTrimestral.id})}">
+                      <td><a th:href="@{/admin/planos/delete/{id}(id=${planoTrimestral.id})}">
                         <i th:if="${planoTrimestral.valor}" class="bi bi-x" title="excluir"></i>
                       </a></td>
                     </h5>
@@ -66,7 +66,7 @@
                 <div class="col-md-3">
                   <div class="card mt-3">
                     <h5 class="card-header text-center">Semestral
-                      <td><a th:href="@{/planos/delete/{id}(id=${planoSemestral.id})}">
+                      <td><a th:href="@{/admin/planos/delete/{id}(id=${planoSemestral.id})}">
                         <i th:if="${planoSemestral.valor}" class="bi bi-x" title="excluir"></i>
                       </a></td>
                     </h5>
@@ -81,7 +81,7 @@
                 <div class="col-md-3">
                   <div class="card mt-3">
                     <h5 class="card-header text-center">Anual
-                      <td><a th:href="@{/planos/delete/{id}(id=${planoAnual.id})}">
+                      <td><a th:href="@{/admin/planos/delete/{id}(id=${planoAnual.id})}">
                         <i th:if="${planoAnual.valor}" class="bi bi-x" title="excluir"></i>
                       </a></td>
                     </h5>
@@ -100,7 +100,7 @@
                   <div class="card card-formulario ">
                     <div class="card-body">
                       
-                      <form th:object="${plano}" action="/planos/save" method="post" id="form-plano">
+                      <form th:object="${plano}" action="/admin/planos/save" method="post" id="form-plano">
 
                         <div class="row g-3 align-items-center">
                             <label class="form-label fw-bold">Tipo de Plano</label>

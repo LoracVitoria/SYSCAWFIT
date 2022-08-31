@@ -14,7 +14,7 @@ import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Controller
-@RequestMapping("/relatorios")
+@RequestMapping("admin/relatorios")
 public class RelatorioController {
 
 

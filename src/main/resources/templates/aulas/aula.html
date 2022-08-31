@@ -54,7 +54,7 @@
         </div>
 
         <!--Formulário-->
-        <form class="row h-75 formulario-aula" th:object="${aula}" action="/aulas/save" method="post">
+        <form class="row h-75 formulario-aula" th:object="${aula}" action="/admin/aulas/save" method="post">
 
           <div class="card mt-3 card-formulario">
             <div class="card-body">
@@ -87,7 +87,7 @@
 
             <div class="col-md-12">
               <label class="col-form-label fw-bold">Professor(a)</label>
-              <select class="form-select" th:field="${aula.professor}"aria-label="select example" required>
+              <select class="form-select" th:field="${aula.professor}"aria-label="select example" >
                 <option value=""></option>
                 <option th:each="professor : ${professores}"
                         th:value="${professor.id}"
@@ -100,7 +100,7 @@
             <div class="col-md-12">
               <div class="d-flex justify-content-center">
                 <button type="submit" class="btn mx-2 btn-enviar mt-3">Salvar</button>
-                <a class="btn btn-cancelar mt-3" th:href="@{/aulas/list}" role="button">Cancelar</a>
+                <a class="btn btn-cancelar mt-3" th:href="@{/admin/aulas/list}" role="button">Cancelar</a>
               </div>
             </div>
         </form>
