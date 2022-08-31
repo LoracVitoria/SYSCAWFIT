@@ -119,7 +119,6 @@ public class EquipamentosController {
 			List<String> mensagensErro = new ArrayList<String>();
 			mensagensErro.add(msg);
 			model.addAttribute("mensagensErro", mensagensErro);
-			System.out.println(msg);
 			List<Equipamentos> equipamentosList = daoEquipamentos.findAll();
 			model.addAttribute("equipamentosList", equipamentosList);
 			return "/equipamentos/listarEquipamentos.html";

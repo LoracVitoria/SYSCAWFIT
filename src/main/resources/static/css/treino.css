@@ -217,6 +217,14 @@
 	padding: 5px;
 }
 
+.form-aluno{
+	display: flex;
+}
+
+.inputAluno{
+	margin-right: 10px;
+}
+
 /*responsividade 320px largura pagina*/
 
 @media only screen and (max-width: 321px) {
