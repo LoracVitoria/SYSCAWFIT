@@ -101,7 +101,8 @@
                      <!--Mostrar foto-->
                     <div class="col-md-6 coluna-imagem">
                       <span>
-                        <img th:src="@{/aluno/get-image/{id}/{imagem}(id=${aluno.id}, imagem=${aluno.imagemAluno})}" class="imagem-aluno border-0" id="thumbnail" width="100%" height="100%">
+                        <img th:if="${aluno.imagemAluno != null}" th:src="@{/aluno/get-image/{id}/{imagem}(id=${aluno.id}, imagem=${aluno.imagemAluno})}" class="imagem-aluno border-0" id="thumbnail" width="100%" height="100%">
+                        <img th:if="${aluno.imagemAluno == null}" th:src="@{/img/profile-picture.jpg}" class="imagem-aluno border-0" id="thumbnail" width="100%" height="100%">
                       </span>
                     </div>
                    

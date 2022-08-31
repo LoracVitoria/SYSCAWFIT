@@ -70,12 +70,12 @@
 
             <div class="col-md-12">
               <label class="form-label fw-bold mt-3">Nome</label>
-              <input type="text" class="form-control" id="" th:field="${aula.nome}">
+              <input type="text" class="form-control" id="" th:field="${aula.nome}" required>
             </div>
 
             <div class="col-md-12">
               <label class="col-form-label fw-bold">Dia da Semana</label>
-              <select class="form-select" th:field="${aula.aulaDiaHora.diaSemana}"aria-label="select example" >
+              <select class="form-select" th:field="${aula.aulaDiaHora.diaSemana}"aria-label="select example" required>
                 <option value=""></option>
                 <option th:each="diaSemana : ${diasSemana}"
                           th:value="${diaSemana}"
@@ -86,12 +86,12 @@
 
             <div class="col-md-12">
               <label class="form-label fw-bold">Hora</label>
-              <input type="time" class="form-control" id=""  th:field="${aula.aulaDiaHora.hora}" >
+              <input type="time" class="form-control" id=""  th:field="${aula.aulaDiaHora.hora}" required>
             </div>
 
             <div class="col-md-12">
               <label class="col-form-label fw-bold">Professor(a)</label>
-              <select class="form-select" th:field="${aula.professor}"aria-label="select example" >
+              <select class="form-select" th:field="${aula.professor}"aria-label="select example" required>
                 <option value=""></option>
                 <option th:each="professor : ${professores}"
                         th:value="${professor.id}"
