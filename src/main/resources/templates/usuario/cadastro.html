@@ -23,24 +23,24 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script> -->
 
     <script>
-        $(document).ready(function () {
+        $(document).ready(function(){
             $(".toast").toast({
                 autohide: false
             });
             $(".toast").toast("show");
 
             // carregar imagem
-            $("#fileImage").change(function () {
+            $("#fileImage").change(function(){
                 showImageThumbnail(this);
             });
         });
 
 
-        function showImageThumbnail(fileInput) {
+        function showImageThumbnail(fileInput){
             file = fileInput.files[0];
             reader = new FileReader();
 
-            reader.onload = function (e) {
+            reader.onload = function(e){
                 $("#thumbnail").attr("src", e.target.result);
             }
 
@@ -97,8 +97,11 @@
 
                     <!--Mostrar foto-->
                     <div class="col-md-6 coluna-imagem">
-                        <span><img class="imagem-usuario" id="thumbnail"></span>
+                      <span>
+                        <img class="imagem-usuario" id="thumbnail">
+                      </span>
                     </div>
+
 
                     <div class="col-md-6">
                         <label for="nome" class="form-label">Nome</label>
@@ -145,11 +148,17 @@
                         <div class="invalid-feedback">E-mail inválido!</div>
                     </div>
 
+<!--                    <div class="col-md-6">-->
+<!--                        <label for="fileImage" class="form-label">Anexar foto</label>-->
+<!--                        <div>-->
+<!--                            <input class="form-control form-control-sm inputFile" accept="image/*" name="image"-->
+<!--                                   id="fileImage" type="file" required>-->
+<!--                        </div>-->
+<!--                    </div>-->
                     <div class="col-md-6">
-                        <label for="fileImage" class="form-label">Anexar foto</label>
+                        <label for="validationCustom03" class="form-label">Anexar foto</label>
                         <div>
-                            <input class="form-control form-control-sm inputFile" accept="image/*" name="image"
-                                   id="fileImage" type="file" required>
+                            <input class="form-control form-control-sm inputFile" accept="image/*" name="image" id="fileImage" type="file" required>
                         </div>
                     </div>
 

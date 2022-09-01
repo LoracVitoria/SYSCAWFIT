@@ -5,7 +5,7 @@
     <div class="col-3">
         <div class="row">
             <div class="col-5 coluna-imagem">
-                <img th:src="@{/img/usuariosImagens/{id}/{imagem}(id=${#authentication.getPrincipal().getIdUsuarioLogado},imagem=${#authentication.getPrincipal().getImagemUsuarioLogado()})}" class="img-fluid usuario__imagem" alt="...">
+                <img th:src="@{/img/usuariosImagens/{id}/{imagem}(id=${#authentication.getPrincipal().getIdUsuarioLogado}, imagem=${#authentication.getPrincipal().getImagemUsuarioLogado()})}" class="img-fluid usuario__imagem" alt="...">
             </div>
             <div class="col-7 coluna-texto">
                 <p class="usuario__nome" th:text="${#authentication.getPrincipal().getNomeUsuarioLogado()}"></p>
