@@ -25,6 +25,7 @@
                             <!-- Thymeleaf + Spring Security error display -->
                             <div th:if="${param.error != null}" class="alert alert-danger text-center">CPF e senha inválidos!</div>
                             <div th:if="${param.logout != null}" class="alert alert-info text-center">Você foi desconectado!</div>
+                            <div th:if="${message  != null}" class="alert alert-success text-center">[[${message}]]</div>
 
                             <!-- Login Controls -->
                             <div class="form-group">

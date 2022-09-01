@@ -24,6 +24,7 @@ public class Usuario {
     private String telefone;
     @Size(max=1000)
     private String imagemUsuario;
+    @Column(unique = true)
     private String email;
     @NotNull
     private Boolean situacao;

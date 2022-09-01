@@ -22,7 +22,7 @@ public class Autenticacao implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        Usuario manager = new Usuario("103.840.709-57", passwordEncoder.encode("123123"),"Carol", "MANAGER",true, Mantenedor,Administrativo, "imagem-usuario.jpg");
+        Usuario manager = new Usuario("103.840.709-57", passwordEncoder.encode("123123"),"Mantenedor Padrão", "MANAGER",true, Mantenedor,Administrativo, "imagem-usuario.jpg");
 
         if(this.userRepository.findByCpf(manager.getCpf()) == null){
             this.userRepository.save(manager);

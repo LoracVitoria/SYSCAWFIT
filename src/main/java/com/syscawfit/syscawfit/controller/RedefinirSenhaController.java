@@ -42,7 +42,6 @@ public class RedefinirSenhaController {
         try {
             usuarioPrincipalDetailsService.atualizarTokenSenhaRedefinida(token, email);
             String redefinirSenhaLink = Utility.getSiteURL(request) + "/alterarSenha?token=" + token;
-            System.out.println(redefinirSenhaLink);
             sendEmail(email, redefinirSenhaLink);
             model.addAttribute("message", "O link para redefinição de senha foi enviado, por favor verifique a caixa de entrada do seu e-mail!");
 
@@ -80,8 +79,8 @@ public class RedefinirSenhaController {
         Usuario usuario = usuarioPrincipalDetailsService.getUsuarioRedefinido(token);
         if (usuario == null) {
             model.addAttribute("title", "Alterar a senha");
-            model.addAttribute("message", "Token inválido!");
-            return "message";
+            model.addAttribute("error", "Token inválido!");
+            return "/redefinirSenhaForm";
         }
         model.addAttribute("token", token);
         model.addAttribute("pageTitle", "Alterar a senha");
@@ -95,12 +94,13 @@ public class RedefinirSenhaController {
         Usuario usuario = usuarioPrincipalDetailsService.getUsuarioRedefinido(token);
         if (usuario == null) {
             model.addAttribute("title", "Alterar a senha");
-            model.addAttribute("message", "Token inválido!");
-            return "message";
+            model.addAttribute("error", "Token inválido!");
+            return "/redefinirSenhaForm";
         }else {
             usuarioPrincipalDetailsService.atualizarSenha(usuario, senha);
             model.addAttribute("message", "Senha redefinida com sucesso!");
+
+            return "/login";
         }
-        return "message";
     }
 }

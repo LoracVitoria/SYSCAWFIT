@@ -4,6 +4,7 @@ import com.syscawfit.syscawfit.dao.EnderecoUsuarioRepository;
 import com.syscawfit.syscawfit.dao.UsuarioRepository;
 import com.syscawfit.syscawfit.model.*;
 import com.syscawfit.syscawfit.security.UsuarioPrincipal;
+import net.bytebuddy.implementation.bind.MethodDelegationBinder;
 import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,6 +22,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Controller
@@ -96,6 +98,9 @@ public class UsuarioController {
 
         if (daoUsuario.findByCpf(usuario.getCpf()) != null) {
             errors.add("CPF já cadastrado!");
+        }
+        if (daoUsuario.findByEmail(usuario.getEmail()) != null){
+            errors.add("Email já cadastrado!");
         }
 
         if (!errors.isEmpty()) {
@@ -194,10 +199,14 @@ public class UsuarioController {
                 errors.add(error.getDefaultMessage());
             });
         }
+        Optional<Usuario> usuarioFind = Optional.ofNullable(daoUsuario.findByCpf(usuario.getCpf()));
 
-
-        Usuario usuarioFind = daoUsuario.findByCpf(usuario.getCpf());
-
+        if (daoUsuario.findByCpf(usuario.getCpf()) != null && !Objects.equals(usuarioFind.get().getId(), usuario.getId())) {
+            errors.add("CPF já cadastrado!");
+        }
+        if(daoUsuario.findByEmail(usuario.getEmail()) != null && !Objects.equals(usuarioFind.get().getId(), usuario.getId())){
+            errors.add("Email já cadastrado!");
+        }
 
         if (usuario.getTipoUsuario() != null && usuario.getTipoUsuario().getTipoUsuario().compareTo("Mantenedor") == 0) {
             usuario.setRoles("ADMIN");
@@ -214,14 +223,13 @@ public class UsuarioController {
             return "/usuario/edicao.html";
         }
 
-        usuario.setId(daoUsuario.findByCpf(usuario.getCpf()).getId());
 
         //obter nome do arquivo que será armazenado no BD no campo ImagemAluno
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
 
         // Checar se foto foi alterada
         if (fileName.isEmpty()) {
-            usuario.setImagemUsuario(usuarioFind.getImagemUsuario());
+            usuario.setImagemUsuario(usuarioFind.get().getImagemUsuario());
         } else {
             // Deleta imagem anterior
             FileUtils.deleteDirectory(new File(caminhoImagens + usuario.getId()));
@@ -230,19 +238,11 @@ public class UsuarioController {
             String uploadDir = caminhoImagens + usuario.getId();
             FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
         }
-        if (usuario.getEndereco() != null) {
-            daoEndereco.save(usuario.getEndereco());
-        }
-
-        if (!usuario.getSenha().isEmpty() || usuario.getSenha() != null) {
             PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
             String senhaCripto = passwordEncoder.encode(usuario.getSenha());
             usuario.setSenha(senhaCripto);
-        }else{
-            usuario.setSenha(usuarioFind.getSenha());
-        }
-        //configurar melhor isso aqui
 
+        daoEndereco.save(usuario.getEndereco());
         daoUsuario.save(usuario);
 
         return "redirect:/admin/usuario/list";
