@@ -13,7 +13,7 @@ html,body {
 .coluna-imagem {
     display: flex;
     justify-content: flex-end;
-    height: 100px;
+    height: 15vh;
 }
 
 .coluna-texto {
@@ -53,6 +53,7 @@ html,body {
 .usuario__imagem {
     height: 11vh;
     width: 11vh;
+    object-fit: cover;  
     background-size: cover;         /* para que as imagens não se repitam */
     background-position: center;    /* para que as imagens ocupem todo o background */
     background-repeat: no-repeat;   /* para que as imagens seham centralizadas na caixa */
@@ -71,16 +72,16 @@ html,body {
 
 @media screen and (min-width:0){
     .coluna-imagem {
-        /* background: green; */
+        display: none;
     }
     .usuario__nome {
-        font-size: 11px;
+        font-size: 14px;
     }
 }
 
 @media screen and (min-width:768px){
     .coluna-imagem {
-        /* background: gray; */
+        display: flex;
     }
     .usuario__nome {
         font-size:16px;

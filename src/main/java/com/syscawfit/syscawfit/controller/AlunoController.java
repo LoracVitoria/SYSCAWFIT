@@ -192,7 +192,7 @@ public class AlunoController {
 
 		// Checar se foto foi alterada
 		if (fileName.isEmpty()) {
-			aluno.setImagemAluno(aluno.getImagemAluno());
+			aluno.setImagemAluno(buscaAluno.getImagemAluno());
 		} else {
 			// Deleta imagem anterior
 			FileUtils.deleteDirectory(new File(caminhoImagens + aluno.getId()));

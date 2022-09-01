@@ -50,7 +50,7 @@
 
 <nav class="navbar fixed-top navbar-sandwich border" th:fragment="menu">
     <div class="row container-fluid">
-        <div class="col-6">
+        <div class="col-3">
             <!--Menu sandwich-->
             <button class="navbar-toggler d-flex justify-content-start" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
             <span class="navbar-toggler-icon"></span>
@@ -102,11 +102,11 @@
         </div>
 
 
-        <div class="col-4 coluna-imagem">
+        <div class="col-3 coluna-imagem">
             <img th:src="@{/img/usuariosImagens/{id}/{imagem}(id=${#authentication.getPrincipal().getIdUsuarioLogado},imagem=${#authentication.getPrincipal().getImagemUsuarioLogado()})}" class="img-fluid usuario__imagem" alt="...">
         </div>
 
-        <div class="col-2 coluna-texto">
+        <div class="col-6 coluna-texto">
             <p class="usuario__nome" th:text="${#authentication.getPrincipal().getNomeUsuarioLogado()}"></p>
         </div>
 

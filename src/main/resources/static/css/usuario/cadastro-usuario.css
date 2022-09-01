@@ -48,8 +48,6 @@ color: limegreen;
 }
 
 .imagem-usuario{
-    height: 18vh;
-    width: 18vh;
     object-fit: cover;
     background-size: cover;         /* para que as imagens não se repitam */
     background-position: center;    /* para que as imagens ocupem todo o background */
@@ -115,10 +113,22 @@ color: limegreen;
     .coluna-imagem {
         display: flex;
         justify-content: center;
+        height: 20vh;
     }
 
     .coluna__dadosPessoais, .subtitulo-endereco {
         justify-content: center;
+    }
+
+    .coluna__dadosPessoais {
+        height: 20vh;
+    }
+
+    .imagem-usuario {
+        height: 18vh;
+        width: 18vh;
+        max-width: 18vh;
+        min-height: 18vh;
     }
 
     .card {
@@ -135,6 +145,13 @@ color: limegreen;
 
     .coluna__dadosPessoais, .subtitulo-endereco {
         justify-content: start;
+    }
+
+    .imagem-usuario {
+        height: 20vh;
+        width: 20vh;
+        max-width: 20vh;
+        min-height: 20vh;
     }
 
     .card {

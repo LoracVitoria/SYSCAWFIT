@@ -1,13 +1,13 @@
 <header class=" row linha-cabecalho" th:fragment="cabecalho" >
-    <div class="col-9 logo-div">
+    <div class="col-md-8 logo-div">
         <a href="/"><img th:src="@{/img/logo-syscawfit.png}" alt="logo" class=" img-fluid logotipo mx-5"></a>
     </div>
-    <div class="col-3">
+    <div class="col-md-4">
         <div class="row">
-            <div class="col-5 coluna-imagem">
+            <div class="col-4 coluna-imagem">
                 <img th:src="@{/img/usuariosImagens/{id}/{imagem}(id=${#authentication.getPrincipal().getIdUsuarioLogado}, imagem=${#authentication.getPrincipal().getImagemUsuarioLogado()})}" class="img-fluid usuario__imagem" alt="...">
             </div>
-            <div class="col-7 coluna-texto">
+            <div class="col-8 coluna-texto">
                 <p class="usuario__nome" th:text="${#authentication.getPrincipal().getNomeUsuarioLogado()}"></p>
             </div>
         </div>

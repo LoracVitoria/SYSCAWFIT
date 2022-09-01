@@ -43,8 +43,6 @@
 }
 
 .imagem-aluno {
-  height: 20vh;                  
-  width: 20vh;       
   object-fit: cover;            
   background-size: cover;         /* para que as imagens não se repitam */
   background-position: center;    /* para que as imagens ocupem todo o background */
@@ -110,6 +108,14 @@
   .coluna-imagem {
     display: flex;
     justify-content: center;
+    height: 20vh;
+  }
+
+  .imagem-aluno {
+    height: 18vh;
+    width: 18vh;
+    max-width: 18vh;
+    min-height: 18vh;
   }
 
   .coluna__dadosPessoais, .subtitulo-endereco {
@@ -126,6 +132,14 @@
     .coluna-imagem {
       display: flex;
       justify-content: end;
+      height: 20vh;
+    }
+
+    .imagem-aluno {
+      height: 20vh;
+      width: 20vh;
+      max-width: 20vh;
+      min-height: 20vh;
     }
   
     .coluna__dadosPessoais, .subtitulo-endereco {
