@@ -127,7 +127,7 @@
                     </div>
                     <div class="col-md-6">
                         <label for="rg" class="form-label">RG</label>
-                        <input type="text" th:field="${usuario.rg}" class="form-control" id="rg" required>
+                        <input type="text" onkeypress='return event.charCode >= 45 && event.charCode <= 57' maxlength="15" th:field="${usuario.rg}" class="form-control" id="rg" required>
                         <div class="invalid-feedback">RG inválido!</div>
                     </div>
 
