@@ -20,7 +20,6 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Long> {
     Usuario findByEmail(String userEmail);
 
     Usuario findByTokenRedefinirSenha(String token);
-    //findAll, findById, get, save, delete,
 }
 
 

@@ -3,8 +3,6 @@ package com.syscawfit.syscawfit.controller;
 import com.syscawfit.syscawfit.dao.EnderecoUsuarioRepository;
 import com.syscawfit.syscawfit.dao.UsuarioRepository;
 import com.syscawfit.syscawfit.model.*;
-import com.syscawfit.syscawfit.security.UsuarioPrincipal;
-import net.bytebuddy.implementation.bind.MethodDelegationBinder;
 import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
