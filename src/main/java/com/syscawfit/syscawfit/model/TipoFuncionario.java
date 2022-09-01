@@ -1,11 +1,9 @@
 package com.syscawfit.syscawfit.model;
 
 public enum TipoFuncionario {
-    Administracao("Administração"),
-    Recepcao("Recepção"),
-    RH("RH"),
+    Administrativo("Administrativo"),
+    Recepcionista("Recepcionista"),
     Treinador("Treinador"),
-    Limpeza("Limpeza"),
     Financeiro("Financeiro");
     private final String tipoFuncionario;
 

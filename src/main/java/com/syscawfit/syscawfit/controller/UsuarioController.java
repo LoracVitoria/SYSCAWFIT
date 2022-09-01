@@ -83,7 +83,7 @@ public class UsuarioController {
     }
 
     @PostMapping("/save")
-    public String salvarAluno(@Valid Usuario usuario, BindingResult result, Model model,
+    public String save(@Valid Usuario usuario, BindingResult result, Model model,
                               @RequestParam("image") MultipartFile multipartFile) throws IOException {
 
         List<String> errors = new ArrayList<>();
@@ -119,17 +119,20 @@ public class UsuarioController {
         usuario.setSenha(senhaCripto);
         daoUsuario.save(usuario);
 
-        //obter nome do arquivo que será armazenado no BD no campo ImagemAluno
+        ///obter nome do arquivo que será armazenado no BD no campo ImagemAluno
         String fileName = StringUtils.cleanPath(multipartFile.getOriginalFilename());
-        usuario.setImagemUsuario(fileName);
-        Usuario saveUsuario = daoUsuario.save(usuario);
 
-        // armazenar arquivo no diretório alunos-imagens/alunoID
+        // verificar se foi enviado algum arquivo
+        if (!fileName.isEmpty()) {
+            usuario.setImagemUsuario(fileName);
+            Usuario saveUsuario = daoUsuario.save(usuario);
 
-        String uploadDir = caminhoImagens + saveUsuario.getId();
+            // armazenar arquivo no diretório alunos-imagens/alunoID
 
-        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+            String uploadDir = caminhoImagens + saveUsuario.getId();
 
+            FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+        }
         return "redirect:/admin/usuario/list";
     }
 

@@ -7,7 +7,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
-import static com.syscawfit.syscawfit.model.TipoFuncionario.Administracao;
+import static com.syscawfit.syscawfit.model.TipoFuncionario.Administrativo;
 import static com.syscawfit.syscawfit.model.TipoUsuario.Mantenedor;
 
 @Service
@@ -22,7 +22,7 @@ public class Autenticacao implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        Usuario manager = new Usuario("103.840.709-57", passwordEncoder.encode("123123"),"Carol", "MANAGER",true, Mantenedor,Administracao);
+        Usuario manager = new Usuario("103.840.709-57", passwordEncoder.encode("123123"),"Carol", "MANAGER",true, Mantenedor,Administrativo, "imagem-usuario.jpg");
 
         if(this.userRepository.findByCpf(manager.getCpf()) == null){
             this.userRepository.save(manager);

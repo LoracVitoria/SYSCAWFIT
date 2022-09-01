@@ -44,7 +44,7 @@ public class Usuario {
     public Usuario() {
     }
 
-    public Usuario(String username, String password, String nome, String roles, Boolean situacao, TipoUsuario tipoUsuario, TipoFuncionario tipoFuncionario) {
+    public Usuario(String username, String password, String nome, String roles, Boolean situacao, TipoUsuario tipoUsuario, TipoFuncionario tipoFuncionario, String imagemUsuario) {
         this.cpf = username;
         this.senha = password;
         this.nome = nome;
@@ -52,6 +52,7 @@ public class Usuario {
         this.tipoUsuario = tipoUsuario;
         this.tipoFuncionario = tipoFuncionario;
         this.roles = roles;
+        this.imagemUsuario = imagemUsuario;
     }
 
     public String getRoles() {

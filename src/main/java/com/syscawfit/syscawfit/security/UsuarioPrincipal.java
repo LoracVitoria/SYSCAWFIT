@@ -13,10 +13,28 @@ import java.util.List;
 
 public class UsuarioPrincipal implements UserDetails {
     private Usuario user;
+    private String imagemUsuarioLogado;
+    private String nomeUsuarioLogado;
+    private Long idUsuarioLogado;
 
 
     public UsuarioPrincipal(Usuario user) {
         this.user = user;
+        this.imagemUsuarioLogado = this.user.getImagemUsuario();
+        this.nomeUsuarioLogado = this.user.getNome();
+        this.idUsuarioLogado = this.user.getId();
+    }
+
+    public String getImagemUsuarioLogado() {
+        return imagemUsuarioLogado;
+    }
+
+    public String getNomeUsuarioLogado() {
+        return nomeUsuarioLogado;
+    }
+
+    public Long getIdUsuarioLogado() {
+        return idUsuarioLogado;
     }
 
     @Override
@@ -39,7 +57,7 @@ public class UsuarioPrincipal implements UserDetails {
     }
     @Override
     public String getUsername() {
-        return this.user.getNome();
+        return this.user.getCpf();
     }
 
     @Override

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-vertical" th:fragment="menu">
+<nav class="navbar navbar-vertical" th:fragment="menu" xmlns:sec="http://www.w3.org/1999/xhtml">
     <!-- Itens do Menu -->
 
     <ul class="navbar-nav lista">
@@ -59,7 +59,7 @@
             <!--vertical-->
             <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
                 <div class="offcanvas-header">
-                    <img th:src="@{/img/imagem-logo.PNG}" alt="logo" class=" img-fluid logotipo">
+                    <img th:src="@{/img/logo-syscawfit.png}" alt="logo" class=" img-fluid logotipo">
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
                 </div>
                 <div class="offcanvas-body">
@@ -103,11 +103,11 @@
 
 
         <div class="col-4 coluna-imagem">
-            <img th:src="@{/img/imagem-usuario.jpg}" class="img-fluid usuario__imagem" alt="...">
+            <img th:src="@{/img/usuariosImagens/{id}/{imagem}(id=${#authentication.getPrincipal().getIdUsuarioLogado},imagem=${#authentication.getPrincipal().getImagemUsuarioLogado()})}" class="img-fluid usuario__imagem" alt="...">
         </div>
 
         <div class="col-2 coluna-texto">
-            <p class="usuario__nome">Usuário</p>
+            <p class="usuario__nome" th:text="${#authentication.getPrincipal().getNomeUsuarioLogado()}"></p>
         </div>
 
     </div>
