@@ -9,6 +9,7 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import com.syscawfit.syscawfit.model.Aluno;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -95,6 +96,7 @@ public class EquipamentosController {
 	/* EDITAR EQUIPAMENTOS */
 	@GetMapping("/update/{id}")
 	public String getUpdate(Model model, @PathVariable("id") Long id) {
+
 		Optional<Equipamentos> equipamentosOpt = daoEquipamentos.findById(id);
 		if (equipamentosOpt.isEmpty()) {
 			throw new IllegalArgumentException("equipamento não encontrado.");
@@ -103,6 +105,7 @@ public class EquipamentosController {
 		return "/equipamentos/cadastrarEquipamentos.html";
 
 	}
+
 
 	/* DELETE EQUIPAMENTOS */
 	@RequestMapping("/delete/{id}")

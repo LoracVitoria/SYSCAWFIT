@@ -79,20 +79,25 @@
               <form class="row g-3 d-flex justify-content-center overflow-auto conteudo" enctype="multipart/form-data" th:object="${aluno}" action="/aluno/save" method="post">
 
                 <!--Título-->
-                <h1 class="col-md-6 header-titulo mt-5 text-center">
-                  <i class="bi bi-card-text"></i>
-                  Cadastro
-                </h1>
 
-                <!--Buttons-->
-                <div class="col-md-6 buttons  d-flex align-items-center justify-content-center">
-                  <a class="btn button-cancelar mb-5" th:href="@{/aluno/list}" role="button">
-                    <i class="bi bi-arrow-return-left m-2"></i>Voltar
-                  </a>
+                <div class="col-md-12 d-flex justify-content-center">
+                   <!--Buttons-->
+                  <div class="buttons">
+                    <a class="btn button-cancelar" th:href="@{/aluno/list}" role="button">
+                      <i class="bi bi-arrow-return-left p-2"></i>Voltar
+                    </a>
+                  </div>
                 </div>
 
                 <div class="card card-view">
                   <div class="card-body row g-3">
+
+                    <div class="col-md-12 d-flex justify-content-center">
+                      <h1 class="header-titulo mt-5">
+                        <i class="bi bi-card-text p-1"></i>
+                        Cadastro de Aluno
+                      </h1>
+                    </div>
 
                     <div class="col-md-6 coluna__dadosPessoais d-flex align-items-center">
                       <h4>Dados Pessoais</h4>
@@ -101,8 +106,8 @@
                      <!--Mostrar foto-->
                     <div class="col-md-6 coluna-imagem">
                       <span>
-                        <img th:if="${aluno.imagemAluno != null}" th:src="@{/aluno/get-image/{id}/{imagem}(id=${aluno.id}, imagem=${aluno.imagemAluno})}" class="imagem-aluno border-0" id="thumbnail" width="100%" height="100%">
-                        <img th:if="${aluno.imagemAluno == null}" th:src="@{/img/profile-picture.jpg}" class="imagem-aluno border-0" id="thumbnail" width="100%" height="100%">
+                        <img th:if="${aluno.imagemAluno != null}" th:src="@{/aluno/get-image/{id}/{imagem}(id=${aluno.id}, imagem=${aluno.imagemAluno})}" class="img-fluid imagem-aluno border-0" id="thumbnail" width="100%" height="100%">
+                        <img th:if="${aluno.imagemAluno == null}" th:src="@{/img/profile-picture.jpg}" class="img-fluid imagem-aluno border-0" id="thumbnail" width="100%" height="100%">
                       </span>
                     </div>
 

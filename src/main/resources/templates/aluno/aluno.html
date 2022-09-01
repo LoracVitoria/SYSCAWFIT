@@ -78,7 +78,7 @@
                 <!--Título-->
                 <h1 class="col-md-6 header-titulo mt-5 text-center">
                   <i class="bi bi-person-plus"></i>
-                  Cadastrar
+                  Cadastrar Aluno
                 </h1>
 
                 <div class="card">
@@ -91,12 +91,8 @@
                      <!--Mostrar foto-->
                     <div class="col-md-6 coluna-imagem">
                       <span>
-                        <img class="imagem-aluno" id="thumbnail">
+                        <img class="img-fluid imagem-aluno" id="thumbnail">
                       </span>
-                    </div>
-
-                    <div class="mb-3">
-                      <input type="number" class="form-control" id="" th:field="${aluno.id}" hidden="true">
                     </div>
                    
                     <div class="col-md-6">
@@ -207,18 +203,18 @@
                       <input type="text" th:field="${aluno.endereco.pais}" class="form-control" id="pais" required>
                       <div class="invalid-feedback">País não informado</div>
                     </div>
-
-                    <!--Buttons-->
-                    <div class="col-md-12 buttons  d-flex align-items-center justify-content-center">
-                      <button type="submit" class="btn btn-primary button-cadastro mx-2 mb-4">
-                          <i class="bi bi-cloud-upload p-2"></i>Cadastrar
-                      </button>
-
-                      <a class="btn button-cancelar mb-4" th:href="@{/aluno/list}" role="button">
-                          <i class="bi bi-x-lg text-danger p-2"></i>Cancelar
-                      </a>
-                    </div>
                   </div>
+                </div>
+
+                <!--Buttons-->
+                <div class="col-md-12 buttons  d-flex align-items-center justify-content-center">
+                  <button type="submit" class="btn btn-primary button-cadastro mx-2 mb-4">
+                      <i class="bi bi-cloud-upload p-2"></i>Cadastrar
+                  </button>
+
+                  <a class="btn button-cancelar mb-4" th:href="@{/aluno/list}" role="button">
+                      <i class="bi bi-x-lg text-danger p-2"></i>Cancelar
+                  </a>
                 </div>
               </form>
             </main>
